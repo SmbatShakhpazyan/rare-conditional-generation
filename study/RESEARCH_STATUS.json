@@ -1,0 +1,62 @@
+{
+  "GPU_or_model_calls_by_exporter": 0,
+  "bootstrap_status": {
+    "B": "computed"
+  },
+  "cloud_archives_are_not_proof_of_local_delivery": true,
+  "complete_confirmation_models": 6,
+  "created_utc": "2026-11-19T11:19:58.328968+00:00",
+  "data_ready_sha256": "839862f7637646ee753014739f13457315fde936e1124e17846912dafb96ce6a",
+  "expected_primary_references": [
+    "B"
+  ],
+  "feature_NPZ_scope": "exact_producer_selected_real_reference_banks_only_fake_banks_not_exported",
+  "fixed_training_seeds": [
+    101,
+    202,
+    303
+  ],
+  "fresh_split_group_image_counts": [
+    [
+      50146,
+      15293,
+      46234,
+      942
+    ],
+    [
+      9944,
+      3074,
+      9885,
+      253
+    ],
+    [
+      10545,
+      4127,
+      10372,
+      173
+    ]
+  ],
+  "full_N_private_component_map_or_raw_identity_labels_exported": false,
+  "main_steps": 1500,
+  "one_sided_confidence": 0.9875,
+  "planned_confirmation_models": 6,
+  "seed_population_inference": false,
+  "selected_reference_union_labels_and_original_rows_explicitly_authorized_for_scientific_replay": true,
+  "selected_settings": {
+    "B": {
+      "coefficient": 0.0,
+      "ema_decay": 0.99,
+      "kappa": 0.0
+    },
+    "C": {
+      "coefficient": 1.0,
+      "ema_decay": 0.99,
+      "kappa": 0.0
+    }
+  },
+  "status": "COMPLETE",
+  "study_id": "generative_recovery_1500",
+  "study_plan_sha256": "3b3692067bf4baf8d7b03ac28f98ed60818393d2f047946c5aaf22df62fe28f8",
+  "test_point_count": 6,
+  "validation_point_count": 10
+}

@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "Please cite the research report and the original method papers."
+title: "Conditional Generative Models Under Data Imbalance"
+type: software
+authors:
+  - family-names: Shakhpazyan
+    given-names: Smbat
+version: "1.0.0"
+date-released: "2026-11-19"
+url: "https://github.com/SmbatShakhpazyan/rare-conditional-generation"
+repository-code: "https://github.com/SmbatShakhpazyan/rare-conditional-generation"
+abstract: "Detailed methods, mathematical analysis, a leakage-audited negative conditional-GAN comparison, complete reference implementations, and scoped reproducibility evidence."

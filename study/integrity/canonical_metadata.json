@@ -1,0 +1,13 @@
+{
+  "CSV_inputs": {
+    "authenticated_original_index": {
+      "CSV_inputs_reread": false,
+      "rows": 202599,
+      "sha256": "21dd7eab4a6bb76f8b64e23b1b3b63494e3423bcb03ea26b5db863317890dca5",
+      "source": "preserved_incomplete_FUSE_attempt"
+    }
+  },
+  "raw_metadata_for_export": false,
+  "sha256": "21dd7eab4a6bb76f8b64e23b1b3b63494e3423bcb03ea26b5db863317890dca5",
+  "status": "whole_original_index_authenticated"
+}

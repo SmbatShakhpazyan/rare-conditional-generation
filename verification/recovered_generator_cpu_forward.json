@@ -1,0 +1,101 @@
+{
+  "status": "passed",
+  "type": "forward_only_artifact_verification",
+  "python": "3.12.14",
+  "torch": "2.15.0",
+  "device": "cpu",
+  "source_models_sha256": "f82bfdd31060fe357a3102fa4debd110da5989f86c5f9e61b6163036f579f5fa",
+  "latent_seed": 20261119,
+  "images_per_generator": 8,
+  "models": [
+    {
+      "file": "B_seed101_EMA.pt",
+      "sha256": "88d958f0226226d1bc720c03f0f2444ed94ab7a8451447e692bc6f18db3ebb67",
+      "bytes": 2977255,
+      "strict_state_load": true,
+      "parameters": 737315,
+      "output_shape": [
+        8,
+        3,
+        64,
+        64
+      ],
+      "finite": true,
+      "output_min": -0.9998894333839417,
+      "output_max": 0.996411919593811,
+      "same_runtime_repeat_equal": true,
+      "state_unchanged": true,
+      "output_float32_sha256": "8c18c467f71cfe8354b18f0f61a725002782f105b47578f958362ff151770806"
+    },
+    {
+      "file": "C_seed101_EMA.pt",
+      "sha256": "bb8bce2417a99697576da0e6881bc43f4e838dab5b748f2b5565a5400c3b4518",
+      "bytes": 2977255,
+      "strict_state_load": true,
+      "parameters": 737315,
+      "output_shape": [
+        8,
+        3,
+        64,
+        64
+      ],
+      "finite": true,
+      "output_min": -0.9992243051528931,
+      "output_max": 0.9936159253120422,
+      "same_runtime_repeat_equal": true,
+      "state_unchanged": true,
+      "output_float32_sha256": "4a418ad172aa9f27d78eac390f71b7e10a9f21e3278037141613c9f5625b3d3d"
+    },
+    {
+      "file": "C_seed202_EMA.pt",
+      "sha256": "f6d535a78523ed2386d78b5849b49ecb4b914648f3c85e8ade74d0149ccc2b35",
+      "bytes": 2977255,
+      "strict_state_load": true,
+      "parameters": 737315,
+      "output_shape": [
+        8,
+        3,
+        64,
+        64
+      ],
+      "finite": true,
+      "output_min": -0.9999228119850159,
+      "output_max": 0.9861430525779724,
+      "same_runtime_repeat_equal": true,
+      "state_unchanged": true,
+      "output_float32_sha256": "ef6013358889b244a7dce66d3f7fc05e4d2cd399a9e6426017f7eae978de7b95"
+    },
+    {
+      "file": "C_seed303_EMA.pt",
+      "sha256": "b5519d6b067543d70dad36850b9e47b0782cee4794fd552dec5bbe8e38aa2399",
+      "bytes": 2977255,
+      "strict_state_load": true,
+      "parameters": 737315,
+      "output_shape": [
+        8,
+        3,
+        64,
+        64
+      ],
+      "finite": true,
+      "output_min": -0.9975058436393738,
+      "output_max": 0.9872028231620789,
+      "same_runtime_repeat_equal": true,
+      "state_unchanged": true,
+      "output_float32_sha256": "b166a3fcd3928c37cc542acf84ef09db0686c06a2e9ba6261b8af7be0c1c266b"
+    }
+  ],
+  "elapsed_seconds": 0.3141879580070963,
+  "training_updates": 0,
+  "efficacy_metrics_recomputed": false,
+  "full_KID_CI_replay": false,
+  "missing_models": [
+    "B_seed202",
+    "B_seed303"
+  ],
+  "limitations": [
+    "No independent KID PRDC or bootstrap replay",
+    "No cross-device or cross-version byte identity guarantee",
+    "No semantic diversity or privacy evaluation"
+  ]
+}

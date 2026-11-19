@@ -1,0 +1,31 @@
+{
+  "status": "complete",
+  "study_plan_sha256": "3b3692067bf4baf8d7b03ac28f98ed60818393d2f047946c5aaf22df62fe28f8",
+  "budget_sha256": "a81cd7eb25af5184f84295448cc1f839b51ef94d78bdd34eea2d807e38e11dd5",
+  "runs": [
+    {
+      "run_id": "B_seed909",
+      "complete_sha256": "6acfe3e3057a82db7002a3449c95044bc4d9a4e27424c33843a581429656bfe5"
+    },
+    {
+      "run_id": "C_l0p1_k1_seed909",
+      "complete_sha256": "c90bf26203e2dbf2000b8c6f47c3cbe90f3389af47847179ff068b0582a4aa62"
+    },
+    {
+      "run_id": "C_l1_k1_seed909",
+      "complete_sha256": "69a91499511c35a9140144b9d26fdb3e31d1821bd7d67aec4358c06633fc5705"
+    },
+    {
+      "run_id": "C_l0p1_k0_seed909",
+      "complete_sha256": "5c09b7e0ff864dc9865cffe987f17f3b46122513e018b14e6af9de1dd5d7759a"
+    },
+    {
+      "run_id": "C_l1_k0_seed909",
+      "complete_sha256": "937ab0fa70a60e71390f850a5f55ed29fabbf0a37d5047cd0bc64d0753500f61"
+    }
+  ],
+  "planned_runs": 5,
+  "complete_runs": 5,
+  "validation_quality_seen_by_launcher": false,
+  "next_phase": "validation_only_selection_then_confirmation"
+}

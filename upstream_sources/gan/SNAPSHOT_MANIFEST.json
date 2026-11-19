@@ -1,0 +1,186 @@
+{
+  "repository": "goodfeli/adversarial",
+  "repository_url": "https://github.com/goodfeli/adversarial",
+  "commit_sha": "1720041f51efcb92df61d1638f1a74aea2ae74c2",
+  "pinned_commit_url": "https://github.com/goodfeli/adversarial/tree/1720041f51efcb92df61d1638f1a74aea2ae74c2",
+  "primary_paper_url": "https://arxiv.org/abs/1406.2661",
+  "role": "Primary-author original GAN repository.",
+  "license": "BSD-3-Clause",
+  "github_HEAD_license_metadata_not_used_as_pinned_text": {
+    "key": "bsd-3-clause",
+    "name": "BSD 3-Clause \"New\" or \"Revised\" License",
+    "spdx_id": "BSD-3-Clause",
+    "url": "https://api.github.com/licenses/bsd-3-clause",
+    "node_id": "MDc6TGljZW5zZTU="
+  },
+  "upstream_code_executed": false,
+  "upstream_tests_or_training_run": false,
+  "reproduced_paper_results": false,
+  "filtered_not_full_asset_snapshot": true,
+  "status": "PINNED_LICENSED_FILTERED_TEXT_SOURCE_SNAPSHOT",
+  "included_files": {
+    ".gitignore": {
+      "bytes": 544,
+      "sha256": "cc13322de4c1f55c3c9c47addc34cd76cbdd93df0c080a75c939f59134fab73d",
+      "git_blob_sha1": "51cbe85254929af8fd49313f8a53a5e2fdab1347",
+      "upstream_blob_url": "https://github.com/goodfeli/adversarial/blob/1720041f51efcb92df61d1638f1a74aea2ae74c2/.gitignore"
+    },
+    "LICENSE": {
+      "bytes": 1489,
+      "sha256": "97dd2e810a29b7d30bf67afe624b71403c0673b42b89ab483c582c2fad8cc953",
+      "git_blob_sha1": "580541031d51dbdef432d20cf1971003b9ece1fb",
+      "upstream_blob_url": "https://github.com/goodfeli/adversarial/blob/1720041f51efcb92df61d1638f1a74aea2ae74c2/LICENSE"
+    },
+    "README.md": {
+      "bytes": 2027,
+      "sha256": "d5e1d84551726cfc62086de2f67d35482adc5d183c491923174a1f19a0ae9188",
+      "git_blob_sha1": "29400e6a9bab8a13828eb79e2ec1d9234dd757fc",
+      "upstream_blob_url": "https://github.com/goodfeli/adversarial/blob/1720041f51efcb92df61d1638f1a74aea2ae74c2/README.md"
+    },
+    "__init__.py": {
+      "bytes": 50182,
+      "sha256": "75b78dff5af55b45a5326eb28b3567ba0a69e22e375b89cd126c6baf5744cd02",
+      "git_blob_sha1": "3c0e9bea3d0f65b949c73fe01531ba2cb94563e6",
+      "upstream_blob_url": "https://github.com/goodfeli/adversarial/blob/1720041f51efcb92df61d1638f1a74aea2ae74c2/__init__.py"
+    },
+    "cifar10_convolutional.yaml": {
+      "bytes": 6560,
+      "sha256": "b8c86d795d7324a65264869cca4bf280d1d809e94571073e04a05f380c4d0988",
+      "git_blob_sha1": "11cb294620c9d44f73a1d5d94b1b33a471016c4a",
+      "upstream_blob_url": "https://github.com/goodfeli/adversarial/blob/1720041f51efcb92df61d1638f1a74aea2ae74c2/cifar10_convolutional.yaml"
+    },
+    "cifar10_fully_connected.yaml": {
+      "bytes": 4126,
+      "sha256": "777388907efda178fa0ebd0730c9a216d91aa98e58a06913b1ab3ccb87357e36",
+      "git_blob_sha1": "30ef1706846acce82983eafe4c9df849fc9c5498",
+      "upstream_blob_url": "https://github.com/goodfeli/adversarial/blob/1720041f51efcb92df61d1638f1a74aea2ae74c2/cifar10_fully_connected.yaml"
+    },
+    "deconv.py": {
+      "bytes": 14123,
+      "sha256": "066c1ac9223fbc32e417bfe8ab2d2c12c7265a4bdd00cabb34c626bfc4ee1894",
+      "git_blob_sha1": "cd051bbc8dbaceb450bb3fd0b4b8a6681378d1bb",
+      "upstream_blob_url": "https://github.com/goodfeli/adversarial/blob/1720041f51efcb92df61d1638f1a74aea2ae74c2/deconv.py"
+    },
+    "ll.py": {
+      "bytes": 2605,
+      "sha256": "cfed590b344411f5f0f5262de57da9abd03c08a27d55bd27c23ba0af68dd0582",
+      "git_blob_sha1": "a74ca2077b8d69ba34a0f2c61426067c2be17e09",
+      "upstream_blob_url": "https://github.com/goodfeli/adversarial/blob/1720041f51efcb92df61d1638f1a74aea2ae74c2/ll.py"
+    },
+    "ll_mnist.py": {
+      "bytes": 2428,
+      "sha256": "5072250c8ce5f93526359d4f831f0030ce32f588c59f06c2596cb59af0a88512",
+      "git_blob_sha1": "96ae3cf63303cf80f23f158d083e57921355488f",
+      "upstream_blob_url": "https://github.com/goodfeli/adversarial/blob/1720041f51efcb92df61d1638f1a74aea2ae74c2/ll_mnist.py"
+    },
+    "mnist.yaml": {
+      "bytes": 3891,
+      "sha256": "264412ce3a83d2d5a93814a5fc392f61fd7e7bee01235887d1880b075f48857d",
+      "git_blob_sha1": "d7b17c7c124cc89f905e23af8ae31f132b552b32",
+      "upstream_blob_url": "https://github.com/goodfeli/adversarial/blob/1720041f51efcb92df61d1638f1a74aea2ae74c2/mnist.yaml"
+    },
+    "parzen_ll.py": {
+      "bytes": 4732,
+      "sha256": "af80b0f91296ac8454c2cbee33c2868a3d264de3dba6c8e26da6274f970ed37a",
+      "git_blob_sha1": "c52a7a767caa52b325d93c37645bd08097bf445d",
+      "upstream_blob_url": "https://github.com/goodfeli/adversarial/blob/1720041f51efcb92df61d1638f1a74aea2ae74c2/parzen_ll.py"
+    },
+    "sgd.py": {
+      "bytes": 46783,
+      "sha256": "05ba9c0a0514e0e9b265d092aa0e7f950f934db665cd073751177704397ffecf",
+      "git_blob_sha1": "9e3fde56defea6946b83813313fd23136c5d3318",
+      "upstream_blob_url": "https://github.com/goodfeli/adversarial/blob/1720041f51efcb92df61d1638f1a74aea2ae74c2/sgd.py"
+    },
+    "sgd_alt.py": {
+      "bytes": 46921,
+      "sha256": "f65e2d0e48e9719a625b5974304136ca3c99ceb0b4c9b97dfeaa501e13802ee6",
+      "git_blob_sha1": "bb6ffef8cc3250bce15b63e6afdb59c3b2fcc43e",
+      "upstream_blob_url": "https://github.com/goodfeli/adversarial/blob/1720041f51efcb92df61d1638f1a74aea2ae74c2/sgd_alt.py"
+    },
+    "show_gen_weights.py": {
+      "bytes": 1426,
+      "sha256": "a6008fc7b2839c0280ba19ad0aa22dad6dc5abff46db98951c539a9863f4dec7",
+      "git_blob_sha1": "918cdb04e184c7aba1c099762c6b8af8c28108d2",
+      "upstream_blob_url": "https://github.com/goodfeli/adversarial/blob/1720041f51efcb92df61d1638f1a74aea2ae74c2/show_gen_weights.py"
+    },
+    "show_inpaint_samples.py": {
+      "bytes": 1111,
+      "sha256": "ee80c56943d77c798d836a981aafd53fa3a0adaa532655ef7b1ae65ac431d29c",
+      "git_blob_sha1": "a99a581d4f22e5da9d0f25225b3665f7cdf32c08",
+      "upstream_blob_url": "https://github.com/goodfeli/adversarial/blob/1720041f51efcb92df61d1638f1a74aea2ae74c2/show_inpaint_samples.py"
+    },
+    "show_samples.py": {
+      "bytes": 1788,
+      "sha256": "abfa77ad7475aeea3957654cf1d85e0defeab2bc4c2b2a40d902d9e2afff59d9",
+      "git_blob_sha1": "ae0192cc110e7eab66855771ab61d1ae29051882",
+      "upstream_blob_url": "https://github.com/goodfeli/adversarial/blob/1720041f51efcb92df61d1638f1a74aea2ae74c2/show_samples.py"
+    },
+    "show_samples_cifar_conv_paper.py": {
+      "bytes": 1319,
+      "sha256": "17c4aedb114029d5e3917067f63330945741ba78be86bf2c2874c4d285bf6bf7",
+      "git_blob_sha1": "358989c32ea6b823bbc1e64e6562be66c2d5b752",
+      "upstream_blob_url": "https://github.com/goodfeli/adversarial/blob/1720041f51efcb92df61d1638f1a74aea2ae74c2/show_samples_cifar_conv_paper.py"
+    },
+    "show_samples_cifar_full_paper.py": {
+      "bytes": 1185,
+      "sha256": "de1b9f44fbabaf7cc5f6f33f1e4d7f84186a8e460fc5079fed74af2be6dbd751",
+      "git_blob_sha1": "aaaedf516d0d082284fc66d59753f40773b6cf1e",
+      "upstream_blob_url": "https://github.com/goodfeli/adversarial/blob/1720041f51efcb92df61d1638f1a74aea2ae74c2/show_samples_cifar_full_paper.py"
+    },
+    "show_samples_inpaint.py": {
+      "bytes": 1465,
+      "sha256": "7970d9a2a7f1c9e9881e153dc666cf35d97e051509b16ae28b74f356d1b2cb86",
+      "git_blob_sha1": "4fce9205d1d9f84bbebfb5e3cde0f9cd0052ebab",
+      "upstream_blob_url": "https://github.com/goodfeli/adversarial/blob/1720041f51efcb92df61d1638f1a74aea2ae74c2/show_samples_inpaint.py"
+    },
+    "show_samples_mnist_paper.py": {
+      "bytes": 1121,
+      "sha256": "9319aca60f42c2866f4b920cdbbc520c53a5a9ae4d7b9d91f8271ff3eb1f6469",
+      "git_blob_sha1": "05d4c111f89e1aeec2b83b4ff220fac18d32e642",
+      "upstream_blob_url": "https://github.com/goodfeli/adversarial/blob/1720041f51efcb92df61d1638f1a74aea2ae74c2/show_samples_mnist_paper.py"
+    },
+    "show_samples_tfd.py": {
+      "bytes": 704,
+      "sha256": "1ccc9d322f232139920c4f2e30788ebb11e8760bc199dfc30d9b8650960be6a3",
+      "git_blob_sha1": "8125718b0a8ca794ea7eb87f5b3ef02c97c2c85e",
+      "upstream_blob_url": "https://github.com/goodfeli/adversarial/blob/1720041f51efcb92df61d1638f1a74aea2ae74c2/show_samples_tfd.py"
+    },
+    "show_samples_tfd_paper.py": {
+      "bytes": 1121,
+      "sha256": "8880d8a170b829c9c871ad80d948e1a4030143e2daad895035eda53a66d546f3",
+      "git_blob_sha1": "4bf7da149c7a54a5ffcaf9f087b4abb145fe5374",
+      "upstream_blob_url": "https://github.com/goodfeli/adversarial/blob/1720041f51efcb92df61d1638f1a74aea2ae74c2/show_samples_tfd_paper.py"
+    },
+    "test_deconv.py": {
+      "bytes": 1594,
+      "sha256": "660b604eab1c21364588590988ee99da83f739bde71738f0dc4a4542dad354a8",
+      "git_blob_sha1": "ef7be94ae49a47a8e15dc870cd85189862f5a175",
+      "upstream_blob_url": "https://github.com/goodfeli/adversarial/blob/1720041f51efcb92df61d1638f1a74aea2ae74c2/test_deconv.py"
+    },
+    "tfd_pretrain/pretrain.yaml": {
+      "bytes": 4502,
+      "sha256": "b77500fb52a17dac899d84bd273122b5aa3c253d8af562a8c9feab452386419c",
+      "git_blob_sha1": "6a9dbcfe416b25f12d955b488a71749e99b62b8d",
+      "upstream_blob_url": "https://github.com/goodfeli/adversarial/blob/1720041f51efcb92df61d1638f1a74aea2ae74c2/tfd_pretrain/pretrain.yaml"
+    },
+    "tfd_pretrain/train.yaml": {
+      "bytes": 4280,
+      "sha256": "2660e3efd8b20175fc6c937f1f25510933c3242bd99dbb3cd44a0ea4dc2ac7d4",
+      "git_blob_sha1": "84ca0f7c3f722fe6298db29a5a9d17f17ea949ff",
+      "upstream_blob_url": "https://github.com/goodfeli/adversarial/blob/1720041f51efcb92df61d1638f1a74aea2ae74c2/tfd_pretrain/train.yaml"
+    }
+  },
+  "excluded_files": [],
+  "total_included_bytes": 208027,
+  "root_license_path": "source/LICENSE",
+  "root_license_sha256": "97dd2e810a29b7d30bf67afe624b71403c0673b42b89ab483c582c2fad8cc953",
+  "compressed_archive_bytes": 43363,
+  "compressed_archive_sha256": "87e7a0338bfdb5a52d49a9bdc7948fbc08b6988371ba71a761d531bfb8069cc3",
+  "source_bytes_modified": false,
+  "limits": {
+    "compressed_per_repo": 83886080,
+    "declared_expanded": 268435456,
+    "per_file": 4194304,
+    "kept_per_repo": 67108864
+  }
+}

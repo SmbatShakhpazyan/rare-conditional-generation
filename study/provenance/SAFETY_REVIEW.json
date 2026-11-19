@@ -1,0 +1,22 @@
+{
+  "status": "NO_CREDENTIAL_PATTERN_FINDINGS_IN_SELECTED_PUBLIC_FILES",
+  "files_scanned_before_this_report": 141,
+  "pattern_findings": [],
+  "checks": [
+    "Private-key, AWS, GitHub, Slack and bearer-token literals",
+    "Local user-account paths",
+    "No actual CelebA filename strings in public JSON/JSONL",
+    "All copied Python sources parse"
+  ],
+  "email_pattern_manual_review": [
+    {
+      "path": "src/component_bootstrap.py",
+      "line": 78,
+      "count": 1,
+      "classification": "AST-confirmed matrix-multiplication expression, not an email address; value not printed."
+    }
+  ],
+  "scope": "Pattern scan and allowlist review, not a universal security guarantee. No credentials or matching values printed.",
+  "no_account_or_browser_receipts": true,
+  "no_raw_arrays_or_images": true
+}

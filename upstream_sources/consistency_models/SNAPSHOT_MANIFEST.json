@@ -1,0 +1,228 @@
+{
+  "repository": "openai/consistency_models",
+  "repository_url": "https://github.com/openai/consistency_models",
+  "commit_sha": "e32b69ee436d518377db86fb2127a3972d0d8716",
+  "pinned_commit_url": "https://github.com/openai/consistency_models/tree/e32b69ee436d518377db86fb2127a3972d0d8716",
+  "primary_paper_url": "https://proceedings.mlr.press/v202/song23a.html",
+  "role": "Official author-organization consistency-model implementation.",
+  "license": "MIT",
+  "github_HEAD_license_metadata_not_used_as_pinned_text": {
+    "key": "mit",
+    "name": "MIT License",
+    "spdx_id": "MIT",
+    "url": "https://api.github.com/licenses/mit",
+    "node_id": "MDc6TGljZW5zZTEz"
+  },
+  "upstream_code_executed": false,
+  "upstream_tests_or_training_run": false,
+  "reproduced_paper_results": false,
+  "filtered_not_full_asset_snapshot": true,
+  "status": "PINNED_LICENSED_FILTERED_TEXT_SOURCE_SNAPSHOT",
+  "included_files": {
+    ".gitignore": {
+      "bytes": 254,
+      "sha256": "844146434acd5908b3d2527c0edffa4e0ed3da2ba98d92332214dbe3ad4a8450",
+      "git_blob_sha1": "c03f82b5f0213e6effb9ca3398f9c3062e116d99",
+      "upstream_blob_url": "https://github.com/openai/consistency_models/blob/e32b69ee436d518377db86fb2127a3972d0d8716/.gitignore"
+    },
+    "LICENSE": {
+      "bytes": 1063,
+      "sha256": "dcf7927ec000e0bea021baf556c82ad7ac2e96cdd8285a1c8b2a7014e8300c6d",
+      "git_blob_sha1": "b3841f631d7f15f158bbb9e613227550828b5ff1",
+      "upstream_blob_url": "https://github.com/openai/consistency_models/blob/e32b69ee436d518377db86fb2127a3972d0d8716/LICENSE"
+    },
+    "README.md": {
+      "bytes": 5496,
+      "sha256": "95e5505c5c2b90aac70c5ae787a1bcde63a6f4045f6e401042870b021ff287f5",
+      "git_blob_sha1": "f169f357b93606c327d87347b996c4822323e798",
+      "upstream_blob_url": "https://github.com/openai/consistency_models/blob/e32b69ee436d518377db86fb2127a3972d0d8716/README.md"
+    },
+    "cm/__init__.py": {
+      "bytes": 74,
+      "sha256": "ec30483aa641d5c1b9cc8910554324949f2288eadd085310d4c312cdda294c73",
+      "git_blob_sha1": "9665a0d63f695eab303318d824dad14041c7cde9",
+      "upstream_blob_url": "https://github.com/openai/consistency_models/blob/e32b69ee436d518377db86fb2127a3972d0d8716/cm/__init__.py"
+    },
+    "cm/dist_util.py": {
+      "bytes": 2421,
+      "sha256": "8da06d9ccbe068dc86bb1f51a4c15518c80e38d86496bc0ca3b794c3ac3f5c93",
+      "git_blob_sha1": "4e92d88b598dbd378adba38fe63008e644744d52",
+      "upstream_blob_url": "https://github.com/openai/consistency_models/blob/e32b69ee436d518377db86fb2127a3972d0d8716/cm/dist_util.py"
+    },
+    "cm/fp16_util.py": {
+      "bytes": 7956,
+      "sha256": "1cb2c5774692675cc080b6c056550e49ff0a221c2d91e863c037a4a92a1c5c46",
+      "git_blob_sha1": "31c8e3afedd0ee94ca1beb90370d20803d44accb",
+      "upstream_blob_url": "https://github.com/openai/consistency_models/blob/e32b69ee436d518377db86fb2127a3972d0d8716/cm/fp16_util.py"
+    },
+    "cm/image_datasets.py": {
+      "bytes": 5930,
+      "sha256": "220d6699f1c201989209f1bd64f5a7d3beef41e84098607aa521ab21cf6700d5",
+      "git_blob_sha1": "93022ae208a01e72eb162d7b63c07bf94a6afe3b",
+      "upstream_blob_url": "https://github.com/openai/consistency_models/blob/e32b69ee436d518377db86fb2127a3972d0d8716/cm/image_datasets.py"
+    },
+    "cm/karras_diffusion.py": {
+      "bytes": 27865,
+      "sha256": "b8fcf9f53e63cff19db676814545ee7644259364236de5c10ac3d69007ee5177",
+      "git_blob_sha1": "87b0e1834f50286398025873e62d8590101b2482",
+      "upstream_blob_url": "https://github.com/openai/consistency_models/blob/e32b69ee436d518377db86fb2127a3972d0d8716/cm/karras_diffusion.py"
+    },
+    "cm/logger.py": {
+      "bytes": 13979,
+      "sha256": "615d9cb63dd2cfe017ac424bcc64340257c83eb9cb8e6b6913df4bd55831c1c0",
+      "git_blob_sha1": "b1d856dcfea6b56a2ee8d37b286887430dbfac30",
+      "upstream_blob_url": "https://github.com/openai/consistency_models/blob/e32b69ee436d518377db86fb2127a3972d0d8716/cm/logger.py"
+    },
+    "cm/losses.py": {
+      "bytes": 2534,
+      "sha256": "0b0f5a5532910fbc7f16d30f2b891d8f1e20aa88881589ce4eacc2cc6ce06026",
+      "git_blob_sha1": "251e42e4f36a31bb5e1aeda874b3a45d722000a2",
+      "upstream_blob_url": "https://github.com/openai/consistency_models/blob/e32b69ee436d518377db86fb2127a3972d0d8716/cm/losses.py"
+    },
+    "cm/nn.py": {
+      "bytes": 5498,
+      "sha256": "ceaf0703dfbe0c5de7afc72054740450c2705e3ae27cfa7fc2b438c9ab6d86b2",
+      "git_blob_sha1": "6793a0bd9677f18dfba8fa92af740b691ddf8ccb",
+      "upstream_blob_url": "https://github.com/openai/consistency_models/blob/e32b69ee436d518377db86fb2127a3972d0d8716/cm/nn.py"
+    },
+    "cm/random_util.py": {
+      "bytes": 6259,
+      "sha256": "1dc3d94e37842b8358c0e03307c89e33fa31e57fe8c34bd191fb112c9d713492",
+      "git_blob_sha1": "64649c8876bfea19fd5c3cab86f00e8716ff6ac0",
+      "upstream_blob_url": "https://github.com/openai/consistency_models/blob/e32b69ee436d518377db86fb2127a3972d0d8716/cm/random_util.py"
+    },
+    "cm/resample.py": {
+      "bytes": 6686,
+      "sha256": "62119ec0f619cd0823a6294b58ae1797bbeae96efe46b710543d0efc4e336abb",
+      "git_blob_sha1": "3a4d9ba5a2eb2695e69352b8f67a9dce3089d4c6",
+      "upstream_blob_url": "https://github.com/openai/consistency_models/blob/e32b69ee436d518377db86fb2127a3972d0d8716/cm/resample.py"
+    },
+    "cm/script_util.py": {
+      "bytes": 6983,
+      "sha256": "271da181133400aa3d3de4664be8229424e9a6daacb0e93e24efd026a89ebc07",
+      "git_blob_sha1": "a862637b3ca62c2d94fa50e25d1e87b7d3fd9bda",
+      "upstream_blob_url": "https://github.com/openai/consistency_models/blob/e32b69ee436d518377db86fb2127a3972d0d8716/cm/script_util.py"
+    },
+    "cm/train_util.py": {
+      "bytes": 22745,
+      "sha256": "bf387ed2d2d4582e9ab069c14c762e3797878bb2231551a54e5fbe36176b1cfc",
+      "git_blob_sha1": "7bde9895d56a840199a84bfe1642083bd360da46",
+      "upstream_blob_url": "https://github.com/openai/consistency_models/blob/e32b69ee436d518377db86fb2127a3972d0d8716/cm/train_util.py"
+    },
+    "cm/unet.py": {
+      "bytes": 27529,
+      "sha256": "7ba84a834ba07b28262e7648d490b6b377b75cce781b44cab2bfe7d51e7ad807",
+      "git_blob_sha1": "e0fbbabc05bf486f4fabf0a0d4dd542ae0c40f9c",
+      "upstream_blob_url": "https://github.com/openai/consistency_models/blob/e32b69ee436d518377db86fb2127a3972d0d8716/cm/unet.py"
+    },
+    "datasets/README.md": {
+      "bytes": 1959,
+      "sha256": "5cb4acef70f269e81256c503b8c504e87c431dba0468cf918a419b6103176fcb",
+      "git_blob_sha1": "95bfd428d830481aa3d55fae0144db8d319a4d94",
+      "upstream_blob_url": "https://github.com/openai/consistency_models/blob/e32b69ee436d518377db86fb2127a3972d0d8716/datasets/README.md"
+    },
+    "datasets/lsun_bedroom.py": {
+      "bytes": 1722,
+      "sha256": "f82b836e024dad1e728823407669e2e32ccb71be1e894f4557e8ea6e0edaa962",
+      "git_blob_sha1": "6a5be22eef8c7434331a76ef5ed7332a98a446ef",
+      "upstream_blob_url": "https://github.com/openai/consistency_models/blob/e32b69ee436d518377db86fb2127a3972d0d8716/datasets/lsun_bedroom.py"
+    },
+    "docker/Dockerfile": {
+      "bytes": 902,
+      "sha256": "181a7ef73349676803086d1bbcf45c11228df749c5bd38e68449b4bc266e6a6f",
+      "git_blob_sha1": "a67f776496a18f6c4fcec2e58b41e587b4f42ae9",
+      "upstream_blob_url": "https://github.com/openai/consistency_models/blob/e32b69ee436d518377db86fb2127a3972d0d8716/docker/Dockerfile"
+    },
+    "docker/Makefile": {
+      "bytes": 278,
+      "sha256": "d8896cbc76cebf018da90add50e675efc9f87310aed2eeda6ed0d361192fd43e",
+      "git_blob_sha1": "3a463b2b80301e10e6ed819754a16f705e557be9",
+      "upstream_blob_url": "https://github.com/openai/consistency_models/blob/e32b69ee436d518377db86fb2127a3972d0d8716/docker/Makefile"
+    },
+    "evaluations/__init__.py": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob_sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "upstream_blob_url": "https://github.com/openai/consistency_models/blob/e32b69ee436d518377db86fb2127a3972d0d8716/evaluations/__init__.py"
+    },
+    "evaluations/evaluator.py": {
+      "bytes": 25369,
+      "sha256": "20772ff02255ec334435c4a33ea016dbc135cf11cd1ebb14659bce97418f13b8",
+      "git_blob_sha1": "622e27e33ea5be267366341c93e7e93743300bc1",
+      "upstream_blob_url": "https://github.com/openai/consistency_models/blob/e32b69ee436d518377db86fb2127a3972d0d8716/evaluations/evaluator.py"
+    },
+    "evaluations/inception_v3.py": {
+      "bytes": 13308,
+      "sha256": "3941fa28692cb4d5129327a8a747fd71713f37594c977aee709a900aa23eedb1",
+      "git_blob_sha1": "7e4d3cb16ee8c74ca1850709131e2fb33838fa8d",
+      "upstream_blob_url": "https://github.com/openai/consistency_models/blob/e32b69ee436d518377db86fb2127a3972d0d8716/evaluations/inception_v3.py"
+    },
+    "evaluations/requirements.txt": {
+      "bytes": 39,
+      "sha256": "0e8dd51f87ca02adc1277a41dc6f132a8cc896bf70c1418d74c9152e361aeb83",
+      "git_blob_sha1": "fc6df305a4169b13bcfab5e238e4ff1c97b6baaa",
+      "upstream_blob_url": "https://github.com/openai/consistency_models/blob/e32b69ee436d518377db86fb2127a3972d0d8716/evaluations/requirements.txt"
+    },
+    "evaluations/th_evaluator.py": {
+      "bytes": 11431,
+      "sha256": "2636b6fbb759838759fc66b31fc3fb06cbf3dbe370aa12170230602a2aad76bd",
+      "git_blob_sha1": "408c22e476c73760572c2ec10cbee0548a2125df",
+      "upstream_blob_url": "https://github.com/openai/consistency_models/blob/e32b69ee436d518377db86fb2127a3972d0d8716/evaluations/th_evaluator.py"
+    },
+    "model-card.md": {
+      "bytes": 3801,
+      "sha256": "6289061c9c65572fae53828c91042a3076cadf831c8dd0b06fbdce98ad240caf",
+      "git_blob_sha1": "0ea1a860497653b5f58141bc615f0687f189de07",
+      "upstream_blob_url": "https://github.com/openai/consistency_models/blob/e32b69ee436d518377db86fb2127a3972d0d8716/model-card.md"
+    },
+    "scripts/cm_train.py": {
+      "bytes": 5324,
+      "sha256": "0b5185c19b2b22a76dff1326c7c9209df791613361e0921fd63e3878477a256c",
+      "git_blob_sha1": "6193fcf9527a346fc0e434eddebfcbff810bbaa5",
+      "upstream_blob_url": "https://github.com/openai/consistency_models/blob/e32b69ee436d518377db86fb2127a3972d0d8716/scripts/cm_train.py"
+    },
+    "scripts/edm_train.py": {
+      "bytes": 2710,
+      "sha256": "6ba8e231b90adfbdadc9b916faa3dc8883e0e0b94765b34e3be8b1df2a3bf26b",
+      "git_blob_sha1": "dabeaaeb3b01320ae37cd2d8ff556c23468c115c",
+      "upstream_blob_url": "https://github.com/openai/consistency_models/blob/e32b69ee436d518377db86fb2127a3972d0d8716/scripts/edm_train.py"
+    },
+    "scripts/image_sample.py": {
+      "bytes": 4298,
+      "sha256": "833af87c3ae6557c4c9d921db96fb8583611ac7bab888851aefb40a250585713",
+      "git_blob_sha1": "0e275ce51b40e79c2593839e24f056dda3c506b2",
+      "upstream_blob_url": "https://github.com/openai/consistency_models/blob/e32b69ee436d518377db86fb2127a3972d0d8716/scripts/image_sample.py"
+    },
+    "scripts/launch.sh": {
+      "bytes": 13940,
+      "sha256": "740edc540c5fa212b5c8c87f5a1e0851b2b2b0a5824997d8e8a9eab75a11117d",
+      "git_blob_sha1": "09a282f9875b19673aba314c62e7e59269faac29",
+      "upstream_blob_url": "https://github.com/openai/consistency_models/blob/e32b69ee436d518377db86fb2127a3972d0d8716/scripts/launch.sh"
+    },
+    "scripts/ternary_search.py": {
+      "bytes": 7870,
+      "sha256": "07448be88fa19a5fcc40f4aad49c82d3d489c069f03f02dd190951fc58d01a71",
+      "git_blob_sha1": "475454c5dcbdd597eb22470322d3e4c5fe55d3d3",
+      "upstream_blob_url": "https://github.com/openai/consistency_models/blob/e32b69ee436d518377db86fb2127a3972d0d8716/scripts/ternary_search.py"
+    },
+    "setup.py": {
+      "bytes": 487,
+      "sha256": "c235bea700138d34ff2aaffc1f9bd0e910989f7c6619a28d5ecb5bcb4f91f673",
+      "git_blob_sha1": "6cd01658d7de47039d5210cfcb3a4ecaea7ea629",
+      "upstream_blob_url": "https://github.com/openai/consistency_models/blob/e32b69ee436d518377db86fb2127a3972d0d8716/setup.py"
+    }
+  },
+  "excluded_files": [],
+  "total_included_bytes": 236710,
+  "root_license_path": "source/LICENSE",
+  "root_license_sha256": "dcf7927ec000e0bea021baf556c82ad7ac2e96cdd8285a1c8b2a7014e8300c6d",
+  "compressed_archive_bytes": 54203,
+  "compressed_archive_sha256": "5dc7489648bec520b6da53e0acd3c6aa6538af30ff926a16638e4699c2d41caf",
+  "source_bytes_modified": false,
+  "limits": {
+    "compressed_per_repo": 83886080,
+    "declared_expanded": 268435456,
+    "per_file": 4194304,
+    "kept_per_repo": 67108864
+  }
+}

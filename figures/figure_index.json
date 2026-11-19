@@ -1,0 +1,182 @@
+[
+  {
+    "id": "v01_model_mechanisms",
+    "path": "v01_model_mechanisms.png",
+    "svg": "v01_model_mechanisms.svg",
+    "caption": "Reviewed model mechanisms. Each node identifies the training signal and sampling operation. The categories overlap, and only the B/C conditional GAN cohort supplies the reported training benchmark.",
+    "kind": "conceptual diagram",
+    "source": "Primary sources E01–E10 E30 E31",
+    "height": 1170
+  },
+  {
+    "id": "v02_probability_paths",
+    "path": "v02_probability_paths.png",
+    "svg": "v02_probability_paths.svg",
+    "caption": "Illustrative paths associated with transport, noisy diffusion and endpoint mappings. The trajectories are drawn for explanation, not obtained from trained models or used as an efficacy comparison.",
+    "kind": "analytical illustration",
+    "source": "Constructed path schematic; E05 E08 E09 E10",
+    "height": 1000
+  },
+  {
+    "id": "v03_study_design",
+    "path": "v03_study_design.png",
+    "svg": "v03_study_design.svg",
+    "caption": "Protocol information flow. Components, rather than filenames alone, define the new partitions. Validation-selected recipes are retrained at three fresh paired seeds before test evaluation.",
+    "kind": "protocol diagram",
+    "source": "Frozen split and study protocol",
+    "height": 1080
+  },
+  {
+    "id": "v04_image_allocation",
+    "path": "v04_image_allocation.png",
+    "svg": "v04_image_allocation.svg",
+    "caption": "Exact image allocation after component exclusion, conflict quarantine and fixed hash assignment. Counts sum to 202,599. The four conflict components contain 219 rows; the larger excluded total has several causes.",
+    "kind": "measured data audit",
+    "source": "Saved component split report",
+    "height": 800
+  },
+  {
+    "id": "v05_condition_support",
+    "path": "v05_condition_support.png",
+    "svg": "v05_condition_support.svg",
+    "caption": "Image counts for every partition and annotation bin. The square-root vertical scale is explicitly labeled; values above bars are untransformed counts.",
+    "kind": "measured data audit",
+    "source": "E1_component_split",
+    "height": 1000
+  },
+  {
+    "id": "v06_earlier_content_exposure",
+    "path": "v06_earlier_content_exposure.png",
+    "svg": "v06_earlier_content_exposure.svg",
+    "caption": "Training presentations in three earlier sampling histories linked to exact-equivalent old validation or test content. The twelve earlier runs share three distinct sampling histories.",
+    "kind": "measured saved results",
+    "source": "Saved preliminary exposure audit",
+    "height": 1000
+  },
+  {
+    "id": "v07_gan_architecture",
+    "path": "v07_gan_architecture.png",
+    "svg": "v07_gan_architecture.svg",
+    "caption": "Generator feature widths and resolutions. Appendix A gives exact block operations and parameter counts. Both B and C use the same generator and discriminator; the extra C teacher is frozen.",
+    "kind": "architecture diagram",
+    "source": "Executed models.py and parameter-count records",
+    "height": 900
+  },
+  {
+    "id": "v08_validation_heatmap",
+    "path": "v08_validation_heatmap.png",
+    "svg": "v08_validation_heatmap.svg",
+    "caption": "All ten saved validation points and all four conditional scores. Color spans the displayed score range. Selection uses the rare condition 11, not a favorable subset of test results.",
+    "kind": "measured saved results",
+    "source": "E3_all_validation_points",
+    "height": 1250
+  },
+  {
+    "id": "v09_ema_retention",
+    "path": "v09_ema_retention.png",
+    "svg": "v09_ema_retention.svg",
+    "caption": "Initialization coefficient in the exact parameter EMA recursion. This mathematical calculation does not establish that EMA initialization caused the observed quality gap; BN buffers were copied separately.",
+    "kind": "analytical calculation",
+    "source": "eta^T from the saved EMA grid",
+    "height": 950
+  },
+  {
+    "id": "v10_paired_test_seeds",
+    "path": "v10_paired_test_seeds.png",
+    "svg": "v10_paired_test_seeds.svg",
+    "caption": "Paired rare-condition outcomes for all three fixed confirmation seeds. Connecting lines denote matched seeds, not trajectories in optimization time.",
+    "kind": "measured saved results",
+    "source": "E4_all_confirmation_test_points",
+    "height": 1000
+  },
+  {
+    "id": "v11_all_condition_means",
+    "path": "v11_all_condition_means.png",
+    "svg": "v11_all_condition_means.svg",
+    "caption": "Four conditional mean KIDs from the saved six-model cohort. These are descriptive means over fixed seeds, not independent population estimates.",
+    "kind": "measured saved results",
+    "source": "E4_fixed_seed_means",
+    "height": 1000
+  },
+  {
+    "id": "v12_conditional_upper_bound",
+    "path": "v12_conditional_upper_bound.png",
+    "svg": "v12_conditional_upper_bound.svg",
+    "caption": "The point difference and nominal one-sided conditional upper bound. The horizontal segment is not a two-sided confidence interval. Training-seed populations, teacher fitting and hyperparameter selection are not resampled.",
+    "kind": "measured saved comparison",
+    "source": "E5_primary_conditional_comparison",
+    "height": 790
+  },
+  {
+    "id": "v13_prdc_diagnostics",
+    "path": "v13_prdc_diagnostics.png",
+    "svg": "v13_prdc_diagnostics.svg",
+    "caption": "Precision, density and coverage means in all four conditions, with separate vertical scales across panels. Recall is exactly zero in all 24 individual model-by-condition records. Zero finite-neighborhood recall is not a proof of global support disjointness.",
+    "kind": "measured saved diagnostics",
+    "source": "E4_fixed_seed_means and E6_PRDC",
+    "height": 1030
+  },
+  {
+    "id": "v14_contrast_counterexample",
+    "path": "v14_contrast_counterexample.png",
+    "svg": "v14_contrast_counterexample.svg",
+    "caption": "Constructed counterexample to identification by the signed contrast. With c=(1,-1,-1,1)/4, both alternating means equal zero, while each group has a different feature mean. The GAN adversarial term is a separate constraint.",
+    "kind": "constructed mathematical counterexample",
+    "source": "Elementary signed-contrast algebra",
+    "height": 1000
+  },
+  {
+    "id": "v15_stale_witness",
+    "path": "v15_stale_witness.png",
+    "svg": "v15_stale_witness.svg",
+    "caption": "Scalar staleness counterexample. Arrows show descent in the scalar current contrast for each displayed objective at delta=-1. The centered linear surrogate can be negative and is not the current squared distance.",
+    "kind": "constructed mathematical counterexample",
+    "source": "Literal auxiliary loss algebra",
+    "height": 1000
+  },
+  {
+    "id": "v16_hash_band_proof",
+    "path": "v16_hash_band_proof.png",
+    "svg": "v16_hash_band_proof.svg",
+    "caption": "Candidate-completeness construction for a 64-bit Hamming threshold of four, using six disjoint bands and all fifteen band pairs. Completeness concerns this declared screening relation, not every visual or semantic duplicate.",
+    "kind": "proof diagram",
+    "source": "Declared pHash candidate policy and pigeonhole argument",
+    "height": 900
+  },
+  {
+    "id": "v17_component_covariance",
+    "path": "v17_component_covariance.png",
+    "svg": "v17_component_covariance.svg",
+    "caption": "Two analytical component configurations illustrate cancellation and reinforcement in the signed cluster influence formula. No new dataset estimates are shown.",
+    "kind": "constructed mathematical example",
+    "source": "Teacher-statistic formula and CPU fixture logic",
+    "height": 900
+  },
+  {
+    "id": "v18_artifact_availability",
+    "path": "v18_artifact_availability.png",
+    "svg": "v18_artifact_availability.svg",
+    "caption": "Availability of selected confirmation-generator bytes. Metric completion records are retained for all six, but only four complete generator archives were recovered.",
+    "kind": "artifact inventory",
+    "source": "Verified local delivery manifest",
+    "height": 900
+  },
+  {
+    "id": "v19_prospective_kernel_design",
+    "path": "v19_prospective_kernel_design.png",
+    "svg": "v19_prospective_kernel_design.svg",
+    "caption": "Prospective conditional-kernel matching design. It requires identified targets for each fitted condition and new untouched confirmation data. It is not a tested improvement over B or C.",
+    "kind": "untested proposed algorithm",
+    "source": "Deep theory supplement and established MMD properties",
+    "height": 960
+  },
+  {
+    "id": "v20_research_overview",
+    "path": "v20_research_overview.png",
+    "svg": "v20_research_overview.svg",
+    "caption": "Standalone overview of the research question, experimental controls, evidence and limits. The other reviewed model families are reference implementations, not additional benchmark arms.",
+    "kind": "research overview diagram",
+    "source": "Verified study and model-library scope",
+    "height": 1150
+  }
+]

@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0",
+  "date": "2026-11-19",
+  "repository": "https://github.com/SmbatShakhpazyan/rare-conditional-generation",
+  "paper_pages": 69,
+  "approximate_prose_words": 26765,
+  "display_equations": 109,
+  "paper_figures": 21,
+  "primary_papers": 34,
+  "runnable_reference_methods": 10,
+  "licensed_upstream_snapshots": 8,
+  "upstream_link_only": 2,
+  "unchanged_upstream_source_files": 361,
+  "complete_study_generators": 4,
+  "missing_complete_generators": [
+    "B202",
+    "B303"
+  ],
+  "reference_CPU_tests": 12,
+  "reference_CPU_test_status": "PASSED",
+  "recovered_generator_forward_status": "PASSED",
+  "new_quality_benchmark_computation": false,
+  "full_six_model_replay": false,
+  "linkedin_published": false
+}

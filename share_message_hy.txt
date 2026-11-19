@@ -1,0 +1,6 @@
+Ուղարկում եմ ամբողջական հետազոտական աշխատանքը՝ մանրամասն անգլերեն հոդվածով, տեսապատկերներով, մոդելների կոդով, հոդվածների աղբյուրներով և փորձերի արդյունքներով։
+
+GitHub՝ https://github.com/SmbatShakhpazyan/rare-conditional-generation
+Ամբողջ փաթեթը՝ https://github.com/SmbatShakhpazyan/rare-conditional-generation/releases/download/v1.0.0/rare_conditional_generation_full_package.zip
+
+Փորձի արդյունքը բացասական է․ առաջարկված շտկումը միջինում չի գերազանցել baseline-ը։ Փաթեթում կան չորս վերականգնված գեներատորի կշիռներ, իսկ երկու ամբողջական կշիռ և որոշ օժանդակ մուտքեր դեռ բացակայում են։ Հղումային մոդելների CPU ստուգումները լրացուցիչ որակական benchmark չեն։

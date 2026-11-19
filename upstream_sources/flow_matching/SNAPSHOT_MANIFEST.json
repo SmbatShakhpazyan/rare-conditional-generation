@@ -1,0 +1,829 @@
+{
+  "repository": "facebookresearch/flow_matching",
+  "repository_url": "https://github.com/facebookresearch/flow_matching",
+  "commit_sha": "11568d37f8d5a080e12aa7b5305d9c35ae07d136",
+  "pinned_commit_url": "https://github.com/facebookresearch/flow_matching/tree/11568d37f8d5a080e12aa7b5305d9c35ae07d136",
+  "primary_paper_url": "https://arxiv.org/abs/2210.02747",
+  "role": "Official author-organization library; current pinned code is CC BY-NC4.0, not MIT.",
+  "license": "CC-BY-NC-4.0",
+  "github_HEAD_license_metadata_not_used_as_pinned_text": {
+    "key": "other",
+    "name": "Other",
+    "spdx_id": "NOASSERTION",
+    "url": null,
+    "node_id": "MDc6TGljZW5zZTA="
+  },
+  "upstream_code_executed": false,
+  "upstream_tests_or_training_run": false,
+  "reproduced_paper_results": false,
+  "filtered_not_full_asset_snapshot": true,
+  "status": "PINNED_LICENSED_FILTERED_TEXT_SOURCE_SNAPSHOT",
+  "included_files": {
+    ".flake8": {
+      "bytes": 315,
+      "sha256": "c542740743e2d22b942697d217bca66b627ac64ace114b0303d2da6d8d3f3869",
+      "git_blob_sha1": "706919fe15c93f2edc9b7f6af25cf72065bf24ec",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/.flake8"
+    },
+    ".github/ISSUE_TEMPLATE/bug_report.md": {
+      "bytes": 491,
+      "sha256": "3a3f6bf84f7212029ea6882a9daacd49aad61d8c63152d1fd90bb426d87cedd4",
+      "git_blob_sha1": "036ca2e5c86f77f056ca45d7d1a4afb1d433e80f",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/.github/ISSUE_TEMPLATE/bug_report.md"
+    },
+    ".github/ISSUE_TEMPLATE/feature_request.md": {
+      "bytes": 595,
+      "sha256": "1f48c52f209a971b8e7eae4120144d28fcf8ee38a7778a7b4d8cf1ab356617d2",
+      "git_blob_sha1": "bbcbbe7d61558adde3cbfd0c7a63a67c27ed6d30",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/.github/ISSUE_TEMPLATE/feature_request.md"
+    },
+    ".github/workflows/ci.yaml": {
+      "bytes": 1597,
+      "sha256": "116d8a588b24a2c3eb448f1590f12545aecc7871847f5fa6777dab0b12fe1bac",
+      "git_blob_sha1": "765a3970edf8ff1c094fac8894221a5e123c3f60",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/.github/workflows/ci.yaml"
+    },
+    ".github/workflows/notebooks.yaml": {
+      "bytes": 728,
+      "sha256": "035da652a13e74fb48ca79ae24fdb5bfbfac05b633fbd097f8438518ee259eaf",
+      "git_blob_sha1": "79d178abdeb7ef42c73d0178858349bd7f92e41c",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/.github/workflows/notebooks.yaml"
+    },
+    ".gitignore": {
+      "bytes": 1107,
+      "sha256": "53ebf6e6f9668e78242bd73467f1271104f0095e86feadd6ad1b7338b98bc37f",
+      "git_blob_sha1": "2fdc9fcba705c20d53845202f4e5293865abfc58",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/.gitignore"
+    },
+    ".pre-commit-config.yaml": {
+      "bytes": 404,
+      "sha256": "34498703d621ea5ae96e635379b712a483580657425018512dab19074e38dfb4",
+      "git_blob_sha1": "504a6e057ce05afd586d7c88553c486c069d83a7",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/.pre-commit-config.yaml"
+    },
+    "CHANGELOG.md": {
+      "bytes": 55,
+      "sha256": "2d54fae87baafd85c06606631cbf1b41a0aec8de25d331d6d347e69ff8e915a6",
+      "git_blob_sha1": "65faa80474b5ea1878f946e4929baf1603044b39",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/CHANGELOG.md"
+    },
+    "CODE_OF_CONDUCT.md": {
+      "bytes": 3537,
+      "sha256": "b161b3e2ec4712ebf69efc38ef796d2c701a323aac51cf11759d38e9c56c39bd",
+      "git_blob_sha1": "3232ed665566ec047ce55a929db1581dbda266a1",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/CODE_OF_CONDUCT.md"
+    },
+    "CONTRIBUTING.md": {
+      "bytes": 1047,
+      "sha256": "189c865f67d5f349917e21c57f2c917ab9f4091e50b86fe4180507c5f2124322",
+      "git_blob_sha1": "a8d06b6984e7105db86a01a45a138e32cbc2de98",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/CONTRIBUTING.md"
+    },
+    "LICENSE": {
+      "bytes": 19346,
+      "sha256": "3711f963c05d0be80d53e5923308a6dee31b203da23435c9cfb7c7b6e4dd5e19",
+      "git_blob_sha1": "c657cab45c850057a63b3605897f5195f3c4ac02",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/LICENSE"
+    },
+    "README.md": {
+      "bytes": 3808,
+      "sha256": "80a4a7c6bdcd2bf718770dff3c06048a473f2123bee55df426c5ea59a6910fb0",
+      "git_blob_sha1": "0e7b5b7cea3827fa5e2f0143f8a5b5e44e2d8810",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/README.md"
+    },
+    "RELEASE.md": {
+      "bytes": 255,
+      "sha256": "1bc06c6ec3cb3f4cf12d8e537c6d1f1eea1387496ac8227578c172850e0fb4bb",
+      "git_blob_sha1": "33f61632c4eb4a899baa2b7d652165027e7aa475",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/RELEASE.md"
+    },
+    "docs/Makefile": {
+      "bytes": 1539,
+      "sha256": "da00c85a8a5622d36fcf96db893194e10ebd36be9a31e033fbf243990008783e",
+      "git_blob_sha1": "05c2bb7e73b81f937e207ab849d02bc71e254cbf",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/docs/Makefile"
+    },
+    "docs/README.md": {
+      "bytes": 602,
+      "sha256": "39c66b6fed39d3afc2c5592643d155826715faea3227abed94ef5f389166aafe",
+      "git_blob_sha1": "1e31a2e78b80564bc4078f1f88506a498a9dabb5",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/docs/README.md"
+    },
+    "docs/_templates/classtemplate.rst": {
+      "bytes": 246,
+      "sha256": "9cb05a0d85b737bad73034450a95d07bab0a65be607a1a8f92a96b9d990540f1",
+      "git_blob_sha1": "4a1f19d9ee17d052da6f6eb4b7f207d4e7c41413",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/docs/_templates/classtemplate.rst"
+    },
+    "docs/custom_directives.py": {
+      "bytes": 7105,
+      "sha256": "a301d33029a52e92fa8096937f5a1eee2812aeea692c994952918e18a16b61cb",
+      "git_blob_sha1": "af6b9d1a62177a77683f07805b28e65dbfccbc71",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/docs/custom_directives.py"
+    },
+    "docs/deploy.py": {
+      "bytes": 1067,
+      "sha256": "3cfdf3adac2d7c8fa8f4f972e1b09e27b0ed2fb7fe35c83786d2c04b58de8e0f",
+      "git_blob_sha1": "8de8fc073205c4cfd42db865615e8edd118b6b11",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/docs/deploy.py"
+    },
+    "docs/deps.yml": {
+      "bytes": 140,
+      "sha256": "5c2808ff97bcf91c563af6b275f35a390f8b367d879c2cccbcc22988ea112ffd",
+      "git_blob_sha1": "cf9dffb11df665826c50fc8685eb2e81391f8b8f",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/docs/deps.yml"
+    },
+    "docs/server.py": {
+      "bytes": 375,
+      "sha256": "bd232b35464ca6cd5e509c313fceea526952ddf2b42cc57c1b90055eae1e974b",
+      "git_blob_sha1": "3cc9e1cb46b870484a6376e2f20460d94f274103",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/docs/server.py"
+    },
+    "docs/source/_static/css/custom.css": {
+      "bytes": 243,
+      "sha256": "b97f0daf176b12a657ad3d4c1b7ff7c609fc668d6c38c39da430f4998f0be916",
+      "git_blob_sha1": "d12cb9bcd390a888d24578d94f3554d39fc1a6e4",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/docs/source/_static/css/custom.css"
+    },
+    "docs/source/_templates/classtemplate.rst": {
+      "bytes": 246,
+      "sha256": "9cb05a0d85b737bad73034450a95d07bab0a65be607a1a8f92a96b9d990540f1",
+      "git_blob_sha1": "4a1f19d9ee17d052da6f6eb4b7f207d4e7c41413",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/docs/source/_templates/classtemplate.rst"
+    },
+    "docs/source/conf.py": {
+      "bytes": 2569,
+      "sha256": "61c484d884a6357d8cff149643715ef8f9ea5462f7e51fff4f8b98322f5a720a",
+      "git_blob_sha1": "c3f6359f7adbee1305ec99dd8fd1c673295f8e4d",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/docs/source/conf.py"
+    },
+    "docs/source/dummy.rst": {
+      "bytes": 235,
+      "sha256": "5335ac31327a76c30d825133b4bd602db49c326fa2ea3dd4930a50851a304b40",
+      "git_blob_sha1": "820ca98230e2c31c1adb37022207649b1a46d452",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/docs/source/dummy.rst"
+    },
+    "docs/source/flow_matching.loss.rst": {
+      "bytes": 273,
+      "sha256": "09bc514fbd991860de9055c68fd408a097f86ab00c386dc7cdb6c5eb4781c36a",
+      "git_blob_sha1": "aa027cb005735f407e9b8ffc420c308f0df57126",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/docs/source/flow_matching.loss.rst"
+    },
+    "docs/source/flow_matching.path.rst": {
+      "bytes": 608,
+      "sha256": "e9284fae00b1f456dc84646333ccf2d01de2f88b4126a77b96f5ed47113b074b",
+      "git_blob_sha1": "af8a97c012b6aefa4d70b6a93471e7414c1972cc",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/docs/source/flow_matching.path.rst"
+    },
+    "docs/source/flow_matching.path.scheduler.rst": {
+      "bytes": 569,
+      "sha256": "34f2aa36a91ea8e8df579a3f8885908513eb2b3134dc36013963921f0056870e",
+      "git_blob_sha1": "0ad9e55d8262f65310f0e11360043946afb012c8",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/docs/source/flow_matching.path.scheduler.rst"
+    },
+    "docs/source/flow_matching.solver.rst": {
+      "bytes": 285,
+      "sha256": "c9f6c000382436e6feb354b71f1804104bbaebfa52515c325149a5ab3eb8d132",
+      "git_blob_sha1": "99b00e8c055ba0a8733772e4522c815ee8dc1d2b",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/docs/source/flow_matching.solver.rst"
+    },
+    "docs/source/flow_matching.utils.manifolds.rst": {
+      "bytes": 480,
+      "sha256": "f93ad79a4461e41dec1ac0c3119dccafa8b2f6b4d815b8c47cc79f4b13af46e6",
+      "git_blob_sha1": "fc6b86215419cb7a56888048dccf387d747736b1",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/docs/source/flow_matching.utils.manifolds.rst"
+    },
+    "docs/source/flow_matching.utils.model_wrapper.rst": {
+      "bytes": 279,
+      "sha256": "043c0c79500a72cc9c847b18c6f7cab375a49b31d3a10e1ed973ef738cd404ed",
+      "git_blob_sha1": "4310c96794ec98e1732003831f13316f9f330669",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/docs/source/flow_matching.utils.model_wrapper.rst"
+    },
+    "docs/source/index.rst": {
+      "bytes": 754,
+      "sha256": "358952507ce126a054d58ee54ff450be30a786d1aeea961f512de1bc02127099",
+      "git_blob_sha1": "aede295deed7eaf86c4c553a6d8354069ae0fe1d",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/docs/source/index.rst"
+    },
+    "docs/source/installation.rst": {
+      "bytes": 584,
+      "sha256": "a89751e6ee014f85ac46343bb014beb05e75c7c9e56c30740f43d7d5fa98d5a3",
+      "git_blob_sha1": "5d71c8bfef3ce2ede6212939ffb5e3ff824bb95a",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/docs/source/installation.rst"
+    },
+    "docs/source/modules.rst": {
+      "bytes": 247,
+      "sha256": "3faf7836e99e15703502f4da7d5886a57a5239b7bfa0d4d8f2789f5bd5c583e4",
+      "git_blob_sha1": "093361af6a969ebefa729a5d0c1add4dcdf73000",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/docs/source/modules.rst"
+    },
+    "docs/source/notebooks.rst": {
+      "bytes": 985,
+      "sha256": "0ca17b770b4b61301e87e60431ef919936ddef4f42819d58fd118af40e0b7c81",
+      "git_blob_sha1": "1967e9942a5f8db07d4741d4dce7db22dcbcf2c5",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/docs/source/notebooks.rst"
+    },
+    "docs/source/references.rst": {
+      "bytes": 82,
+      "sha256": "066518e411223663e1d514ba2b6270f8ef9ca334cdb903c04b560dd4f6725537",
+      "git_blob_sha1": "b34f925256047a624cc97742da9d8d3e6bc561ea",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/docs/source/references.rst"
+    },
+    "docs/source/refs.bib": {
+      "bytes": 3565,
+      "sha256": "ee1346404e720383d489d2e02f3f7cde876b2f712f99b024e96785e2369d7d08",
+      "git_blob_sha1": "d87dc9bc22b98005af37c8f120a4866a75306a98",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/docs/source/refs.bib"
+    },
+    "environment.yml": {
+      "bytes": 368,
+      "sha256": "100fa90ae73b67a597c82473636f1b696717f218f91f7097f8e0d30f554b386f",
+      "git_blob_sha1": "6a0dd3e72cc6c2472042ce0cddd6b51a5812b261",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/environment.yml"
+    },
+    "examples/README.md": {
+      "bytes": 1257,
+      "sha256": "f9208ee769971bb58f1fc6d9e3f70d8ee8898e76c41d25833345b2fbfdf53ed6",
+      "git_blob_sha1": "3b6af05d393516290f76adfa91b84f94f11f8da2",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/examples/README.md"
+    },
+    "examples/image/README.md": {
+      "bytes": 5242,
+      "sha256": "49c4414b79bbe04b3e595de5058313a48d4808265c3b22a48ac24e6b6e6d9ff1",
+      "git_blob_sha1": "137b3545fd396affd2281a2027938a387a69a4b1",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/examples/image/README.md"
+    },
+    "examples/image/models/discrete_unet.py": {
+      "bytes": 3360,
+      "sha256": "3071366b4411f666dc4931be4231a5ce0206c582c2396dc90929f9bb2373ba81",
+      "git_blob_sha1": "9fca02932885f33973bb602d2c8caac9a119767d",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/examples/image/models/discrete_unet.py"
+    },
+    "examples/image/models/ema.py": {
+      "bytes": 2765,
+      "sha256": "c825f6394cff3753e42d9fbdaf7c477dcf2c990a1645de8bedcb2959df354faa",
+      "git_blob_sha1": "1a7d7225cfafd44f30a8763b897dd9c70ed7086b",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/examples/image/models/ema.py"
+    },
+    "examples/image/models/model_configs.py": {
+      "bytes": 3290,
+      "sha256": "fd5055e2c38931b167dfdb6c3d4fccb2e2b16e20d1b802e6930aee981d516264",
+      "git_blob_sha1": "06b1320a8d56a1604eff6dd1031a2e29a0e486c2",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/examples/image/models/model_configs.py"
+    },
+    "examples/image/models/nn.py": {
+      "bytes": 5461,
+      "sha256": "7943211a2eb063d891984267272c9615b086049b9000d97e46ceeb4c73a04f99",
+      "git_blob_sha1": "552b396b26a7f3feaa1f9c2ef384b1292efce98d",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/examples/image/models/nn.py"
+    },
+    "examples/image/models/unet.py": {
+      "bytes": 26343,
+      "sha256": "4888da830915ada9543622f4842f83e7b010cf16359585d9ad7ee7d3675a6a9a",
+      "git_blob_sha1": "6f7fb35074e9e5f872323e257bcd048cab592393",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/examples/image/models/unet.py"
+    },
+    "examples/image/requirements.txt": {
+      "bytes": 41,
+      "sha256": "65aa50b3612ad2fb768d3166fb997666768e1cc77b50e7b079f17b985efdd776",
+      "git_blob_sha1": "c5598891997deaf5968c2c0ddc3308e5d23d4082",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/examples/image/requirements.txt"
+    },
+    "examples/image/submitit_train.py": {
+      "bytes": 5862,
+      "sha256": "e64582ab1e31365db2fa6118969b39ced9caf0b5ec027498891c828e193772a9",
+      "git_blob_sha1": "04cdfe865e60a562d7817c829ad79647cbeb6954",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/examples/image/submitit_train.py"
+    },
+    "examples/image/train.py": {
+      "bytes": 7191,
+      "sha256": "a7dca86b5dd194adc90063c983425eb71be5bbb7df438f5b6f3c88e01aa930d0",
+      "git_blob_sha1": "fb3d040799084d39c4f2c6b70d971faaac389d0f",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/examples/image/train.py"
+    },
+    "examples/image/train_arg_parser.py": {
+      "bytes": 6471,
+      "sha256": "f442b4abb058dda676cee828b309107ca9b174d3f850f224fc115ac2821f8dcd",
+      "git_blob_sha1": "ea2c567f29f9170325ac72b319cd031e0ec12dce",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/examples/image/train_arg_parser.py"
+    },
+    "examples/image/training/data_transform.py": {
+      "bytes": 494,
+      "sha256": "07bf6931240ee78efb94122c2805b1b07602e20b5e0e07e7d5b09c89d39d0960",
+      "git_blob_sha1": "7a7901e372b5cf00ebd3185e16e68dc71b797662",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/examples/image/training/data_transform.py"
+    },
+    "examples/image/training/distributed_mode.py": {
+      "bytes": 2388,
+      "sha256": "266086a81091341a4fd6438bfb31ae1f6c0c82d24378fd1989c6e3867c5b5099",
+      "git_blob_sha1": "7b539a7e5a5c2fe5f2bef34bf0b60b8133ba30aa",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/examples/image/training/distributed_mode.py"
+    },
+    "examples/image/training/edm_time_discretization.py": {
+      "bytes": 940,
+      "sha256": "a4939ab9a9246f52feb949fc3e69b61b714cffa2d66bfdeb6152783bc99a94d2",
+      "git_blob_sha1": "9b93712c826ef25fa9324c65f50f873c0144af46",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/examples/image/training/edm_time_discretization.py"
+    },
+    "examples/image/training/eval_loop.py": {
+      "bytes": 8458,
+      "sha256": "20d7cef40d41a3329b1b622d4c66dca85ada9da01bfdc58b161ba4b12d5c2423",
+      "git_blob_sha1": "f39220d5a51e422ebd70d10c14a0ec79ea37643b",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/examples/image/training/eval_loop.py"
+    },
+    "examples/image/training/grad_scaler.py": {
+      "bytes": 2062,
+      "sha256": "8668b49ec23613f650e0834459a0d29c8cec6b939ee5b6f63a396d3a565034b1",
+      "git_blob_sha1": "9303df69a7e41ccafd5d64d131e12d674718fb87",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/examples/image/training/grad_scaler.py"
+    },
+    "examples/image/training/load_and_save.py": {
+      "bytes": 2350,
+      "sha256": "70a4075505ca256076c6e5bf1a04cf9b858c58a6fe30eb8fc6fe9a5e6a224add",
+      "git_blob_sha1": "b038e302b93b1c63845cbbe9342974352e40b112",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/examples/image/training/load_and_save.py"
+    },
+    "examples/image/training/train_loop.py": {
+      "bytes": 4686,
+      "sha256": "91f49428d8ae53eb1c14374dc494e99888319898bede1b63e797d3912a22e573",
+      "git_blob_sha1": "93597cef9d5b1734269cd15280542ec21e041d1e",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/examples/image/training/train_loop.py"
+    },
+    "examples/text/README.md": {
+      "bytes": 4230,
+      "sha256": "22ce6c0cbfa0ad4371c06dafde7f161807161970218756904c57b3a59fde6586",
+      "git_blob_sha1": "c027968c375c3c889c90e30e08c10338d74464bc",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/examples/text/README.md"
+    },
+    "examples/text/configs/config.yaml": {
+      "bytes": 1507,
+      "sha256": "58bf80669fef4cdc2cc361cd4e37a12ca992d5ab92fe70d0c5782358326ac0b8",
+      "git_blob_sha1": "a6d1c82f8a3f9473d427fe10abd176ca3fc8a7ee",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/examples/text/configs/config.yaml"
+    },
+    "examples/text/data/__init__.py": {
+      "bytes": 261,
+      "sha256": "b5f1cef77396db3dc388989bfaab79f8b319c4b5ad67ab0141bc4698b31fa1d0",
+      "git_blob_sha1": "033cc9ed42bd3385510b7cd451499f90a03b8a43",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/examples/text/data/__init__.py"
+    },
+    "examples/text/data/data.py": {
+      "bytes": 6047,
+      "sha256": "7c83dc1e949f7cb779f1c61149aa17781531ca4d14752be0eeaf9a964fc5bb7d",
+      "git_blob_sha1": "9315334764655415aad595400f3bca1b83012895",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/examples/text/data/data.py"
+    },
+    "examples/text/data/tokenizer.py": {
+      "bytes": 1630,
+      "sha256": "87f42cefc62b38741984710ca78a5cedddd825a7f1978f0ef641a5a17d089bec",
+      "git_blob_sha1": "48b456ea535dcd82d424575a13da5e3b00f4657e",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/examples/text/data/tokenizer.py"
+    },
+    "examples/text/data/utils.py": {
+      "bytes": 2139,
+      "sha256": "ee4c2a686a028588fbc0905637534d950ceca98b9b3b597db88ff4ef08d6970e",
+      "git_blob_sha1": "2c51aa99f84def1200e5a323e87d8e182f87078d",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/examples/text/data/utils.py"
+    },
+    "examples/text/environment.yml": {
+      "bytes": 288,
+      "sha256": "56dfc6d003441ce36800e30c60c0efb0f6e803f0231732bb4a8f081fa060cde3",
+      "git_blob_sha1": "e01af9b35ab0d3519da5984c83988d7812ab8d86",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/examples/text/environment.yml"
+    },
+    "examples/text/logic/__init__.py": {
+      "bytes": 207,
+      "sha256": "f7ed6572b430453c21b03ec69adbe975f84c7dbb336302a7eaabce0c79c470fc",
+      "git_blob_sha1": "36d719522180cd6c67a6b7eb05ee12e1cff6f386",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/examples/text/logic/__init__.py"
+    },
+    "examples/text/logic/evaluate.py": {
+      "bytes": 3924,
+      "sha256": "f72a6972d752c8e0164dbcc52e92eae5e35687d4f56124ed5d68f122ba0fb0a6",
+      "git_blob_sha1": "a164cf28433a157982164f209fe38aee877ff1ed",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/examples/text/logic/evaluate.py"
+    },
+    "examples/text/logic/flow.py": {
+      "bytes": 2872,
+      "sha256": "721c866a5dad7598d4c75c6aee2f7e1c5e01bbc44c63fe02ae040b41bbe6c86e",
+      "git_blob_sha1": "3e707a721129021267c80103b491ac979abcd310",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/examples/text/logic/flow.py"
+    },
+    "examples/text/logic/generate.py": {
+      "bytes": 2218,
+      "sha256": "1f5726afc4be2550a215cf26d5b06181e0ccebbd77ae875921668f95ea8be093",
+      "git_blob_sha1": "64fe4748f061f2340f14175fc1d0d4b2c2e29ecc",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/examples/text/logic/generate.py"
+    },
+    "examples/text/logic/state.py": {
+      "bytes": 2590,
+      "sha256": "e17ff88beddb13214d48a9c0308df9a9a4f001deeacc0c91160a6c96fa1ff055",
+      "git_blob_sha1": "742c298b895ba5c683275940d2f3afdd4b5c15b9",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/examples/text/logic/state.py"
+    },
+    "examples/text/logic/training.py": {
+      "bytes": 3568,
+      "sha256": "0c5e67a891bb43c7409b6e2e45affe8d4fecb1eebc7f706bf77484c8f0214e9f",
+      "git_blob_sha1": "13d7f7d4b3276b3419d25e5f93cc5c5e44dd13ba",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/examples/text/logic/training.py"
+    },
+    "examples/text/model/__init__.py": {
+      "bytes": 279,
+      "sha256": "b5d34a90f2cba54310b4fad7430f73ad161a7959aeb162ef6b0f8c9bd489c1ec",
+      "git_blob_sha1": "2ad125512746de2bd017a92db6e303759012115f",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/examples/text/model/__init__.py"
+    },
+    "examples/text/model/rotary.py": {
+      "bytes": 2679,
+      "sha256": "c36db0d97ecd1ae867c6d751e384edf7f55569dcf9773a281b3b2f32c92c7280",
+      "git_blob_sha1": "6d7f7ba3a76bc36de45372abc5dd1fd870c3d49f",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/examples/text/model/rotary.py"
+    },
+    "examples/text/model/transformer.py": {
+      "bytes": 8350,
+      "sha256": "3c1767cb89f5f162d62fc62a8dd83d48b4ce3afaf9c06db0f77a8041801dc0f2",
+      "git_blob_sha1": "f1ed6ba517af740379ecc6acb21ee04ce9176529",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/examples/text/model/transformer.py"
+    },
+    "examples/text/run_train.py": {
+      "bytes": 1575,
+      "sha256": "ff9b6f2a1e4861b9229873cf6feea95b1fed0427df79fbba2166c6b0c1a46b50",
+      "git_blob_sha1": "cdec1a3023f6c6795640c8f8032ad743d8c318ad",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/examples/text/run_train.py"
+    },
+    "examples/text/scripts/eval.py": {
+      "bytes": 5597,
+      "sha256": "62f8dce0163fd3751545be543b639ad90ac87cef006672b05772038c278de36a",
+      "git_blob_sha1": "31cf32a61334d91f7d923420f0376f31d424258f",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/examples/text/scripts/eval.py"
+    },
+    "examples/text/scripts/run_eval.py": {
+      "bytes": 2375,
+      "sha256": "f1e1340d2ae45b1c36e51c836709f777fb95009c959a4c2e5a065ff10cbe3b0b",
+      "git_blob_sha1": "c7d906671685e9e29b9df6a9893f870ad6b02676",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/examples/text/scripts/run_eval.py"
+    },
+    "examples/text/train.py": {
+      "bytes": 7199,
+      "sha256": "2773dec226020a5e828cb4fea9728149c98cd77713d05ea8f8e3e6fa94e4e414",
+      "git_blob_sha1": "7faaff7151947681c382d7a876dc1506b54d114c",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/examples/text/train.py"
+    },
+    "examples/text/utils/__init__.py": {
+      "bytes": 207,
+      "sha256": "f7ed6572b430453c21b03ec69adbe975f84c7dbb336302a7eaabce0c79c470fc",
+      "git_blob_sha1": "36d719522180cd6c67a6b7eb05ee12e1cff6f386",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/examples/text/utils/__init__.py"
+    },
+    "examples/text/utils/checkpointing.py": {
+      "bytes": 2275,
+      "sha256": "9d34164080d1fec778bd26b14795c65b2783abfacf8ef2a574f67f69d51d869e",
+      "git_blob_sha1": "d50f6a02b20ae5cd4cff726784691c3b0a3bb2ac",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/examples/text/utils/checkpointing.py"
+    },
+    "examples/text/utils/logging.py": {
+      "bytes": 3841,
+      "sha256": "bcbdf1ace733bc1667c2a0ee73a1195e6ea809e3a2ea465899f0d0e53fe5c46b",
+      "git_blob_sha1": "7b73067ffbce83551b5dacee334cd0ae57ebbcbe",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/examples/text/utils/logging.py"
+    },
+    "flow_matching/__init__.py": {
+      "bytes": 231,
+      "sha256": "43cea4efce52343ba440032df4057a6bc6d74119ee273fa0090221aa0e793fb2",
+      "git_blob_sha1": "719ae055c6a13d749beca75c7a496f3cd7cd8948",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/flow_matching/__init__.py"
+    },
+    "flow_matching/loss/__init__.py": {
+      "bytes": 310,
+      "sha256": "802167a14c23ba6cdd770f69549563789bc849ac70bdc87062158741dfbdf14a",
+      "git_blob_sha1": "24ec1a9b0a64a11cc395e5043f6aaa184b5c2d52",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/flow_matching/loss/__init__.py"
+    },
+    "flow_matching/loss/generalized_loss.py": {
+      "bytes": 3554,
+      "sha256": "9f69eed2223654aa157d103f4f42708bf4bbfb99ba93f73e471098e609dad16e",
+      "git_blob_sha1": "cc1507e031d102825d9eb06e9bb7a0f248d16952",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/flow_matching/loss/generalized_loss.py"
+    },
+    "flow_matching/path/__init__.py": {
+      "bytes": 601,
+      "sha256": "ceea0b9dc0d9f66a238b83a3a945b9e061d8e4c2c0fc6e545f188c16052b2883",
+      "git_blob_sha1": "88d29a2575c1be14d2ec10bd9eda799e7599dd1d",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/flow_matching/path/__init__.py"
+    },
+    "flow_matching/path/affine.py": {
+      "bytes": 8832,
+      "sha256": "420be3d2e2e84924b9c5b689887cb75ea1451e2ecde9b36ba93366bb4f1e009d",
+      "git_blob_sha1": "81cb7ed31f2434d03424ea9a5571a36bfc9f2681",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/flow_matching/path/affine.py"
+    },
+    "flow_matching/path/geodesic.py": {
+      "bytes": 3670,
+      "sha256": "10c660c5c27a7ab84e514c0beb87f252d96d6fe370285131981ff86cc0b40106",
+      "git_blob_sha1": "d04bf6770a98804f9bbcc7447c352be6ddec65dc",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/flow_matching/path/geodesic.py"
+    },
+    "flow_matching/path/mixture.py": {
+      "bytes": 4395,
+      "sha256": "23358ea034bc087ce8f553a0b16b22a3fc33603069086e846ed5e81ac5206c0a",
+      "git_blob_sha1": "28b4043ebe89a35408ada3a28cf33291ae277cd1",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/flow_matching/path/mixture.py"
+    },
+    "flow_matching/path/path.py": {
+      "bytes": 2270,
+      "sha256": "2a0abccfb7c8cb3a41d9fcf66bb24b3e39fc72e0cbea3439624055f98108f546",
+      "git_blob_sha1": "c133a14ab68dfa65f32c604a4b0f6b96cd269fd5",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/flow_matching/path/path.py"
+    },
+    "flow_matching/path/path_sample.py": {
+      "bytes": 1957,
+      "sha256": "397a075d051dc9a03dedcc2f93f74e36c3d5eb70030ab82546f6a4c8dd69ab65",
+      "git_blob_sha1": "3f18bb233790d9af401a86e6f0b3c3774d363163",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/flow_matching/path/path_sample.py"
+    },
+    "flow_matching/path/scheduler/__init__.py": {
+      "bytes": 695,
+      "sha256": "925656043b0eb96d5f19ac557569015cb0a672b5ac829db601362482471e1c05",
+      "git_blob_sha1": "f3b1a43f08b3c85a9c69ebe87b4fdeaf9eff29b1",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/flow_matching/path/scheduler/__init__.py"
+    },
+    "flow_matching/path/scheduler/schedule_transform.py": {
+      "bytes": 5108,
+      "sha256": "2073e05f4b9a45048b5c390c7db4d15e8638d1717b79102b1f1292d40fe8542c",
+      "git_blob_sha1": "a366f19c9eafd961d5e40db28f553b409ff82520",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/flow_matching/path/scheduler/schedule_transform.py"
+    },
+    "flow_matching/path/scheduler/scheduler.py": {
+      "bytes": 5743,
+      "sha256": "7c084315907b4d0811dd07e5447d72421909dfb0f86217d3c26fa5aaf7e674c7",
+      "git_blob_sha1": "2055e95ce359c7aa6a7c2441362dc0756f3d900b",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/flow_matching/path/scheduler/scheduler.py"
+    },
+    "flow_matching/solver/__init__.py": {
+      "bytes": 507,
+      "sha256": "4c30e3575b0829ccb17a34e84c7dfe4df22e402281df4dd9afd0af73d4b71b7e",
+      "git_blob_sha1": "6bd7b01c0992b5469d35885961f81da1bc9fe745",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/flow_matching/solver/__init__.py"
+    },
+    "flow_matching/solver/discrete_solver.py": {
+      "bytes": 10538,
+      "sha256": "1c35600a1147c5cf38444d0ac7fa27a27de2ceeb46cfeaff965e221b4e8af0ff",
+      "git_blob_sha1": "8ca84cdb1210fcff09b9a603273b27881c53d308",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/flow_matching/solver/discrete_solver.py"
+    },
+    "flow_matching/solver/ode_solver.py": {
+      "bytes": 8830,
+      "sha256": "911d385753b59b4e172d7edfd3664524e5051e9a840079187c98b005fdf17485",
+      "git_blob_sha1": "9dd01d50ba0dbd74c3116b81d3b9823021c3e0f7",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/flow_matching/solver/ode_solver.py"
+    },
+    "flow_matching/solver/riemannian_ode_solver.py": {
+      "bytes": 9062,
+      "sha256": "0d88db87f758341a2ec19d8cd3b3c8c66b905d414d3a029ddb99da6f3af965d4",
+      "git_blob_sha1": "a6ff0fd84b0eb27e25e4b28fabb56c63b3ca5602",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/flow_matching/solver/riemannian_ode_solver.py"
+    },
+    "flow_matching/solver/solver.py": {
+      "bytes": 434,
+      "sha256": "7337e460d7fee96f76707ba662fa67125002ee1803b614d75b4f3bd244c6ee6c",
+      "git_blob_sha1": "4819e1c0ff148c411648c6e248380f471efd0a6c",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/flow_matching/solver/solver.py"
+    },
+    "flow_matching/solver/utils.py": {
+      "bytes": 577,
+      "sha256": "26b176aa3840a918049a30ed52fc8e7fa53bfceb2de13620213b6b248518a715",
+      "git_blob_sha1": "f3a34ee4b0ca4c3ef64dfa1b55cb13da1187b965",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/flow_matching/solver/utils.py"
+    },
+    "flow_matching/utils/__init__.py": {
+      "bytes": 483,
+      "sha256": "6b10851e5a6f8f41c13f56cf7f8a6db230b03eda1b109f68a4ffc3cd274f1e20",
+      "git_blob_sha1": "0085c44c5e044d5a7dd0c2bde9755e9d3c18c0b1",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/flow_matching/utils/__init__.py"
+    },
+    "flow_matching/utils/categorical_sampler.py": {
+      "bytes": 615,
+      "sha256": "b2c9e88f0068dd7e01ca94374d1668f516f3e4e4dede3942412f258393fec013",
+      "git_blob_sha1": "70937af5af1da4c3c2b18a85745197e240724a96",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/flow_matching/utils/categorical_sampler.py"
+    },
+    "flow_matching/utils/manifolds/__init__.py": {
+      "bytes": 429,
+      "sha256": "25cf4ee1ef91cc18accbaa3c39a16d732daca07d84e529adc1404f894d6b47c0",
+      "git_blob_sha1": "1148872f29c5e42e2578eab31751abaf6def51da",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/flow_matching/utils/manifolds/__init__.py"
+    },
+    "flow_matching/utils/manifolds/manifold.py": {
+      "bytes": 2417,
+      "sha256": "5bbf44d30db365eafcf30017bbfcf2c23621d64fdbbce65c1cd999f95cf34e0c",
+      "git_blob_sha1": "52a6a1bc6ea7d83e3aeefd335edb19a842aeca21",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/flow_matching/utils/manifolds/manifold.py"
+    },
+    "flow_matching/utils/manifolds/sphere.py": {
+      "bytes": 1472,
+      "sha256": "2cc8fe00be89d514859850001a27a607f2ed875df5dbbb3aee56fa25628a28dd",
+      "git_blob_sha1": "76bf748f54b055b10cd4c4a085bf8204df6f47a0",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/flow_matching/utils/manifolds/sphere.py"
+    },
+    "flow_matching/utils/manifolds/torus.py": {
+      "bytes": 812,
+      "sha256": "6320d24006193d71a607804d7657e25a9d2ae2c9685cbdccf533aafce040b8ce",
+      "git_blob_sha1": "3587ed7567e3f55bb28edb176ab042882048d858",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/flow_matching/utils/manifolds/torus.py"
+    },
+    "flow_matching/utils/manifolds/utils.py": {
+      "bytes": 1400,
+      "sha256": "52bdee17f5dfad24befcf9af71934d76b05fbf42ef8f064261662ed9c0e3d71e",
+      "git_blob_sha1": "b83d2faf8ac4f182ca8621f25cafaefca32f5091",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/flow_matching/utils/manifolds/utils.py"
+    },
+    "flow_matching/utils/model_wrapper.py": {
+      "bytes": 1445,
+      "sha256": "ce79c9035fef44259e1ff091fd5a7428729fe9db1e74d8a45212f8226d9a4e74",
+      "git_blob_sha1": "ac7d932c851b3d2194bd63ce597ef924dc819a7f",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/flow_matching/utils/model_wrapper.py"
+    },
+    "flow_matching/utils/utils.py": {
+      "bytes": 2980,
+      "sha256": "f49d63c3e75a3ed5cb42d432cde43a7ecc72fa9bd270aeba5068765556ae349d",
+      "git_blob_sha1": "beb31ff27343c40955ec52513c44f75a6ab5d665",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/flow_matching/utils/utils.py"
+    },
+    "setup.py": {
+      "bytes": 2001,
+      "sha256": "9eee7a11e7282634b0376ce9b24d506c403e2eef88c7966570dbff4b4f03f592",
+      "git_blob_sha1": "2d43be2ef06bd349d4dae22945076ba76b1ae713",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/setup.py"
+    },
+    "tests/__init__.py": {
+      "bytes": 207,
+      "sha256": "f7ed6572b430453c21b03ec69adbe975f84c7dbb336302a7eaabce0c79c470fc",
+      "git_blob_sha1": "36d719522180cd6c67a6b7eb05ee12e1cff6f386",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/tests/__init__.py"
+    },
+    "tests/path/__init__.py": {
+      "bytes": 207,
+      "sha256": "f7ed6572b430453c21b03ec69adbe975f84c7dbb336302a7eaabce0c79c470fc",
+      "git_blob_sha1": "36d719522180cd6c67a6b7eb05ee12e1cff6f386",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/tests/path/__init__.py"
+    },
+    "tests/path/test_path.py": {
+      "bytes": 6572,
+      "sha256": "89a8e947fab27560277a2bf5e1fccc7e29c2555773e43ab9e038d0a1eccfa365",
+      "git_blob_sha1": "ba7fb4ba3ba906dfc9ae5d48b4518fb7cf4b951f",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/tests/path/test_path.py"
+    },
+    "tests/path/test_schedule_transform.py": {
+      "bytes": 2065,
+      "sha256": "ebdd0509f7c26f5973aa9fade85d957c0391c16057fc214099965af3c831d5d0",
+      "git_blob_sha1": "e6b4c77324023a1dc405f7c99f3fe46566a6fe4a",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/tests/path/test_schedule_transform.py"
+    },
+    "tests/path/test_scheduler.py": {
+      "bytes": 2949,
+      "sha256": "322ff288df2313330adf02ca6f8f93f1aa2b54d89e781d96fcd90fb6c2f720d9",
+      "git_blob_sha1": "508b48c6a26585ea0ab38f7edf1016ff0b93f1f9",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/tests/path/test_scheduler.py"
+    },
+    "tests/solver/__init__.py": {
+      "bytes": 207,
+      "sha256": "f7ed6572b430453c21b03ec69adbe975f84c7dbb336302a7eaabce0c79c470fc",
+      "git_blob_sha1": "36d719522180cd6c67a6b7eb05ee12e1cff6f386",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/tests/solver/__init__.py"
+    },
+    "tests/solver/test_discrete_solver.py": {
+      "bytes": 4209,
+      "sha256": "1b4c093c16ae358677ec5bb8275ca1ce6dc500dccf00cb21b654a93eac56953a",
+      "git_blob_sha1": "6877eae64373e0f37650f646e965583290a7cc71",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/tests/solver/test_discrete_solver.py"
+    },
+    "tests/solver/test_ode_solver.py": {
+      "bytes": 6604,
+      "sha256": "a9ca0e6e7622753512fff0b06686fc5a1117206957807296c1804dc32234c53f",
+      "git_blob_sha1": "85259fdce54039f356a586c4d5c5be285526aff3",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/tests/solver/test_ode_solver.py"
+    },
+    "tests/solver/test_riemannian_ode_solver.py": {
+      "bytes": 7273,
+      "sha256": "0703e359c3abc03e42c047c34cfe32805a843dc008eb96e71952b66d9f3b3cf9",
+      "git_blob_sha1": "0ee5a8b462aabc756205ca9a9632d2370de8f6ad",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/tests/solver/test_riemannian_ode_solver.py"
+    },
+    "tests/utils/__init__.py": {
+      "bytes": 207,
+      "sha256": "f7ed6572b430453c21b03ec69adbe975f84c7dbb336302a7eaabce0c79c470fc",
+      "git_blob_sha1": "36d719522180cd6c67a6b7eb05ee12e1cff6f386",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/tests/utils/__init__.py"
+    },
+    "tests/utils/test_utils.py": {
+      "bytes": 1351,
+      "sha256": "edeab8c78fd913e5baf47d4036ee6a94bb764231ca4b6a343cd6c6e3cc984da4",
+      "git_blob_sha1": "cd2858ef857a5d5931b7172dbd11c2a690f1cb6f",
+      "upstream_blob_url": "https://github.com/facebookresearch/flow_matching/blob/11568d37f8d5a080e12aa7b5305d9c35ae07d136/tests/utils/test_utils.py"
+    }
+  },
+  "excluded_files": [
+    {
+      "path": "assets/License-CC_BY--NC_4.0-lightgrey.svg",
+      "bytes": 1169,
+      "git_blob_sha1": "fd9a9fb7ec88c9d70c97c35179ee9472bb8ba1c9",
+      "reason": "image_dataset_weight_font_media_archive_or_binary"
+    },
+    {
+      "path": "assets/arXiv-2412.06264-red.svg",
+      "bytes": 1153,
+      "git_blob_sha1": "aaf5e02ad905f4a55d1e2120bb4d2d804d2884f9",
+      "reason": "image_dataset_weight_font_media_archive_or_binary"
+    },
+    {
+      "path": "assets/teaser.png",
+      "bytes": 306209,
+      "git_blob_sha1": "be47878c6ac2086ffedc6f2186a9a48124299bb2",
+      "reason": "image_dataset_weight_font_media_archive_or_binary"
+    },
+    {
+      "path": "docs/source/_images/discrete.png",
+      "bytes": 497106,
+      "git_blob_sha1": "f449234a61221820aed4a2e0e66439f0786f1fb2",
+      "reason": "image_dataset_weight_font_media_archive_or_binary"
+    },
+    {
+      "path": "docs/source/_images/riemannian_sphere.png",
+      "bytes": 176173,
+      "git_blob_sha1": "015d0fe06f115af2e580a7948a8b19b63e21cfe4",
+      "reason": "image_dataset_weight_font_media_archive_or_binary"
+    },
+    {
+      "path": "docs/source/_images/riemannian_torus.png",
+      "bytes": 229331,
+      "git_blob_sha1": "4333a896c36d464378b26d912177a8cd74931b35",
+      "reason": "image_dataset_weight_font_media_archive_or_binary"
+    },
+    {
+      "path": "docs/source/_images/standalone.png",
+      "bytes": 77791,
+      "git_blob_sha1": "cedef4a74516c6f3a6dc04e6099ef38ba4c11881",
+      "reason": "image_dataset_weight_font_media_archive_or_binary"
+    },
+    {
+      "path": "examples/2d_cnf_maximum_likelihood.ipynb",
+      "bytes": 525348,
+      "git_blob_sha1": "dec851d87e7edf12837af0fc9e5f4de5d640f859",
+      "reason": "notebook_outputs_or_attachments_omitted_without_rewriting"
+    },
+    {
+      "path": "examples/2d_discrete_flow_matching.ipynb",
+      "bytes": 801987,
+      "git_blob_sha1": "d9d44d831c6232bf1080017813e8848a2fe2a148",
+      "reason": "notebook_outputs_or_attachments_omitted_without_rewriting"
+    },
+    {
+      "path": "examples/2d_flow_matching.ipynb",
+      "bytes": 522686,
+      "git_blob_sha1": "622f41156abc9a10e5753d9d09b099d61191d61b",
+      "reason": "notebook_outputs_or_attachments_omitted_without_rewriting"
+    },
+    {
+      "path": "examples/2d_riemannian_flow_matching_flat_torus.ipynb",
+      "bytes": 318761,
+      "git_blob_sha1": "8a80135031503fcdfb4c3919fa26a02deadbf81b",
+      "reason": "notebook_outputs_or_attachments_omitted_without_rewriting"
+    },
+    {
+      "path": "examples/2d_riemannian_flow_matching_sphere.ipynb",
+      "bytes": 247528,
+      "git_blob_sha1": "c5d8a5892939d4167dad07c82103b78b46df1096",
+      "reason": "notebook_outputs_or_attachments_omitted_without_rewriting"
+    },
+    {
+      "path": "examples/image/load_model_checkpoint.ipynb",
+      "bytes": 634913,
+      "git_blob_sha1": "e487a1d026309dc7cf3dddbebe97ec8e4ea15328",
+      "reason": "notebook_outputs_or_attachments_omitted_without_rewriting"
+    },
+    {
+      "path": "examples/standalone_discrete_flow_matching.ipynb",
+      "bytes": 59477,
+      "git_blob_sha1": "1a4848c0798c1107bd6f3a8cf39aa285e48f2bbc",
+      "reason": "notebook_outputs_or_attachments_omitted_without_rewriting"
+    },
+    {
+      "path": "examples/standalone_flow_matching.ipynb",
+      "bytes": 299058,
+      "git_blob_sha1": "c0a1d64b2ee96f228dfdb3766a7a029808f7662d",
+      "reason": "notebook_outputs_or_attachments_omitted_without_rewriting"
+    }
+  ],
+  "total_included_bytes": 324469,
+  "root_license_path": "source/LICENSE",
+  "root_license_sha256": "3711f963c05d0be80d53e5923308a6dee31b203da23435c9cfb7c7b6e4dd5e19",
+  "compressed_archive_bytes": 3848559,
+  "compressed_archive_sha256": "02b6e5ef37eb041ff99e0f18edf72018e8b21a4e62108bee869d52c2197f9b40",
+  "source_bytes_modified": false,
+  "limits": {
+    "compressed_per_repo": 83886080,
+    "declared_expanded": 268435456,
+    "per_file": 4194304,
+    "kept_per_repo": 67108864
+  }
+}

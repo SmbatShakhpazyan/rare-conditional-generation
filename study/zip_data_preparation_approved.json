@@ -1,0 +1,25 @@
+{
+  "AI_root_source_approval": true,
+  "approved_utc": "2026-11-19T10:45:32.523654+00:00",
+  "deadline_utc": "2026-11-19T11:53:00Z",
+  "expected_input_array_sha256": {
+    "clean_index_sha256": "d278e0a67060e70416314a05cb8ea29d6ccd41b80e22ab90c89226bd847156e1",
+    "component_ids_sha256": "bb039432c9bc102fb7d0555a8d381293671d46c46a62bf624dcc0aab31239e8d",
+    "original_cache_sha256": "98d39e0febb8c1946aba70eca2ca5cb96a657cdf6075f7ae32fc56d4c6f9bd5c",
+    "original_index_sha256": "21dd7eab4a6bb76f8b64e23b1b3b63494e3423bcb03ea26b5db863317890dca5"
+  },
+  "failed_process_record_sha256": "74c49a5c477445f6c7e992c5c3ce3d6542ef6222ac622d4a6d51868c60d184d5",
+  "failed_source_sha256": "1bfc098f30aeb3c5ee155f4d056dac82f0f0e3e4c2b11c26f1bee384791daa97",
+  "observed_failure_sha256": "724a19dfd1d003831627622cb5cd25e4ef990abf5bcf2b791ab67afd8174557e",
+  "prior_worker_stopped_confirmed": true,
+  "public_archive_bytes": 1427750792,
+  "public_archive_sha256": "4ceccf7dffb6f3b40559fb9ae68b42a71c3528b2881b787d65f4d1f75329f02d",
+  "pure_sources": {
+    "audit/audit_exact_identity_recovery.py": "4ddc8b7e9ca38c50776295f7b5ba50c1efcdd3cb953df51ab48f584314d68794",
+    "audit/build_clean_component_split.py": "27af26630cfe64a54bf0b65976f28dde4754b64bbd73821424830df51fa8cded",
+    "src/cache_images.py": "8878bfd7c879dd2cbe263496f61f33562b9659bfe1151112b3140b696fb931f5"
+  },
+  "quality_values_seen": false,
+  "source_sha256": "40b140d0c0675571b94b23ac07d7cf36f817f0ffeae54c5359678530248e6fee",
+  "status": "approved_before_v3_local_ZIP_recovery_after_observed_FUSE_failure"
+}

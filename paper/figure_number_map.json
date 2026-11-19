@@ -1,0 +1,128 @@
+[
+  {
+    "number": 1,
+    "id": "v20_research_overview",
+    "file": "v20_research_overview.png",
+    "caption": "Figure 1  Standalone overview of the research question, experimental controls, evidence and limits. The other reviewed model families are reference implementations, not additional benchmark arms."
+  },
+  {
+    "number": 2,
+    "id": "v01_model_mechanisms",
+    "file": "v01_model_mechanisms.png",
+    "caption": "Figure 2  Reviewed model mechanisms. Each node identifies the training signal and sampling operation. The categories overlap, and only the B/C conditional GAN cohort supplies the reported training benchmark."
+  },
+  {
+    "number": 3,
+    "id": "v02_probability_paths",
+    "file": "v02_probability_paths.png",
+    "caption": "Figure 3  Illustrative paths associated with transport, noisy diffusion and endpoint mappings. The trajectories are drawn for explanation, not obtained from trained models or used as an efficacy comparison."
+  },
+  {
+    "number": 4,
+    "id": "v07_gan_architecture",
+    "file": "v07_gan_architecture.png",
+    "caption": "Figure 4  Generator feature widths and resolutions. Appendix A gives exact block operations and parameter counts. Both B and C use the same generator and discriminator; the extra C teacher is frozen."
+  },
+  {
+    "number": 5,
+    "id": "v21_actual_witness",
+    "file": "witness_flow_en.png",
+    "caption": "Figure 5  Fixed-teacher dataflow for the actual signed-interaction objective. The previous witness is detached; current features retain the input gradient to G. The tracker updates only after a successful G step. Validation selected kappa zero."
+  },
+  {
+    "number": 6,
+    "id": "v03_study_design",
+    "file": "v03_study_design.png",
+    "caption": "Figure 6  Protocol information flow. Components, rather than filenames alone, define the new partitions. Validation-selected recipes are retrained at three fresh paired seeds before test evaluation."
+  },
+  {
+    "number": 7,
+    "id": "v04_image_allocation",
+    "file": "v04_image_allocation.png",
+    "caption": "Figure 7  Exact image allocation after component exclusion, conflict quarantine and fixed hash assignment. Counts sum to 202,599. The four conflict components contain 219 rows; the larger excluded total has several causes."
+  },
+  {
+    "number": 8,
+    "id": "v05_condition_support",
+    "file": "v05_condition_support.png",
+    "caption": "Figure 8  Image counts for every partition and annotation bin. The square-root vertical scale is explicitly labeled; values above bars are untransformed counts."
+  },
+  {
+    "number": 9,
+    "id": "v06_earlier_content_exposure",
+    "file": "v06_earlier_content_exposure.png",
+    "caption": "Figure 9  Training presentations in three earlier sampling histories linked to exact-equivalent old validation or test content. The twelve earlier runs share three distinct sampling histories."
+  },
+  {
+    "number": 10,
+    "id": "v08_validation_heatmap",
+    "file": "v08_validation_heatmap.png",
+    "caption": "Figure 10  All ten saved validation points and all four conditional scores. Color spans the displayed score range. Selection uses the rare condition 11, not a favorable subset of test results."
+  },
+  {
+    "number": 11,
+    "id": "v09_ema_retention",
+    "file": "v09_ema_retention.png",
+    "caption": "Figure 11  Initialization coefficient in the exact parameter EMA recursion. This mathematical calculation does not establish that EMA initialization caused the observed quality gap; BN buffers were copied separately."
+  },
+  {
+    "number": 12,
+    "id": "v11_all_condition_means",
+    "file": "v11_all_condition_means.png",
+    "caption": "Figure 12  Four conditional mean KIDs from the saved six-model cohort. These are descriptive means over fixed seeds, not independent population estimates."
+  },
+  {
+    "number": 13,
+    "id": "v10_paired_test_seeds",
+    "file": "v10_paired_test_seeds.png",
+    "caption": "Figure 13  Paired rare-condition outcomes for all three fixed confirmation seeds. Connecting lines denote matched seeds, not trajectories in optimization time."
+  },
+  {
+    "number": 14,
+    "id": "v12_conditional_upper_bound",
+    "file": "v12_conditional_upper_bound.png",
+    "caption": "Figure 14  The point difference and nominal one-sided conditional upper bound. The horizontal segment is not a two-sided confidence interval. Training-seed populations, teacher fitting and hyperparameter selection are not resampled."
+  },
+  {
+    "number": 15,
+    "id": "v13_prdc_diagnostics",
+    "file": "v13_prdc_diagnostics.png",
+    "caption": "Figure 15  Precision, density and coverage means in all four conditions, with separate vertical scales across panels. Recall is exactly zero in all 24 individual model-by-condition records. Zero finite-neighborhood recall is not a proof of global support disjointness."
+  },
+  {
+    "number": 16,
+    "id": "v14_contrast_counterexample",
+    "file": "v14_contrast_counterexample.png",
+    "caption": "Figure 16  Constructed counterexample to identification by the signed contrast. With c=(1,-1,-1,1)/4, both alternating means equal zero, while each group has a different feature mean. The GAN adversarial term is a separate constraint."
+  },
+  {
+    "number": 17,
+    "id": "v17_component_covariance",
+    "file": "v17_component_covariance.png",
+    "caption": "Figure 17  Two analytical component configurations illustrate cancellation and reinforcement in the signed cluster influence formula. No new dataset estimates are shown."
+  },
+  {
+    "number": 18,
+    "id": "v15_stale_witness",
+    "file": "v15_stale_witness.png",
+    "caption": "Figure 18  Scalar staleness counterexample. Arrows show descent in the scalar current contrast for each displayed objective at delta=-1. The centered linear surrogate can be negative and is not the current squared distance."
+  },
+  {
+    "number": 19,
+    "id": "v19_prospective_kernel_design",
+    "file": "v19_prospective_kernel_design.png",
+    "caption": "Figure 19  Prospective conditional-kernel matching design. It requires identified targets for each fitted condition and new untouched confirmation data. It is not a tested improvement over B or C."
+  },
+  {
+    "number": 20,
+    "id": "v16_hash_band_proof",
+    "file": "v16_hash_band_proof.png",
+    "caption": "Figure 20  Candidate-completeness construction for a 64-bit Hamming threshold of four, using six disjoint bands and all fifteen band pairs. Completeness concerns this declared screening relation, not every visual or semantic duplicate."
+  },
+  {
+    "number": 21,
+    "id": "v18_artifact_availability",
+    "file": "v18_artifact_availability.png",
+    "caption": "Figure 21  Availability of selected confirmation-generator bytes. Metric completion records are retained for all six, but only four complete generator archives were recovered."
+  }
+]

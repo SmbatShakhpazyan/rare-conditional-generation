@@ -1,0 +1,421 @@
+{
+  "pdf_sha256": "c355d4efefa597902b64c20228fa2389186b116bc82ed9f4bb25b4a8803aee49",
+  "docx_sha256": "296800a54039558e71193b867349dfb2fba07c53892a9ec2521b6060a925d580",
+  "pages": {
+    "1": {
+      "native_page_sha256": "1153328ebb3012552ea71770d3761f793f98205dfebcaeaa21be20ab8c5b4cb7",
+      "reviewer": "root",
+      "reviewed_native_source": "render_first",
+      "status": "PASS"
+    },
+    "2": {
+      "native_page_sha256": "c46e0408939044729955f4ab0019c3ab678bbb89199338caf4bea454ab8bc617",
+      "reviewer": "root",
+      "reviewed_native_source": "render_delivery",
+      "status": "PASS"
+    },
+    "3": {
+      "native_page_sha256": "f893b145c21a7c06ef43c467ab938ec527abe6950803a87dbb301655740e3e1f",
+      "reviewer": "rank_two_extension",
+      "reviewed_native_source": "render_first",
+      "status": "PASS"
+    },
+    "4": {
+      "native_page_sha256": "42377db40695d4283b6c3cd68043600b60b64831f283e101ca75e28a442a2f0f",
+      "reviewer": "rank_two_extension",
+      "reviewed_native_source": "render_first",
+      "status": "PASS"
+    },
+    "5": {
+      "native_page_sha256": "cef657ce745ec66f294b2f63189f386c9ac1908bad76666cdc29f2be69a496f9",
+      "reviewer": "rank_two_extension",
+      "reviewed_native_source": "render_first",
+      "status": "PASS"
+    },
+    "6": {
+      "native_page_sha256": "93121baae7a317c3871a83ed43859ea6db34465ce176eaf82a86333d96ea8eb3",
+      "reviewer": "rank_two_extension",
+      "reviewed_native_source": "render_first",
+      "status": "PASS"
+    },
+    "7": {
+      "native_page_sha256": "b05ddc1d85715169df459bfa60818c0db323cc004cc5d0047f48c82501c955b4",
+      "reviewer": "rank_two_extension",
+      "reviewed_native_source": "render_first",
+      "status": "PASS"
+    },
+    "8": {
+      "native_page_sha256": "0000ab1a774f7df918375c081b23ce5d2c199176de608cb662ee985b78e6d9c5",
+      "reviewer": "rank_two_extension",
+      "reviewed_native_source": "render_first",
+      "status": "PASS"
+    },
+    "9": {
+      "native_page_sha256": "c674be68a41d56b909fd8ec5f60af0ec5ca3dafb74a3abfd80cafdebe2f2f4df",
+      "reviewer": "rank_two_extension",
+      "reviewed_native_source": "render_first",
+      "status": "PASS"
+    },
+    "10": {
+      "native_page_sha256": "519095e9cc563e78878ed3a20b927e43f00e0d510edfe28d9a9a77aef3331da8",
+      "reviewer": "rank_two_extension",
+      "reviewed_native_source": "render_first",
+      "status": "PASS"
+    },
+    "11": {
+      "native_page_sha256": "6aa9ce3d89fce14c06aee9b2d4825577ee155faa739cc91287f12ed228ff91a9",
+      "reviewer": "rank_two_extension",
+      "reviewed_native_source": "render_first",
+      "status": "PASS"
+    },
+    "12": {
+      "native_page_sha256": "e829d072ea5160e4d276afc0f7ee3565abdf04676c8e9a9d40a3fd0bd0c462b6",
+      "reviewer": "rank_two_extension",
+      "reviewed_native_source": "render_first",
+      "status": "PASS"
+    },
+    "13": {
+      "native_page_sha256": "d1d40f8911466ef4a62a1429748af7a249790379821a0e0f427703df4ef4b00c",
+      "reviewer": "rank_two_extension",
+      "reviewed_native_source": "render_first",
+      "status": "PASS"
+    },
+    "14": {
+      "native_page_sha256": "61935ce90054282ce757e2b1c78f3cc99707d77f7db9c175e4da48fc2acba1f4",
+      "reviewer": "rank_two_extension",
+      "reviewed_native_source": "render_first",
+      "status": "PASS"
+    },
+    "15": {
+      "native_page_sha256": "78cd7c8738f48ac76f0b447df3d0ac4030711be188990dba1f1383cacf0693a9",
+      "reviewer": "rank_two_extension",
+      "reviewed_native_source": "render_first",
+      "status": "PASS"
+    },
+    "16": {
+      "native_page_sha256": "846567f1e5456a2a9beaf9fb00c9caab0dfc232ba4c0887c36db63d50102dfd2",
+      "reviewer": "rank_two_extension",
+      "reviewed_native_source": "render_first",
+      "status": "PASS"
+    },
+    "17": {
+      "native_page_sha256": "aa60f9794e791676b03b40f5e06b3ef4365d6d5894784da6f5c2483bc3b07cf4",
+      "reviewer": "rank_two_extension",
+      "reviewed_native_source": "render_release_candidate",
+      "status": "PASS"
+    },
+    "18": {
+      "native_page_sha256": "3bd2aaf39f741c0d2fc12ab24e1618017a2d91ff353bb37dd74535ae73280adb",
+      "reviewer": "rank_two_extension",
+      "reviewed_native_source": "render_first",
+      "status": "PASS"
+    },
+    "19": {
+      "native_page_sha256": "b1aaf151880a96ac0a5c62621081e6a3f440c65f0d572789e15e14c6c9bb6894",
+      "reviewer": "rank_two_extension",
+      "reviewed_native_source": "render_first",
+      "status": "PASS"
+    },
+    "20": {
+      "native_page_sha256": "58946a705861eed124f979409970452a5bf28070dd63e9f6dcdf7b05a06577aa",
+      "reviewer": "rank_two_extension",
+      "reviewed_native_source": "render_release_candidate",
+      "status": "PASS"
+    },
+    "21": {
+      "native_page_sha256": "9c11c0b9a099da6325c53a74d34f76b70f697a11c7b293d910afd652634387ba",
+      "reviewer": "root",
+      "reviewed_native_source": "render_first",
+      "status": "PASS"
+    },
+    "22": {
+      "native_page_sha256": "d262119be6f6d1f9e4bce60b3694895b7c329c3cf4596121925046f669d3ba61",
+      "reviewer": "root",
+      "reviewed_native_source": "render_first",
+      "status": "PASS"
+    },
+    "23": {
+      "native_page_sha256": "7438e7a40443e7a137eb42e9ed1085b099147ece455c1a3d10e5dd8d3d7078ad",
+      "reviewer": "root",
+      "reviewed_native_source": "render_first",
+      "status": "PASS"
+    },
+    "24": {
+      "native_page_sha256": "bcef5f31bbcc4c28702b1995a686654cc2360e3b027b4a194ca6890bc07b3a83",
+      "reviewer": "root",
+      "reviewed_native_source": "render_release_candidate",
+      "status": "PASS"
+    },
+    "25": {
+      "native_page_sha256": "d6b1d96e7ebafaeaa8ab904fcf6d66426cdcf691e824b99711640ab39c804c33",
+      "reviewer": "root",
+      "reviewed_native_source": "render_first",
+      "status": "PASS"
+    },
+    "26": {
+      "native_page_sha256": "084f9d27291a1dff7d3ad0de3409594eeb292aee01bd8b2272373e57898738d5",
+      "reviewer": "root",
+      "reviewed_native_source": "render_first",
+      "status": "PASS"
+    },
+    "27": {
+      "native_page_sha256": "65a5ef6251e54f059dc3945165788601230a873a01c8de37421d3efda2752016",
+      "reviewer": "root",
+      "reviewed_native_source": "render_first",
+      "status": "PASS"
+    },
+    "28": {
+      "native_page_sha256": "fbfc69f32a5c1a25c6efee3090f60b1918e65668c7488ef7135399a27c1ebaaf",
+      "reviewer": "root",
+      "reviewed_native_source": "render_first",
+      "status": "PASS"
+    },
+    "29": {
+      "native_page_sha256": "71e4171e4ec14845a9066c606aa10d0bac1c18b19ee8aaef36ed7c1f20601a53",
+      "reviewer": "root",
+      "reviewed_native_source": "render_first",
+      "status": "PASS"
+    },
+    "30": {
+      "native_page_sha256": "9c15bde02a2a3dbb8f005f69b2700d9209d6a6486ebae1113e72f57465d47d55",
+      "reviewer": "root",
+      "reviewed_native_source": "render_first",
+      "status": "PASS"
+    },
+    "31": {
+      "native_page_sha256": "b2285e5482cc93574ad5bcc20784086f73f09e30a7b71dd6f3ce61691311ad9c",
+      "reviewer": "root",
+      "reviewed_native_source": "render_first",
+      "status": "PASS"
+    },
+    "32": {
+      "native_page_sha256": "c3832e57aea314d2c7255b095e5bfa8d7ca28c66d76ccc40049ba76cef58ca1e",
+      "reviewer": "root",
+      "reviewed_native_source": "render_first",
+      "status": "PASS"
+    },
+    "33": {
+      "native_page_sha256": "6743cc564e664d9b43980d7cc555e8ef78eb070c880b5c74c531cdafb6c7b4eb",
+      "reviewer": "singular_family_adversary",
+      "reviewed_native_source": "render_first",
+      "status": "PASS"
+    },
+    "34": {
+      "native_page_sha256": "8c8e1cbf29652ec436eb8082ddc0770cdee8ba493f462397e4cbb631c6c7950e",
+      "reviewer": "singular_family_adversary",
+      "reviewed_native_source": "render_release_candidate",
+      "status": "PASS"
+    },
+    "35": {
+      "native_page_sha256": "57f7f1ff908f7e5efb0fc4e532e56a4c161d0c9c46d80c5b2bfef931478a8551",
+      "reviewer": "singular_family_adversary",
+      "reviewed_native_source": "render_first",
+      "status": "PASS"
+    },
+    "36": {
+      "native_page_sha256": "9c454c9f3f772ab7fb320969b7b0a14576d8bd6a86d3284c4ea216635fada798",
+      "reviewer": "singular_family_adversary",
+      "reviewed_native_source": "render_first",
+      "status": "PASS"
+    },
+    "37": {
+      "native_page_sha256": "45df50fa89e8ffd35849c5b2d2c1b99b47cef95d1654229c2112a66efa735651",
+      "reviewer": "singular_family_adversary",
+      "reviewed_native_source": "render_release_candidate",
+      "status": "PASS"
+    },
+    "38": {
+      "native_page_sha256": "b2a114269cdea313f42faf43d916ade7699369c95b0ed0e889698c3e02cf0ed9",
+      "reviewer": "singular_family_adversary",
+      "reviewed_native_source": "render_release_candidate",
+      "status": "PASS"
+    },
+    "39": {
+      "native_page_sha256": "c2539e2ff60839ad9cc1c9a51f430ba069d1df0158a7403cb71a43a6e329506b",
+      "reviewer": "singular_family_adversary",
+      "reviewed_native_source": "render_first",
+      "status": "PASS"
+    },
+    "40": {
+      "native_page_sha256": "0109da6cbb8846960b17f580f09ab2b8982c1613811d7723cc1ee80e0cd539d2",
+      "reviewer": "singular_family_adversary",
+      "reviewed_native_source": "render_first",
+      "status": "PASS"
+    },
+    "41": {
+      "native_page_sha256": "f556f7a2d7a71e9ed9a67ae45f3392c4bb10c2bd9eca3b9757051af6cc1c01d3",
+      "reviewer": "singular_family_adversary",
+      "reviewed_native_source": "render_first",
+      "status": "PASS"
+    },
+    "42": {
+      "native_page_sha256": "3d8ecfe5b2c55ec28b5b21574a9e9b0f5347fafde95a7678c7eb84ccbb7950d2",
+      "reviewer": "singular_family_adversary",
+      "reviewed_native_source": "render_first",
+      "status": "PASS"
+    },
+    "43": {
+      "native_page_sha256": "db024613aa89f9efeaaf3a65b16693d7d4b4fba48b023c7f81bce0532f2a711e",
+      "reviewer": "singular_family_adversary",
+      "reviewed_native_source": "render_first",
+      "status": "PASS"
+    },
+    "44": {
+      "native_page_sha256": "66f7d6c0c4e875080db37b75256cf4c9bddfa0defa51978e75e954cd653dc1b8",
+      "reviewer": "singular_family_adversary",
+      "reviewed_native_source": "render_first",
+      "status": "PASS"
+    },
+    "45": {
+      "native_page_sha256": "dc73dd83f1352559e2718cd990a8c270fd9fadc32bc4f8758e6aae01f0fe5206",
+      "reviewer": "singular_family_adversary",
+      "reviewed_native_source": "render_first",
+      "status": "PASS"
+    },
+    "46": {
+      "native_page_sha256": "1c505777415c955ec91e3b45bd7b768c1dbdf22391123d44c485ce0c6c300869",
+      "reviewer": "singular_family_adversary",
+      "reviewed_native_source": "render_first",
+      "status": "PASS"
+    },
+    "47": {
+      "native_page_sha256": "667c893abdc90aaba8e1e46ba7bf2f06029932aada0e59218da32581edebbc6f",
+      "reviewer": "singular_family_adversary",
+      "reviewed_native_source": "render_first",
+      "status": "PASS"
+    },
+    "48": {
+      "native_page_sha256": "be65ee72a37a012017e6e9996c7b7d1d4575f5677714776effced31a1deabc63",
+      "reviewer": "singular_family_adversary",
+      "reviewed_native_source": "render_first",
+      "status": "PASS"
+    },
+    "49": {
+      "native_page_sha256": "361ed6c2e1df537dca714274f594f6e0e5796a0f75cd74aea349dd444afa8b5c",
+      "reviewer": "singular_family_adversary",
+      "reviewed_native_source": "render_first",
+      "status": "PASS"
+    },
+    "50": {
+      "native_page_sha256": "81f03215d4245439bb8f346b02ff3654bd291468bce1a932384267604fd5d52b",
+      "reviewer": "singular_family_adversary",
+      "reviewed_native_source": "render_first",
+      "status": "PASS"
+    },
+    "51": {
+      "native_page_sha256": "41b635b75aede02849045e01ab01af5fc048fb7cee787d2c605e29b3b7766173",
+      "reviewer": "singular_family_adversary",
+      "reviewed_native_source": "render_first",
+      "status": "PASS"
+    },
+    "52": {
+      "native_page_sha256": "e18d52e305be15d9a0601cc690da47bd10726a81fd4229bafb2af4cf6aac4b91",
+      "reviewer": "singular_family_adversary",
+      "reviewed_native_source": "render_first",
+      "status": "PASS"
+    },
+    "53": {
+      "native_page_sha256": "180fe7b3fa5de9dbb71f5ab46be1be1e3e5264eb1b847dac5dba7382ac3c63c3",
+      "reviewer": "blind_mechanism_review",
+      "reviewed_native_source": "render_second",
+      "status": "PASS"
+    },
+    "54": {
+      "native_page_sha256": "d8c4386739c8e5b171476a7e47ad109d5b5a5f8688d0c50572fe230835489c05",
+      "reviewer": "blind_mechanism_review",
+      "reviewed_native_source": "render_release_candidate",
+      "status": "PASS"
+    },
+    "55": {
+      "native_page_sha256": "45c38a383ddc6d28638cb3ebaa31f1cb5385d3f622e98e6d7ef71306d5d19e66",
+      "reviewer": "blind_mechanism_review",
+      "reviewed_native_source": "render_release_candidate",
+      "status": "PASS"
+    },
+    "56": {
+      "native_page_sha256": "93248cff65f797bdcf536143998fc3bd1fd1de1a0e0acbe5749ff19743da8509",
+      "reviewer": "blind_mechanism_review",
+      "reviewed_native_source": "render_release_candidate",
+      "status": "PASS"
+    },
+    "57": {
+      "native_page_sha256": "98ce91205c84a69d4497c73ed7ffe28b67fa408be8261be95a24b40413b57553",
+      "reviewer": "blind_mechanism_review",
+      "reviewed_native_source": "render_release_candidate",
+      "status": "PASS"
+    },
+    "58": {
+      "native_page_sha256": "5093ecb4037f99f001cbfc6f5543697bd03fd7f9326475eda70cf8a16716d093",
+      "reviewer": "blind_mechanism_review",
+      "reviewed_native_source": "render_release_candidate",
+      "status": "PASS"
+    },
+    "59": {
+      "native_page_sha256": "6cf5aeba9e441f9bc2c48d66ca0bd49ed7a4de58accdc6137df430595b4426a8",
+      "reviewer": "blind_mechanism_review",
+      "reviewed_native_source": "render_second",
+      "status": "PASS"
+    },
+    "60": {
+      "native_page_sha256": "1cb202f64d26188bf110839367ab839bfe39df6d7257baaa683be5e72af743c3",
+      "reviewer": "blind_mechanism_review",
+      "reviewed_native_source": "render_second",
+      "status": "PASS"
+    },
+    "61": {
+      "native_page_sha256": "181f1aedb1563982e529753a87f8ce29a8941f4467ae786e1708b6afa633b5d9",
+      "reviewer": "blind_mechanism_review",
+      "reviewed_native_source": "render_second",
+      "status": "PASS"
+    },
+    "62": {
+      "native_page_sha256": "a49e562367e150e91fe82c4320b0ef6ff986af754f4538674ce60a97adbff1af",
+      "reviewer": "blind_mechanism_review",
+      "reviewed_native_source": "render_second",
+      "status": "PASS"
+    },
+    "63": {
+      "native_page_sha256": "ca23254620214cbc076ee5d2a83d2f1e4a2956270f597dde3d59198cf0596cfb",
+      "reviewer": "blind_mechanism_review",
+      "reviewed_native_source": "render_second",
+      "status": "PASS"
+    },
+    "64": {
+      "native_page_sha256": "cc4fda0a40c7e02b3e50cd641f10b77cd5a9487906b7d48477b1003f8c97ef14",
+      "reviewer": "blind_mechanism_review",
+      "reviewed_native_source": "render_second",
+      "status": "PASS"
+    },
+    "65": {
+      "native_page_sha256": "ef4dc275b10801a270ff73c567089fede7c151d3fc923df0fd01b1d9dc803c6b",
+      "reviewer": "blind_mechanism_review",
+      "reviewed_native_source": "render_second",
+      "status": "PASS"
+    },
+    "66": {
+      "native_page_sha256": "a85ec310f585568186cd5601ef4246706a243205644c4d37ec1e9fc4b32d9b3a",
+      "reviewer": "blind_mechanism_review",
+      "reviewed_native_source": "render_second",
+      "status": "PASS"
+    },
+    "67": {
+      "native_page_sha256": "572b5c67cd3d62b11a713206c236e9bfb7824bab6cdcedf0818c8204104fe2b3",
+      "reviewer": "blind_mechanism_review",
+      "reviewed_native_source": "render_release_candidate",
+      "status": "PASS"
+    },
+    "68": {
+      "native_page_sha256": "10d38a7cb28784174bcb500721cbddb9a84ce06b1d69906b4796bb3ae400c651",
+      "reviewer": "blind_mechanism_review",
+      "reviewed_native_source": "render_release_candidate",
+      "status": "PASS"
+    },
+    "69": {
+      "native_page_sha256": "e36508f811a011b63240e53da7d519a67b8a1ecd0c337bd339f8f013a5c48b59",
+      "reviewer": "blind_mechanism_review",
+      "reviewed_native_source": "render_release_candidate",
+      "status": "PASS"
+    }
+  },
+  "scope": "Native page inspection by drafting agents, not external scientific peer review"
+}

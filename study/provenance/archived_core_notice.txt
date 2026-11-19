@@ -1,0 +1,26 @@
+PRIVATE RESEARCH REPRODUCIBILITY ARTIFACT; NO BLANKET LICENSE GRANT
+
+Fresh fixed1500 component-split V3 is separate from historical V1 and lost V2 cohorts. Outcomes,
+failures and interval status are recorded in RESEARCH_STATUS.json; a cloud
+archive being built is not proof its bytes have reached the recipient.
+
+No real face pixels, original JPEG/ZIP/CSV/TXT metadata, supplied identity labels,
+full-N private component map, near-edge/descriptor arrays, authentication state,
+pretrained benchmark weights, optimizer or full GAN training checkpoint is
+included. Real feature banks contain ONLY selected held-out reference features,
+public dataset filenames/row indices and selected-bank union-component labels
+needed to replay joint cluster uncertainty. These are the exact producer NPZ
+bytes, not a complete identity database or a biometric identity inference.
+Generated PNG grids are fixed synthetic samples, never selected by appearance.
+The separate teacher ZIP contains a NEW auxiliary discriminator-only snapshot
+trained on clean TRAIN; it is not an externally pretrained face/identity model.
+Inference generators travel in separate per-model selected-EMA archives.
+
+CelebA https://mmlab.ie.cuhk.edu.hk/projects/CelebA.html restricts use to
+non-commercial research with redistribution restrictions. This private delivery
+grants no new dataset, identity, publicity, trained-weight or commercial rights.
+Dependencies retain their licenses. Weights/images are not certified free of
+memorization. Literal condition annotations and image-feature metrics imply no
+semantic, fairness, privacy, universal quality, priority or convergence guarantee.
+No attribute judge is used in this V3 study. No lost V2 model or metric is claimed recovered. Known feature matching/MMD,
+normalization/tolerance/path-norm/gSR antecedents remain credited separately.

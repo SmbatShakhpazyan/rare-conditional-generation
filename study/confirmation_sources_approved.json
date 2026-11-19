@@ -1,0 +1,9 @@
+{
+  "ai_root_approval": true,
+  "approved_utc": "2026-11-19T11:07:43.710731+00:00",
+  "authorized_by_prospective_supervisor_sha256": "dd566dc293c3c20f17e3f148ebff344e6090d147e0943b1bb8fad495ff89e335",
+  "human_approval_claim": false,
+  "launcher_sha256": "e51feafb711f0093163fab03c09b1c3922e095938a551615fd0045f935ab6c16",
+  "selection_sha256": "ff5055b8c662ae9cea30f38143351978c04cb7dc5a75188a33e52b1b5c5b77e2",
+  "status": "approved_frozen_v3_selection_before_confirmation_and_test"
+}

@@ -1,0 +1,108 @@
+{
+  "all_split_component_intersections": 0,
+  "all_v2_teachers_candidates_and_comparators_must_train_from_scratch": true,
+  "approval_sha256": "6c76b651ddbbd12f42fb36b5dfe7331ba9ff3eb899468b5d77e9dd9dc43d1a33",
+  "audit_summary_sha256": "d58e5e4614db05522ff0ee160c18e585573ccc3d92fc95ca7c065fc93a177689",
+  "cache_path": "/kaggle/working/generative_final_5000/data/images64.npy",
+  "cache_sha256": "98d39e0febb8c1946aba70eca2ca5cb96a657cdf6075f7ae32fc56d4c6f9bd5c",
+  "clean_index_sha256": "d278e0a67060e70416314a05cb8ea29d6ccd41b80e22ab90c89226bd847156e1",
+  "component_assignment": "fixed_hash_70_15_15",
+  "component_ids_path": "/kaggle/working/generative_training_v2/data/component_ids.npy",
+  "component_ids_sha256": "bb039432c9bc102fb7d0555a8d381293671d46c46a62bf624dcc0aab31239e8d",
+  "declared_near_relation_completed": true,
+  "elapsed_seconds": 134.99777657699997,
+  "eligible_components": 8005,
+  "exact_or_flip_annotation_conflict_union_components": 4,
+  "excluded_touching_old_validation_or_test_components": 1982,
+  "identity_label_audit_status": "completed_authenticated_MD5_and_filename_join",
+  "inputs_after": {
+    "/kaggle/working/generative_final_5000/data/images64.npy": "98d39e0febb8c1946aba70eca2ca5cb96a657cdf6075f7ae32fc56d4c6f9bd5c",
+    "/kaggle/working/generative_final_5000/integrity/index.npz": "21dd7eab4a6bb76f8b64e23b1b3b63494e3423bcb03ea26b5db863317890dca5",
+    "/kaggle/working/generative_final_5000/protocol_frozen.json": "2ae138498fb1d71dad382c8ce6cec9f9a94afc4e4d68fa55b3b1f44a8bce34a9",
+    "/kaggle/working/generative_training_v2/audit/attempt002/private/exact_component_labels.npz": "a9f3e7c873894f5cc16bc455f88aed89ad0ce0b7335b59388c5c7bfcf16207ab",
+    "/kaggle/working/generative_training_v2/audit/attempt002/private/identity_labels.npy": "a53a223d954dbf292243592659fee1c096a039799b213c67d4c4b29e9b4ad184",
+    "/kaggle/working/generative_training_v2/audit/attempt002/summary.json": "d58e5e4614db05522ff0ee160c18e585573ccc3d92fc95ca7c065fc93a177689",
+    "/kaggle/working/generative_training_v2/audit/audit_exact_identity_recovery.py": "4ddc8b7e9ca38c50776295f7b5ba50c1efcdd3cb953df51ab48f584314d68794",
+    "/kaggle/working/generative_training_v2/audit/build_clean_component_split.py": "27af26630cfe64a54bf0b65976f28dde4754b64bbd73821424830df51fa8cded",
+    "/kaggle/working/generative_training_v2/data_audit_recovery_sources_approved.json": "29d477f117232669f549c77a2f735dbdf4e14611141fd41e37ac2f0e78b5621e",
+    "/kaggle/working/generative_training_v2/near_split_sources_approved.json": "6c76b651ddbbd12f42fb36b5dfe7331ba9ff3eb899468b5d77e9dd9dc43d1a33"
+  },
+  "inputs_before": {
+    "/kaggle/working/generative_final_5000/data/images64.npy": "98d39e0febb8c1946aba70eca2ca5cb96a657cdf6075f7ae32fc56d4c6f9bd5c",
+    "/kaggle/working/generative_final_5000/integrity/index.npz": "21dd7eab4a6bb76f8b64e23b1b3b63494e3423bcb03ea26b5db863317890dca5",
+    "/kaggle/working/generative_final_5000/protocol_frozen.json": "2ae138498fb1d71dad382c8ce6cec9f9a94afc4e4d68fa55b3b1f44a8bce34a9",
+    "/kaggle/working/generative_training_v2/audit/attempt002/private/exact_component_labels.npz": "a9f3e7c873894f5cc16bc455f88aed89ad0ce0b7335b59388c5c7bfcf16207ab",
+    "/kaggle/working/generative_training_v2/audit/attempt002/private/identity_labels.npy": "a53a223d954dbf292243592659fee1c096a039799b213c67d4c4b29e9b4ad184",
+    "/kaggle/working/generative_training_v2/audit/attempt002/summary.json": "d58e5e4614db05522ff0ee160c18e585573ccc3d92fc95ca7c065fc93a177689",
+    "/kaggle/working/generative_training_v2/audit/audit_exact_identity_recovery.py": "4ddc8b7e9ca38c50776295f7b5ba50c1efcdd3cb953df51ab48f584314d68794",
+    "/kaggle/working/generative_training_v2/audit/build_clean_component_split.py": "27af26630cfe64a54bf0b65976f28dde4754b64bbd73821424830df51fa8cded",
+    "/kaggle/working/generative_training_v2/data_audit_recovery_sources_approved.json": "29d477f117232669f549c77a2f735dbdf4e14611141fd41e37ac2f0e78b5621e",
+    "/kaggle/working/generative_training_v2/near_split_sources_approved.json": "6c76b651ddbbd12f42fb36b5dfe7331ba9ff3eb899468b5d77e9dd9dc43d1a33"
+  },
+  "inputs_unchanged": true,
+  "metadata_npz": "/kaggle/working/generative_training_v2/data/clean_index.npz",
+  "near_screen_summary_sha256": "a719b57b78dcd7ebf8eb1b9532ec7deae39e9ba371f0da3b6990aa528c6c67f4",
+  "new_split_total_images": [
+    112615,
+    23156,
+    25217
+  ],
+  "old_official_test_quality_used_for_selection": false,
+  "original_cache_sha256": "98d39e0febb8c1946aba70eca2ca5cb96a657cdf6075f7ae32fc56d4c6f9bd5c",
+  "original_index_sha256": "21dd7eab4a6bb76f8b64e23b1b3b63494e3423bcb03ea26b5db863317890dca5",
+  "original_val_test_images_used": false,
+  "original_validation_or_test_images_used": 0,
+  "partition_search_performed": false,
+  "preparation_source_path": "audit/build_clean_component_split.py",
+  "private_raw_identity_or_face_images_exported": false,
+  "quarantined_rows": 41611,
+  "rows_quarantined_due_to_exact_or_flip_conflict": 219,
+  "scope": "disjoint_under_supplied_identity_exact_flip_and_declared_near_relation_not_all_semantic_similarity",
+  "source_sha256": "27af26630cfe64a54bf0b65976f28dde4754b64bbd73821424830df51fa8cded",
+  "split_group_component_counts": [
+    [
+      3097,
+      1664,
+      2780,
+      282
+    ],
+    [
+      615,
+      327,
+      597,
+      67
+    ],
+    [
+      674,
+      377,
+      617,
+      65
+    ]
+  ],
+  "split_group_image_counts": [
+    [
+      50146,
+      15293,
+      46234,
+      942
+    ],
+    [
+      9944,
+      3074,
+      9885,
+      253
+    ],
+    [
+      10545,
+      4127,
+      10372,
+      173
+    ]
+  ],
+  "split_policy_sha256": "ed20ac97ba3b46b3a4dd5a5431b15d63eea05b515dda59ff0a605ec8bbbe96b8",
+  "split_report_sha256": "1e957db3b051b7c07ccbb3c4716321a97f3b333de2a96eaf4a7f1ca76f109b17",
+  "status": "frozen_clean_component_split",
+  "study_id": "generative_training_v2",
+  "test_quality_accessed": false,
+  "utc": "2026-11-19T07:55:05.605378+00:00"
+}

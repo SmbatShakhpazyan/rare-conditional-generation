@@ -1,0 +1,7 @@
+{
+  "status": "PASSED",
+  "forbidden_retrieval_or_dataset_files": [],
+  "private_host_path_hits": [],
+  "credential_pattern_hits": [],
+  "scan_scope": "Staged text source and file inventory; not a proof of all possible information absence"
+}

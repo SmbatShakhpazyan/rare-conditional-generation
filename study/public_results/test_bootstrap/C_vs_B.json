@@ -1,0 +1,124 @@
+{
+  "status": "computed",
+  "method": "paired_leakage_component_and_shared_latent_bootstrap_mean3_fixed_seed_pairs",
+  "seed": 95003,
+  "replicates": 2000,
+  "batch_size": 32,
+  "comparison": {
+    "candidate": "C",
+    "candidate_EMA_sha256": [
+      "bb8bce2417a99697576da0e6881bc43f4e838dab5b748f2b5565a5400c3b4518",
+      "f6d535a78523ed2386d78b5849b49ecb4b914648f3c85e8ade74d0149ccc2b35",
+      "b5519d6b067543d70dad36850b9e47b0782cee4794fd552dec5bbe8e38aa2399"
+    ],
+    "fixed_training_seeds": [
+      101,
+      202,
+      303
+    ],
+    "reference": "B",
+    "reference_EMA_sha256": [
+      "88d958f0226226d1bc720c03f0f2444ed94ab7a8451447e692bc6f18db3ebb67",
+      "1d8661c488f6f3315c27486244cf68ead51a061d011a273342d22ddc900fc71c",
+      "e910d4c2ff41fc7678109371e9c5b538c8c87a072c3cb8c6485f543da50bfd70"
+    ]
+  },
+  "confidence_one_sided": 0.9875,
+  "fixed_seed_pairs": 3,
+  "seed_resampling": false,
+  "fake_latent_indices": 512,
+  "real_components": 804,
+  "real_resampling": "union_of_observed_selected_reference_components_shared_all_groups",
+  "fake_resampling": "common_latent_index_shared_all_groups_and_fixed_models",
+  "groups": {
+    "0": {
+      "one_sided_upper": 0.011208593397524943,
+      "point_difference": 0.007138472399064212,
+      "two_sided_percentile": [
+        0.0026457816025913126,
+        0.011907037428991971
+      ]
+    },
+    "1": {
+      "one_sided_upper": 0.024941639851744853,
+      "point_difference": 0.019573777357957293,
+      "two_sided_percentile": [
+        0.013758757653545563,
+        0.025580944133989248
+      ]
+    },
+    "2": {
+      "one_sided_upper": 0.03010932111418005,
+      "point_difference": 0.02565032437297399,
+      "two_sided_percentile": [
+        0.020790481285976794,
+        0.030504362036161654
+      ]
+    },
+    "3": {
+      "one_sided_upper": 0.023611056641686605,
+      "point_difference": 0.01888046368332906,
+      "two_sided_percentile": [
+        0.013740868580629093,
+        0.024343325993118108
+      ]
+    }
+  },
+  "rare_group_primary": {
+    "one_sided_upper": 0.023611056641686605,
+    "point_difference": 0.01888046368332906,
+    "two_sided_percentile": [
+      0.013740868580629093,
+      0.024343325993118108
+    ]
+  },
+  "macro_descriptive": {
+    "one_sided_upper": 0.02139627680644126,
+    "point_difference": 0.01781075945333114,
+    "two_sided_percentile": [
+      0.013485012622740636,
+      0.02196602900826382
+    ]
+  },
+  "multiplicity_scope": "rare_group_only_at_most4_predeclared_contrasts_one_sided_Bonferroni",
+  "scope": "conditional_on_selected_finite_reference_bank_declared_components_and3_fixed_seed_pairs_not_training_population",
+  "real_feature_sha256": "f30703b45946cb712024976066c196c1261fe0f12c106b618196648c04577a33",
+  "feature_definition": {
+    "KID_estimator": "caller_defined_unequal_count_U_statistic_not_library_subset_average",
+    "adapter_source_sha256": "727e265b430a9276ef7ec36026d68d606970611c78fb3f9c582780fe69e488af",
+    "author_source_sha256": {
+      "downloads_helper.py": "365c11ae4d8db831926fb7cb1f99da1f656144acbe976ca55a7cb50611458ffd",
+      "features.py": "4b4239b5d56e793d70621c2bcaaa774f23f42d247535f6b07588669560f1e394",
+      "inception_torchscript.py": "bf7194c7b2c70a5417f683e046969c6126d746ea3b97d1feae2353649749a227",
+      "resize.py": "c603618c2e5b4aad377f0214505a82ad051c1bd24d955bb4c3f02a4f5c286b5e",
+      "utils.py": "98d64e4b24e0b719e418b704da84ea4895117410eb556691f626db32cfb27ddd"
+    },
+    "feature_dim": 2048,
+    "feature_id": "clean_fid_mode_clean_torchscript_inception_2048",
+    "implementation_version": "0.1.35",
+    "mode": "clean",
+    "numpy_version": "2.1.3",
+    "official_source_reference": "https://github.com/GaParmar/clean-fid",
+    "pillow_version": "11.3.0",
+    "preprocessing": {
+      "generated_quantization_before_adapter": "numpy_rint((tanh_output+1)*127.5)_uint8",
+      "input": "uint8_BHWC_RGB_0_255",
+      "network": "author_InceptionV3W_resize_inside_False_layers_forward",
+      "network_normalization": "(float32_pixels-128)/128_inside_author_wrapper",
+      "quantize_after_resize": false,
+      "resize": "author_build_resizer_clean_PIL_float32_F_per_channel_bicubic299x299_clip0_255",
+      "tensor_conversion": "author_ResizeDataset_float32_branch_ToTensor_no_divide255"
+    },
+    "standard_cleanfid": true,
+    "torch_version": "2.11.0+cu130",
+    "torchvision_version": "0.26.0+cu130",
+    "weights_file_name": "inception-2015-12-05.pt",
+    "weights_sha256": "f58cb9b6ec323ed63459aa4fb441fe750cfe39fafad6da5cb504a16f19e958f4",
+    "weights_url": "https://nvlabs-fi-cdn.nvidia.com/stylegan2-ada-pytorch/pretrained/metrics/inception-2015-12-05.pt"
+  },
+  "record_type": "AGGREGATE_ONLY_DERIVATIVE_NOT_ORIGINAL_CI_BYTES",
+  "study_id": "generative_recovery_1500",
+  "source_path": "test_evaluation/bootstrap/C_vs_B.json",
+  "source_sha256": "2773363ad22f78e0cb08ba3ee16ba0a959866fa1a44244a0d6081a40ff68dc96",
+  "transformation": "Selected real/fake ID lists and component support are omitted. Saved bounds and model/hash bindings are retained without recomputing the bootstrap."
+}

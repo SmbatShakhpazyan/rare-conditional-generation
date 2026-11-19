@@ -1,0 +1,27 @@
+{
+  "all_planned_bootstrap_computed": true,
+  "all_planned_point_metrics_computed": true,
+  "binding_sha256": "dbd9a20920404d7b00b40b7505975ef6ebbe6b361982c93afd149c4077f1b3d1",
+  "bootstrap": {
+    "B": {
+      "path": "bootstrap/C_vs_B.json",
+      "status": "computed"
+    }
+  },
+  "complete_scientific_report": true,
+  "elapsed_seconds": 186.38977943800046,
+  "no_semantic_or_training_population_guarantee": true,
+  "phase": "test",
+  "point_count": 6,
+  "points": {
+    "B_seed101_ema0.99": "points/B_seed101_ema0.99.json",
+    "B_seed202_ema0.99": "points/B_seed202_ema0.99.json",
+    "B_seed303_ema0.99": "points/B_seed303_ema0.99.json",
+    "C_seed101_ema0.99": "points/C_seed101_ema0.99.json",
+    "C_seed202_ema0.99": "points/C_seed202_ema0.99.json",
+    "C_seed303_ema0.99": "points/C_seed303_ema0.99.json"
+  },
+  "status": "COMPLETED",
+  "study_id": "generative_recovery_1500",
+  "uncertainty_status": "ALL_COMPUTED"
+}

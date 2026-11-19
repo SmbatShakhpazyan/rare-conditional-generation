@@ -1,0 +1,110 @@
+{
+  "repository": "mgermain/MADE",
+  "repository_url": "https://github.com/mgermain/MADE",
+  "commit_sha": "514849eb9451311c02049f9e2d9a17fac589996a",
+  "pinned_commit_url": "https://github.com/mgermain/MADE/tree/514849eb9451311c02049f9e2d9a17fac589996a",
+  "primary_paper_url": "https://proceedings.mlr.press/v37/germain15.html",
+  "role": "Primary-author MADE repository; link only because no redistribution license was located.",
+  "license": null,
+  "github_HEAD_license_metadata_not_used_as_pinned_text": null,
+  "upstream_code_executed": false,
+  "upstream_tests_or_training_run": false,
+  "reproduced_paper_results": false,
+  "filtered_not_full_asset_snapshot": true,
+  "status": "LINK_ONLY_NO_CODE_REDISTRIBUTED",
+  "included_files": {},
+  "excluded_files": [
+    {
+      "path": ".gitignore",
+      "reason": "no_redistribution_license_located_at_pin"
+    },
+    {
+      "path": "MADE/__init__.py",
+      "reason": "no_redistribution_license_located_at_pin"
+    },
+    {
+      "path": "MADE/layer_types.py",
+      "reason": "no_redistribution_license_located_at_pin"
+    },
+    {
+      "path": "MADE/made.py",
+      "reason": "no_redistribution_license_located_at_pin"
+    },
+    {
+      "path": "MADE/mask_generator.py",
+      "reason": "no_redistribution_license_located_at_pin"
+    },
+    {
+      "path": "MADE/tests/test_autoregressive_property.py",
+      "reason": "no_redistribution_license_located_at_pin"
+    },
+    {
+      "path": "MADE/tests/test_mask_generator.py",
+      "reason": "no_redistribution_license_located_at_pin"
+    },
+    {
+      "path": "MADE/tests/test_masks.py",
+      "reason": "no_redistribution_license_located_at_pin"
+    },
+    {
+      "path": "MADE/update_rules.py",
+      "reason": "no_redistribution_license_located_at_pin"
+    },
+    {
+      "path": "MADE/weights_initializer.py",
+      "reason": "no_redistribution_license_located_at_pin"
+    },
+    {
+      "path": "README.md",
+      "reason": "no_redistribution_license_located_at_pin"
+    },
+    {
+      "path": "dataset.py",
+      "reason": "no_redistribution_license_located_at_pin"
+    },
+    {
+      "path": "datasets/adult.npz",
+      "reason": "no_redistribution_license_located_at_pin"
+    },
+    {
+      "path": "datasets/connect4.npz",
+      "reason": "no_redistribution_license_located_at_pin"
+    },
+    {
+      "path": "datasets/dna.npz",
+      "reason": "no_redistribution_license_located_at_pin"
+    },
+    {
+      "path": "datasets/mushrooms.npz",
+      "reason": "no_redistribution_license_located_at_pin"
+    },
+    {
+      "path": "datasets/nips.npz",
+      "reason": "no_redistribution_license_located_at_pin"
+    },
+    {
+      "path": "datasets/ocr_letters.npz",
+      "reason": "no_redistribution_license_located_at_pin"
+    },
+    {
+      "path": "datasets/web.npz",
+      "reason": "no_redistribution_license_located_at_pin"
+    },
+    {
+      "path": "sampleMADE.py",
+      "reason": "no_redistribution_license_located_at_pin"
+    },
+    {
+      "path": "testMADE.py",
+      "reason": "no_redistribution_license_located_at_pin"
+    },
+    {
+      "path": "trainMADE.py",
+      "reason": "no_redistribution_license_located_at_pin"
+    },
+    {
+      "path": "utils.py",
+      "reason": "no_redistribution_license_located_at_pin"
+    }
+  ]
+}

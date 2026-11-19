@@ -1,0 +1,583 @@
+{
+  "title": "Runnable Generative-Model References: Architecture, Objectives, Sampling, and Validation",
+  "blocks": [
+    {
+      "type": "title",
+      "text": "Runnable Generative-Model References: Architecture, Objectives, Sampling, and Validation"
+    },
+    {
+      "type": "subtitle",
+      "text": "Implementation guide for the original genref PyTorch library"
+    },
+    {
+      "type": "heading",
+      "text": "1. What this library provides",
+      "level": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "The reference_models directory contains substantive original implementations of ten runnable algorithms: a Gaussian VAE, projection conditional GAN, Gaussian autoregressive density estimator, affine-coupling RealNVP, DDPM, discrete noise-score model, continuous reverse VE SDE, flow matching, standalone consistency model and latent-diffusion hybrid. The separate score and SDE entries expose related formulations, rather than claiming ten unrelated historical families. Each implementation has an objective, a sampler and a CLI path. None downloads a dataset or pretrained model."
+    },
+    {
+      "type": "paragraph",
+      "text": "This library is a pedagogical companion to the research report. It is not the original authors’ code, an official benchmark reproduction, or an additional set of trained confirmation arms. Its tiny MLP GAN is also different from the residual GAN used in the completed CelebA experiment. Matching a family name is not sufficient to claim a replication: backbone, objective weighting, schedules, conditioning, data and sampling all matter. MODEL_MANIFEST.json records those departures for every entry, with direct primary-paper URLs."
+    },
+    {
+      "type": "paragraph",
+      "text": "The code was written afresh from the mathematical mechanisms. No external repository source was copied and no global open-source license is inferred from an author’s repository. The parent release states the rights for this original code; papers, datasets and third-party software retain their own terms. The examples and CPU checks below generate tiny synthetic tensors solely to exercise the implementation. They are neither a substitute real dataset nor evidence of image quality."
+    },
+    {
+      "type": "heading",
+      "text": "2. Data contract and shared architecture",
+      "level": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "Inputs are local Torch tensors with a batch axis and one to three observation axes: vectors, grayscale images or channel-first images. Floating observations must already be finite and lie between minus one and one; uint8 observations are linearly mapped to that range. The CLI flattens each observation to a vector and records its original shape for sample output. It performs no automatic dequantization, clipping, resizing, identity audit, split creation or dataset download. A continuous Gaussian density evaluated on scaled pixels is not automatically a discrete pixel probability."
+    },
+    {
+      "type": "code",
+      "text": "import torch\n# x: [N,D], [N,H,W] or [N,C,H,W], with N >= 2\n# labels, if used: int64 [N], containing all classes 0,...,K-1\ntorch.save({\"x\": x, \"labels\": labels}, \"train_tensor.pt\")"
+    },
+    {
+      "type": "paragraph",
+      "text": "Conditional models infer the class count from contiguous observed labels. Without labels they have an unconditional form; an explicit unconditional option discards supplied labels. Natural minibatches sample observations with replacement. Balanced minibatches sample equal counts per class and require the batch size to be divisible by the class count. Repetition does not increase the number of independent rare images. The loader has a 512 MiB input-file cap and a 100-million-element reference cap; these are engineering limits, not assumptions for a statistical theorem."
+    },
+    {
+      "type": "paragraph",
+      "text": "The common conditional MLP concatenates a learned class embedding to the input. Its embedding width is the smaller of 32 and the hidden width. Most encoder, decoder and coupling networks have two SiLU hidden layers. The time-dependent network adds a 32-dimensional sinusoidal embedding, using sixteen exponentially spaced frequencies from one to one thousand, then uses three SiLU hidden layers. There is no batch normalization, attention, convolution, external feature extractor or pretrained component. Consequently, these tiny vector architectures should not be mistaken for high-resolution image backbones."
+    },
+    {
+      "type": "paragraph",
+      "text": "The tiny preset uses hidden width 64, latent width eight, four affine couplings, 32 DDPM steps, eight score/consistency noise levels and a noise range 0.01 to two. The small preset increases the hidden width to 128, latent width to sixteen, couplings to six, DDPM steps to 128 and noise levels to sixteen. The short schedules are for tractable reference computation. They are deliberately not recommended image-quality hyperparameters or the original papers’ training configurations."
+    },
+    {
+      "type": "heading",
+      "text": "3. Gaussian VAE",
+      "level": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "The VAE encoder maps a flattened observation and optional class embedding to a diagonal Gaussian latent mean and log variance. A reparameterized latent is decoded into a Gaussian observation mean and log variance. Latent log variance is clamped between minus eight and four; decoder log variance between minus six and two. These finite bounds are explicit numerical choices. Coordinates are summed for the Gaussian log density and KL before averaging observations; the reconstruction and regularization are therefore in the same literal ELBO units."
+    },
+    {
+      "type": "equation",
+      "math": [
+        {
+          "kind": "sub",
+          "base": "L",
+          "sub": "VAE"
+        },
+        "=−𝔼[log ",
+        {
+          "kind": "sub",
+          "base": "p",
+          "sub": "θ"
+        },
+        "(x|z,y)]+KL(",
+        {
+          "kind": "sub",
+          "base": "q",
+          "sub": "φ"
+        },
+        "(z|x,y)‖𝒩(0,I))"
+      ],
+      "math_size": 10
+    },
+    {
+      "type": "paragraph",
+      "text": "Generation samples the standard-normal prior, then samples the decoder Gaussian. It does not merely return a decoder mean and does not clip the result. The implementation illustrates the reparameterization and variational bound of Kingma and Welling; it is not a convolutional perceptual VAE. Its conditional version is a stated extension. A stochastic lower bound, even computed correctly, does not establish exact marginal likelihood or rare-mode coverage. A Gaussian negative log density can itself be negative when the density exceeds one."
+    },
+    {
+      "type": "heading",
+      "text": "4. Projection hinge conditional GAN",
+      "level": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "The GAN generator has three SiLU hidden layers, a class embedding and a final tanh. Its discriminator has two spectrally normalized linear hidden layers with leaky-ReLU slope 0.2, a normalized scalar head and an optional normalized label embedding. The projection inner product is added to the scalar head. Conditional GANs, projection conditioning and spectral normalization are credited separately in the manifest. The original logistic GAN objective is not silently presented as the implemented hinge loss."
+    },
+    {
+      "type": "equation",
+      "math": [
+        {
+          "kind": "sub",
+          "base": "L",
+          "sub": "D"
+        },
+        "=𝔼(1−D(x,y))₊+𝔼(1+D(G(z,y),y))₊"
+      ],
+      "math_size": 10
+    },
+    {
+      "type": "equation",
+      "math": [
+        {
+          "kind": "sub",
+          "base": "L",
+          "sub": "G"
+        },
+        "=−𝔼D(G(z,y),y)"
+      ],
+      "math_size": 10
+    },
+    {
+      "type": "paragraph",
+      "text": "Training uses separate discriminator and generator Adam optimizers with betas zero and 0.9. The discriminator sees detached generated observations in its update. During the generator update, discriminator parameter gradients are disabled, and evaluation mode freezes its spectral-normalization state; gradients still pass through its input to the generator. Sampling requires only the raw generator and Gaussian latent draws. No generator EMA, study-specific signed witness, discriminator feature teacher or benchmark selection is added. The tanh bounds samples, but the adversarial game still has no general convergence or diversity guarantee."
+    },
+    {
+      "type": "heading",
+      "text": "5. Strict Gaussian autoregression",
+      "level": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "The autoregressive reference outputs a mean and log standard deviation for every coordinate through two masked SiLU hidden layers. Input coordinates have increasing degrees. Input-to-hidden and hidden-to-hidden masks allow nondecreasing degrees; the final mask requires the output degree to be strictly larger than the hidden degree. The strict final inequality prevents each predicted conditional from observing its own coordinate or any future coordinate. Degree-zero units see only conditions and biases, allowing the first conditional to depend on labels. The label embedding enters the hidden representation without breaking that causality."
+    },
+    {
+      "type": "equation",
+      "math": [
+        {
+          "kind": "sub",
+          "base": "p",
+          "sub": "θ"
+        },
+        "(x|y)=",
+        {
+          "kind": "nary",
+          "char": "∏",
+          "sub": "i=1",
+          "sup": "D",
+          "body": [
+            {
+              "kind": "sub",
+              "base": "p",
+              "sub": "θ"
+            },
+            "(",
+            {
+              "kind": "sub",
+              "base": "x",
+              "sub": "i"
+            },
+            "|",
+            {
+              "kind": "sub",
+              "base": "x",
+              "sub": "<i"
+            },
+            ",y)"
+          ]
+        }
+      ],
+      "math_size": 10
+    },
+    {
+      "type": "paragraph",
+      "text": "The loss is the exact continuous Gaussian negative log density of that normalized factorization, with log standard deviations bounded between minus five and two. Sampling initializes a vector and fills its coordinates sequentially from the predicted Gaussian conditionals. The architecture is a fixed degree-mask Gaussian adaptation related specifically to MADE, as well as to the earlier NADE mechanism; it is not faithful binary NADE or an official MADE implementation. The tests differentiate outputs with respect to current and future inputs and verify those forbidden derivatives are exactly zero. Sequential sampling can be costly in large flattened images."
+    },
+    {
+      "type": "heading",
+      "text": "6. Affine-coupling RealNVP",
+      "level": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "Each coupling keeps one alternating mask unchanged. A two-hidden-layer conditional MLP predicts shift and log scale from the masked input. A tanh bounds each unmasked log scale in magnitude by 1.5. The last affine-network layer is initialized to zero, making the entire flow initially identity without preventing subsequent output-layer gradients. Alternating masks permit different coordinates to be transformed. There is no multiscale squeeze, batch normalization, image dequantization or learned base density."
+    },
+    {
+      "type": "equation",
+      "math": [
+        {
+          "kind": "sub",
+          "base": "z",
+          "sub": "b"
+        },
+        "=(",
+        {
+          "kind": "sub",
+          "base": "x",
+          "sub": "b"
+        },
+        "−t(",
+        {
+          "kind": "sub",
+          "base": "x",
+          "sub": "a"
+        },
+        "))⊙exp(−s(",
+        {
+          "kind": "sub",
+          "base": "x",
+          "sub": "a"
+        },
+        "))"
+      ],
+      "math_size": 10
+    },
+    {
+      "type": "equation",
+      "math": [
+        "log ",
+        {
+          "kind": "sub",
+          "base": "p",
+          "sub": "θ"
+        },
+        "(x)=log ",
+        {
+          "kind": "sub",
+          "base": "p",
+          "sub": "0"
+        },
+        "(z)+log|det ",
+        {
+          "kind": "sub",
+          "base": "J",
+          "sub": "x→z"
+        },
+        "|"
+      ],
+      "math_size": 10
+    },
+    {
+      "type": "paragraph",
+      "text": "The data-to-latent log determinant is minus the sum of log scales; the inverse adds it. Sampling draws a standard Gaussian and reverses the coupling order, using the exact inverse affine transformation. The CPU test perturbs the identity initialization, checks round-trip recovery, and compares the analytic log determinant with an autodifferentiated Jacobian. Tractability is a model calculation, not proof of distribution recovery. In one dimension the alternating construction is especially limited; for real image density comparisons the continuous/discrete convention must also agree."
+    },
+    {
+      "type": "heading",
+      "text": "7. DDPM with epsilon prediction",
+      "level": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "The DDPM uses the time MLP to predict standard-normal corruption noise. Training samples a uniform discrete time and constructs a noisy observation in closed form. The simplified epsilon MSE is averaged across batch and coordinates. This reweighted objective is distinguished from the complete variational likelihood bound. The tiny preset has a linear beta schedule from 0.0001 to 0.2 over 32 steps; the small preset ends at 0.05 over 128 steps. These are short demonstration schedules rather than author-recommended image schedules."
+    },
+    {
+      "type": "equation",
+      "math": [
+        {
+          "kind": "sub",
+          "base": "x",
+          "sub": "t"
+        },
+        "=",
+        {
+          "kind": "radical",
+          "base": {
+            "kind": "sub",
+            "base": "ᾱ",
+            "sub": "t"
+          }
+        },
+        {
+          "kind": "sub",
+          "base": "x",
+          "sub": "0"
+        },
+        "+",
+        {
+          "kind": "radical",
+          "base": [
+            "1−",
+            {
+              "kind": "sub",
+              "base": "ᾱ",
+              "sub": "t"
+            }
+          ]
+        },
+        "ε"
+      ],
+      "math_size": 10
+    },
+    {
+      "type": "equation",
+      "math": [
+        {
+          "kind": "sub",
+          "base": "L",
+          "sub": "ε"
+        },
+        "=",
+        {
+          "kind": "frac",
+          "num": "1",
+          "den": "D"
+        },
+        "𝔼‖ε−",
+        {
+          "kind": "sub",
+          "base": "ε",
+          "sub": "θ"
+        },
+        "(",
+        {
+          "kind": "sub",
+          "base": "x",
+          "sub": "t"
+        },
+        ",t,y)",
+        {
+          "kind": "sup",
+          "base": "‖",
+          "sup": "2"
+        }
+      ],
+      "math_size": 10
+    },
+    {
+      "type": "paragraph",
+      "text": "In the reference squared-loss expressions, D denotes the flattened observation dimension and the displayed norm is the ordinary Euclidean norm. The explicit factors 1/D and 1/(2D) reproduce the coordinate-mean reductions in the code; the outer expectation averages the sampled observations, times and noise. The VAE log-density objective retains its separately stated sum across coordinates."
+    },
+    {
+      "type": "paragraph",
+      "text": "Ancestral generation takes every configured reverse step. Its mean uses the epsilon parameterization and its variance is the fixed forward posterior variance, with no noise added on the final step. The sampler refuses a request to skip to an arbitrary smaller number of steps; that would require a different sampler derivation. There is no learned reverse variance, DDIM path or silent output clipping. A finite terminal Gaussian approximation, a weak denoiser and a coarse chain may each limit quality even when losses and gradients are finite."
+    },
+    {
+      "type": "heading",
+      "text": "8. Discrete noise-score and continuous VE models",
+      "level": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "The discrete score model chooses a level from a descending geometric noise schedule and trains a sigma-scaled denoising score residual. Its time MLP receives log sigma and its output is divided by sigma. Algebraically this is one-half sigma-squared weighted denoising score MSE, averaged over coordinates. The target is the score of a smoothed marginal, not directly an unsmoothed image distribution. This is an original vector reference to noise-conditional score matching, not the original NCSN architecture."
+    },
+    {
+      "type": "equation",
+      "math": [
+        {
+          "kind": "sub",
+          "base": "L",
+          "sub": "DSM"
+        },
+        "=",
+        {
+          "kind": "frac",
+          "num": "1",
+          "den": "2D"
+        },
+        "𝔼‖σ",
+        {
+          "kind": "sub",
+          "base": "s",
+          "sub": "θ"
+        },
+        "(x+σε,σ)+ε",
+        {
+          "kind": "sup",
+          "base": "‖",
+          "sup": "2"
+        }
+      ],
+      "math_size": 10
+    },
+    {
+      "type": "paragraph",
+      "text": "Annealed Langevin visits every configured sigma. Its step is half the level-dependent step size times the score, plus Gaussian noise with variance equal to that step size. The level step scales quadratically with sigma divided by the minimum sigma. A sampling-step option counts corrections per level, not total corrections across all levels. Finite unadjusted Langevin has mixing and discretization error and ends at a positive noise level."
+    },
+    {
+      "type": "paragraph",
+      "text": "The separate SDE entry uses a continuous variance-exploding schedule: sigma grows exponentially with time, and the diffusion coefficient squared is twice the logarithmic noise ratio times sigma squared. Training draws time uniformly between 0.001 and one and uses the corresponding weighted denoising target. Reverse Euler–Maruyama uses a positive backward step length; its score drift is therefore positive in that notation. The probability-flow option uses half that drift and no stochastic increment. The test compares this sign convention with a known smoothed Gaussian score."
+    },
+    {
+      "type": "equation",
+      "math": [
+        {
+          "kind": "sup",
+          "base": {
+            "kind": "sub",
+            "base": "g",
+            "sub": "t"
+          },
+          "sup": "2"
+        },
+        "=2log(",
+        {
+          "kind": "frac",
+          "num": {
+            "kind": "sub",
+            "base": "σ",
+            "sub": "max"
+          },
+          "den": {
+            "kind": "sub",
+            "base": "σ",
+            "sub": "min"
+          }
+        },
+        ")",
+        {
+          "kind": "sup",
+          "base": {
+            "kind": "sub",
+            "base": "σ",
+            "sub": "t"
+          },
+          "sup": "2"
+        }
+      ],
+      "math_size": 10
+    },
+    {
+      "type": "paragraph",
+      "text": "Only scalar isotropic VE noise is implemented. There is no VP/sub-VP process, adaptive ODE solver, predictor–corrector or likelihood integration. The high-noise Gaussian prior and positive terminal smoothing are approximations. Exact-score marginal equivalence does not make the finite learned sampler exact, and aggressive numerical settings can be unstable."
+    },
+    {
+      "type": "heading",
+      "text": "9. Independent-endpoint flow matching",
+      "level": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "Flow matching pairs each data observation with independent Gaussian noise, samples a uniform time, linearly interpolates, and regresses the difference between endpoints. The conditional time MLP is a velocity field. Its loss is a simulation-free regression calculation; it does not solve the evolving model ODE during each update. The selected endpoint coupling is independent and is not claimed to be globally optimal transport."
+    },
+    {
+      "type": "equation",
+      "math": [
+        {
+          "kind": "sub",
+          "base": "X",
+          "sub": "t"
+        },
+        "=(1−t)",
+        {
+          "kind": "sub",
+          "base": "X",
+          "sub": "0"
+        },
+        "+t",
+        {
+          "kind": "sub",
+          "base": "X",
+          "sub": "1"
+        },
+        ",  ",
+        {
+          "kind": "sub",
+          "base": "U",
+          "sub": "t"
+        },
+        "=",
+        {
+          "kind": "sub",
+          "base": "X",
+          "sub": "1"
+        },
+        "−",
+        {
+          "kind": "sub",
+          "base": "X",
+          "sub": "0"
+        }
+      ],
+      "math_size": 10
+    },
+    {
+      "type": "paragraph",
+      "text": "Sampling integrates from Gaussian noise at zero to the data endpoint at one. The default is explicit Heun: predict one Euler endpoint, evaluate the endpoint velocity and average the two slopes. Euler is also exposed. A constant-velocity fixture verifies both integrators against their exact endpoint. This does not measure a learned transport’s quality. The reference uses unsmoothed straight endpoint interpolation, rather than reproducing every conditional Gaussian path or nonzero endpoint smoothing in the original flow-matching paper."
+    },
+    {
+      "type": "heading",
+      "text": "10. Standalone consistency training",
+      "level": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "The consistency entry is standalone training, not distillation from an external score network. It uses the same Gaussian noise to create adjacent lower- and higher-noise observations on a fixed geometric grid. The online high-noise output matches a detached lower-noise output of an EMA target network using L2. The target is a frozen copy of the online MLP and is updated after successful optimizer steps, with fixed decay 0.95 in these presets. There is no pretrained model and no data used to select a teacher."
+    },
+    {
+      "type": "equation",
+      "math": [
+        {
+          "kind": "sub",
+          "base": "F",
+          "sub": "θ"
+        },
+        "(x,σ)=",
+        {
+          "kind": "sub",
+          "base": "c",
+          "sub": "skip"
+        },
+        "(σ)x+",
+        {
+          "kind": "sub",
+          "base": "c",
+          "sub": "out"
+        },
+        "(σ)",
+        {
+          "kind": "sub",
+          "base": "N",
+          "sub": "θ"
+        },
+        "(x,logσ,y)"
+      ],
+      "math_size": 10
+    },
+    {
+      "type": "paragraph",
+      "text": "The skip/output coefficients use data scale 0.5 and the declared positive minimum noise; they make the output exactly equal its input at that minimum. The mathematical boundary removes a literally constant map over the whole closed time interval, but it does not guarantee informative outputs at larger noise levels or prevent an EMA system from becoming degenerate. A finite adjacent-pair L2 objective is not a convergence theorem and can introduce finite-grid bias. The fixed grid, L2 distance and EMA schedule depart from the paper’s full training recipe."
+    },
+    {
+      "type": "paragraph",
+      "text": "Sampling uses the EMA target once on a high-noise Gaussian. Optional refinement reinjects noise at lower declared levels and applies the target again. Increasing the number of calls is an explicit quality/compute choice, not a promise of improvement. Boundary identity, target-gradient isolation, target updates and state round trips are covered by tests; none establishes realistic one-step images or absence of collapse."
+    },
+    {
+      "type": "heading",
+      "text": "11. Latent diffusion as an explicit two-stage hybrid",
+      "level": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "This hybrid first trains the Gaussian VAE described above. It then freezes that autoencoder and performs one full pass over the supplied TRAIN tensor. The posterior means are the chosen compressed data. Their global mean and standard deviation are computed with float64 accumulators and a variance floor; standardized posterior means become the latent DDPM training observations. Thus the representation is fixed during denoising rather than drifting jointly with it. Sampling reverses the affine latent standardization and returns the frozen decoder mean without adding decoder noise."
+    },
+    {
+      "type": "paragraph",
+      "text": "The distinction from perceptual latent diffusion is substantial. There is no perceptual image encoder, adversarial autoencoder, spatial latent U-Net, cross-attention or external pretrained component. Two VAE smoke updates do not make a useful compressor. The declared posterior-mean choice also differs from training on stochastic posterior draws. Calling denoising or generation before latent calibration raises an error. The test freezes the compressor, updates the denoiser and checks that compressor tensors and gradients remain unchanged."
+    },
+    {
+      "type": "heading",
+      "text": "12. Runnable CLI and output interpretation",
+      "level": 1
+    },
+    {
+      "type": "code",
+      "text": "cd reference_models\npython3 -m venv .venv\n.venv/bin/python -m pip install -r requirements.txt\n.venv/bin/python -m genref.make_demo --output work/demo.pt\n.venv/bin/python -m genref.train \\\n  --model flow_matching --data work/demo.pt \\\n  --output work/fm_run --steps 20 --balanced --device cpu\n.venv/bin/python -m genref.sample \\\n  --checkpoint work/fm_run/checkpoint.pt \\\n  --output work/fm_samples.pt --count 16 --sample-steps 32"
+    },
+    {
+      "type": "paragraph",
+      "text": "Use new output paths. The CLI refuses overwrite and does not implement implicit resume or checkpoint selection. It defaults to CPU and one Torch thread. Latent diffusion additionally requires a positive autoencoder-update count; those updates are additional to denoising steps. For iterative samplers, step options are specific to the algorithm, as documented in the README. Conditional sample labels default to round-robin or a requested single class. No filtering of generated observations is performed."
+    },
+    {
+      "type": "paragraph",
+      "text": "Adam, a declared learning rate, finite-gradient checks and a norm-ten gradient clip are common numerical choices. There is no AMP. A soft elapsed-time cap is checked between operations; an individual long operation may exceed that cap. A process manager is needed for a separate hard wall-clock bound. Failed or interrupted runs retain partial records and do not receive completion status. Their existence does not turn a partial trajectory into a complete trained model."
+    },
+    {
+      "type": "paragraph",
+      "text": "A successful run writes a model-state checkpoint, a JSON run record and a per-update loss log. The records include configuration, input hash, original observation shape, source hashes, update counts, software version and elapsed time. Sampling uses restricted tensor loading and verifies every current genref source hash against the checkpoint before construction/loading. Editing the source requires a newly trained reference checkpoint. Optimizer and RNG state are not supplied as an exact restart guarantee, and cross-runtime bitwise equality is not promised. Samples are unclipped tensors; only the GAN’s declared tanh imposes an output range."
+    },
+    {
+      "type": "heading",
+      "text": "13. What the actual CPU checks establish",
+      "level": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "The saved final-current validation is source-bound: the test runner records each Python source hash before and after execution and requires equality. On the recorded local Python 3.12.14 / PyTorch 2.15.0 CPU runtime, the current twelve-test suite completed with no failures, errors or skips. Its report is reference_models/validation/attempt004/report.json, accompanied by unittest.log. This statement was inserted only after verifying that the report’s source hashes match the delivered current Python files."
+    },
+    {
+      "type": "paragraph",
+      "text": "Every registry entry executes an actual objective, backward pass with finite nonzero gradients, finite conditional samples, unconditional samples, and a strict state-dictionary round trip with identical requested samples in the same runtime. Each CLI training and sampling path is also exercised with two tiny synthetic updates. The latent hybrid receives two additional autoencoder updates in that CLI check. These are functional tests, not new scientific dataset experiments, quality measurements or trained benchmark arms."
+    },
+    {
+      "type": "paragraph",
+      "text": "Mathematical tests check masked current/future derivatives, normalized Gaussian factor arithmetic, nonidentity coupling inversion and Jacobian determinant signs, DDPM posterior variances and rejection of invalid step skipping, VE reverse-time direction, and constant-velocity Euler/Heun integration. Other tests check consistency boundary/EMA behavior, frozen compression, nonfinite/configuration rejection and source-drift rejection. Earlier validation attempts remain historical; their presence does not authorize claiming that an older source hash is the final one."
+    },
+    {
+      "type": "paragraph",
+      "text": "The precise conclusion is bounded software correctness for those exercised cases on one runtime. The suite does not establish useful density estimates, realistic images, stable arbitrary hyperparameters, privacy, fairness, minority coverage, optimal transport accuracy or general convergence. Those questions require prospective real-data experiments with appropriate independent evaluation. Keeping that separation is central to reading both the runnable library and the accompanying negative-result paper."
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "status": "complete",
+  "study_plan_sha256": "3b3692067bf4baf8d7b03ac28f98ed60818393d2f047946c5aaf22df62fe28f8",
+  "selection_sha256": "ff5055b8c662ae9cea30f38143351978c04cb7dc5a75188a33e52b1b5c5b77e2",
+  "confirmation_plan_sha256": "19744b24d6ab86ccd3a0d58f7af86ab15327b469a55cafc23b89be197870fda5",
+  "planned_runs": 6,
+  "complete_runs": 6,
+  "runs": [
+    {
+      "run_id": "C_seed202",
+      "arm": "C",
+      "seed": 202,
+      "complete_sha256": "95688d4e1f1ce730014d602f059f7b048d9b915a32cb2b2b868aa30c1e7ee5f1",
+      "checkpoint_sha256": "2d9662b758a4b752d0a2fddc50c7a4552a1cbc80ce0bdaaff9ace812e243ae1b",
+      "durable_complete_sha256": "222a2837eb8397aff75114ce6685dba4b5460386c8b0ece730f671c87a2924ce",
+      "selected_ema_decay": 0.99
+    },
+    {
+      "run_id": "B_seed101",
+      "arm": "B",
+      "seed": 101,
+      "complete_sha256": "a7e0186bd2230f4f0728d3390cc79d11e9e14fa50f9845ed13005644d171aaf7",
+      "checkpoint_sha256": "37375dd8360ba48306c1148113801c2c3e89cb6251560956977de5e098fef8b0",
+      "durable_complete_sha256": "283187532b8d223e90af99b9e07f97149885ff15797ffa810d57bb1826a37c70",
+      "selected_ema_decay": 0.99
+    },
+    {
+      "run_id": "B_seed202",
+      "arm": "B",
+      "seed": 202,
+      "complete_sha256": "5a6cf34f1427f9cd719c39974a969d3f518197cbc0fbfa92a9f0176d703f3c95",
+      "checkpoint_sha256": "8b1f254b680ae543eec2ecd75516ab9eb43f47d3c1dbff3db39965f5a48778d9",
+      "durable_complete_sha256": "c149498569febdd8e191497227a9cdf22bfbbeb81e2a46e80a8656c51f340242",
+      "selected_ema_decay": 0.99
+    },
+    {
+      "run_id": "C_seed101",
+      "arm": "C",
+      "seed": 101,
+      "complete_sha256": "bd0318f4bb143c9e1b69cb4d1fc3bc66b960f97f3b0f33d91d58c010c45d3ed7",
+      "checkpoint_sha256": "abd44c1db8c2cc62e38c5179dd7119d8d95abcebaee2701eb11c56a2e5c344d8",
+      "durable_complete_sha256": "7da52094b8961132847a9a9a5b09b8259b4f71087fc383df920acc16eb13f52c",
+      "selected_ema_decay": 0.99
+    },
+    {
+      "run_id": "C_seed303",
+      "arm": "C",
+      "seed": 303,
+      "complete_sha256": "12ba69b6224d8e0143602ae41ca7717c9b00e1de9578abf379db7bdfb7e28ef6",
+      "checkpoint_sha256": "e31050c6a1d3f11126a9ba939ec17c33d9a068e1a7fffa371cab323d8a808c62",
+      "durable_complete_sha256": "a1a8908ec672d27749b31953fd8d1ece1c2c42f7b0f8703f219acb23859b1690",
+      "selected_ema_decay": 0.99
+    },
+    {
+      "run_id": "B_seed303",
+      "arm": "B",
+      "seed": 303,
+      "complete_sha256": "22387a4ce1f55b5108c71fad7153fa29cfb6993b8c0859f75d174944559a5bab",
+      "checkpoint_sha256": "c7c7f32905766939d41d11a9de58efb509a01c4097758dc9f8c9dbb21b84f95c",
+      "durable_complete_sha256": "c3173ca4572715068d7d5dfae3ee05abb71178d9fe235a5fa9bd4fec922d87bc",
+      "selected_ema_decay": 0.99
+    }
+  ],
+  "test_quality_seen_by_launcher": false
+}

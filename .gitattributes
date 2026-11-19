@@ -1,0 +1,3 @@
+# Preserve scientific and upstream byte hashes on every platform.
+* -text
+model_weights/*.pt -filter -text -diff -merge

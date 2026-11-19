@@ -1,0 +1,102 @@
+{
+  "repository": "hojonathanho/diffusion",
+  "repository_url": "https://github.com/hojonathanho/diffusion",
+  "commit_sha": "1e0dceb3b3495bbe19116a5e1b3596cd0706c543",
+  "pinned_commit_url": "https://github.com/hojonathanho/diffusion/tree/1e0dceb3b3495bbe19116a5e1b3596cd0706c543",
+  "primary_paper_url": "https://arxiv.org/abs/2006.11239",
+  "role": "Primary-author DDPM repository; link only because no redistribution license was located.",
+  "license": null,
+  "github_HEAD_license_metadata_not_used_as_pinned_text": null,
+  "upstream_code_executed": false,
+  "upstream_tests_or_training_run": false,
+  "reproduced_paper_results": false,
+  "filtered_not_full_asset_snapshot": true,
+  "status": "LINK_ONLY_NO_CODE_REDISTRIBUTED",
+  "included_files": {},
+  "excluded_files": [
+    {
+      "path": ".gitignore",
+      "reason": "no_redistribution_license_located_at_pin"
+    },
+    {
+      "path": "README.md",
+      "reason": "no_redistribution_license_located_at_pin"
+    },
+    {
+      "path": "diffusion_tf/__init__.py",
+      "reason": "no_redistribution_license_located_at_pin"
+    },
+    {
+      "path": "diffusion_tf/diffusion_utils.py",
+      "reason": "no_redistribution_license_located_at_pin"
+    },
+    {
+      "path": "diffusion_tf/diffusion_utils_2.py",
+      "reason": "no_redistribution_license_located_at_pin"
+    },
+    {
+      "path": "diffusion_tf/models/__init__.py",
+      "reason": "no_redistribution_license_located_at_pin"
+    },
+    {
+      "path": "diffusion_tf/models/unet.py",
+      "reason": "no_redistribution_license_located_at_pin"
+    },
+    {
+      "path": "diffusion_tf/nn.py",
+      "reason": "no_redistribution_license_located_at_pin"
+    },
+    {
+      "path": "diffusion_tf/tpu_utils/__init__.py",
+      "reason": "no_redistribution_license_located_at_pin"
+    },
+    {
+      "path": "diffusion_tf/tpu_utils/classifier_metrics_numpy.py",
+      "reason": "no_redistribution_license_located_at_pin"
+    },
+    {
+      "path": "diffusion_tf/tpu_utils/datasets.py",
+      "reason": "no_redistribution_license_located_at_pin"
+    },
+    {
+      "path": "diffusion_tf/tpu_utils/simple_eval_worker.py",
+      "reason": "no_redistribution_license_located_at_pin"
+    },
+    {
+      "path": "diffusion_tf/tpu_utils/tpu_summaries.py",
+      "reason": "no_redistribution_license_located_at_pin"
+    },
+    {
+      "path": "diffusion_tf/tpu_utils/tpu_utils.py",
+      "reason": "no_redistribution_license_located_at_pin"
+    },
+    {
+      "path": "diffusion_tf/utils.py",
+      "reason": "no_redistribution_license_located_at_pin"
+    },
+    {
+      "path": "requirements.txt",
+      "reason": "no_redistribution_license_located_at_pin"
+    },
+    {
+      "path": "resources/samples.png",
+      "reason": "no_redistribution_license_located_at_pin"
+    },
+    {
+      "path": "scripts/__init__.py",
+      "reason": "no_redistribution_license_located_at_pin"
+    },
+    {
+      "path": "scripts/run_celebahq.py",
+      "reason": "no_redistribution_license_located_at_pin"
+    },
+    {
+      "path": "scripts/run_cifar.py",
+      "reason": "no_redistribution_license_located_at_pin"
+    },
+    {
+      "path": "scripts/run_lsun.py",
+      "reason": "no_redistribution_license_located_at_pin"
+    }
+  ]
+}

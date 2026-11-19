@@ -1,0 +1,26 @@
+{
+  "all_planned_bootstrap_computed": null,
+  "all_planned_point_metrics_computed": true,
+  "binding_sha256": "e5be748594f54fe9362bc08e10969e9656836f80865e05e3ea4d3abfe56b1395",
+  "bootstrap": {},
+  "complete_scientific_report": false,
+  "elapsed_seconds": 299.2455702760003,
+  "no_semantic_or_training_population_guarantee": true,
+  "phase": "validation",
+  "point_count": 10,
+  "points": {
+    "B_seed909_ema0.99": "points/B_seed909_ema0.99.json",
+    "B_seed909_ema0.999": "points/B_seed909_ema0.999.json",
+    "C_l0p1_k0_seed909_ema0.99": "points/C_l0p1_k0_seed909_ema0.99.json",
+    "C_l0p1_k0_seed909_ema0.999": "points/C_l0p1_k0_seed909_ema0.999.json",
+    "C_l0p1_k1_seed909_ema0.99": "points/C_l0p1_k1_seed909_ema0.99.json",
+    "C_l0p1_k1_seed909_ema0.999": "points/C_l0p1_k1_seed909_ema0.999.json",
+    "C_l1_k0_seed909_ema0.99": "points/C_l1_k0_seed909_ema0.99.json",
+    "C_l1_k0_seed909_ema0.999": "points/C_l1_k0_seed909_ema0.999.json",
+    "C_l1_k1_seed909_ema0.99": "points/C_l1_k1_seed909_ema0.99.json",
+    "C_l1_k1_seed909_ema0.999": "points/C_l1_k1_seed909_ema0.999.json"
+  },
+  "status": "COMPLETED",
+  "study_id": "generative_recovery_1500",
+  "uncertainty_status": "NOT_PLANNED_FOR_VALIDATION_SELECTION"
+}

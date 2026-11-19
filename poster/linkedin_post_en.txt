@@ -1,0 +1,13 @@
+Can a feature-interaction correction help a rare condition in image generation?
+
+I am sharing a detailed research report on a leakage-audited conditional GAN study, with mathematical derivations, architecture and training details, all validation choices, and the complete saved comparison.
+
+The result is negative. Across three fresh paired test seeds, mean rare-condition KID x 1,000 was 166.663 for the balanced baseline and 185.544 for the proposed correction. Lower is better. Validation selected kappa=0, so the selected uncertainty threshold was inactive.
+
+The repository includes the research paper, visual explanations, the executed study code, original reference implementations for the reviewed model families, links and source audits for related papers, aggregate benchmark records, and the four recovered generator archives.
+
+The reference implementations are not additional completed benchmark arms. Two complete generator archives and supporting reference/teacher/split inputs remain unavailable, so a full six-model numerical replay is not claimed.
+
+Research report and code: https://github.com/SmbatShakhpazyan/rare-conditional-generation
+
+#GenerativeAI #MachineLearning #Research #Reproducibility #GANs

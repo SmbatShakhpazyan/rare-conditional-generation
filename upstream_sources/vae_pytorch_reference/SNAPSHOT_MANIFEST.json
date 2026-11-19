@@ -1,0 +1,1465 @@
+{
+  "repository": "pytorch/examples",
+  "repository_url": "https://github.com/pytorch/examples",
+  "commit_sha": "acc295dc7b90714f1bf47f06004fc19a7fe235c4",
+  "pinned_commit_url": "https://github.com/pytorch/examples/tree/acc295dc7b90714f1bf47f06004fc19a7fe235c4",
+  "primary_paper_url": "https://arxiv.org/abs/1312.6114",
+  "role": "Official PyTorch VAE reference example; NOT the VAE paper authors' original implementation.",
+  "license": "BSD-3-Clause",
+  "github_HEAD_license_metadata_not_used_as_pinned_text": {
+    "key": "bsd-3-clause",
+    "name": "BSD 3-Clause \"New\" or \"Revised\" License",
+    "spdx_id": "BSD-3-Clause",
+    "url": "https://api.github.com/licenses/bsd-3-clause",
+    "node_id": "MDc6TGljZW5zZTU="
+  },
+  "upstream_code_executed": false,
+  "upstream_tests_or_training_run": false,
+  "reproduced_paper_results": false,
+  "filtered_not_full_asset_snapshot": true,
+  "status": "PINNED_LICENSED_FILTERED_TEXT_SOURCE_SNAPSHOT",
+  "included_files": {
+    "LICENSE": {
+      "bytes": 1520,
+      "sha256": "7e5dc9b5cf276166c4a0678d33e53b14e3d7ef47eee9356ab786c4ba45414efd",
+      "git_blob_sha1": "1ba2484d4697a92afd0bf6be291eca930315534c",
+      "upstream_blob_url": "https://github.com/pytorch/examples/blob/acc295dc7b90714f1bf47f06004fc19a7fe235c4/LICENSE"
+    },
+    "vae/README.md": {
+      "bytes": 1049,
+      "sha256": "02b8885abf198fdbc6443c2b61be2fb49b281054d708c46dc92dcdddec29f002",
+      "git_blob_sha1": "fcaae9a28629087173d2f19c6e1b8216187af161",
+      "upstream_blob_url": "https://github.com/pytorch/examples/blob/acc295dc7b90714f1bf47f06004fc19a7fe235c4/vae/README.md"
+    },
+    "vae/main.py": {
+      "bytes": 4899,
+      "sha256": "366116e8252ac68ef1f180cce0b3c017f5a957595d863c8d4904210a80cdab6d",
+      "git_blob_sha1": "63909658102e8f7e0ab7f2ee12d229841cc45e02",
+      "upstream_blob_url": "https://github.com/pytorch/examples/blob/acc295dc7b90714f1bf47f06004fc19a7fe235c4/vae/main.py"
+    },
+    "vae/requirements.txt": {
+      "bytes": 27,
+      "sha256": "a569fdc703e01c37f08fc6972dcce102555e8ccd16900e736090c32517654e93",
+      "git_blob_sha1": "73348074bfef41a3d4dfa503d1544839176d1b49",
+      "upstream_blob_url": "https://github.com/pytorch/examples/blob/acc295dc7b90714f1bf47f06004fc19a7fe235c4/vae/requirements.txt"
+    },
+    "vae/results/.gitignore": {
+      "bytes": 6,
+      "sha256": "88d1099650ee449edf68179321b1fbfb215d89a5170e36a4d6371141027bc9dd",
+      "git_blob_sha1": "e33609d251c814ccd3a30337c965a875645c2117",
+      "upstream_blob_url": "https://github.com/pytorch/examples/blob/acc295dc7b90714f1bf47f06004fc19a7fe235c4/vae/results/.gitignore"
+    }
+  },
+  "excluded_files": [
+    {
+      "path": ".github/ISSUE_TEMPLATE/bug_template.md",
+      "bytes": 1327,
+      "git_blob_sha1": "345bc008d92bd7a8956de4df2c9d9e947c4c29b3",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/doc_template.md",
+      "bytes": 206,
+      "git_blob_sha1": "a4cdc333e8e576f1d4466b1ddb1b229c8a936f71",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/feature_template.md",
+      "bytes": 553,
+      "git_blob_sha1": "31a94f50f47b8ebcdbe56ffb449f4acf88d578d9",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": ".github/PULL_REQUEST_TEMPLATE/pull_request_template.md",
+      "bytes": 1405,
+      "git_blob_sha1": "2b9bf81623eb1dcc26c9089cfe733d35c2f879e0",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": ".github/workflows/doc-build.yml",
+      "bytes": 895,
+      "git_blob_sha1": "616873f56a3bf9785d4eb23092d0e7eb92f2ae5c",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": ".github/workflows/main_cpp.yml",
+      "bytes": 1401,
+      "git_blob_sha1": "a76db6a54a4a49c9a6d2099e58b2423caf00ab4c",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": ".github/workflows/main_distributed.yaml",
+      "bytes": 1095,
+      "git_blob_sha1": "3cf68e6da3a448e841dfc77fe54cc0273e249ac3",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": ".github/workflows/main_python.yml",
+      "bytes": 1045,
+      "git_blob_sha1": "9c6a58d2d53aec0789526b13907d63c5baf04d90",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 323,
+      "git_blob_sha1": "ec94badfc6340fc6051a0c48a972397da2ad17c8",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "CODEOWNERS",
+      "bytes": 648,
+      "git_blob_sha1": "27c0208655978c30ea5c155e90722bdce86cb48d",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "CODE_OF_CONDUCT.md",
+      "bytes": 3353,
+      "git_blob_sha1": "41c97eedd11b4b35edd7496e27c1209d60025426",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "bytes": 2395,
+      "git_blob_sha1": "c0382e7eadc6e2fec356de8912c4de8fbc7b9d41",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2503,
+      "git_blob_sha1": "769371ba7a04892de83e48da9fb17d77f593ab9d",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "cpp/.clang-format",
+      "bytes": 2569,
+      "git_blob_sha1": "73304266bd671de2c1bf7b78bff6b3e6f63ffa69",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "cpp/autograd/CMakeLists.txt",
+      "bytes": 719,
+      "git_blob_sha1": "8289db38ee8c4320900bd9c985df564b1d816ad8",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "cpp/autograd/README.md",
+      "bytes": 1442,
+      "git_blob_sha1": "7e7dc651531a2d621fa4c882bd4003d8dce90100",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "cpp/autograd/autograd.cpp",
+      "bytes": 6003,
+      "git_blob_sha1": "2ef3c4dfcc38534494e9cc99ddc0d1178ef6a088",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "cpp/custom-dataset/CMakeLists.txt",
+      "bytes": 1058,
+      "git_blob_sha1": "3f45b7946a49fee109b8b5b50ccf068bffa6ad1b",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "cpp/custom-dataset/README.md",
+      "bytes": 2225,
+      "git_blob_sha1": "564293af1d2c8db75ed084a47a364fa266da45e2",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "cpp/custom-dataset/custom-dataset.cpp",
+      "bytes": 6949,
+      "git_blob_sha1": "a9f3462f48b04d56f33952d3a13845afb7b3bb90",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "cpp/custom-dataset/info.txt",
+      "bytes": 302360,
+      "git_blob_sha1": "8bc09597f04aa717b514835a7a8bf812c38823a8",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "cpp/dcgan/CMakeLists.txt",
+      "bytes": 933,
+      "git_blob_sha1": "bc91efad76c7850a9075e7e3499f074553afe752",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "cpp/dcgan/README.md",
+      "bytes": 1871,
+      "git_blob_sha1": "6cd8c21cbe7c15d4f91c9d1bba21756d6acd0a40",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "cpp/dcgan/dcgan.cpp",
+      "bytes": 8000,
+      "git_blob_sha1": "a9fa582b72790d8c1edf0a3c726061cb72c69eba",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "cpp/dcgan/display_samples.py",
+      "bytes": 891,
+      "git_blob_sha1": "c1f9e9c3d97e5a19e0ce71282f54a3d3b7aa3e2d",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "cpp/distributed/CMakeLists.txt",
+      "bytes": 634,
+      "git_blob_sha1": "7a152df8e530a4d6cc9163f3ed4dcb3c10038fc0",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "cpp/distributed/README.md",
+      "bytes": 1203,
+      "git_blob_sha1": "05ad573a879428ddd3f64b2adc49392379bda889",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "cpp/distributed/dist-mnist.cpp",
+      "bytes": 5596,
+      "git_blob_sha1": "edbd816e5970c42e771194157a9e0011b65f4138",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "cpp/mnist/CMakeLists.txt",
+      "bytes": 958,
+      "git_blob_sha1": "7bdff0dee8e5917f3eb079d1cce6af4b6ccb97a7",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "cpp/mnist/README.md",
+      "bytes": 1046,
+      "git_blob_sha1": "947ec860e5832f0397e491aafb56989ae08853a3",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "cpp/mnist/mnist.cpp",
+      "bytes": 4746,
+      "git_blob_sha1": "d353c4f02186c235539b840101203a7d1aaa3394",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "cpp/regression/CMakeLists.txt",
+      "bytes": 723,
+      "git_blob_sha1": "172464092edd6333cced6036b927b31226b0ecea",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "cpp/regression/README.md",
+      "bytes": 729,
+      "git_blob_sha1": "cee7c82436df0fdf425852cd04a86125e31ec2a5",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "cpp/regression/regression.cpp",
+      "bytes": 2321,
+      "git_blob_sha1": "6a0eef8a682b9e0abd8d2a13374acd55b8eca411",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "cpp/tools/InstallingOpenCV.md",
+      "bytes": 958,
+      "git_blob_sha1": "0d4209d17287b742c9e6bda8bfdbfaea17972159",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "cpp/tools/download_mnist.py",
+      "bytes": 2723,
+      "git_blob_sha1": "0c47994c37aaf99e7ebc7b7ae38ac08256c2014f",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "cpp/transfer-learning/CMakeLists.txt",
+      "bytes": 552,
+      "git_blob_sha1": "272457f5cac6fc03cc6841e41d53185d44cf754d",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "cpp/transfer-learning/README.md",
+      "bytes": 798,
+      "git_blob_sha1": "5ff26aa8602f9f17665b94d01c8a0550f856a149",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "cpp/transfer-learning/classify.cpp",
+      "bytes": 2676,
+      "git_blob_sha1": "49a203112fce25710404fdb279fd730893b1935a",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "cpp/transfer-learning/convert.py",
+      "bytes": 586,
+      "git_blob_sha1": "0661acca5076ec8dfab815618200b4ddca895fd5",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "cpp/transfer-learning/main.cpp",
+      "bytes": 9714,
+      "git_blob_sha1": "ccff171061bf30a73e0060d5f6e034156655db5a",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "cpp/transfer-learning/main.h",
+      "bytes": 2412,
+      "git_blob_sha1": "ff98dd9bca9fe212392e0ef0685cf35c4efdc6b0",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "dcgan/README.md",
+      "bytes": 2359,
+      "git_blob_sha1": "5ab017dcd0eae100a57a704ddbcf292fd3962145",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "dcgan/main.py",
+      "bytes": 10653,
+      "git_blob_sha1": "b150174ca228175d8bc97dba6dbdb3791d55e32b",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "dcgan/requirements.txt",
+      "bytes": 23,
+      "git_blob_sha1": "ed25eb7ec55f80885f6cc1f5fd3e54d390c69a9d",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/FSDP/.gitignore",
+      "bytes": 23,
+      "git_blob_sha1": "d3c28380f9c24e43d824c7d730b642a283cca0f8",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/FSDP/README.md",
+      "bytes": 704,
+      "git_blob_sha1": "842f23e3bd47fa2d3d8f326df7a8e198ad1eca81",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/FSDP/T5_training.py",
+      "bytes": 7857,
+      "git_blob_sha1": "c4d9a4fb69d400011af3fa40d20e154076cba314",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/FSDP/configs/__init__.py",
+      "bytes": 65,
+      "git_blob_sha1": "70dba21cc9a72d7c7ae7747b2818d8becb086a61",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/FSDP/configs/fsdp.py",
+      "bytes": 654,
+      "git_blob_sha1": "220cc67c55469c84ee962378bf82f2170f92d6e8",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/FSDP/configs/training.py",
+      "bytes": 388,
+      "git_blob_sha1": "99b7bfdceb0466e69cb7ea783b4e7aafbe8cdf7c",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/FSDP/download_dataset.sh",
+      "bytes": 285,
+      "git_blob_sha1": "f8d3ebd7b4baf051bdeefae8049ee784a4d88c46",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/FSDP/model_checkpointing/__init__.py",
+      "bytes": 292,
+      "git_blob_sha1": "9af8dbbd540ff77b48d2bb4490b9bfc9d0d56b47",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/FSDP/model_checkpointing/checkpoint_handler.py",
+      "bytes": 8863,
+      "git_blob_sha1": "5d2ea8469525f1d53a5c5577c185879d54e2a12f",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/FSDP/policies/__init__.py",
+      "bytes": 128,
+      "git_blob_sha1": "8109e6a7477905614bc62dfb5f906c072426a040",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/FSDP/policies/activation_checkpointing_functions.py",
+      "bytes": 816,
+      "git_blob_sha1": "e041d26276e242b9f0ad19a9a1c734775428b5ba",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/FSDP/policies/mixed_precision.py",
+      "bytes": 862,
+      "git_blob_sha1": "76e59982ec61ed5c54f2e1035967c2aa2020bcd8",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/FSDP/policies/wrapping.py",
+      "bytes": 1152,
+      "git_blob_sha1": "5e1f0d89c89fb83866196edc8a1367fc7d133f55",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/FSDP/requirements.txt",
+      "bytes": 54,
+      "git_blob_sha1": "904bf752db1ab1b35977bb430c82062e8231edb7",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/FSDP/summarization_dataset.py",
+      "bytes": 2835,
+      "git_blob_sha1": "b9854e4e7f5f770def0901aa978e45b78c61b557",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/FSDP/utils/__init__.py",
+      "bytes": 203,
+      "git_blob_sha1": "c9811ecf985797f9c7ed200f6dac32d838941f0e",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/FSDP/utils/environment.py",
+      "bytes": 982,
+      "git_blob_sha1": "0b6c494fb2b51aef9907c5b02157db83f865910e",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/FSDP/utils/train_utils.py",
+      "bytes": 3187,
+      "git_blob_sha1": "60e5593ec70798be7c52a136429f50a825e20fa2",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/FSDP2/README.md",
+      "bytes": 705,
+      "git_blob_sha1": "50a6dff9b4e68bbe6b52190ff7626e2a73ddb6e0",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/FSDP2/checkpoint.py",
+      "bytes": 7707,
+      "git_blob_sha1": "aede91782338c75d402565a980a58a589a47b3d1",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/FSDP2/example.py",
+      "bytes": 4136,
+      "git_blob_sha1": "abe0120a1d349757835071ed7323adc5990885b4",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/FSDP2/model.py",
+      "bytes": 4604,
+      "git_blob_sha1": "21b609615aaf79ba70b0e33f3cbc88e026e4d3ef",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/FSDP2/requirements.txt",
+      "bytes": 17,
+      "git_blob_sha1": "ab9294415ca9a74a4148f797a25d5c8ed1ecf996",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/FSDP2/run_example.sh",
+      "bytes": 348,
+      "git_blob_sha1": "b12dcfe1108d7fdab11cd7ae68486b553b497eee",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/FSDP2/utils.py",
+      "bytes": 675,
+      "git_blob_sha1": "402d2bf33dd4f7ff9f788757f761c76ceb8df174",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/ddp-tutorial-series/README.md",
+      "bytes": 929,
+      "git_blob_sha1": "d0ce17c00f093d3da0a5cb46b211f3c129bf62d3",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/ddp-tutorial-series/datautils.py",
+      "bytes": 331,
+      "git_blob_sha1": "22c364eaa0d36bdcb5726f9f23972fe6b5d50615",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/ddp-tutorial-series/multigpu.py",
+      "bytes": 3674,
+      "git_blob_sha1": "7e116333057d8b9008e41827e919bf73fffec5e9",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/ddp-tutorial-series/multigpu_torchrun.py",
+      "bytes": 4021,
+      "git_blob_sha1": "32d6254d2dc43b104655bb7aec41a00b492e8dc4",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/ddp-tutorial-series/multinode.py",
+      "bytes": 4106,
+      "git_blob_sha1": "2cbae84b56ce2e11a657d2678facd3bfeaed41c0",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/ddp-tutorial-series/requirements.txt",
+      "bytes": 13,
+      "git_blob_sha1": "9270a1d6ee0a16e23619e971d19c950565716d4e",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/ddp-tutorial-series/single_gpu.py",
+      "bytes": 2784,
+      "git_blob_sha1": "e91ab81cc1158b515d132214dabcf3d3895a6916",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/ddp-tutorial-series/slurm/config.yaml.template",
+      "bytes": 582,
+      "git_blob_sha1": "3e05d9642ba668c93ab9dc2a959bbd1c76dd8202",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/ddp-tutorial-series/slurm/sbatch_run.sh",
+      "bytes": 553,
+      "git_blob_sha1": "ac02d19e994403743584d87dd05ef3b43e4329c8",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/ddp-tutorial-series/slurm/setup_pcluster_slurm.md",
+      "bytes": 1114,
+      "git_blob_sha1": "b06e2db0f5a23a43bbd5617f93a59f5aff2ef379",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/ddp/README.md",
+      "bytes": 7282,
+      "git_blob_sha1": "4f110affe63f20c6c619d451314c3e6261580c39",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/ddp/example.py",
+      "bytes": 3481,
+      "git_blob_sha1": "d64b4739769e3c36cc5522605edd43582895b59b",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/ddp/requirements.txt",
+      "bytes": 11,
+      "git_blob_sha1": "285a4d8195c94f7096c8d5d5e21514ec5ca99568",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/ddp/run_example.sh",
+      "bytes": 394,
+      "git_blob_sha1": "d439b681b4785e3ce0ec9deca6f2cbbfc35c6d22",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/minGPT-ddp/README.md",
+      "bytes": 1017,
+      "git_blob_sha1": "ab6145f218db297ab3829db7dd29ac358b8000d1",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/minGPT-ddp/mingpt/char_dataset.py",
+      "bytes": 1410,
+      "git_blob_sha1": "38a638dfc685ba8fddefd0b1b021c2f16c0a520e",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/minGPT-ddp/mingpt/data/input.txt",
+      "bytes": 1115394,
+      "git_blob_sha1": "7dcb3a2d4cc3b48b6283dd46870bfeb78f88aac9",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/minGPT-ddp/mingpt/gpt2_train_cfg.yaml",
+      "bytes": 468,
+      "git_blob_sha1": "38805f37e3bc792ede7d14a39396cf4a8c18562e",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/minGPT-ddp/mingpt/main.py",
+      "bytes": 2139,
+      "git_blob_sha1": "8fdca566675543e91b791d46f68b66fbe7923e35",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/minGPT-ddp/mingpt/model.py",
+      "bytes": 11128,
+      "git_blob_sha1": "2d2e0f8cd155fb27b76f63b4e90a702be6dec35d",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/minGPT-ddp/mingpt/slurm/config.yaml.template",
+      "bytes": 582,
+      "git_blob_sha1": "3e05d9642ba668c93ab9dc2a959bbd1c76dd8202",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/minGPT-ddp/mingpt/slurm/sbatch_run.sh",
+      "bytes": 543,
+      "git_blob_sha1": "99e5113ad2cfa1d64c3da181a3f6a2f8c5f06692",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/minGPT-ddp/mingpt/slurm/setup_pcluster_slurm.md",
+      "bytes": 1205,
+      "git_blob_sha1": "dd7b2acc04867b5dda0b2405ccc2ad31fd8e84a9",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/minGPT-ddp/mingpt/trainer.py",
+      "bytes": 5993,
+      "git_blob_sha1": "1fbc4570605ed62dc88e5041c5d44f99f1abc777",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/minGPT-ddp/requirements.txt",
+      "bytes": 45,
+      "git_blob_sha1": "61162c6320fbad75645445672698e79e37b9a21c",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/minGPT-ddp/run_example.sh",
+      "bytes": 326,
+      "git_blob_sha1": "8e8a0acb573fe6c2799eb87c6e43476ebd3425b4",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/rpc/batch/README.md",
+      "bytes": 702,
+      "git_blob_sha1": "02d805373d7b4c34c36846913a2f54533b1b9562",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/rpc/batch/parameter_server.py",
+      "bytes": 4705,
+      "git_blob_sha1": "798f3f00978360a2c9df7f51389503d5c93478c4",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/rpc/batch/reinforce.py",
+      "bytes": 9892,
+      "git_blob_sha1": "0a69c8f5d1bcea436b20ca25580e883ffd44391b",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/rpc/batch/requirements.txt",
+      "bytes": 34,
+      "git_blob_sha1": "ce6559074e105cf86616f4dbbdadc8b49475ba63",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/rpc/ddp_rpc/README.md",
+      "bytes": 961,
+      "git_blob_sha1": "e4707a2544b65a1ab47b628191896c0900a3aca0",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/rpc/ddp_rpc/main.py",
+      "bytes": 6922,
+      "git_blob_sha1": "0b4725756e9242a62457bea1f7a41ae0a6f5ef9d",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/rpc/ddp_rpc/requirements.txt",
+      "bytes": 19,
+      "git_blob_sha1": "c22ee832df3f8e0a572b05caab42cc032abe1bbf",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/rpc/parameter_server/README.md",
+      "bytes": 1244,
+      "git_blob_sha1": "9144ce22ca463afc8531801d0a864934435dd0fd",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/rpc/parameter_server/requirements.txt",
+      "bytes": 19,
+      "git_blob_sha1": "351ad681467cda3a057041a239d29a2fcab008bc",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/rpc/parameter_server/rpc_parameter_server.py",
+      "bytes": 11628,
+      "git_blob_sha1": "79846e56aab0605b6283d0163a803130f0ed7eea",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/rpc/pipeline/README.md",
+      "bytes": 685,
+      "git_blob_sha1": "3f5e36e8578de32d4f785664be6ce52aaaecc681",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/rpc/pipeline/main.py",
+      "bytes": 9675,
+      "git_blob_sha1": "c9226f8763c80e66b799cdc75c8df8eeeecc89fd",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/rpc/pipeline/requirements.txt",
+      "bytes": 17,
+      "git_blob_sha1": "37f700a78ecad7bea22172702e640797d7136a17",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/rpc/rl/README.md",
+      "bytes": 330,
+      "git_blob_sha1": "74856ef71f0cc9b54dc39bc8de0993020b87410c",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/rpc/rl/main.py",
+      "bytes": 9133,
+      "git_blob_sha1": "91451ecc846243be1dc026ad26246d0a36ebcf34",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/rpc/rl/requirements.txt",
+      "bytes": 22,
+      "git_blob_sha1": "e5c303ca767b87319962b89bd28646c79d56a331",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/rpc/rnn/README.md",
+      "bytes": 231,
+      "git_blob_sha1": "b7f4a719fb697c9b084df13f98eaf3a324936d82",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/rpc/rnn/main.py",
+      "bytes": 2485,
+      "git_blob_sha1": "79cb48f4c2b7793d2c287d022025a9ed9465319d",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/rpc/rnn/requirements.txt",
+      "bytes": 19,
+      "git_blob_sha1": "351ad681467cda3a057041a239d29a2fcab008bc",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/rpc/rnn/rnn.py",
+      "bytes": 3692,
+      "git_blob_sha1": "ded3781711487e3a0537d946b3599c6cfa69730f",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/tensor_parallelism/README.md",
+      "bytes": 1155,
+      "git_blob_sha1": "a3c36e38640ed0be1eb26041195594afd0813dc8",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/tensor_parallelism/fsdp_tp_example.py",
+      "bytes": 6114,
+      "git_blob_sha1": "fb0d5ba1f5fbd8c5761f884b89cde6a2c7345db4",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/tensor_parallelism/llama2_model.py",
+      "bytes": 16585,
+      "git_blob_sha1": "3edd99f3dddf61c88b8c99f54098e326485a20db",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/tensor_parallelism/log_utils.py",
+      "bytes": 611,
+      "git_blob_sha1": "d103df892b30f56ed5086e57dfecfc15704f32e8",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/tensor_parallelism/requirements.txt",
+      "bytes": 96,
+      "git_blob_sha1": "4f479249930cef8add4680b2013a03c209bebbae",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/tensor_parallelism/run_example.sh",
+      "bytes": 497,
+      "git_blob_sha1": "c8d431505b5bf90d3031627c393e080d662779e9",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/tensor_parallelism/sequence_parallel_example.py",
+      "bytes": 3324,
+      "git_blob_sha1": "73320f5bccef3f044e2daad626e2155d9ed492a9",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "distributed/tensor_parallelism/tensor_parallel_example.py",
+      "bytes": 3975,
+      "git_blob_sha1": "6a4b4ea53155784115c05b2a7c95117188c7500b",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "docs/Makefile",
+      "bytes": 638,
+      "git_blob_sha1": "d0c3cbf1020d5c292abdedf27627c6abe25e2293",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "docs/make.bat",
+      "bytes": 804,
+      "git_blob_sha1": "6fcf05b4b76f8b9774c317ac8ada402f8a7087de",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "docs/requirements.txt",
+      "bytes": 137,
+      "git_blob_sha1": "71f7024cd2a8d3d05c1dff1f1d91e70c80d89a88",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "docs/source/_static/.gitkeep",
+      "bytes": 0,
+      "git_blob_sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "docs/source/conf.py",
+      "bytes": 2631,
+      "git_blob_sha1": "47a4e807743e48599cb47b4719d06b32855d08a7",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "docs/source/index.rst",
+      "bytes": 7346,
+      "git_blob_sha1": "819dcc248de016200e81abcc7be1e5e4a68517a7",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "fast_neural_style/README.md",
+      "bytes": 3903,
+      "git_blob_sha1": "9b5834ed7ddc688e4f10f4bd1b044cf02278c982",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "fast_neural_style/download_saved_models.py",
+      "bytes": 931,
+      "git_blob_sha1": "691c2c0a3c1acf8560171e1bcd1b2ced72a6b872",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "fast_neural_style/images/content-images/amber.jpg",
+      "bytes": 108086,
+      "git_blob_sha1": "22f6390f40b0ac1bdcc8a77330d40b8299c926ad",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "fast_neural_style/images/output-images/amber-candy.jpg",
+      "bytes": 326685,
+      "git_blob_sha1": "f585fdaae1b1450bb461b497adae74f71abe4f28",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "fast_neural_style/images/output-images/amber-mosaic.jpg",
+      "bytes": 372909,
+      "git_blob_sha1": "5af32e759d76bda46fd3516bc92865f17fcf32ab",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "fast_neural_style/images/output-images/amber-rain-princess.jpg",
+      "bytes": 306482,
+      "git_blob_sha1": "4f9efeb2048dd0b7cb4b80eacf3bf05359fb117a",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "fast_neural_style/images/output-images/amber-udnie.jpg",
+      "bytes": 164104,
+      "git_blob_sha1": "4e7261603ac16dbfd9ff09e33e071e95af9df3df",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "fast_neural_style/images/style-images/candy.jpg",
+      "bytes": 376101,
+      "git_blob_sha1": "f40e5a33e93329581baaa2ba564e02ce25615cbe",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "fast_neural_style/images/style-images/mosaic.jpg",
+      "bytes": 77378,
+      "git_blob_sha1": "63aa06fe4296fa6e0feb39d5c6be57fc177283d7",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "fast_neural_style/images/style-images/rain-princess-cropped.jpg",
+      "bytes": 140682,
+      "git_blob_sha1": "00a83ea48e5b65385be02937d0777770aa72a3d1",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "fast_neural_style/images/style-images/rain-princess.jpg",
+      "bytes": 286356,
+      "git_blob_sha1": "520f6a22771c9130b9907381c5e0843c9e379f06",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "fast_neural_style/images/style-images/udnie.jpg",
+      "bytes": 39795,
+      "git_blob_sha1": "3dbb29cf89e70f9421afb3341674eec0a991cf52",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "fast_neural_style/neural_style/__init__.py",
+      "bytes": 0,
+      "git_blob_sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "fast_neural_style/neural_style/neural_style.py",
+      "bytes": 10889,
+      "git_blob_sha1": "2cd991b7850c9ce868b845655c919cd91e8b7690",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "fast_neural_style/neural_style/transformer_net.py",
+      "bytes": 3782,
+      "git_blob_sha1": "2cb06971d281d616417e8d2551bb45e78e99eb2f",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "fast_neural_style/neural_style/utils.py",
+      "bytes": 997,
+      "git_blob_sha1": "698792f85f70ee5d927fa62385f57782a96b8319",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "fast_neural_style/neural_style/vgg.py",
+      "bytes": 1398,
+      "git_blob_sha1": "35fd25848720f5df6117c7d91d6db84defa125ad",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "fast_neural_style/requirements.txt",
+      "bytes": 29,
+      "git_blob_sha1": "54d4c008f02ecb2f164fd0a896bf9a18412475d0",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "fx/README.md",
+      "bytes": 500,
+      "git_blob_sha1": "caa7c378e123568af52d7461c5eb995bdf300fc9",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "fx/custom_tracer.py",
+      "bytes": 4178,
+      "git_blob_sha1": "fd872940529286ee77d82c91fabc8e6d6baea593",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "fx/inline_function.py",
+      "bytes": 3195,
+      "git_blob_sha1": "c1ad4563be13120a962048fad07d09b533724e38",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "fx/invert.py",
+      "bytes": 2140,
+      "git_blob_sha1": "dd9b1d3d6f1011316718de2504f09ec8768e63bd",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "fx/module_tracer.py",
+      "bytes": 6648,
+      "git_blob_sha1": "99b3819130ab2bac6dc3e9c3feac515264a4a369",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "fx/native_interpreter/CMakeLists.txt",
+      "bytes": 283,
+      "git_blob_sha1": "9f0209d491609f7b7f7d246a20a4dabdb3aeddf5",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "fx/native_interpreter/README.md",
+      "bytes": 2504,
+      "git_blob_sha1": "e99e5635b72414e6531877a3bbda1700f8278759",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "fx/native_interpreter/interpreter.cpp",
+      "bytes": 7343,
+      "git_blob_sha1": "dc175a845eaa29e920c83abe8da045015766adbb",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "fx/native_interpreter/use_interpreter.py",
+      "bytes": 5134,
+      "git_blob_sha1": "a1ef89c2f1562cb062d86a3cf75481b706bf541f",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "fx/primitive_library.py",
+      "bytes": 6365,
+      "git_blob_sha1": "00014d9206a2d06bdd5a5ae4e85c90ed138b56d5",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "fx/profiling_tracer.py",
+      "bytes": 5966,
+      "git_blob_sha1": "19a0b0546b0c36877e056a28e612f59811f7992b",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "fx/proxy_based_graph_creation.py",
+      "bytes": 2115,
+      "git_blob_sha1": "e2e31e07ddfaeb37f14d566ddc628acfed7d0b40",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "fx/replace_op.py",
+      "bytes": 2434,
+      "git_blob_sha1": "6ad5be3e82bd2b2fda8dc9f6fd20788578b591a7",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "fx/requirements.txt",
+      "bytes": 18,
+      "git_blob_sha1": "ac988bdf8417d99a3c45236479862b18684c79f5",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "fx/subgraph_rewriter_basic_use.py",
+      "bytes": 2486,
+      "git_blob_sha1": "8c7af70d978fc0f27d6994842eb8518be1bc7e2d",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "fx/wrap_output_dynamically.py",
+      "bytes": 2653,
+      "git_blob_sha1": "4213526dd058b4747addd1572e931bbba4940a0a",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "gat/README.md",
+      "bytes": 6927,
+      "git_blob_sha1": "c15076a59737b40d681703daee44d887a7b8637f",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "gat/main.py",
+      "bytes": 16116,
+      "git_blob_sha1": "948833f3aeaaaf78feccf3f675c44a98c362805c",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "gat/requirements.txt",
+      "bytes": 21,
+      "git_blob_sha1": "a4cf0147692abfdbd6cb710dcfa32c2264145405",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "gcn/README.md",
+      "bytes": 2062,
+      "git_blob_sha1": "f84bd13620169842f29d975e4bcacd7c60c20bfa",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "gcn/main.py",
+      "bytes": 11760,
+      "git_blob_sha1": "fe19248eb60861b024608fc0db02fc7ae7a849d4",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "gcn/requirements.txt",
+      "bytes": 38,
+      "git_blob_sha1": "7b756e4ede4d0c70823c4d3731ffdc3f1eaa8a2a",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "imagenet/README.md",
+      "bytes": 5573,
+      "git_blob_sha1": "e3f66429b992cec21b3c11fb47eb16ad1fa2e8e0",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "imagenet/extract_ILSVRC.sh",
+      "bytes": 2654,
+      "git_blob_sha1": "9f13ac341e4ba6766831215158c6e21cf3753d0e",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "imagenet/main.py",
+      "bytes": 20959,
+      "git_blob_sha1": "42e5e9fa64f023f019689ab871332d5e3ffa2ab8",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "imagenet/requirements.txt",
+      "bytes": 23,
+      "git_blob_sha1": "9a083ba3903351d950a60eea816871fca071e5d6",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "language_translation/README.md",
+      "bytes": 1740,
+      "git_blob_sha1": "32833fa00cf94cd45fd3fc9882105fc84a2ebf5c",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "language_translation/main.py",
+      "bytes": 10809,
+      "git_blob_sha1": "cc0d199cd86a6c458802436d23bfe433b5e49823",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "language_translation/requirements.txt",
+      "bytes": 51,
+      "git_blob_sha1": "ea1d1ed30fa0aed1088c42a810eb214fece5c698",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "language_translation/src/data.py",
+      "bytes": 5083,
+      "git_blob_sha1": "0ab83f6c6d3c3aacd6c67a9701a2f98c5836d27e",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "language_translation/src/model.py",
+      "bytes": 2859,
+      "git_blob_sha1": "ec4a28ba1b5f12f4f92a73686a53aa147dff719b",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "legacy/snli/README.md",
+      "bytes": 1340,
+      "git_blob_sha1": "2da51049756a6d5907a0457682d075f85a513d4a",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "legacy/snli/model.py",
+      "bytes": 2655,
+      "git_blob_sha1": "45ffcaf7869bf415a1c2b48d758734ab0aa93a38",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "legacy/snli/requirements.txt",
+      "bytes": 22,
+      "git_blob_sha1": "e4f1b3fff4b1aaba088f3d8dfe34911dd0f6a6e6",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "legacy/snli/train.py",
+      "bytes": 5354,
+      "git_blob_sha1": "aa70aef45aac4dfe903e45cb268284a31e21b559",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "legacy/snli/util.py",
+      "bytes": 3885,
+      "git_blob_sha1": "1bc8e0b2cc62098c8b045714a93e3e0d5f823481",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "mnist/README.md",
+      "bytes": 152,
+      "git_blob_sha1": "dc97bd5c53121d93ad88bb7a2a89aec643d65c9f",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "mnist/main.py",
+      "bytes": 5392,
+      "git_blob_sha1": "dee5a384cb2c43acf7c7ce8e521330ccd01c6e92",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "mnist/requirements.txt",
+      "bytes": 18,
+      "git_blob_sha1": "ac988bdf8417d99a3c45236479862b18684c79f5",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "mnist_forward_forward/README.md",
+      "bytes": 1161,
+      "git_blob_sha1": "0c8f2fa717c44cd34e7b15d1e41624c01134e876",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "mnist_forward_forward/main.py",
+      "bytes": 5833,
+      "git_blob_sha1": "25bc187b2928e7e58f7a85332849a724a24dd47e",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "mnist_forward_forward/requirements.txt",
+      "bytes": 18,
+      "git_blob_sha1": "ac988bdf8417d99a3c45236479862b18684c79f5",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "mnist_hogwild/README.md",
+      "bytes": 958,
+      "git_blob_sha1": "dfdb4b9b3045ba0927ecb35d8fe78161f2c4d7b1",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "mnist_hogwild/main.py",
+      "bytes": 4205,
+      "git_blob_sha1": "6fa449233d3a38c97fd1f3e87ac91132f6681131",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "mnist_hogwild/requirements.txt",
+      "bytes": 26,
+      "git_blob_sha1": "6cec7414dc969957833c135366abe197fa72014a",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "mnist_hogwild/train.py",
+      "bytes": 2038,
+      "git_blob_sha1": "49d171c451b740b0541bc1588b622780c9bd44f7",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "mnist_rnn/README.md",
+      "bytes": 993,
+      "git_blob_sha1": "37ab0757b668dd4f31bc941a28b0c7a54901be0e",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "mnist_rnn/main.py",
+      "bytes": 5658,
+      "git_blob_sha1": "550bd4948ff869a7815a1f1fac57c01a3591a3e8",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "mnist_rnn/requirements.txt",
+      "bytes": 18,
+      "git_blob_sha1": "ac988bdf8417d99a3c45236479862b18684c79f5",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "regression/README.md",
+      "bytes": 99,
+      "git_blob_sha1": "f1f9067a30ec4895ce7bf50614393b2c72892ce4",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "regression/main.py",
+      "bytes": 1595,
+      "git_blob_sha1": "cb41ad70eca2387eff4535a85f791b10726c2d25",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "regression/requirements.txt",
+      "bytes": 6,
+      "git_blob_sha1": "12c6d5d5eac2aa9e97516ec03233adc7e98b9801",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "reinforcement_learning/README.md",
+      "bytes": 167,
+      "git_blob_sha1": "15ead6c109c67b4164318d75dcb41b6bf81ebd14",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "reinforcement_learning/actor_critic.py",
+      "bytes": 5370,
+      "git_blob_sha1": "c9cf3b9c61f1987177b1960d63511e0ca53e9793",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "reinforcement_learning/reinforce.py",
+      "bytes": 3384,
+      "git_blob_sha1": "048ea99f3782eac3984b2897794ebe7625a2def8",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "reinforcement_learning/requirements.txt",
+      "bytes": 39,
+      "git_blob_sha1": "e21bf14fd9aa0350aa94304c0f423a253dd7e55c",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "run_cpp_examples.sh",
+      "bytes": 4116,
+      "git_blob_sha1": "d5721d8ee7491dc2daa09ff7690a00110e95ad00",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "run_distributed_examples.sh",
+      "bytes": 3029,
+      "git_blob_sha1": "5673e3bbd7ec31244e27226be428d3b97f187b6f",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "run_python_examples.sh",
+      "bytes": 8648,
+      "git_blob_sha1": "caa58fc3a3ed0f4d5b6cd810a79d1441aba1c9e1",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "runtime.txt",
+      "bytes": 4,
+      "git_blob_sha1": "bd28b9c5c27e0dfa60da94179ec9b23f2be8be0c",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "siamese_network/README.md",
+      "bytes": 1804,
+      "git_blob_sha1": "d11f83a9a071e977c9dfb5295d7ac4d6026f6d61",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "siamese_network/main.py",
+      "bytes": 12938,
+      "git_blob_sha1": "d2e8e09207bd99af794005631e9993a15f2fb963",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "siamese_network/requirements.txt",
+      "bytes": 18,
+      "git_blob_sha1": "ac988bdf8417d99a3c45236479862b18684c79f5",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "super_resolution/README.md",
+      "bytes": 1793,
+      "git_blob_sha1": "68bbd473aff92a813de8a3f9670e9e2485d73862",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "super_resolution/data.py",
+      "bytes": 2044,
+      "git_blob_sha1": "54cca7fa614d29a6e30070184016c505c6129129",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "super_resolution/dataset.py",
+      "bytes": 1083,
+      "git_blob_sha1": "324f34ae6c34b76e16083bea05bf71e2af809779",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "super_resolution/main.py",
+      "bytes": 3094,
+      "git_blob_sha1": "1112f52d173fa7fbf0b6404ac83d9add933d87e7",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "super_resolution/model.py",
+      "bytes": 1060,
+      "git_blob_sha1": "f7aab498a62b3419de494f61204303f0ebb03fb0",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "super_resolution/requirements.txt",
+      "bytes": 22,
+      "git_blob_sha1": "877dcb484e196b36821dabba47efef055869777b",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "super_resolution/super_resolve.py",
+      "bytes": 1720,
+      "git_blob_sha1": "d21ae9d0faeafb43229421a00f78ac2ed37ad858",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "time_sequence_prediction/README.md",
+      "bytes": 821,
+      "git_blob_sha1": "d65bb02e8e1ee6f39d8a1c755ea464a621c0dd59",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "time_sequence_prediction/generate_sine_wave.py",
+      "bytes": 275,
+      "git_blob_sha1": "2b6cdf0f46986ea6207bb04b3d7b6ba6e1bea403",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "time_sequence_prediction/requirements.txt",
+      "bytes": 21,
+      "git_blob_sha1": "a1ba01197c15ccbc9e31588adb7d11c57f2ec024",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "time_sequence_prediction/train.py",
+      "bytes": 3333,
+      "git_blob_sha1": "2ccc85dc5a8f340c632bfa307e7b049d9fc2286e",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "utils.sh",
+      "bytes": 1597,
+      "git_blob_sha1": "3dd3246f6c7262ef81ea6b0edf8d220b0c3589ac",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "word_language_model/README.md",
+      "bytes": 3182,
+      "git_blob_sha1": "fc988863cf8b2e149291e99aa78d71f80bf1fff8",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "word_language_model/data.py",
+      "bytes": 1482,
+      "git_blob_sha1": "a2f2249382b9eb094bb55c931ea68220e9a384fc",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "word_language_model/data/wikitext-2/README",
+      "bytes": 159,
+      "git_blob_sha1": "c6fd69c265cb12c64858132965b132fa7e414468",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "word_language_model/data/wikitext-2/test.txt",
+      "bytes": 1256449,
+      "git_blob_sha1": "6f3fc88e4cd88456ea892971f9f12243e8428624",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "word_language_model/data/wikitext-2/train.txt",
+      "bytes": 10797148,
+      "git_blob_sha1": "2d84b35af79e411d73ea7cae83c73964c6ac83b4",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "word_language_model/data/wikitext-2/valid.txt",
+      "bytes": 1121681,
+      "git_blob_sha1": "eec944eb2d9e46061cd34a6913528797db6842fc",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "word_language_model/generate.py",
+      "bytes": 3886,
+      "git_blob_sha1": "e3dd1dd8a03847999fc729bd352f2699e5a8153b",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "word_language_model/main.py",
+      "bytes": 11669,
+      "git_blob_sha1": "581b17cecd7d8008387c89f8e4b708dd33d88d01",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "word_language_model/model.py",
+      "bytes": 5951,
+      "git_blob_sha1": "94d773bd1e931f48d6e4cd82916e26987f2f096c",
+      "reason": "outside_requested_vae_subtree"
+    },
+    {
+      "path": "word_language_model/requirements.txt",
+      "bytes": 11,
+      "git_blob_sha1": "90b9e8b11d2befa192971c258f9617187f54e255",
+      "reason": "outside_requested_vae_subtree"
+    }
+  ],
+  "total_included_bytes": 7501,
+  "root_license_path": "source/LICENSE",
+  "root_license_sha256": "7e5dc9b5cf276166c4a0678d33e53b14e3d7ef47eee9356ab786c4ba45414efd",
+  "compressed_archive_bytes": null,
+  "compressed_archive_sha256": null,
+  "source_bytes_modified": false,
+  "limits": {
+    "compressed_per_repo": 83886080,
+    "declared_expanded": 268435456,
+    "per_file": 4194304,
+    "kept_per_repo": 67108864
+  }
+}

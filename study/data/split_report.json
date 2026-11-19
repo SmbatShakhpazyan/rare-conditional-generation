@@ -1,0 +1,56 @@
+{
+  "all_split_component_intersections": 0,
+  "component_assignment": "fixed_hash_70_15_15",
+  "eligible_components": 8005,
+  "exact_or_flip_annotation_conflict_union_components": 4,
+  "excluded_touching_old_validation_or_test_components": 1982,
+  "new_split_total_images": [
+    112615,
+    23156,
+    25217
+  ],
+  "original_validation_or_test_images_used": 0,
+  "partition_search_performed": false,
+  "quarantined_rows": 41611,
+  "rows_quarantined_due_to_exact_or_flip_conflict": 219,
+  "split_group_component_counts": [
+    [
+      3097,
+      1664,
+      2780,
+      282
+    ],
+    [
+      615,
+      327,
+      597,
+      67
+    ],
+    [
+      674,
+      377,
+      617,
+      65
+    ]
+  ],
+  "split_group_image_counts": [
+    [
+      50146,
+      15293,
+      46234,
+      942
+    ],
+    [
+      9944,
+      3074,
+      9885,
+      253
+    ],
+    [
+      10545,
+      4127,
+      10372,
+      173
+    ]
+  ]
+}

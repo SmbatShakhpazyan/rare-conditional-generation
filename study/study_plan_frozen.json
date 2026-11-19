@@ -1,0 +1,84 @@
+{
+  "status": "frozen_before_teacher_grid_validation_test",
+  "study_id": "generative_recovery_1500",
+  "training_sources": {
+    "models.py": "f82bfdd31060fe357a3102fa4debd110da5989f86c5f9e61b6163036f579f5fa",
+    "model_losses.py": "f127c7f3a8ec296f0c3904a6538b7eb1ca3ce31fb5b6a8652335d33677c8d098",
+    "compensated_interaction.py": "7f90295a5fd43d70b9d1cdbb3dd2b9bfb317e7c959a57a648c8a928e9ba20729",
+    "train_v3.py": "1ccd1581daa4715f1f792ae6097548d7283c5bb4dba1fb2a27bac48727fd1c79",
+    "interaction_witness.py": "04a8233e84dfd1ce63e442f6607a59d6070dc23cc17dab800900aa5567827179",
+    "interaction_statistics.py": "62ed02c62e564873929fd02ff5cee68c54cb5dbb8ae5b8c864503cbd1d822651"
+  },
+  "auxiliary_sources": {
+    "src/prepare_teacher_v3.py": "ff817a4c2b65b6ca4f6bab431814f4e82384301da3a2ed95a867bb6a34a4c2bb",
+    "runtime/archive_v3_model.py": "bc0b761792d13a33329b2e452501654485e1a413ffc8ac1c8972922c13e76ccc",
+    "tests/test_interaction_statistics.py": "a2274f75a27f535069344bbb36fad2972fb7e3d3e186386bbd34b40a0c2b5276",
+    "tests/test_interaction_witness_torch.py": "1a2e28a11215d991f629ab73d547b583a9eb974c1663e8cd545cfc2a66b211cd",
+    "runtime/launch_v3_study.py": "e51feafb711f0093163fab03c09b1c3922e095938a551615fd0045f935ab6c16"
+  },
+  "data_ready_sha256": "839862f7637646ee753014739f13457315fde936e1124e17846912dafb96ce6a",
+  "data_approval_sha256": "78a48886d802e96c1813906bda93f364ad0fa5378a87b4b3c9129f207ac3565d",
+  "quality_results_seen": false,
+  "development_seed": 909,
+  "development_steps": 1500,
+  "grid": [
+    [
+      "C_l0p1_k0",
+      "C",
+      0.1,
+      0.0
+    ],
+    [
+      "C_l0p1_k1",
+      "C",
+      0.1,
+      1.0
+    ],
+    [
+      "C_l1_k0",
+      "C",
+      1.0,
+      0.0
+    ],
+    [
+      "C_l1_k1",
+      "C",
+      1.0,
+      1.0
+    ]
+  ],
+  "ema_decays": [
+    0.99,
+    0.999
+  ],
+  "main_seeds": [
+    101,
+    202,
+    303
+  ],
+  "main_steps_rule": "FIXED1500_BEFORE_ANY_VALIDATION_no_budget_selection",
+  "teacher": "last_rawD_B_seed909_1500_fixed_eval_fulltrain_stats",
+  "main_optional_V2": false,
+  "maximum_confirmation_runs": 9,
+  "fixed_main_steps_before_any_validation": 1500,
+  "V2_lost_models_or_metrics_pooled": false,
+  "selection": "validation_group11_KID_min_rounded12_then_smallerlambda_then_kappa0_then_ema.999",
+  "evaluation": {
+    "generated_per_group": 512,
+    "analysis_per_group": 512,
+    "real_cap_per_group": 512,
+    "generated_latent_coupling": "shared_across_four_conditions_and_models",
+    "latent_bank_algorithm": "numpy_default_rng_PCG64_standard_normal_float32_512x128",
+    "validation_z_seed": 64001,
+    "validation_real_hash_seed": 65001,
+    "test_z_seed": 94001,
+    "test_real_hash_seed": 95001,
+    "bootstrap_seed": 95003,
+    "bootstrap_replicates": 2000,
+    "family_size": 2,
+    "conservative_reserved_slots": 4,
+    "one_sided_percentile_level": 0.9875,
+    "real_bootstrap_unit": "leakage_union_component",
+    "training_seed_population_inference": false
+  }
+}

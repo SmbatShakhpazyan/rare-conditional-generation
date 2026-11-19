@@ -1,0 +1,4 @@
+# Exact local CPU validation environment, not a universal hardware lockfile.
+torch==2.15.0
+numpy==2.5.5
+

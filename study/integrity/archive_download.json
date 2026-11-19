@@ -1,0 +1,20 @@
+{
+  "HTTP_statuses": [
+    302,
+    200
+  ],
+  "attempts": 1,
+  "auth_cookies_proxy_or_netrc_used": false,
+  "bytes": 1427750792,
+  "elapsed_seconds": 15.441061800999705,
+  "endpoint_without_query": "https://www.kaggle.com/api/v1/datasets/download/jessicali9530/celeba-dataset",
+  "original_author_ZIP_claimed": false,
+  "redirect_hosts_only": [
+    "www.kaggle.com",
+    "storage.googleapis.com"
+  ],
+  "retries": 0,
+  "sha256": "4ceccf7dffb6f3b40559fb9ae68b42a71c3528b2881b787d65f4d1f75329f02d",
+  "status": "authenticated_public_Kaggle_ZIP",
+  "utc": "2026-11-19T10:45:48.703194+00:00"
+}

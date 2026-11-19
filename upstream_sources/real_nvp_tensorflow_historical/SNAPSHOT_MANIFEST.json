@@ -1,0 +1,84 @@
+{
+  "repository": "tensorflow/models",
+  "repository_url": "https://github.com/tensorflow/models",
+  "commit_sha": "1345ec9bb110ec1173f7558d3d700a5a42ae2b2f",
+  "pinned_commit_url": "https://github.com/tensorflow/models/tree/1345ec9bb110ec1173f7558d3d700a5a42ae2b2f",
+  "primary_paper_url": "https://arxiv.org/abs/1605.08803",
+  "role": "Historical official TensorFlow research/real_nvp subtree at the explicitly supplied commit.",
+  "license": "Apache-2.0",
+  "github_HEAD_license_metadata_not_used_as_pinned_text": {
+    "key": "other",
+    "name": "Other",
+    "spdx_id": "NOASSERTION",
+    "url": null,
+    "node_id": "MDc6TGljZW5zZTA="
+  },
+  "upstream_code_executed": false,
+  "upstream_tests_or_training_run": false,
+  "reproduced_paper_results": false,
+  "filtered_not_full_asset_snapshot": true,
+  "status": "PINNED_LICENSED_FILTERED_TEXT_SOURCE_SNAPSHOT",
+  "included_files": {
+    "LICENSE": {
+      "bytes": 11405,
+      "sha256": "d4c434ed1f5b4f853f32acd11f6be7c2b34763babbe9fdd71fb95ed5fd6b3d8a",
+      "git_blob_sha1": "43fcf7bf1f1f9f824a1debf05d6ced45bf5810aa",
+      "upstream_blob_url": "https://github.com/tensorflow/models/blob/1345ec9bb110ec1173f7558d3d700a5a42ae2b2f/LICENSE"
+    },
+    "research/real_nvp/README.md": {
+      "bytes": 8560,
+      "sha256": "1df4402dfb0c5be1fca0dc913e7746cc06c17bc90559e13c8305740e064c2cf9",
+      "git_blob_sha1": "20eda29ec3d2d0a34608f4823b97a9b7789419ff",
+      "upstream_blob_url": "https://github.com/tensorflow/models/blob/1345ec9bb110ec1173f7558d3d700a5a42ae2b2f/research/real_nvp/README.md"
+    },
+    "research/real_nvp/__init__.py": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob_sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "upstream_blob_url": "https://github.com/tensorflow/models/blob/1345ec9bb110ec1173f7558d3d700a5a42ae2b2f/research/real_nvp/__init__.py"
+    },
+    "research/real_nvp/celeba_formatting.py": {
+      "bytes": 3146,
+      "sha256": "77b5b73638a49f463eb806a61f5559b82bb1f09f10bf9edbbb0317c55f4403a7",
+      "git_blob_sha1": "e03571086d88763264d7660aa5e9db5e9074dec5",
+      "upstream_blob_url": "https://github.com/tensorflow/models/blob/1345ec9bb110ec1173f7558d3d700a5a42ae2b2f/research/real_nvp/celeba_formatting.py"
+    },
+    "research/real_nvp/imnet_formatting.py": {
+      "bytes": 3296,
+      "sha256": "7a6a0f11d6a1dffdc5d40c9db3e95d1d80905df7f0605dc8fea28213c72be399",
+      "git_blob_sha1": "1775dd54d368b62d047d1428d4bcf79ad4a68ae0",
+      "upstream_blob_url": "https://github.com/tensorflow/models/blob/1345ec9bb110ec1173f7558d3d700a5a42ae2b2f/research/real_nvp/imnet_formatting.py"
+    },
+    "research/real_nvp/lsun_formatting.py": {
+      "bytes": 3486,
+      "sha256": "2ffe55f9d029797b64213ee575fa89819a96d48dce365aa66450f49dfc91d8ba",
+      "git_blob_sha1": "13a21c5e90f86dcdea777419d1df848fcea03d45",
+      "upstream_blob_url": "https://github.com/tensorflow/models/blob/1345ec9bb110ec1173f7558d3d700a5a42ae2b2f/research/real_nvp/lsun_formatting.py"
+    },
+    "research/real_nvp/real_nvp_multiscale_dataset.py": {
+      "bytes": 69990,
+      "sha256": "62424c4bcab496d85c15c0260fd387a5e1769ce6f2350bb67c83cbfff1814fd5",
+      "git_blob_sha1": "c0e1864f1988cd983cdba14ced2462dae1b67e29",
+      "upstream_blob_url": "https://github.com/tensorflow/models/blob/1345ec9bb110ec1173f7558d3d700a5a42ae2b2f/research/real_nvp/real_nvp_multiscale_dataset.py"
+    },
+    "research/real_nvp/real_nvp_utils.py": {
+      "bytes": 16553,
+      "sha256": "3aaaa2b656fd0f75b0090d99393d2cb173b98806e8cce32cbb6c8f30ddd475bf",
+      "git_blob_sha1": "d8240f0e98d5b0d91bab8a9027ac737eb425a999",
+      "upstream_blob_url": "https://github.com/tensorflow/models/blob/1345ec9bb110ec1173f7558d3d700a5a42ae2b2f/research/real_nvp/real_nvp_utils.py"
+    }
+  },
+  "excluded_files": [],
+  "total_included_bytes": 116436,
+  "root_license_path": "source/LICENSE",
+  "root_license_sha256": "d4c434ed1f5b4f853f32acd11f6be7c2b34763babbe9fdd71fb95ed5fd6b3d8a",
+  "compressed_archive_bytes": null,
+  "compressed_archive_sha256": null,
+  "source_bytes_modified": false,
+  "limits": {
+    "compressed_per_repo": 83886080,
+    "declared_expanded": 268435456,
+    "per_file": 4194304,
+    "kept_per_repo": 67108864
+  }
+}

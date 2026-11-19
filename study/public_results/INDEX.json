@@ -1,0 +1,129 @@
+{
+  "status": "ALL10_VAL_ALL6_TEST_AND_CI_AGGREGATE_DERIVATIVES",
+  "validation_points": 10,
+  "test_points": 6,
+  "bootstrap_reports": 1,
+  "records": [
+    {
+      "public_path": "public_results/validation/B_seed909_ema0.99.json",
+      "original_source_path": "validation_evaluation/points/B_seed909_ema0.99.json",
+      "original_source_sha256": "93ed37c9cbe12f0f4898350b5207df4a32113f999acaef755133880ebfae9a6b",
+      "public_sha256": "a79345f38c4443e034a163e1827bb4cd2265317e7f21e54f4706b265c1492ce3",
+      "transformation": "Strict allowlist of model/config hashes and aggregate metrics; all selected-row, filename and per-image group/support lists omitted."
+    },
+    {
+      "public_path": "public_results/validation/B_seed909_ema0.999.json",
+      "original_source_path": "validation_evaluation/points/B_seed909_ema0.999.json",
+      "original_source_sha256": "36f6750a574855e2798be41814ac706d91f0f66534a44a2581602679f2e2497b",
+      "public_sha256": "49a396abb973d5d5be3da51134718cd26d41a329abb3f4a2d3c1cbf253fd507a",
+      "transformation": "Strict allowlist of model/config hashes and aggregate metrics; all selected-row, filename and per-image group/support lists omitted."
+    },
+    {
+      "public_path": "public_results/validation/C_l0p1_k0_seed909_ema0.99.json",
+      "original_source_path": "validation_evaluation/points/C_l0p1_k0_seed909_ema0.99.json",
+      "original_source_sha256": "96b88a4559a96505cdf0b5977bec147ad325b68a22c0aa0a6c1820f26a12f6e3",
+      "public_sha256": "e0201e77534cc09148b9de00caaf2d8c8bed5f6ee07f4d9cb707730520c63cee",
+      "transformation": "Strict allowlist of model/config hashes and aggregate metrics; all selected-row, filename and per-image group/support lists omitted."
+    },
+    {
+      "public_path": "public_results/validation/C_l0p1_k0_seed909_ema0.999.json",
+      "original_source_path": "validation_evaluation/points/C_l0p1_k0_seed909_ema0.999.json",
+      "original_source_sha256": "ee2385eeaa0b8df941e513eb4a2f43d1e731ccfa365db481368c374509cb4955",
+      "public_sha256": "c4c8955de119da0d71f352dfc23e1e0a2b12bf2a776a998dcfc7dd14b6d0e5a7",
+      "transformation": "Strict allowlist of model/config hashes and aggregate metrics; all selected-row, filename and per-image group/support lists omitted."
+    },
+    {
+      "public_path": "public_results/validation/C_l0p1_k1_seed909_ema0.99.json",
+      "original_source_path": "validation_evaluation/points/C_l0p1_k1_seed909_ema0.99.json",
+      "original_source_sha256": "389c79aceff9eeee03a152f2df6823dcb97278dd7bf563cdb6d9eca3f0e153b4",
+      "public_sha256": "9403450c96f69683b506214b577883a1b1553af3139e40574ebb904f53036b04",
+      "transformation": "Strict allowlist of model/config hashes and aggregate metrics; all selected-row, filename and per-image group/support lists omitted."
+    },
+    {
+      "public_path": "public_results/validation/C_l0p1_k1_seed909_ema0.999.json",
+      "original_source_path": "validation_evaluation/points/C_l0p1_k1_seed909_ema0.999.json",
+      "original_source_sha256": "ae263e5f0578682944bf26ba4df9609da3c3e848e790c5fdaed78b713743a9e2",
+      "public_sha256": "54833674298f31d51d74b40b9f28df880f858e26ef6220a18a107c7efa096cf4",
+      "transformation": "Strict allowlist of model/config hashes and aggregate metrics; all selected-row, filename and per-image group/support lists omitted."
+    },
+    {
+      "public_path": "public_results/validation/C_l1_k0_seed909_ema0.99.json",
+      "original_source_path": "validation_evaluation/points/C_l1_k0_seed909_ema0.99.json",
+      "original_source_sha256": "ffe2a68c9adbd5d7d4b8f4e3ea3da4b04093fc3e0edc23c5be9b13fcaec671ae",
+      "public_sha256": "72450d638c070e04c23dc101ea82cd092eda5a0971c883a384001ef52056173e",
+      "transformation": "Strict allowlist of model/config hashes and aggregate metrics; all selected-row, filename and per-image group/support lists omitted."
+    },
+    {
+      "public_path": "public_results/validation/C_l1_k0_seed909_ema0.999.json",
+      "original_source_path": "validation_evaluation/points/C_l1_k0_seed909_ema0.999.json",
+      "original_source_sha256": "6efa60def6f7a5029d238aa2a92c11c6da5bced3ab613a26bcdb4ec71277698f",
+      "public_sha256": "df1d8d29e0b444e4f345a8a941412ba4637ab278c4e1e67fd71a1f4076e4a68e",
+      "transformation": "Strict allowlist of model/config hashes and aggregate metrics; all selected-row, filename and per-image group/support lists omitted."
+    },
+    {
+      "public_path": "public_results/validation/C_l1_k1_seed909_ema0.99.json",
+      "original_source_path": "validation_evaluation/points/C_l1_k1_seed909_ema0.99.json",
+      "original_source_sha256": "9b68de2da4b045da20993e8f6f35864c5f2887693c5b410221516694f15bc1ab",
+      "public_sha256": "ef42563d1b6cd8443b05c1948b8c0731937b7435c027b91b94a4a7d63bbbd05c",
+      "transformation": "Strict allowlist of model/config hashes and aggregate metrics; all selected-row, filename and per-image group/support lists omitted."
+    },
+    {
+      "public_path": "public_results/validation/C_l1_k1_seed909_ema0.999.json",
+      "original_source_path": "validation_evaluation/points/C_l1_k1_seed909_ema0.999.json",
+      "original_source_sha256": "f4865b7764e78f5246364c4ffd84fc6f9fb9862e45c513f708524a769dfa6ab1",
+      "public_sha256": "35fd0c5026f1a44008d83d495ef6549846bf533f6b3ad5103797aa881c1e9087",
+      "transformation": "Strict allowlist of model/config hashes and aggregate metrics; all selected-row, filename and per-image group/support lists omitted."
+    },
+    {
+      "public_path": "public_results/test/B_seed101_ema0.99.json",
+      "original_source_path": "test_evaluation/points/B_seed101_ema0.99.json",
+      "original_source_sha256": "49c30c122f5673d05b796fb182815eb335ce2513cc550711bd4e28e1d0cd3731",
+      "public_sha256": "98bf07f9262817e01bd89fb9a4183e956070967cdf829be32eff22e4ef9592fb",
+      "transformation": "Strict allowlist of model/config hashes and aggregate metrics; all selected-row, filename and per-image group/support lists omitted."
+    },
+    {
+      "public_path": "public_results/test/B_seed202_ema0.99.json",
+      "original_source_path": "test_evaluation/points/B_seed202_ema0.99.json",
+      "original_source_sha256": "16c93f26fed69c70403ee939bdc7468a9e782ac7e60bcbceb0448f7667cf4278",
+      "public_sha256": "89474d5e03d5ff06ef868199f8c67c2eb143d22c1366c4a34add96a1b8542db1",
+      "transformation": "Strict allowlist of model/config hashes and aggregate metrics; all selected-row, filename and per-image group/support lists omitted."
+    },
+    {
+      "public_path": "public_results/test/B_seed303_ema0.99.json",
+      "original_source_path": "test_evaluation/points/B_seed303_ema0.99.json",
+      "original_source_sha256": "6618f0bcd3f8b4f0b4331688d222a3b8ca81e359fb55aa5a41a8491ebffe12bb",
+      "public_sha256": "4b1761c5ab0f142fbee1d9685fd25aab2189bbfe0bd33bd14ff1262026ce0395",
+      "transformation": "Strict allowlist of model/config hashes and aggregate metrics; all selected-row, filename and per-image group/support lists omitted."
+    },
+    {
+      "public_path": "public_results/test/C_seed101_ema0.99.json",
+      "original_source_path": "test_evaluation/points/C_seed101_ema0.99.json",
+      "original_source_sha256": "9a734d48636c17e666e4e7e9d24726b0eb235ad2e2b1e78b5dade058ae6b61c8",
+      "public_sha256": "b4526c2baea14ca6dda0051210011afbb063261909756cd40c69392dcd3dead8",
+      "transformation": "Strict allowlist of model/config hashes and aggregate metrics; all selected-row, filename and per-image group/support lists omitted."
+    },
+    {
+      "public_path": "public_results/test/C_seed202_ema0.99.json",
+      "original_source_path": "test_evaluation/points/C_seed202_ema0.99.json",
+      "original_source_sha256": "a622cf24d361d8d9b8b76d473f27eed30e117f26892a6b91bff514a7e7babc14",
+      "public_sha256": "4c3520c396c2759dbccd0875d3a37cdb89d52d88644cdde35af95a43d454374f",
+      "transformation": "Strict allowlist of model/config hashes and aggregate metrics; all selected-row, filename and per-image group/support lists omitted."
+    },
+    {
+      "public_path": "public_results/test/C_seed303_ema0.99.json",
+      "original_source_path": "test_evaluation/points/C_seed303_ema0.99.json",
+      "original_source_sha256": "fb3b227520a72b4adacaa4ed94f42c00a4fbe9131e1db31a4ef90a3b28e4ab19",
+      "public_sha256": "f5e7b6e5655aa79341bcc299187f6808fd2127cc1658e5ff8d4474493214308b",
+      "transformation": "Strict allowlist of model/config hashes and aggregate metrics; all selected-row, filename and per-image group/support lists omitted."
+    },
+    {
+      "public_path": "public_results/test_bootstrap/C_vs_B.json",
+      "original_source_path": "test_evaluation/bootstrap/C_vs_B.json",
+      "original_source_sha256": "2773363ad22f78e0cb08ba3ee16ba0a959866fa1a44244a0d6081a40ff68dc96",
+      "public_sha256": "b55111b61f1578a6603b00b0c242e734360845706fbce354d85655a6203d257f",
+      "transformation": "Selected real/fake ID lists and component support are omitted. Saved bounds and model/hash bindings are retained without recomputing the bootstrap."
+    }
+  ],
+  "original_record_bytes_redistributed": false,
+  "new_metrics_or_inference": false
+}

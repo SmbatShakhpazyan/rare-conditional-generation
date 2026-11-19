@@ -1,0 +1,21 @@
+{
+  "accepted_unique_filename_pair_edges": 1560,
+  "all_canonical_images_and_horizontal_reflections_included": true,
+  "band_widths": [
+    11,
+    11,
+    11,
+    11,
+    10,
+    10
+  ],
+  "candidate_generator": "all15_pairs_of6_disjoint_bands_sorted_numpy_indexes",
+  "complete_candidate_generation": true,
+  "full_RGB_pixel_checks": 65791,
+  "hamming_pass_orientation_pairs": 67317,
+  "maximum_RGB_squared_error": 786432,
+  "maximum_hamming_distance": 4,
+  "orientation_pair_checks": 26346501,
+  "status": "COMPLETED_declared_relation_screen",
+  "universal_semantic_duplicate_guarantee": false
+}

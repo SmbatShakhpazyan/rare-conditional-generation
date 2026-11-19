@@ -1,0 +1,10 @@
+{
+  "status": "SOURCE_BYTES_AND_ASSET_EXCLUSION_PASS",
+  "source_files_verified": 361,
+  "SHA256_and_Git_blob_SHA1_verified": true,
+  "null_bytes": 0,
+  "embedded_notebook_outputs_or_attachments": 0,
+  "prohibited_asset_extensions": 0,
+  "credential_pattern_findings_paths_counts_only": [],
+  "scope": "Pinned source text integrity and selected pattern checks; no upstream source imported or executed; not a universal security or license-advice certification."
+}

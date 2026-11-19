@@ -1,0 +1,19 @@
+{
+  "status": "BUDGET_FROZEN_BEFORE_VALIDATION",
+  "main_steps": 1500,
+  "fixed_attempts_before_any_validation": true,
+  "forecast": {
+    "development_makespan_seconds": 323.895221699986,
+    "maximum_confirmation_makespan_seconds": 744.7098206614075,
+    "multiplier": 1.12,
+    "evaluation_export_reserve_seconds": 1500,
+    "projected_seconds": 2696.837647444761
+  },
+  "remaining_seconds": 3403.346701,
+  "speeds": {
+    "B": 0.08628899603714282,
+    "C": 0.10796507389999534
+  },
+  "validation_or_test_quality_seen": false,
+  "utc": "2026-11-19T10:56:16.653302+00:00"
+}

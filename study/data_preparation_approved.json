@@ -1,0 +1,22 @@
+{
+  "AI_root_approval": true,
+  "approved_utc": "2026-11-19T10:20:02.910014+00:00",
+  "attached_root": "/kaggle/input/datasets/jessicali9530/celeba-dataset",
+  "deadline_utc": "2026-11-19T11:53:00Z",
+  "expected_input_array_sha256": {
+    "clean_index_sha256": "d278e0a67060e70416314a05cb8ea29d6ccd41b80e22ab90c89226bd847156e1",
+    "component_ids_sha256": "bb039432c9bc102fb7d0555a8d381293671d46c46a62bf624dcc0aab31239e8d",
+    "original_cache_sha256": "98d39e0febb8c1946aba70eca2ca5cb96a657cdf6075f7ae32fc56d4c6f9bd5c",
+    "original_index_sha256": "21dd7eab4a6bb76f8b64e23b1b3b63494e3423bcb03ea26b5db863317890dca5"
+  },
+  "independent_static_review_sha256": "7722038dc67f8646ddbb8ebd4fffee7d93031481f6ef37862d5bd107d12297a3",
+  "prior_vm_files_absent_observed": true,
+  "pure_sources": {
+    "audit/audit_exact_identity_recovery.py": "4ddc8b7e9ca38c50776295f7b5ba50c1efcdd3cb953df51ab48f584314d68794",
+    "audit/build_clean_component_split.py": "27af26630cfe64a54bf0b65976f28dde4754b64bbd73821424830df51fa8cded",
+    "src/cache_images.py": "8878bfd7c879dd2cbe263496f61f33562b9659bfe1151112b3140b696fb931f5"
+  },
+  "quality_values_seen": false,
+  "source_sha256": "1bfc098f30aeb3c5ee155f4d056dac82f0f0e3e4c2b11c26f1bee384791daa97",
+  "status": "approved_before_v3_standalone_canonical_and_clean_rebuild"
+}

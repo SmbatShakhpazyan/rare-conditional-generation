@@ -1,0 +1,23 @@
+{
+  "EMA_bytes": 2977255,
+  "EMA_bytes_copied_unchanged": true,
+  "EMA_file": "B_seed202_EMA.pt",
+  "EMA_sha256": "1d8661c488f6f3315c27486244cf68ead51a061d011a273342d22ddc900fc71c",
+  "Torch_payload_loaded_by_archiver": false,
+  "arm": "B",
+  "clean_index_sha256": "d278e0a67060e70416314a05cb8ea29d6ccd41b80e22ab90c89226bd847156e1",
+  "complete_record_sha256": "5a6cf34f1427f9cd719c39974a969d3f518197cbc0fbfa92a9f0176d703f3c95",
+  "component_ids_sha256": "bb039432c9bc102fb7d0555a8d381293671d46c46a62bf624dcc0aab31239e8d",
+  "data_ready_sha256": "839862f7637646ee753014739f13457315fde936e1124e17846912dafb96ce6a",
+  "models_py_sha256": "f82bfdd31060fe357a3102fa4debd110da5989f86c5f9e61b6163036f579f5fa",
+  "original_full_checkpoint_sha256": "8b1f254b680ae543eec2ecd75516ab9eb43f47d3c1dbff3db39965f5a48778d9",
+  "run": "B_seed202",
+  "seed": 202,
+  "selected_ema_decay": 0.99,
+  "selection_sha256": "ff5055b8c662ae9cea30f38143351978c04cb7dc5a75188a33e52b1b5c5b77e2",
+  "step": 1500,
+  "step_definition": "attempted_D_G_iterations",
+  "study_id": "generative_recovery_1500",
+  "study_plan_sha256": "3b3692067bf4baf8d7b03ac28f98ed60818393d2f047946c5aaf22df62fe28f8",
+  "training_producer": "source_bound_train_v2_minimal_CPU_EMA_artifact"
+}

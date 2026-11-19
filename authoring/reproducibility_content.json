@@ -1,0 +1,206 @@
+{
+  "title": "Contributions Evidence Data Records and Reproducibility",
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Contribution and the question actually answered"
+    },
+    {
+      "type": "paragraph",
+      "text": "The contribution of the completed study is a specified candidate correction, a component-based data audit, a validation-only selection procedure and a fully retained negative comparison. The candidate does not introduce a different generator architecture. It adds a lagged signed teacher-feature interaction term to the common adversarial objective. Its constituent ideas—feature matching, conditional moments, detached moving witnesses, scale normalization and tolerance regions—have established antecedents. The defensible contribution is their particular combination, implementation and test under the stated conditions. Source availability should not be converted into a claim that these principles originated here."
+    },
+    {
+      "type": "paragraph",
+      "text": "The empirical question is narrower than whether the method solves conditional generation. The primary endpoint was rare-condition KID for the supplied Male=1, Blond_Hair=1 bin of CelebA, after a fixed short budget. All four annotation combinations occurred in training. The experiment therefore tests a rare observed condition, not inference for an absent combination. It cannot establish a ranking of GANs against VAEs, autoregressive models, flows, diffusion or flow matching. No such family-level comparison was trained in the final recovery study."
+    },
+    {
+      "type": "paragraph",
+      "text": "The selected candidate did not improve the tested endpoint. Mean rare-test KID multiplied by 1,000 was 166.663 for B and 185.544 for C. Only confirmation seed 202 favored C. The positive mean difference and positive conditional upper bound are reported with the unfavorable and favorable seeds together. They support a negative result for this recipe, not a theorem that the candidate harms every dataset or optimization horizon. The selected tolerance multiplier was zero, so the confirmation experiment provides no demonstration that a positive uncertainty deadzone helps."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Evidence layers and what each one establishes"
+    },
+    {
+      "type": "paragraph",
+      "text": "A useful evidence hierarchy separates source, configuration, execution, measurement, transport and independent reproduction. Source shows the implemented operations and their potential dependencies. A configuration fixes dimensions, seeds and coefficients. Completion records report what a producer says actually ran. Point records bind selected model hashes to endpoint values and feature definitions. Transport checks establish that particular recorded bytes arrived unchanged. None of these steps alone proves that a fresh implementation or environment will reproduce the same numerical result."
+    },
+    {
+      "type": "paragraph",
+      "text": "The recovered scientific core contained 288 manifest-checked payloads. These included the frozen plan and selection, configurations, completion records, training summaries, aggregate audits, all ten validation points, all six test points and the computed conditional bootstrap report. Local checks compared saved values with the CSV tables, verified the source/model/record bindings and recomputed scalar summaries. They did not rerun generator inference, feature extraction, KID or the bootstrap from delivered weights. This difference is material and should remain visible even when every saved arithmetic comparison agrees."
+    },
+    {
+      "type": "paragraph",
+      "text": "SHA256 identifies byte strings and detects differences relative to a chosen record. It is not a signature certifying that an operator never observed a score, that a source was scientifically correct or that an experiment was free of every implementation error. The records explicitly treat claims about unseen test quality as operator provenance. Similarly, a completed cloud archive is evidence that the producer recorded an archive; local possession requires separate retrieval and verification of its bytes. The distinction explains why scientific computation can be complete while model delivery remains partial."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Data records and the declared leakage relation"
+    },
+    {
+      "type": "paragraph",
+      "text": "The audit begins with canonical RGB64 content rather than filenames alone. Source images are converted to RGB, center-cropped to 178 by 178 using the recorded rounding convention and resized with Pillow bicubic interpolation. The full canonical cache hash is fixed. Two different filenames can therefore denote equal content at the representation actually entering training. Horizontal reflection matters because training uses random horizontal augmentation; ignoring that equivalence could miss a direct route by which held-out content resembles an augmented training example."
+    },
+    {
+      "type": "paragraph",
+      "text": "The earlier partition audit found 24 training–validation, 11 training–test and two validation–test filename pairs under byte-verified canonical equality. Supplied identity labels themselves had no cross-partition overlap, illustrating that label separation and content separation are different properties. An authenticated supplied label is still a dataset annotation rather than certified real-person ground truth. Pair counts must not be described as numbers of people, and the absence of supplied-label overlap does not invalidate the detected image-content overlap."
+    },
+    {
+      "type": "paragraph",
+      "text": "Actual exposure vectors supplied a second layer of evidence. For seeds 101, 202 and 303, canonical exact-equivalent held-out content was associated with 95, 111 and 103 training presentations in the earlier runs. The test-only counts were 67, 78 and 73. One rare-test image was associated with 50, 63 and 62 presentations. These describe linked canonical source images before random flips, not necessarily repeated presentation of an unchanged raster. They do not quantify memorization, establish causal metric inflation or identify how much a counterfactual clean evaluation would change."
+    },
+    {
+      "type": "paragraph",
+      "text": "The fresh partition used connected components of the union of supplied identity, exact-image equality, flip equivalence and a declared near relation. That relation required 64-bit perceptual-hash Hamming distance at most four and aligned RGB root-mean-square error at most eight, with canonical and reflected orientations considered. The screen examined 26,346,501 orientation pairs and accepted 1,560 unique filename-pair edges. Completeness refers to the stated candidate-generation relation and its pixel test; it is not a guarantee that all semantic near duplicates were detected."
+    },
+    {
+      "type": "paragraph",
+      "text": "The target remains image-weighted within each condition. Combining observations into a leakage component changes the split and uncertainty bookkeeping; it does not silently replace an image mean by an equally weighted mean of people. In the recorded training statistics there were 5,604 union components overall, with 282 intersecting the rare bin. Neither figure is a certified effective sample size. Unequal numbers of images per component, cross-group components, an adaptive teacher and unmodeled dependence all prevent a simple conversion from image counts to an independent-information guarantee. Reporting image counts and component counts separately is therefore essential."
+    },
+    {
+      "type": "paragraph",
+      "text": "Whole components touching original validation or test data were excluded. Exact/flip annotation contradictions quarantined four whole components containing 219 rows. The overall 41,611 excluded/quarantined rows also include other declared exclusions and must not be relabeled as annotation conflicts. Fixed component hashing, without a partition search, produced 112,615 training, 23,156 validation and 25,217 test images. Rare-bin counts were 942, 253 and 173, within 282, 67 and 65 components. Components can span bins, so adding per-bin component counts does not recover a total number of distinct subjects."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "The training records and their computational meaning"
+    },
+    {
+      "type": "paragraph",
+      "text": "The actual networks use base width 32, overriding class defaults. The generator has 737,315 trainable parameters and the adversarial discriminator 888,545. Both B and C share these networks, initialization and optimizer recipe. C additionally uses a fixed discriminator teacher with 888,545 parameters, whose returned pre-projection vector has 128 coordinates. Reporting only equal generator parameter counts would hide this auxiliary computational cost. The candidate also receives four development trajectories versus one for B, so equality of individual training budgets does not imply equality of total search compute."
+    },
+    {
+      "type": "paragraph",
+      "text": "Every real batch contains sixteen images from each of the four training bins, sampled with replacement. A generator update uses sixteen shared latent vectors across all conditions in one joint 64-image forward pass. The discriminator fake pass uses a separate latent draw. The recipe uses hinge discrimination, negative mean critic score for the adversarial generator term, Adam learning rate 0.0002 and betas (0,0.9), horizontal flips on adversarial inputs and AMP. All six confirmation records report 1,500 successful G and D updates, zero AMP skips and 96,000 real-image presentations each."
+    },
+    {
+      "type": "paragraph",
+      "text": "Balanced presentations are not balanced independent information. Each group receives 24,000 presentations per run, but the rare training pool contains only 942 images. The number of distinct sampled training images varies by seed and is recorded separately. The candidate does not obtain additional rare real images when its loss is evaluated. It changes the direction of an update computed from the existing joint generator batch. Repeated observations and shared component membership remain relevant to uncertainty even when a minibatch has exactly equal group counts."
+    },
+    {
+      "type": "paragraph",
+      "text": "The teacher is the final raw discriminator of the fresh B development run at seed 909 after 1,500 attempts. It is fixed by the protocol, not selected by validation quality or taken from a lost earlier study. A single unaugmented pass over all 112,615 training images computes the target, within-group scale and signed component variability. The teacher remains in evaluation mode with parameters and spectral-normalization state frozen. This removes coordinate drift, but a teacher trained on the same real sample can still be imperfect or adaptive to that sample."
+    },
+    {
+      "type": "paragraph",
+      "text": "The confirmation completion records report training-loop times of approximately 137.38–139.86 seconds for B and 168.74–171.13 seconds for C. Those measurements describe these particular jobs and hardware, not a universal speed ratio. They exclude the interpretation that matching iteration counts makes auxiliary feature work free. Teacher construction, the full real-statistics pass, four candidate development configurations, two EMA evaluations and data preparation also consume resources. Parallel execution on two devices further distinguishes accumulated job time from elapsed study time. A later comparison should disclose both its per-trajectory budget and its full selection and evaluation costs."
+    },
+    {
+      "type": "paragraph",
+      "text": "The witness tracker accumulates fake contrasts during the first 500 successful G updates while the extra witness is zero. The next loss may use the previous tracker; after a successful step, the tracker incorporates the detached contrast computed before that step. Its beta is 0.9. Generator inference EMAs have decays 0.99 and 0.999, averaging parameters while copying buffers. These separate averages must not be conflated. Training-mode BatchNorm also makes the auxiliary functional depend on the joint batch, which differs from a moment of the final evaluation-mode EMA generator."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Selection and measurement records"
+    },
+    {
+      "type": "paragraph",
+      "text": "Development crossed lambda values 0.1 and 1 with kappa values 0 and 1 at seed 909, in addition to B. Each trajectory supplied two inference EMAs, yielding ten validation points rather than ten independent training runs. Selection minimized raw rare-group validation KID after rounding to twelve decimals, then used smaller lambda, smaller kappa and EMA 0.999 as tie preferences. All choices and scores are retained; other groups, PRDC or sample appearance were not alternate selection criteria. The selected recipes were frozen before fresh confirmation seeds 101, 202, 303."
+    },
+    {
+      "type": "paragraph",
+      "text": "Validation selected B EMA 0.99 and C with lambda 1, kappa 0, EMA 0.99. The best candidate rare-validation KID multiplied by 1,000 was 143.568, versus 140.856 for B. A separate matched zero-tolerance control would have duplicated the selected candidate, so no additional C0 confirmation was required. The development choices are finite-grid choices under one seed and one budget; they are not identified globally optimal hyperparameters. A differently designed method informed by these outcomes would need a fresh prospective evaluation rather than reuse this now-known test as an untouched confirmation set."
+    },
+    {
+      "type": "paragraph",
+      "text": "Evaluation fixed the Clean-FID clean-mode resize and Inception feature path, then applied the recorded cubic-kernel KID U-statistic formula. It did not compute or relabel the result as FID. Each model supplied 512 unfiltered requests per group, and all 512 entered analysis. At most 512 real examples were selected per group; rare validation and test used all 253 and 173 images. Shared PCG64 latent banks used distinct validation/test seeds 64001/94001. No attribute classifier, semantic judge, generated-image filtering or post-hoc relabeling was used. Feature similarity therefore cannot certify literal condition adherence."
+    },
+    {
+      "type": "paragraph",
+      "text": "The conditional bootstrap used 2,000 replicates, joint real-component resampling and joint fake latent-index resampling across groups and the three fixed model pairs. Its one-sided percentile level was 0.9875, retaining conservative comparison slots. The rare C-minus-B point difference was +18.880 in KID-times1,000 units, and the upper bound was +23.611. Training seeds, teacher fitting and hyperparameter selection were not resampled. This is not a confidence interval over a population of future GAN trainings, nor a calibrated confidence band for the train-derived teacher variability term."
+    },
+    {
+      "type": "paragraph",
+      "text": "PRDC used strict open-ball feature neighborhoods with k=3. Recall was zero in every one of the 24 model-by-group diagnostics. Some precision, density and coverage values were nonzero, but those facts do not establish broad support coverage. A finite-feature neighborhood test at a small reference-bank size is not a theorem of global distributional disjointness or universal mode collapse. The correct reporting practice is to retain the poor coverage result alongside KID, rather than select only favorable metrics or attractive grids to make a quality claim."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What the public source subset preserves"
+    },
+    {
+      "type": "paragraph",
+      "text": "The public package separates preserved original bytes from new aggregate derivatives. Selected original source, configurations, plans, completion records and aggregate reports retain their exact verified-core SHA256 values. Every one of the 288 original payloads receives an inclusion or exclusion decision in the source inventory. The original manifest is retained as provenance, not falsely installed as the manifest of a smaller tree. A new public manifest identifies the files actually distributed and a standard-library verifier checks membership, size, hash and preserved-source identity without loading tensors or accessing the network."
+    },
+    {
+      "type": "paragraph",
+      "text": "The original point and interval reports contain selected real filenames grouped by condition. Publishing these intact would redistribute per-image annotation associations, even though the visible endpoint is a scalar. The public package therefore provides aggregate-only derivatives of all ten validation points, six test points and the interval report. A strict allowlist retains endpoint values, counts, model/configuration hashes and source-record hashes while omitting row, filename and support lists. These derivatives are explicitly labeled as derivatives, not as byte-identical copies of their source reports. Their creation does not rerun a metric."
+    },
+    {
+      "type": "paragraph",
+      "text": "Full-precision saved KID values remain in the aggregate derivatives; multiplying by 1,000 for a table is a display convention. The raw U-statistic is not clipped at zero, and a macro mean is not substituted for the rare-group endpoint. Conversely, a collection of scalar values and feature-bank hashes cannot recreate the underlying Gram matrices or resampling support. Agreement of formatted numbers verifies transcription and arithmetic at the record layer. Independent numerical reproduction would still require authenticated bank and model bytes, the declared preprocessing, and the actual metric implementation. This boundary remains even when every table cell is internally consistent."
+    },
+    {
+      "type": "paragraph",
+      "text": "This conservative public subset contains no CelebA face pixels, original annotation bodies, supplied identity-label arrays, per-image exposure vectors, selected reference supports or full split/component arrays. Synthetic grids are also omitted to keep the boundary unambiguous. Account/browser receipts, screenshots, session/process logs, filesystem logs and encoded transport chunks are excluded. A pattern scan checks selected text for common credential formats and local account paths, reporting only counts and paths. Such a scan complements the allowlist review; it is not a universal guarantee that every conceivable secret format has been detected."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Artifact delivery after the files only recovery"
+    },
+    {
+      "type": "paragraph",
+      "text": "The original scientific computation and the final delivered model set have different completion states. Complete selected-EMA archives were recovered for B101 and C101, C202, C303, giving four of the six confirmation generators. B202 and B303 remain unavailable as complete weights. The recovered scalar records bind hashes for those missing models, but hashes do not reconstruct tensors. Later retrieval recovered four of the eight original B202 encoded fragments and checked their original encoded/decoded hashes. Those fragments do not form a complete ZIP or a fifth usable model."
+    },
+    {
+      "type": "paragraph",
+      "text": "The selected real-feature/latent reference archive, fixed-teacher snapshot and complete derived split-support archive were not retrieved. Numerical target/scale/variability values in statistics.json do not replace the missing teacher function. Completion/configuration records do not replace the missing component map or bank bytes. Full GAN optimizer checkpoints were not delivered. A replacement session lacked the previous study directory and missing archive paths, and no saved versions were observed in that notebook. This is a narrow observation about that session, not proof that every possible account backup was checked."
+    },
+    {
+      "type": "paragraph",
+      "text": "A portable replay adapter was prepared to avoid pretending that an EMA-only payload is a full training checkpoint. It validates selected EMA bytes, source/configuration bindings and original archive hashes, then writes fresh replay outputs. Preflight is metadata-only; a smoke mode computes one 64-image C101 condition-zero feature batch with no KID; full mode regenerates all requested fakes, with intervals enabled explicitly. A one-batch completion was observed, but its machine-readable report was not retrieved and a complete point/CI replay was not established. The adapter appropriately refuses the presently missing inputs."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Reproduction tiers and an honest route to a new study"
+    },
+    {
+      "type": "paragraph",
+      "text": "Three reproduction tasks should be distinguished. First, saved-record verification checks that table values, selection arithmetic and model/source identifiers agree; this is supported by the recovered core and public aggregate derivatives. Second, inference from an available EMA can demonstrate the executed generator architecture and generate new samples under the applicable rights, but it does not recover missing baseline models or the exact real reference bank. Third, numerical point/CI replay and exact training continuation require additional byte-identical inputs that are currently unavailable. Passing the first task must not be advertised as completing the other two."
+    },
+    {
+      "type": "paragraph",
+      "text": "The included synthetic statistics and CPU autograd fixtures test signed component covariance, detached previous-state gradients, warm-up/update semantics and state preservation. Their scopes are mathematical/software correctness. A skipped Torch test is not a passing autograd run. A cache-byte hash check establishes agreement of a declared preprocessing output, not a valid data license or general absence of leakage. The recorded producer environment and non-deterministic GPU-kernel caveat should accompany future commands; a list of version numbers is not a universally portable environment lock."
+    },
+    {
+      "type": "paragraph",
+      "text": "Historical orchestration sources retain their exact root, source, freshness and deadline gates. They are preserved for audit, not offered as authorization to resurrect an expired study. A fresh reproduction or extension should specify a new output tree, budget, validation grid and outer-test policy before accessing new scores. Missing artifacts must be replaced through a declared new experiment or an authenticated recovery, never by changing a record to say that absent bytes exist. Any newly trained substitute teacher or baseline is a new artifact and may change the scientific comparison."
+    },
+    {
+      "type": "paragraph",
+      "text": "CelebA access and redistribution follow the dataset owner's research-use terms; this public source release grants no further dataset, identity, publicity or commercial-use rights. External feature-network weights and software dependencies retain their own terms. A separate code license must not be read as a blanket license for dataset material or model tensors. The strongest reusable outcome is a transparent, bounded study: an explicit candidate, an audited data relation, complete retained scalar outcomes and a candid record of what cannot presently be regenerated. Reliable rare-condition improvement remains unresolved by the completed experiment."
+    }
+  ],
+  "provenance": {
+    "study_id": "generative_recovery_1500",
+    "new_training": false,
+    "metrics_recomputed": false,
+    "new_scientific_results": false,
+    "source_core_relative": "work/generative_training_v3/runtime/verified_research_core",
+    "source_bindings": {
+      "study_plan_frozen.json": "3b3692067bf4baf8d7b03ac28f98ed60818393d2f047946c5aaf22df62fe28f8",
+      "selection_frozen.json": "ff5055b8c662ae9cea30f38143351978c04cb7dc5a75188a33e52b1b5c5b77e2",
+      "budget_frozen_before_validation.json": "a81cd7eb25af5184f84295448cc1f839b51ef94d78bdd34eea2d807e38e11dd5",
+      "data/data_ready.json": "839862f7637646ee753014739f13457315fde936e1124e17846912dafb96ce6a",
+      "data/split_report.json": "1e957db3b051b7c07ccbb3c4716321a97f3b333de2a96eaf4a7f1ca76f109b17",
+      "data/near_screen_summary.json": "ee51c118f465d3f56ad9128e7e455a0da77c2d36202eee97b25f36b50b6df2c4",
+      "teacher/statistics.json": "e9bf785afd7077df4568cc9bf44bb9eb43212df9fb5a6c771eee299b49548084",
+      "test_evaluation/bootstrap/C_vs_B.json": "2773363ad22f78e0cb08ba3ee16ba0a959866fa1a44244a0d6081a40ff68dc96",
+      "prior_audit/actual_exposure_summary.json": "85a22d45c56098ef604a0a5b0e285c859a23734719216857cec030ac0c0f4a5a"
+    },
+    "public_source_manifest_sha256": "847802b069baa99c0a41364c85f2b5c4b2864072432bc0be2bc6ed3b92468195",
+    "delivery_status_source_relative": "outputs/generative_research_2026_11_19/transfer_recovery_status.json",
+    "delivery_status_sha256": "da1c2dd23e441b9907c1bfaea2d3b38060199e49ffb90130afd4f342d61922e4",
+    "dataset_terms_url": "https://mmlab.ie.cuhk.edu.hk/projects/CelebA.html",
+    "public_records_are_aggregate_derivatives": true,
+    "full_replay_claimed": false,
+    "word_count_whitespace": 2996
+  }
+}

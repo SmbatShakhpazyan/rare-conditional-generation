@@ -1,0 +1,1923 @@
+# Conditional Generative Models Under Data Imbalance
+
+Mathematical Foundations Leakage Audited Experiments and Complete Source Implementations
+
+Smbat Shakhpazyan   19 November 2026
+
+### Abstract
+
+Conditional generators must represent rare attribute combinations with limited independent information, while reliable evaluation requires more than disjoint filenames. This monograph develops the mathematical foundations, practical training and sampling procedures, and failure modes of major generative model families, then presents a completed component-audited conditional GAN experiment. The evaluated candidate adds a signed four-condition teacher-feature contrast, training-derived scale statistics and a lagged detached linear witness to a common balanced adversarial baseline. A component-derived tolerance is included in development, but validation selects lambda 1, kappa 0 and inference EMA decay 0.99, leaving that tolerance inactive. The new CelebA RGB64 partitions contain 112,615 training, 23,156 validation and 25,217 test images. Five development trajectories yield ten validation checkpoints; six fresh confirmation models are fitted at three paired seeds. Mean rare-condition KID multiplied by 1,000 is 166.663 for the baseline and 185.544 for the correction. The candidate-minus-baseline difference is +18.880, with a nominal one-sided 98.75% conditional bootstrap upper bound of +23.611. The specified comparison does not demonstrate improvement. Theoretical analysis proves limited identification and gradient properties, supplies counterexamples, explains the declared duplicate-screen completeness, and specifies a stronger conditional-kernel alternative that remains untrained. A separate implementation library supplies ten runnable reference methods with explicit deviations from their primary papers. CPU objective, sampler and state-reload tests check that library; strict forward-only checks verify four recovered study generators. These software checks are separate from the saved quality experiment and do not establish new efficacy results. The work retains all attempted validation choices and test seeds, distinguishes finite-bank uncertainty from training-algorithm uncertainty, and documents unavailable weights and reference inputs. Its contribution is an explicit attempted correction, a content-overlap audit, detailed derivations and an inspectable negative comparison, rather than a general solution, a new moment-matching principle or a universal ranking of model families.
+
+Keywords  conditional generation; data imbalance; generative adversarial networks; feature matching; diffusion; flow matching; data leakage; negative results; reproducibility
+
+## Contents
+
+- [Part 1 Generative model foundations](#part1)
+
+- [Part 2 The completed conditional GAN experiment](#part2)
+
+- [Part 3 Identification optimization leakage and uncertainty](#part3)
+
+- [Part 4 Complete implementations and software checks](#part4)
+
+- [Part 5 Evidence provenance and research reproducibility](#part5)
+
+- [Appendix A Complete study network architecture](#appendix_a)
+
+- [Appendix B Full diagnostic and implementation records](#appendix_b)
+
+- [References](#references)
+
+Parts 1 and 2 preserve the complete technical review and experimental account, with detailed model equations, exact optimization controls and all validation/test choices. Part 3 develops the proofs and unresolved problems. Parts 4 and 5 connect the mathematics to executable source, verification evidence and artifact provenance. Appendices retain stage-level architecture and complete diagnostic records.
+
+Three kinds of evidence are kept distinct throughout: the saved real-data quality experiment, constructed mathematical examples, and new CPU software checks. The measured cohort contains B and C only. Reference implementations and upstream source snapshots are implementation resources; they are not extra trained benchmark arms. Source code is supplied as complete executable files, with walkthroughs here, to preserve indentation and usability.
+
+![Figure 1  Standalone overview of the research question, experimental controls, evidence and limits. The other reviewed model families are reference implementations, not additional benchmark arms.](../figures/v20_research_overview.png)
+
+Figure 1  Standalone overview of the research question, experimental controls, evidence and limits. The other reviewed model families are reference implementations, not additional benchmark arms.
+
+<a id="part1"></a>
+
+## Part 1 Generative model foundations
+
+### 1 What a generative model must specify
+
+Let X denote an observation and Y a condition such as an annotation bin. A conditional generative model specifies a distribution Qθ(X|Y), either through an evaluable probability law or through a sampling procedure. The desired reference P*(X|Y) must be stated: it may be the empirical training distribution, a balanced group mixture, an independently sampled reference population, or a task-specific conditional target. These choices are scientifically different. Learning the natural training mixture does not automatically mean learning a balanced or socially desirable target.
+
+![Figure 2  Reviewed model mechanisms. Each node identifies the training signal and sampling operation. The categories overlap, and only the B/C conditional GAN cohort supplies the reported training benchmark.](../figures/v01_model_mechanisms.png)
+
+Figure 2  Reviewed model mechanisms. Each node identifies the training signal and sampling operation. The categories overlap, and only the B/C conditional GAN cohort supplies the reported training benchmark.
+
+$$
+{P}_{train}(x,y)={π}_{y}{P}_{train}(x|y)
+$$
+
+(1)
+
+An aggregate criterion combines group contributions using weights. When the weights equal empirical group frequencies, a rare group contributes little to the average; choosing uniform weights reallocates optimization effort. Neither choice creates new independent observations. A correct account should distinguish parameter capacity, number of image presentations, number of unique images, number of independent leakage components, and total optimization compute. Rare-condition fidelity and within-condition diversity also require separate measurement.
+
+$$
+\mathcal{R}(\theta )=\sum_{g=1}^{K}\left({a}_{g}{\mathcal{R}}_{g}(\theta )\right),  {a}_{g}\geq 0,  \sum_{g=1}^{K}\left({a}_{g}\right)=1
+$$
+
+(2)
+
+We will use θ for trainable model parameters, z for latent noise, t for a corruption or transport time, and y for a condition. An expectation is a population quantity unless a finite minibatch estimator is explicitly stated. Exact evaluation of a specified model density is different from exact recovery of P*. A low feature-based discrepancy is different from semantic correctness, fairness or privacy.
+
+**Table F1. What each family estimates and how it generates.**
+
+| Family | Training object | Generation mechanism |
+| --- | --- | --- |
+| VAE | Variational likelihood bound | Sample prior; sample decoder |
+| GAN | Adversarial objective | Generator forward pass |
+| Autoregressive | Normalized conditional log likelihood | Sequential ancestral sampling |
+| Normalizing flow | Change-of-variables likelihood | Invert learned transformation |
+| Diffusion | Learned reverse corruption / denoising | Finite reverse transitions |
+| Score model | Noise-dependent log-density gradient | Langevin or reverse SDE / ODE |
+| Flow matching | Conditional velocity regression | Integrate learned ODE |
+| Consistency model | Same-trajectory endpoint agreement | One-step map or refinement |
+
+These categories overlap. Diffusion and score models are linked by denoising identities; flow matching trains a continuous normalizing flow without solving the model ODE during each training update; consistency methods may distill diffusion trajectories. The distinctions below describe mechanisms, not a list of mutually exclusive software architectures. References E01–E33 identify primary papers; the bibliography gives direct links.
+
+### 2 Variational autoencoders learning with an approximate posterior
+
+A latent-variable model draws z from a prior and x from a decoder. The marginal likelihood integrates out z. When the decoder is nonlinear, that integral and the posterior pθ(z|x) are generally difficult to compute. Kingma and Welling introduce an amortized recognition model qφ(z|x) and reparameterized stochastic variational training. The following equations show the standard conditional extension; the original cited derivation develops the basic latent-variable setting. [E01]
+
+$$
+{p}_{\theta }(x|y)=\int\left({p}_{\theta }(x|z,y)p(z|y) dz\right)
+$$
+
+(3)
+
+$$
+{\mathcal{L}}_{\theta ,\varphi }(x,y)={\mathbb{E}}_{{q}_{\varphi }}[log {p}_{\theta }(x|z,y)]-KL({q}_{\varphi }\Vert p)
+$$
+
+(4)
+
+$$
+log {p}_{\theta }(x|y)-{\mathcal{L}}_{\theta ,\varphi }(x,y)=KL({q}_{\varphi }\Vert {p}_{\theta }(z|x,y))\geq 0
+$$
+
+(5)
+
+In the middle equation qφ abbreviates qφ(z|x,y), and p abbreviates p(z|y). The reconstruction term rewards decoder probability on the observed x; the divergence controls the approximate posterior relative to the prior. The final identity explains both the lower-bound property and its gap. Maximizing the bound optimizes a tractable surrogate, not an exact marginal likelihood in general.
+
+**Training recipe.** Choose prior, decoder likelihood and recognition family. For a diagonal Gaussian posterior, compute μφ(x,y) and σφ(x,y), draw ε from a standard Gaussian and form a differentiable latent sample. Evaluate the reconstruction term and analytic or sampled KL term; backpropagate through encoder and decoder. The same networks process different observations, which amortizes posterior inference rather than optimizing a new variational distribution from scratch for every image.
+
+$$
+z={\mu }_{\varphi }(x,y)+{\sigma }_{\varphi }(x,y)\odot \varepsilon ,  \varepsilon ∼\mathcal{N}(0,I)
+$$
+
+(6)
+
+**Generation recipe.** Fix y, sample z from p(z|y), then sample x from pθ(x|z,y). Using only a decoder mean is a different sampling convention and should be disclosed. Reconstruction quality, density fit and random-sample quality are distinct. An overly restricted posterior can leave an inference gap; an unsuitable likelihood can emphasize a reconstruction notion that differs from a perceptual endpoint. None of these observations means every VAE must produce the same visual artifacts. The result depends on its likelihood, prior, capacity and optimization.
+
+**Rare-condition implication.** Conditioning makes a group representable but does not give that group additional data. Group-balanced minibatches or group-weighted ELBO terms change the target mixture; they do not establish minority coverage or conditional calibration. A fair comparison would count both encoder/decoder training cost and the data used to choose the prior or representation. A VAE was not trained as a confirmation comparator in the accompanying experiment.
+
+### 3 GANs learning through an adversary
+
+Goodfellow et al. define a generator Gθ that transforms a simple latent Z into a sample, and a discriminator Dω that distinguishes real from generated observations. In the original logistic formulation, the generator minimizes and the discriminator maximizes the same value. One does not need an evaluable normalized density for Gθ. Mirza and Osindero explicitly supply conditions to both networks; this conditional extension changes the inputs, not the basic adversarial mechanism. [E02,E31]
+
+$$
+{min}_{\theta } {max}_{\omega } V(\theta ,\omega )
+$$
+
+(7)
+
+$$
+V={\mathbb{E}}_{P}[log {D}_{\omega }(X,Y)]+{\mathbb{E}}_{Z,Y}[log(1-{D}_{\omega }({G}_{\theta }(Z,Y),Y))]
+$$
+
+(8)
+
+**Training recipe.** Draw real examples and noise; update the discriminator on real/fake discrimination. Draw or reuse a declared latent batch; update the generator through the discriminator input derivative. The discriminator supplies gradients but its parameters are not updated by the generator optimizer. Alternating stochastic steps in a nonconvex game do not inherit the ideal unrestricted equilibrium as a finite-training guarantee. The choice of discriminator objective and generator surrogate is part of the algorithm, not an implementation footnote.
+
+The accompanying network uses a projection discriminator and hinge losses rather than claiming to reproduce the original logistic game. A projection score combines a scalar feature head and a condition–feature inner product. This is an established conditional architecture; its role is to make the discriminator assess compatibility with the requested label. [E11]
+
+$$
+{D}_{\omega }(x,y)=a({h}_{\omega }(x))+\langle {e}_{\omega }(y),{h}_{\omega }(x)\rangle
+$$
+
+(9)
+
+$$
+{L}_{D}={\mathbb{E}}_{real}[{(1-D(X,Y))}_{+}]+{\mathbb{E}}_{fake}[{(1+D(G(Z,Y),Y))}_{+}]
+$$
+
+(10)
+
+$$
+{L}_{G}=-{\mathbb{E}}_{Z,Y}[D(G(Z,Y),Y)]
+$$
+
+(11)
+
+The subscript plus denotes the positive part: the larger of its argument and zero. When batches contain equal counts per group, their simple averages implement a balanced allocation. Spectral normalization was proposed to stabilize discriminator training; residual blocks and conditional normalization are additional architectural choices, whereas the displayed losses define the adversarial optimization. [E32] A small adaptation should not be described as an official large-scale baseline reproduction merely because it shares these components.
+
+**Generation recipe and limits.** Set the generator to the declared inference state, sample z and call Gθ(z,y). No discriminator is required for sampling. The raw final state and a parameter EMA are different generators; BN buffers and batch/eval mode also affect the function. Adversarial plausibility alone does not guarantee coverage of all modes or adherence to every condition. Salimans et al. introduced discriminator-feature matching as an alternative generator signal; its empirical stabilization motivation did not provide a general convergence proof. [E13]
+
+### 4 Autoregressive models normalized conditional factors
+
+Autoregressive models turn the probability chain rule into a tractable generative architecture. For a fixed ordering of D coordinates or tokens, the joint distribution is a product of normalized conditionals. NADE is an early neural example: it uses shared computations to parameterize tractable conditional distributions. The probability chain rule and earlier directed density estimators predate NADE, so the citation should not be used to claim the first autoregressive idea. [E03]
+
+$$
+{p}_{\theta }(x|y)=\prod_{i=1}^{D}\left({p}_{\theta }({x}_{i}|{x}_{<i},y)\right)
+$$
+
+(12)
+
+$$
+{L}_{AR}=-\sum_{i=1}^{D}\left(log {p}_{\theta }({x}_{i}|{x}_{<i},y)\right)
+$$
+
+(13)
+
+**Training recipe.** Define the ordering and the support of each conditional. Feed the observed prefix to the network, compute the normalized distribution for the next variable, and minimize the summed negative log likelihood. Masking or causal structure must prevent access to later variables. Exact model likelihood follows from the normalized factors; it does not require estimating an intractable partition function.
+
+**Sampling recipe.** Sample x1 from its conditional, then x2 given x1, and continue. With the ordinary factorization, later values depend on sampled earlier values and generation is sequential. Training may process many observed prefixes in parallel, so training parallelism and sampling parallelism should not be confused. Block ordering, caching and other implementations can alter cost; a blanket statement that every autoregressive model has one fixed speed disadvantage would be too strong.
+
+**Limits.** The choice of ordering and conditional support matters. High model likelihood does not automatically optimize a fixed perceptual metric or rare-condition correctness. A condition can be supplied in every factor, but imbalance still affects estimation. Autoregression is an important alternative for discrete structured data and tokenized images; no autoregressive confirmation run was performed in the accompanying study.
+
+### 5 Normalizing flows densities from invertible transformations
+
+A flow maps observations invertibly to a tractable latent law. If fθ maps x to z and has a nonsingular Jacobian, density transforms with the determinant. Real NVP builds practical coupling layers with easy inversion and tractable determinants; it is a key architecture rather than the historical origin of the change-of-variables formula. [E04]
+
+$$
+z={f}_{\theta }(x),  x={f}_{\theta }^{-1}(z)
+$$
+
+(14)
+
+$$
+log {p}_{\theta }(x)=log {p}_{0}({f}_{\theta }(x))+log|det {J}_{{f}_{\theta }}(x)|
+$$
+
+(15)
+
+For a simple affine coupling layer, split x into xa and xb. One part remains unchanged; the other is scaled and shifted using functions of the unchanged part. The Jacobian is triangular, so its determinant reduces to the sum of scale outputs in log space. Alternating partitions lets different coordinates affect one another.
+
+$$
+{z}_{a}={x}_{a},  {z}_{b}={x}_{b}\odot exp(s({x}_{a}))+t({x}_{a})
+$$
+
+(16)
+
+$$
+log|det J|=\sum_{j}\left({s}_{j}({x}_{a})\right)
+$$
+
+(17)
+
+**Training recipe.** Choose a base density, invertible layers and their determinant computation. Map training images into latent space; evaluate the base log density plus log determinant; maximize their sum. For quantized pixels, the relationship between a continuous density and a discrete image probability requires an appropriate dequantization or discrete construction. Densities should only be compared when that convention agrees.
+
+**Sampling recipe and limits.** Draw z from the base density and invert the layers in reverse order. Tractable evaluation and exact inversion refer to the specified model, up to numerical arithmetic; they do not prove exact data-distribution learning. Invertibility, dimensionality and determinant tractability constrain the design. A model can give an exact density calculation while still allocating insufficient capacity to a rare group or producing poor outputs under another endpoint.
+
+### 6 Diffusion learning to reverse a known corruption
+
+Sohl-Dickstein et al. develop an early deep diffusion construction that destroys structure through a forward process and learns a reverse process. DDPM later combines a practical Gaussian chain, noise-prediction parameterization and a connection to denoising score matching. These papers answer related but historically distinct questions. A modern DDPM should not be cited as the origin of all diffusion modeling. [E05,E06]
+
+$$
+q({x}_{t}|{x}_{t-1})=\mathcal{N}(\sqrt{{\alpha }_{t}}{x}_{t-1},{\beta }_{t}I)
+$$
+
+(18)
+
+$$
+{\alpha }_{t}=1-{\beta }_{t},  {\bar{\alpha }}_{t}=\prod_{s=1}^{t}\left({\alpha }_{s}\right)
+$$
+
+(19)
+
+$$
+{x}_{t}=\sqrt{{\bar{\alpha }}_{t}}{x}_{0}+\sqrt{1-{\bar{\alpha }}_{t}}\varepsilon ,  \varepsilon ∼\mathcal{N}(0,I)
+$$
+
+(20)
+
+The final expression allows one to draw a noisy xt directly from x0 without simulating every forward step during training. It does not remove the reverse process used to sample a new image. A common simplified objective asks the network to predict the added noise; compared with the full variational decomposition, this changes the relative weighting of time steps.
+
+$$
+{L}_{simple}={\mathbb{E}}_{{x}_{0},t,\varepsilon }[\Vert \varepsilon -{\varepsilon }_{\theta }({x}_{t},t,y){\Vert }^{2}]
+$$
+
+(21)
+
+**Training recipe.** Fix a noise schedule and parameterization. Draw a real x0, a time t and Gaussian noise ε. Construct xt using the closed-form corruption, predict ε or another declared equivalent target, and minimize the chosen weighted denoising loss. Conditioning can enter the denoising network. The time sampling, loss weights, variance model and final decoder must be specified when comparing likelihoods or generation costs.
+
+**Sampling recipe.** Start at an approximately Gaussian terminal law. For times in reverse order, predict the reverse mean and draw the next less-noisy state. In the common epsilon parameterization with prescribed reverse variance, one step is:
+
+$$
+{x}_{t-1}=\frac{1}{\sqrt{{\alpha }_{t}}}({x}_{t}-\frac{{\beta }_{t}}{\sqrt{1-{\bar{\alpha }}_{t}}}{\varepsilon }_{\theta }({x}_{t},t,y))+{\sigma }_{t}z
+$$
+
+(22)
+
+Here z is fresh standard Gaussian noise. In the usual last reverse step at t=1, this noise term is set to zero; the prescribed reverse variance determines the other steps.
+
+The final-step noise convention must be stated. The learned reverse chain, finite terminal approximation and discretization choices all affect the sample distribution. Diffusion can improve a training/sampling tradeoff without guaranteeing semantic composition or rare-group coverage. Those require their own data and endpoints. A denoising loss also should not be confused with a complete likelihood comparison unless its weighting and variational interpretation are retained.
+
+### 7 Score based generation and continuous time unification
+
+The score of a smooth positive density is its input gradient, ∇x log p(x). Estimating it avoids computing the density normalizer. Data concentrated near a low-dimensional structure make a naive ambient-space score problematic, motivating perturbations with multiple Gaussian noise scales. Song and Ermon estimate noise-conditioned scores and sample with annealed Langevin dynamics. The denoising target below is the conditional corruption score; its population optimizer recovers the score of the smoothed marginal under the usual conditions. [E07]
+
+$$
+{x}_{\sigma }=x+\sigma \varepsilon ,  {s}_{\theta }({x}_{\sigma },\sigma )\approx {\nabla }_{{x}_{\sigma }}log {p}_{\sigma }({x}_{\sigma })
+$$
+
+(23)
+
+$$
+{L}_{DSM}={\mathbb{E}}_{x,\sigma ,\varepsilon }[w(\sigma )\Vert {s}_{\theta }(x+\sigma \varepsilon ,\sigma )+\frac{\varepsilon }{\sigma }{\Vert }^{2}]
+$$
+
+(24)
+
+**Training recipe.** Choose a scale distribution and positive loss weights, corrupt training observations, and regress the corruption score. One network can take σ as input. There is no need to run a long generation chain to obtain each training target. **Langevin sampling.** At each scale use the estimated score for drift and add Gaussian noise, then gradually reduce the scale. Finite iterations and nonzero step sizes introduce approximation; a score at nonzero σ describes a smoothed distribution.
+
+$$
+{x}_{k+1}={x}_{k}+\eta {s}_{\theta }({x}_{k},\sigma )+\sqrt{2\eta }{\xi }_{k}
+$$
+
+(25)
+
+Here η is positive and the Gaussian noise vectors ξ at successive iterations are independent with zero mean and identity covariance.
+
+Song et al. formulate a continuous-time forward SDE with drift f and scalar, state-independent diffusion g(t), a setting sufficient for the following expressions. Its reverse-time SDE uses the marginal score. The displayed reverse equation is written with t decreasing from T to 0, so dt is negative and the Brownian increment follows reverse time. Mixing that convention with forward-time signs would change the process. [E08]
+
+$$
+dX=f(X,t)dt+g(t)dW
+$$
+
+(26)
+
+$$
+dX=[f(X,t)-{g(t)}^{2}{\nabla }_{x}log {p}_{t}(X)]dt+g(t)d\bar{W}
+$$
+
+(27)
+
+The related probability-flow ODE has the same marginal densities as the exact SDE under the stated assumptions. Its sample paths need not match the stochastic paths. Replacing the score by a learned field and solving numerically introduces model and numerical errors; the exact correspondence does not make a practical finite solver exact.
+
+$$
+\frac{dX}{dt}=f(X,t)-\frac{1}{2}{g(t)}^{2}{s}_{\theta }(X,t)
+$$
+
+(28)
+
+**SDE/ODE sampling recipe.** Draw the terminal prior, then integrate backward using the selected stochastic or deterministic solver. Predictor–corrector methods add score-based corrections to reduce particular numerical errors. ODE density calculations can use a continuous change-of-variables formula, but the distinction between the exact mathematical model and its numerical approximation remains. Neither a score objective nor an exact solver would by itself correct an inappropriate training distribution.
+
+### 8 Flow matching supervised vector fields for a probability path
+
+Flow matching separates a chosen path of distributions from the vector field that transports samples along it. Lipman et al. regress a neural field against tractable conditional vector fields; averaging those conditional fields in the appropriate way yields a marginal field for the distribution path. Under their assumptions, conditional flow matching and the corresponding marginal flow-matching loss have equal parameter gradients. The theorem does not say that arbitrary interpolation and arbitrary numerical integration always recover an arbitrary target. [E09]
+
+![Figure 3  Illustrative paths associated with transport, noisy diffusion and endpoint mappings. The trajectories are drawn for explanation, not obtained from trained models or used as an efficacy comparison.](../figures/v02_probability_paths.png)
+
+Figure 3  Illustrative paths associated with transport, noisy diffusion and endpoint mappings. The trajectories are drawn for explanation, not obtained from trained models or used as an efficacy comparison.
+
+For an illustrative straight path, take X0 from a simple prior and X1 from data, then interpolate. The source also treats more general conditional probability paths, including a nonzero endpoint smoothing scale.
+
+$$
+{X}_{t}=(1-t){X}_{0}+t{X}_{1},  {U}_{t}={X}_{1}-{X}_{0}
+$$
+
+(29)
+
+$$
+{L}_{CFM}={\mathbb{E}}_{t,{X}_{0},{X}_{1}}[\Vert {v}_{\theta }({X}_{t},t,y)-{U}_{t}{\Vert }^{2}]
+$$
+
+(30)
+
+$$
+{v}^{*}(x,t,y)=\mathbb{E}[{U}_{t}|{X}_{t}=x,Y=y]
+$$
+
+(31)
+
+**Training recipe.** Fix the prior–data coupling and conditional path. Draw endpoints and time; construct a path point and its conditional velocity; regress vθ on that target. These training samples do not require solving the evolving model ODE. Pairing endpoints independently is not the same claim as finding a globally optimal transport coupling; the path choice is an additional modeling decision.
+
+**Sampling recipe.** Draw X0 and solve dX/dt=vθ(X,t,y) forward to the data endpoint. The learned flow is a continuous normalizing flow, while the regression criterion need not be a maximum-likelihood objective. Solver evaluations remain an inference cost. Conditional expectation and continuity-equation reasoning justify the population construction under regularity, not an automatic statement about a finite network, finite minibatch optimizer or every rare condition.
+
+### 9 Consistency models agreement along a generative trajectory
+
+Consistency models learn a direct mapping from points on a probability-flow trajectory to its near-data endpoint. If xt and xs lie on the same trajectory, their outputs should agree. The endpoint boundary condition is important: unconstrained agreement alone would allow a constant map. Song et al. give distillation and standalone training constructions, as well as one-step and multistep sampling. [E10]
+
+$$
+{F}_{\theta }({x}_{t},t)={F}_{\theta }({x}_{s},s)
+$$
+
+(32)
+
+$$
+{F}_{\theta }({x}_{\varepsilon },\varepsilon )={x}_{\varepsilon }
+$$
+
+(33)
+
+**Training recipe.** In consistency distillation, a pretrained diffusion model and a numerical solver produce nearby points along a trajectory; a consistency network is trained to agree with a detached target network on those points. Standalone consistency training constructs its learning pairs from data and noise without requiring that pretrained diffusion teacher. These are distinct recipes; it would be incorrect to describe all consistency models as requiring a pretrained teacher or all of them as teacher-free.
+
+$$
+{L}_{CD}=\mathbb{E}[w(t)d({F}_{\theta }({x}_{t},t),sg({F}_{\bar{\theta }}({\hat{x}}_{s},s)))]
+$$
+
+(34)
+
+The last equation is a schematic distillation form: x̂s denotes a solver-produced adjacent point, d is the chosen discrepancy, and sg blocks gradients through the target. It does not replace the paper’s detailed schedules or convergence assumptions. **Sampling recipe.** Map a prior noise sample through Fθ at the terminal time; optionally refine through additional steps. One network evaluation is a design goal, not proof of the best fidelity/diversity at every cost. Training compute, teacher compute where used, endpoint smoothing and finite approximation should remain visible.
+
+### 10 Latent diffusion compression plus conditional denoising
+
+Rombach et al. move diffusion training into the latent space of an image autoencoder. The encoder compresses x into z; a denoiser learns the latent generative process; the decoder maps a sampled latent back to an image. Cross-attention supports general conditioning such as text. This is a hybrid of learned perceptual representation and diffusion, not an entirely unrelated probability principle. [E30]
+
+$$
+{z}_{0}=E(x),  {\hat{x}}_{0}=D({z}_{0})
+$$
+
+(35)
+
+$$
+{L}_{latent}=\mathbb{E}\Vert \varepsilon -{\varepsilon }_{\theta }({z}_{t},t,\tau (y)){\Vert }^{2}
+$$
+
+(36)
+
+**Training recipe.** First train or fix an encoder–decoder with a declared perceptual and regularization objective. Encode training images; fit a latent denoiser with the selected corruption and conditioning. **Sampling recipe.** Generate a latent by the learned reverse process, then decode it. Compression can reduce the spatial cost of denoising, but its quality and training data become part of the complete system. It may discard details or alter what downstream metrics measure; an external autoencoder is not free compute or free data. No latent-diffusion arm was trained in the accompanying experiment.
+
+### 11 Related solutions to imbalanced and compositional generation
+
+**Reference-distribution correction.** Choi et al. use a small unlabeled reference set to detect distributional bias through estimated density ratios and guide generation toward that reference. The attractive feature is that the reference specifies the desired target without requiring labels for every latent bias factor. Its assumptions remain essential: reference representativeness, support overlap and ratio estimation affect the result. It does not certify a universal social fairness definition. [E19]
+
+**Coverage through reconstruction.** Inclusive GAN combines adversarial learning with reconstructive generation, including an extension that emphasizes minority examples. This addresses coverage by adding a relationship between observed data and generated reconstructions. It is not equivalent to adjusting group sampling frequencies or matching one feature interaction, and its original architecture and compute should not be silently treated as a matched baseline here. [E20]
+
+**Conditioning and latent regularization.** gSR studies tail-class collapse associated with spectral growth of conditioning matrices. NoisyTwins studies class-conditioned StyleGAN latent collapse and uses class-embedding augmentation with latent decorrelation. They are concrete related mechanisms, not general proofs that a particular norm or decorrelation objective solves all long-tail generation. They also do not constitute completed comparators in the final B/C experiment. [E21,E22]
+
+**Allocation under group shifts.** Oren et al. use group/topic losses and moving estimates in distributionally robust language modeling. This is a relevant precedent for adapting optimization allocation toward difficult groups. A critic score gap is not automatically a calibrated group loss, and capped gap weights do not inherit a language-model robustness theorem. The language-model setting differs from the conditional-image experiment and supplies no completed comparator. [E29]
+
+**Compositional inference.** Liu et al. combine diffusion concepts through energy/score operations. For a normalized product of distributions, the exact input score is the sum of the component scores. For conjunction of conditional concepts, Bayes factorization also needs the correct prior correction and assumptions about the concepts. Learned score fields may not be conservative. Inference-time score composition therefore offers a specific structured route, not a general guarantee that any text or annotation combination will be followed. [E23]
+
+$$
+π(x)\propto \prod_{\ell =1}^{L}\left({p}_{\ell }(x)\right)
+$$
+
+(37)
+
+$$
+\nabla log π(x)=\sum_{\ell =1}^{L}\left(\nabla log {p}_{\ell }(x)\right)
+$$
+
+(38)
+
+Rare but observed combinations and genuinely held-out combinations are different tests. The accompanying experiment contains every joint annotation bin in training, so it cannot establish zero-shot compositional generalization. A stronger future test would withhold combinations under a declared split and evaluate semantic adherence, diversity and coverage separately, without changing the target after seeing test outputs.
+
+### 12 Feature moments and the exact scope of the attempted correction
+
+Moment-based training is established. GMMN uses maximum mean discrepancy; feature matching in GAN training uses intermediate discriminator statistics; conditional GMMN develops a conditional embedding criterion; McGan studies finite-feature mean/covariance IPMs; Fisher GAN imposes a data-dependent second-moment constraint. These lines differ in their feature class, conditioning, optimization and identifiability assumptions. None makes an arbitrary finite list of feature moments identify every image distribution. [E12–E16]
+
+$$
+{MMD}^{2}(P,Q)=\mathbb{E}k(X,X^{\prime})+\mathbb{E}k(Y,Y^{\prime})-2\mathbb{E}k(X,Y)
+$$
+
+(39)
+
+In this expression X and X′ are independent draws from P, and Y and Y′ are independent draws from Q, with independence across the two pairs. The kernel k is positive definite; distributional identification requires the additional characteristic-kernel conditions described below.
+
+Gretton et al. formalize the RKHS two-sample discrepancy; for suitable characteristic kernels and distribution classes, zero population MMD determines equality. [E33] A finite linear feature map instead constrains only its selected moments. Even a rich image feature extractor does not make a single signed group combination a complete conditional distribution test. The discriminator used for adversarial training supplies additional constraints, but there is no automatic guarantee that the combined finite optimization reaches the target.
+
+GFMN is especially close. It fixes perceptual feature extractors, precomputes real training targets and uses moving discrepancy estimates. Section 2.2, Equation 3 explicitly dots a moving discrepancy vector with the current real-minus-generated feature mean; its Equation 4 describes learning the moving estimate, including an ADAM-based variant. Thus fixed targets, moving discrepancies and linear current-feature surrogates already occur together in 2019 primary literature. [E17]
+
+AMFD is also a direct antecedent. Its conditional amortizers estimate mean/covariance information; Section 4.2, Equation 16 applies a detached conditional mean discrepancy to generated features, while other terms use covariance/operator machinery. This is a 2026 preprint citation, not an independently reproduced superiority result or a proof of the present combination’s novelty. [E18]
+
+The accompanying candidate combines a particular signed four-group contrast, a fixed TRAIN-only discriminator teacher, diagonal training-derived scaling, component-level variability estimates, a lagged fake-contrast tracker and a linear current-batch surrogate. Let c=(1,−1,−1,1)/4, μg denote group feature means, and r their signed real contrast. Let mt denote the previous generated-contrast tracker, sj a positive scale and uj a component variability heuristic. A useful abstract form is:
+
+$$
+r=\sum_{g=0}^{3}\left({c}_{g}{\mu }_{g}\right),  {\hat{\delta }}_{t}=\sum_{g=0}^{3}\left({c}_{g}{\hat{\mu }}_{g,t}\right)
+$$
+
+(40)
+
+$$
+{q}_{tj}=sign({d}_{tj}){(|{d}_{tj}|-\kappa \frac{{u}_{j}}{{s}_{j}})}_{+},  {d}_{tj}=\frac{{m}_{tj}-{r}_{j}}{{s}_{j}}
+$$
+
+(41)
+
+$$
+{L}_{aux,t}=\frac{2\lambda }{d}\sum_{j=1}^{d}\left(sg({q}_{tj})\frac{{\hat{\delta }}_{tj}-{r}_{j}}{{s}_{j}}\right)
+$$
+
+(42)
+
+Here q is zero during the declared warmup and depends on previous successful updates, not the current feature residual. The formula is an operational combination of known ingredients, not a new general discrepancy principle. Component influences must be summed across groups before squaring to retain cross-group covariance. Their plug-in variability is not a calibrated confidence radius: the teacher is fitted using TRAIN data and component independence is not established. The actual selected κ is zero, so the selected model has no active uncertainty-tolerance threshold.
+
+Two counterexamples prevent overinterpretation. If all real groups have one distribution P and all fake groups another distribution Q, both signed contrasts vanish because the coefficients sum to zero; no conditional distribution need be correct. If a previous residual is positive but the current residual is negative, the detached linear surrogate can push opposite the gradient of the current squared residual. It can also take a negative value. These are elementary properties of the formula, not empirical guarantees from the literature.
+
+The generator has BN during training, so its current contrast is a joint balanced-batch function. It is not automatically the population feature mean of an inference EMA generator in eval mode. Parameter EMA decay, fake-feature EMA decay and learned model parameters are distinct quantities. Any claim about conditional expected gradients must condition on the current parameters, normalization state, teacher and previous tracker, and assume differentiation can pass through the current-noise expectation. Such a conditional identity does not prove convergence or absence of collapse.
+
+### 13 Evaluation data leakage and evidence limits
+
+KID is squared MMD between fixed Inception feature distributions with a polynomial kernel. Its off-diagonal finite estimator can be negative. The usual unbiasedness statement assumes IID draws and a fixed feature map; it does not automatically apply to clustered references or a bank reused for selection. Selection on a separate validation split does not by itself invalidate the IID statement for an unqueried test bank. The accompanying study fixes its feature definition and evaluates the saved selected generators. Its bootstrap conditions on three trained seed pairs and resamples declared components with shared latent multiplicities; it is not a seed-population superiority statement. [E24]
+
+$$
+k(a,b)={(1+\frac{a^{T}b}{d})}^{3}
+$$
+
+(43)
+
+For the accompanying KID endpoint, d in this kernel is the Inception feature dimension 2,048. This local feature dimension differs from the 128-dimensional teacher representation in the auxiliary objective.
+
+A score name alone is insufficient for replay. Parmar et al. show that image resizing, antialiasing and compression can substantially alter downstream features. Feature weight bytes, preprocessing, output quantization, subset IDs and image serialization should therefore be recorded. A standardized path improves comparability but does not certify semantic correctness, fairness or privacy. [E25]
+
+Precision, recall, density and coverage provide complementary nearest-neighbor diagnostics in a chosen feature geometry. Their finite-sample values depend on the features, sample counts, distance convention and neighborhood parameter. Density counts overlapping real neighborhoods and can exceed one, unlike precision. A finite zero recall is a fact about those neighborhoods, not a universal statement that a generator has no semantic variation. They should be read alongside conditional quality and examples, not used to rescue a failed prespecified endpoint. [E26]
+
+Split membership does not establish independence when images share identity or duplicate content. Barz and Denzler document near-duplicate contamination in CIFAR; that is motivation for auditing data relations, not evidence for any CelebA overlap count. CelebA’s paper supplies dataset provenance. The present identity/exact/reflection/pHash relations and exposure counts are separate project measurements. Disjoint components under those declared relations do not prove the absence of every semantic similarity. [E27,E28]
+
+A reproducible report also distinguishes evidence that exists from artifacts actually retrieved. Preserved metric records can support an arithmetic audit without making missing weights or real-reference banks available for full replay. A synthetic software fixture verifies a limited code property; it does not count as a trained model, a dataset experiment or a scientific replication. Likewise, incomplete earlier cohorts cannot be pooled with the fresh final cohort or described as additional completed baselines.
+
+### 14 How the attempted solution should be read
+
+The completed study asks whether one particular lagged signed-interaction correction improves a prespecified rare-condition feature endpoint under a fixed short training budget. Its completed mean comparison favors the balanced baseline. The proper conclusion is that this implementation did not improve that endpoint in this setting. It does not establish that every feature-matching method fails, nor that any untrained family in this review would perform better.
+
+The unresolved research problem is broader: choosing useful conditional statistics while controlling feature gaming, gradient noise, data dependence and optimization cost. Independent teachers, richer conditional kernels, better semantic evaluations and genuine held-out-combination tests are plausible directions. They require new prospective protocols and actual evidence. Citation coverage and algebraic clarity support an honest negative result; they do not turn it into a positive solution or an exhaustive novelty proof.
+
+The runnable autoregressive source in this release is a Gaussian masked MLP using degree constraints of the MADE type (Germain et al., 2015), rather than the original binary NADE architecture. This code-level attribution supplements the historical account above. Its output density is normalized by the chain rule; it is not a paper-faithful NADE or MADE benchmark reproduction. [E03,E34]
+
+<a id="part2"></a>
+
+## Part 2 The completed conditional GAN experiment
+
+### 1 Introduction
+
+Conditional image generators must represent combinations of attributes, not merely frequent marginal labels. A condition can be requested often at inference time even when its training support consists of few independent subjects or visual components. Balanced minibatches increase its number of presentations, but repeated images do not create new independent information. This distinction is central to interpreting apparent progress on rare conditions.
+
+The problem studied here is concrete: improve the quality of the supplied Male=1 and Blond_Hair=1 annotation bin in a small conditional GAN, while keeping training, validation and test content separated under declared relations. These are dataset annotation categories, not verified gender identities. All four combinations occur in training. The experiment therefore tests a rare observed combination rather than generalization to an unseen combination.
+
+Two obstacles motivate the work. First, disjoint filenames and even disjoint supplied identity labels can conceal duplicate image content. Second, matching one feature interaction is a weaker requirement than matching every conditional distribution. A correction can have a well-defined gradient and still worsen a separately defined held-out quality endpoint. Both obstacles are examined explicitly rather than inferred from selected image grids.
+
+The proposed candidate combines a signed conditional contrast, a frozen teacher, component-based variability scales and a previous-state linear witness. These ingredients build on established feature- and moment-matching methods. The contribution is their specified implementation and empirical assessment, together with a documented split audit. The completed comparison is negative: the candidate has a higher mean rare-group KID than the baseline, and the validation-selected tolerance is zero.
+
+The paper answers three questions: whether the preliminary partitions contained train-linked held-out content; whether the candidate improves the frozen rare-condition endpoint at the tested budget; and what mathematical and empirical conclusions its interaction objective can support. The companion technical review places these questions within the major generative model families and established solution strategies.
+
+### 2 Related work and scope of novelty
+
+Generative adversarial networks learn an implicit distribution through a discriminator rather than an explicit likelihood (Goodfellow et al., 2014). Conditional GANs supply labels to both networks (Mirza and Osindero, 2014). Projection discriminators and spectral normalization provide standard conditioning and stabilization components (Miyato and Koyama, 2018; Miyato et al., 2018). The present backbone is a local implementation of these components, not a reproduction of an official SNGAN benchmark.
+
+Feature matching predates this study. Improved Techniques for Training GANs (Salimans et al., 2016) matches discriminator feature expectations. Conditional Generative Moment Matching Networks (Ren et al., 2016) studies conditional distribution matching. McGAN (Mroueh et al., 2017) matches feature means and covariances. These methods establish that feature statistics and conditional matching are existing ideas; adding a signed contrast does not make moment matching itself new.
+
+The closest optimization antecedents are particularly relevant. GFMN, Learning Implicit Generative Models by Matching Perceptual Features (dos Santos et al., 2019, Section 2.2, Equations 2–4), uses fixed perceptual features, moving discrepancy vectors and a linear current-feature surrogate. Amortized Moment Matching for Visual Generation (Liu et al., 2026, Section 4.2, Equation 16) uses a detached conditional mean discrepancy paired with current generated features. The lagged linear witness in this paper cannot be claimed as a first principle. Its narrower design combines a four-bin signed interaction, training-only component variability and a common scratch-trained teacher.
+
+Evaluation also has a defined lineage. The KID construction uses a polynomial-kernel MMD U-statistic form associated with Demystifying MMD GANs (Bińkowski et al., 2018). Clean-FID emphasizes the effects of resizing and feature preprocessing (Parmar et al., 2022). Precision, recall, density and coverage are finite-feature neighborhood diagnostics (Naeem et al., 2020). None is a direct measurement of semantic attribute accuracy, fairness or privacy. The present implementation and sampling choices are stated separately from the published methods.
+
+CelebA supplies the images and annotations used here (Liu et al., 2015). Near-duplicate benchmark contamination is an established concern, including the CIFAR analysis of Barz and Denzler (2020). That precedent motivates checking content relations explicitly; its empirical duplicate counts do not transfer to CelebA.
+
+### 3 Formal problem
+
+Let X be a canonical 3×64×64 image and g∈{0, 1, 2, 3} the joint annotation bin g=2·Male+Blond_Hair. Every bin occurs in training; the rare bin contains 942 training images. This is a rare-seen conditional generation problem, not generation of an unseen conjunction. Write A(i) for the leakage-union component of image i, joining supplied identity labels, byte-verified exact/reflection duplicates, and the declared complete pHash≤4/RGB64 RMSE≤8 relation. The admissibility constraint is
+
+$$
+{A}_{tr}\cap {A}_{val} = {A}_{tr}\cap {A}_{te} = {A}_{val}\cap {A}_{te} = \varnothing
+$$
+
+(44)
+
+For each split, A with that split subscript denotes the set of union components intersecting the split.
+
+This is disjointness under specified relations, not proof that all semantic similarities have been found. A learned generator is fitted using D_tr; hyperparameters are chosen using D_val; test requests and references are fixed before evaluation. In particular, neither the teacher nor its target statistics use validation/test images. The clean partition has 112,615/23,156/25,217 TRAIN/VAL/TEST images; the rare test bin has 173 images in 65 components.
+
+To make “quality” operational, fix the externally pretrained Clean-FID feature map Φ from RGB64 images to 2,048-dimensional vectors and the cubic kernel specified below. Let T_g(θ; D_te, Z) be the saved KID U-statistic-form endpoint using the fixed selected real references and 512 unfiltered generated requests for bin g. For real feature vectors x_1,…, x_m and generated vectors y_1,…, y_n, this endpoint is
+
+$$
+\widehat{\mathrm{KID}}=\frac{\sum_{i\ne j}k(x_i,x_j)}{m(m-1)}+\frac{\sum_{i\ne j}k(y_i,y_j)}{n(n-1)}-\frac{2\sum_{i,j}k(x_i,y_j)}{mn},\quad k(x,y)=(1+x^Ty/2048)^3
+$$
+
+(45)
+
+Generated tanh outputs are quantized by nearest-integer rounding of 127.5(x+1) to uint8 before the fixed feature adapter. The state used in T_g is the validation-selected inference EMA with its copied BN buffers, not the final raw training weights. T_g may be negative; under clustered observations it has no general population-unbiasedness guarantee. For three prespecified seed pairs, the primary comparison is
+
+$$
+{\hat{\Delta }}_{3} = \frac{1}{3}\sum_{r\in {101,202,303}}\left([{T}_{3}({\theta }_{r}^{C}) - {T}_{3}({\theta }_{r}^{B})]\right)
+$$
+
+(46)
+
+The open empirical problem is to improve this prespecified rare-condition endpoint within a fixed training budget while respecting the leakage restriction and preserving all attempted validation choices. Success on this endpoint would still not establish semantic correctness, fairness, privacy, population-level superiority, or full conditional distribution matching. Our candidate is one attempted solution; its completed mean comparison was worse than B.
+
+### 4 Model and proposed objective
+
+#### 4 1 Common conditional GAN
+
+Both B and C use the same residual conditional GAN, latent dimension 128 and actual base width 32. The class defaults of 64 channels are overridden by the executed configuration. The generator has 737,315 trainable parameters, the discriminator 888,545. Standard residual, spectral-normalization, conditional-BatchNorm and projection components are used; this is not an official SNGAN reproduction. All convolutional and linear kernels are orthogonally initialized; their biases are zero. The D label-embedding matrix is also orthogonally initialized before SN. The eight cBN embedding tables begin at zero gain-offset and zero bias.
+
+![Figure 4  Generator feature widths and resolutions. Appendix A gives exact block operations and parameter counts. Both B and C use the same generator and discriminator; the extra C teacher is frozen.](../figures/v07_gan_architecture.png)
+
+Figure 4  Generator feature widths and resolutions. Appendix A gives exact block operations and parameter counts. Both B and C use the same generator and discriminator; the extra C teacher is frozen.
+
+A generator up block applies cBN→ReLU→nearest-neighbor 2× upsampling→3×3 convolution, followed by cBN→ReLU→3×3 convolution. Its shortcut upsamples and applies a 1×1 convolution, even when channel counts agree. The two branches are added without an additional scaling factor. In each cBN, shared non-affine BN is followed by condition-specific (1+a_g)⊙h+b_g; epsilon=10^-4, running-statistic momentum 0.1. The final shared BN has an ordinary learnable affine transform.
+
+Each discriminator block contains two SN 3×3 convolutions. All except the first begin with ReLU; the first consumes its input directly before its first convolution. A ReLU separates the convolutions. A SN 1×1 shortcut is used only when channel counts differ; otherwise it is identity. Down blocks average-pool both branches by 2 before addition. The final score is
+
+$$
+{D}_{\omega }(x,g) = {w}^{T}{h}_{\omega }(x) + b + {{e}_{\omega }(g)}^{T} {h}_{\omega }(x)
+$$
+
+(47)
+
+SN uses PyTorch parametrizations with one power iteration and epsilon 10^-6. No generator SN, attention block or extra C-specific generator parameter is introduced. The teacher uses the same discriminator backbone; its returned 128-vector precedes label projection and is a function of x alone, although its representation was learned by a conditional discriminator.
+
+Appendix A lists every generator and discriminator stage and its trainable parameter count. The candidate adds a fixed teacher but no trainable generator parameters.
+
+#### 4 2 Optimization and parameter averaging
+
+The balanced baseline uses discriminator hinge loss and the uniformly weighted negative discriminator-score generator objective:
+
+$$
+{L}_{D} = \frac{1}{4}\sum_{g}\left({E[(1 - D({X}_{g},g))_{+}] + E[(1 + D(G(Z,g),g))_{+}]}\right)
+$$
+
+(48)
+
+$$
+{L}_{G,B} = -\frac{1}{4}\sum_{g}\left(E[D(G(Z,g),g)]\right)
+$$
+
+(49)
+
+Here these are the implemented minibatch reductions, not a convergence theorem. Every real batch contains 16 images sampled with replacement from each TRAIN bin, then randomly permuted. Each attempted iteration makes one D and one G optimizer attempt, with Adam learning rate 2×10^-4, betas (0, 0.9), epsilon 10^-8 and AMP initial scale 1024. Independent probability 0.5 horizontal flips affect real/fake D inputs and the generator’s adversarial path. Teacher matching instead uses unaugmented generated images, consistently with canonical unaugmented real references. This is an orientation choice, not a flip-invariance theorem.
+
+For D updates, 64 independent Gaussian latent vectors are drawn. For the G update, another 64-vector draw advances the same declared RNG, but its first 16 vectors are reused across all four condition bins. One joint 64-image G forward therefore supplies 16 shared-latent quartets. Shared z is a coupling/variance device, not an identified causal counterfactual. All arms use it.
+
+Distinguish θ, the parameters learned by optimization; λ, the auxiliary-loss coefficient; κ, its tolerance multiplier; and η, the inference-parameter EMA decay. The separate generated-feature tracker below has decay β=0.9. After a successful G step, the updated inference average equals η times the previous average plus (1−η) times the current generator parameters, for η in {0.99, 0.999}. BN and other buffers are copied from the current generator, not exponentially averaged. G remains in train mode during both the no-gradient D-fake forward and G forward, so its BN running state can update during both passes. Neither inference EMA nor feature tracker advances after an AMP-skipped G update.
+
+Each development/confirmation trajectory has 1,500 attempted iterations, 96,000 real presentations and 24,000 presentations per bin. Presentations are not unique images or independent components. The six confirmation records report zero G/D AMP skips. GPU kernels were not claimed deterministic. Matching architecture, presentations and seeds does not match total compute: C requires a fixed teacher and additional feature operations.
+
+#### 4 3 Training only teacher statistics
+
+The teacher ψ is the last raw discriminator from the fresh B development run, seed 909, at 1,500 attempts. It is not selected by validation and is not a pretrained external model. It learned from real TRAIN images and its own GAN-generated negatives. Its parameters and SN state are frozen in eval mode. A single pass computes float32 ψ(x_i) for every canonical real TRAIN image; the statistics are accumulated in float64. Benchmark Inception features do not enter this teacher, target, or generator loss.
+
+Set c=(1,−1,−1, 1)/4 and n_g=|D_tr, g|. Define
+
+$$
+c=(1,-1,-1,1)/4,\quad r=\sum_g c_g\mu_g,\quad \mu_g=\frac1{n_g}\sum_{i:g_i=g}\psi(X_i)
+$$
+
+(50)
+
+$$
+s_j=\max\left\{\left[\frac14\sum_g n_g^{-1}\sum_{i:g_i=g}(\psi_j(X_i)-\mu_{gj})^2\right]^{1/2},10^{-3}\right\}
+$$
+
+(51)
+
+Group means remain image-weighted: multiple images in one component are not collapsed into one observation. Let M denote the number of TRAIN leakage-union components and
+
+$$
+v_{aj}=\sum_g\frac{c_g}{n_g}\sum_{i\in a:g_i=g}(\psi_j(X_i)-\mu_{gj}),\quad u_j^2=\frac{M}{M-1}\sum_a v_{aj}^2
+$$
+
+(52)
+
+The quantity u is the nonnegative square root of the displayed variance estimate.
+
+The sum across groups occurs before squaring, retaining within-component cross-group covariance. A literal check illustrates the distinction: with two components having values (−1,+1) identically in every group, the signed influences cancel and u=0. If the group values instead follow the contrast sign pattern (+, −, −, +), the two component influences are (−1/2,+1/2), and the stated formula gives u=1. Adding four separate group variances would miss that cancellation or reinforcement. u is a diagonal plug-in variability heuristic, not a calibrated confidence radius: the teacher was fitted to the same TRAIN data, supplied identities can be imperfect, and component independence is not established. Repeated presentations create no new components. The absolute scale floor also prevents a general feature-rescaling invariance claim. r, s, u are fixed training statistics, not validation-tuned hyperparameters.
+
+#### 4 4 Lagged signed interaction witness
+
+Let δ̂ at step t be the signed contrast of the current joint training batch. The feature tracker stores contrasts from earlier successful updates. The generator depends on the joint batch because its batch normalization layers are in training mode.
+
+In the displayed update, δ̄ at t−1 denotes the tracker m available before loss t. The witness is set to zero for the first 500 successful generator updates; the formula below applies after that warm-up. The batch state B at step t includes the joint labels and training-mode batch normalization state.
+
+$$
+\hat\delta_t=\sum_gc_g\frac1{16}\sum_{i=1}^{16}\psi(G_{\theta_t}(z_i,g;B_t))
+$$
+
+(53)
+
+$$
+d_{t-1,j}=(\bar\delta_{t-1,j}-r_j)/s_j,\quad q_{t-1,j}=\operatorname{sign}(d_{t-1,j})(|d_{t-1,j}|-\kappa u_j/s_j)_+
+$$
+
+(54)
+
+The witness is zero until the tracker is initialized and the warm-up has completed. q is computed with gradients disabled, strictly from previous successful updates. The optimized generator loss is exactly
+
+$$
+L_{G,C}=L_{G,B}+\frac{2\lambda}{128}\sum_j\operatorname{stopgrad}(q_{t-1,j})(\hat\delta_{t,j}-r_j)/s_j
+$$
+
+(55)
+
+Centering by r is present in the logged implementation, even though dropping that fixed term would preserve its current gradient. The teacher input forward remains differentiable; disabling its input differentiation would remove the intended G gradient. Teacher parameters receive no gradients, and frozen teacher tensors/SN buffers are checked unchanged.
+
+After a successful G optimizer step, the first tracker update sets m equal to the detached current contrast; later updates set m to 0.9 times its old value plus 0.1 times the detached current contrast, then increment h. The stored contrast was computed before that optimizer step; it is not recomputed afterward. The first 500 successful updates accumulate the tracker with auxiliary witness zero; the next loss can activate it. Loss evaluation itself changes neither tracker state nor RNG. A skipped G attempt changes neither counter nor tracker. The separately logged current squared-deadzone quantity is descriptive only.
+
+```text
+Algorithm 1  Candidate training after the teacher statistics are fixed
+1  Initialize G, D, inference EMAs and an empty contrast tracker.
+2  Draw 16 real TRAIN images per condition; attempt one hinge D update.
+3  Draw a new latent batch; reuse its first 16 vectors across conditions.
+4  Generate one joint batch; compute adversarial scores with flips.
+5  Compute unaugmented fixed-teacher features with gradients to G.
+6  Form the witness from the PREVIOUS tracker; use zero during warm-up.
+7  Attempt the G update using adversarial loss plus the linear surrogate.
+8  On success only: update parameter EMAs, copy buffers and update tracker.
+9  Preserve counters, source hashes, selected EMA states and exposure records.
+```
+
+![Figure 5  Fixed-teacher dataflow for the actual signed-interaction objective. The previous witness is detached; current features retain the input gradient to G. The tracker updates only after a successful G step. Validation selected kappa zero.](../figures/witness_flow_en.png)
+
+Figure 5  Fixed-teacher dataflow for the actual signed-interaction objective. The previous witness is detached; current features retain the input gradient to G. The tracker updates only after a successful G step. Validation selected kappa zero.
+
+### 5 Analytical properties and failure cases
+
+These are algebraic implementation properties, not new general theorems. The archived CPU prerequisite log records 13 passing statistics/autograd tests; software fixtures do not establish efficacy.
+
+##### Proposition 1 literal current feature derivative
+
+Conditional on q, r, s, let f_i=ψ(G_i) and let b_g be the number of current images in group g. Then
+
+$$
+\frac{\partial {L}_{aux,t}}{\partial {f}_{ij}} = \frac{2\lambda {c}_{{g}_{i}}}{d {b}_{{g}_{i}}}\frac{{q}_{t-1,j}}{{s}_{j}}
+$$
+
+(56)
+
+Proof: δ̂ is a linear combination of group means; the witness is detached. There is no current-residual multiplier. This establishes the code’s sign and factor, not an unbiased population GAN gradient.
+
+##### Proposition 2 conditional expected direction with assumptions
+
+Condition immediately before the current G-noise draw on the teacher, current θ and BN state, balanced labels and past tracker. If current random inputs are fresh and differentiation interchanges with expectation, define Δ_B(θ)=E[δ̂(θ; U)]. Then
+
+$$
+E[{\nabla }_{\theta }{L}_{aux,t} | {F}_{t-}] = \frac{2\lambda }{d}{{J}_{\Delta B}}^{T}({\theta }_{t}) ({q}_{t-1} \oslash  s)
+$$
+
+(57)
+
+Here J denotes the Jacobian of the expected joint-batch contrast, and the circled division symbol denotes coordinatewise division by s.
+
+Proof: linearity and the stated interchange. Shared condition latents are included in U; independent group samples are unnecessary. Δ_B concerns the joint train-mode BN batch, not the later selected EMA generator in eval mode. It is not generally the gradient of the current population squared-deadzone objective: the previous m need not equal current Δ_B, and AMP/Adam dynamics are not covered by this idealized identity.
+
+Counterexample (staleness and negative loss). Take d=1, r=0, s=1, u=0,λ=1, old m=1 and current δ̂=−1. Then q=1 and the auxiliary loss is −2, while the current squared discrepancy is 1. Their derivatives with respect to δ̂ are +2 and −2. Thus the surrogate is not a nonnegative distance and lag alone does not ensure descent.
+
+##### Proposition 3 same batch square distinction
+
+For any square-integrable vector estimator Z with mean Δ,
+
+$$
+E{\Vert Z - r\Vert }^{2} = {\Vert \Delta  - r\Vert }^{2} + tr Cov(Z)
+$$
+
+(58)
+
+Proof: expand around Δ; the centered cross term vanishes. A direct noisy square can therefore penalize variability as well as mean error. Shared latent quartets introduce cross-group covariance. The lagged linear conditional derivative lacks this explicit same-batch-square term; that does not prove non-collapse or remove every source of bias.
+
+##### Proposition 4 restricted functional dependence
+
+Holding teacher, statistics and successful-update history fixed, two parameter representations producing identical training-batch images have identical contrasts, tracker, witness and auxiliary value. This follows by substitution: the loss reads features, not raw cBN/convolution norms. It is not optimizer invariance. For G(a, b)=ab and loss equal to half the squared output, equal-output representations (1, 1) and (2,½) give outputs 0.81 and 0.585 after one SGD step of size 0.1. BN-state changes or different skip histories likewise invalidate the premise.
+
+Finally, zero signed interaction mismatch does not identify conditional distributions. If every real group has distribution P and every generated group a different Q, both contrasts vanish because the contrast weights sum to zero, even with a rich feature map. This rank-one signed constraint cannot certify semantic adherence, diversity or nonmemorization. More complete conditional matching, independent-teacher validation and stronger leakage relations remain open.
+
+The signed contrast annihilates an additive main-effect decomposition of the four teacher-feature means: a common offset plus a term for each individual annotation contributes zero to the alternating sum. This isolates one interaction direction, but it also discards other directions of conditional error. Consequently a small auxiliary discrepancy is an insufficient stopping rule for a generative benchmark.
+
+### 6 Experimental design
+
+#### 6 1 Content overlap audit and fresh partitions
+
+CelebA annotations defined four conditions, g=2×Male+Blond_Hair, ordered 00, 01, 10, and 11. The experiment therefore concerns generation conditional on supplied binary annotations, not independently verified human attributes. Every condition was represented in training; the rare condition was not held out as an unseen combination.
+
+![Figure 6  Protocol information flow. Components, rather than filenames alone, define the new partitions. Validation-selected recipes are retrained at three fresh paired seeds before test evaluation.](../figures/v03_study_design.png)
+
+Figure 6  Protocol information flow. Components, rather than filenames alone, define the new partitions. Validation-selected recipes are retrained at three fresh paired seeds before test evaluation.
+
+Before this study, an audit examined all 202,599 canonical RGB64 images, their horizontal reflections, authenticated supplied identity labels, and actual exposure vectors from twelve earlier runs. Supplied-identity links did not cross the original partitions, but this did not ensure content separation: byte-verified canonical-image equality identified 24 training–validation filename pairs, 11 training–test pairs, and two validation–test pairs. The horizontal-flip equivalence audit reported the same counts. These are filename-pair counts, not counts of distinct people. Original nontraining rows had zero direct training exposure; nevertheless, equivalent content under different filenames had training exposure.
+
+For seeds 101, 202, and 303, the earlier exposure vectors recorded 95, 111, and 103 training presentations associated with canonical exact-equivalent validation or test images. The corresponding test-only counts were 67, 78, and 73, including 50, 63, and 62 presentations linked to a rare-test image. Exposure vectors were identical across the four earlier methods within each seed, yielding three distinct sampling histories rather than twelve independent audits. These counts describe canonical source images before random horizontal augmentation. They neither establish that every unchanged raster reached the discriminator nor demonstrate memorization or a causal increase in a quality metric.
+
+The recovery study used fresh partitions formed from connected components of the union of supplied-identity, exact-image, flip-equivalence, and a declared near-duplicate relation. Near links required 64-bit perceptual-hash Hamming distance at most four and aligned RGB root-mean-square error at most eight, considering canonical and reflected orientations. The completed screen examined 26,346,501 orientation pairs and accepted 1,560 distinct filename-pair edges. This is a guarantee about the declared screening relation, not universal semantic deduplication.
+
+Whole components touching the original validation or test partition were excluded. Whole components containing exact/flip-equivalent images with contradictory group annotations were quarantined: four components containing 219 rows. The total excluded/quarantined count, 41,611 rows, also includes the former-heldout exclusions and must not be interpreted as 41,611 annotation conflicts. A fixed component hash assigned the remaining 8,005 components to nominal 70/15/15 training, validation, and test buckets without a partition search. Realized image totals were 112,615, 23,156, and 25,217. Group counts were training [50,146, 15,293, 46,234, 942], validation [9,944, 3,074, 9,885, 253], and test [10,545, 4,127, 10,372, 173]. The rare groups contained 282, 67, and 65 union components, respectively. Components were disjoint across partitions, and no original validation/test image was used. Component counts are computational clustering counts; components can span multiple annotation groups and are not certified human identities or effective sample sizes.
+
+**Table S1  New component-disjoint image counts. The final column counts components intersecting the rare bin; component counts across bins are not additive.**
+
+| Partition | 00 | 01 | 10 | 11 | Total | Rare components |
+| --- | --- | --- | --- | --- | --- | --- |
+| Train | 50,146 | 15,293 | 46,234 | 942 | 112,615 | 282 |
+| Validation | 9,944 | 3,074 | 9,885 | 253 | 23,156 | 67 |
+| Test | 10,545 | 4,127 | 10,372 | 173 | 25,217 | 65 |
+
+![Figure 7  Exact image allocation after component exclusion, conflict quarantine and fixed hash assignment. Counts sum to 202,599. The four conflict components contain 219 rows; the larger excluded total has several causes.](../figures/v04_image_allocation.png)
+
+Figure 7  Exact image allocation after component exclusion, conflict quarantine and fixed hash assignment. Counts sum to 202,599. The four conflict components contain 219 rows; the larger excluded total has several causes.
+
+![Figure 8  Image counts for every partition and annotation bin. The square-root vertical scale is explicitly labeled; values above bars are untransformed counts.](../figures/v05_condition_support.png)
+
+Figure 8  Image counts for every partition and annotation bin. The square-root vertical scale is explicitly labeled; values above bars are untransformed counts.
+
+**Table S2  Preliminary content-exposure audit only. Counts refer to the earlier study and are not quality outcomes of the new experiment.**
+
+| Seed | Train presentations linked to old VAL | Train presentations linked to old TEST | Linked to one rare TEST image |
+| --- | --- | --- | --- |
+| 101 | 28 | 67 | 50 |
+| 202 | 33 | 78 | 63 |
+| 303 | 30 | 73 | 62 |
+
+![Figure 9  Training presentations in three earlier sampling histories linked to exact-equivalent old validation or test content. The twelve earlier runs share three distinct sampling histories.](../figures/v06_earlier_content_exposure.png)
+
+Figure 9  Training presentations in three earlier sampling histories linked to exact-equivalent old validation or test content. The twelve earlier runs share three distinct sampling histories.
+
+#### 6 2 Fixed training and evaluation controls
+
+The primary recovery protocol fixed every development and confirmation trajectory at 1,500 attempted D/G iterations before comparative validation quality. Earlier studies affected by runtime loss were not pooled. A separate 600-step active-gradient pilot and 13 CPU statistics/autograd checks verified narrow execution properties; they do not establish efficacy.
+
+**Table S3  Complete common recipe and candidate controls.**
+
+| Control | Value |
+| --- | --- |
+| Image processing | Center 178 by 178 crop; Pillow bicubic resize to RGB64; uint8 canonical cache |
+| Learned networks | G 737,315 parameters; D 888,545 parameters; common actual base width 32 |
+| Training batch | 64 real images; 16 per annotation bin, sampled with replacement |
+| Optimizer | Adam; learning rate 0.0002; betas (0, 0.9); epsilon 10⁻⁸ |
+| Training budget | 1,500 successful G and D updates per MAIN run; 96,000 real presentations |
+| Auxiliary teacher | 888,545 fixed parameters; 128-dimensional pre-projection features |
+| Candidate statistics | TRAIN only; scale floor 0.001; generated contrast EMA β=0.9 |
+| Warm-up | First 500 successful G updates accumulate the tracker with zero auxiliary witness |
+| Inference EMA grid | 0.99 and 0.999; parameters averaged and buffers copied |
+| Evaluation requests | 512 unfiltered generated images per bin; common latent bank across bins and models |
+
+All six MAIN runs record 1,500 successful G and D updates and zero AMP skips. The inference EMAs therefore received 1,500 updates each. Per-trajectory matching does not equalize total compute: the candidate has four development configurations rather than one and requires an auxiliary teacher forward/backward path.
+
+#### 6 3 Validation only hyperparameter selection
+
+Development comprised five training trajectories at seed 909: B and four C configurations, λ∈{0.1,1} crossed with κ∈{0,1}. Evaluating two generator EMAs per trajectory produced ten validation points, not ten independent trained models. The candidate therefore received a larger configuration-search budget than B. Table S4 reports all four conditional KIDs for every point; no configuration was removed after observing an unfavorable score.
+
+Selection minimized rare-group raw validation KID within each method, with the frozen rounding and tie rules. B selected EMA 0.99, with rare KID×1,000 of 140.856. C selected λ=1, κ=0 and EMA 0.99, with 143.568. The other C rare validation scores at EMA 0.99 were 150.358 for (0.1,0), 146.502 for (0.1,1), and 159.823 for (1,1). All five EMA 0.999 alternatives were also evaluated and retained in the table. The chosen C configuration had an inactive uncertainty deadzone because κ=0. Thus the confirmation experiment cannot establish a benefit of the proposed uncertainty tolerance. The optional matched κ=0 control was unnecessary, since it would duplicate the chosen candidate. Selection was frozen before six fresh confirmation runs at seeds 101, 202, and 303; the recorded selection attestation is provenance, not a cryptographic proof that an operator never saw a score.
+
+**Table S4  All ten validation points. Every score is KID multiplied by 1,000; lower is better. Five trajectories produce two EMA checkpoints each.**
+
+| Method | λ | κ | EMA | 00 | 01 | 10 | 11 |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| B | 0 | 0 | 0.99 | 99.162 | 138.535 | 136.195 | 140.856 |
+| B | 0 | 0 | 0.999 | 440.947 | 471.663 | 420.579 | 448.973 |
+| C | 0.1 | 0 | 0.99 | 121.505 | 153.281 | 146.654 | 150.358 |
+| C | 0.1 | 0 | 0.999 | 487.123 | 521.748 | 452.260 | 487.107 |
+| C | 0.1 | 1 | 0.99 | 136.268 | 171.283 | 145.592 | 146.502 |
+| C | 0.1 | 1 | 0.999 | 484.786 | 521.112 | 441.335 | 481.365 |
+| C | 1 | 0 | 0.99 | 133.086 | 167.763 | 140.821 | 143.568 |
+| C | 1 | 0 | 0.999 | 469.220 | 499.070 | 434.380 | 476.495 |
+| C | 1 | 1 | 0.99 | 148.092 | 174.194 | 161.839 | 159.823 |
+| C | 1 | 1 | 0.999 | 495.253 | 531.579 | 456.026 | 490.707 |
+
+![Figure 10  All ten saved validation points and all four conditional scores. Color spans the displayed score range. Selection uses the rare condition 11, not a favorable subset of test results.](../figures/v08_validation_heatmap.png)
+
+Figure 10  All ten saved validation points and all four conditional scores. Color spans the displayed score range. Selection uses the rare condition 11, not a favorable subset of test results.
+
+A tie is resolved by rounding the raw rare-group value to 12 decimal places, then preferring smaller λ, smaller κ and EMA 0.999. Other group scores, PRDC values and sample appearance do not change selection. No best test seed is selected.
+
+EMA decay also has a simple finite-horizon implication. With the EMA initialized at the initial network parameters, the recursion expands as follows.
+
+$$
+{\bar{\theta }}_{T} = {\eta }^{T}{\theta }_{0} + (1 - \eta )\sum_{k=1}^{T}\left({\eta }^{T-k}{\theta }_{k}\right)
+$$
+
+(59)
+
+After 1,500 successful updates, the coefficient on the initial parameter vector is 2.84e-07 for η=0.99 and 0.222963 for η=0.999. This arithmetic explains why a slowly moving parameter average can remain initialization-heavy in a short run. It is a possible mechanism, not a causal ablation of the validation gap; a nonlinear network is not a mixture of image distributions with these weights, and its BN buffers are copied separately.
+
+![Figure 11  Initialization coefficient in the exact parameter EMA recursion. This mathematical calculation does not establish that EMA initialization caused the observed quality gap; BN buffers were copied separately.](../figures/v09_ema_retention.png)
+
+Figure 11  Initialization coefficient in the exact parameter EMA recursion. This mathematical calculation does not establish that EMA initialization caused the observed quality gap; BN buffers were copied separately.
+
+#### 6 4 Quality endpoints and conditional uncertainty
+
+Evaluation used the recorded Clean-FID clean-mode preprocessing and fixed 2,048-dimensional Inception features. The reported statistic was a caller-defined cubic-kernel KID U-statistic, not FID and not the library's subset-averaged KID. No attribute classifier or judge, generated-image filtering, or relabeling was used. For each model, 512 generated images per group were compared with at most 512 real images per group; all generated images entered analysis. The rare real banks contained all 253 validation and 173 test images. A common 512×128 PCG64 Gaussian latent bank was shared across groups and models, with different validation/test seeds 64001 and 94001. Filename-hash real-bank seeds were 65001 and 95001. Raw KID was retained without clipping, and reported KID×1,000 is only a unit conversion. Classical U-statistic unbiasedness under independent observations and a fixed feature map should not be read as an unconditional guarantee for clustered image banks.
+
+The primary comparison used 2,000 paired bootstrap replicates with seed 95003. Real union components were resampled jointly across groups; generated latent indices were resampled jointly across groups and the three fixed model pairs. The predeclared one-sided percentile level was 0.9875, retaining four conservative comparison slots although only C versus B was required after selection. Training seeds, teacher estimation, and hyperparameter selection were not resampled. Consequently, the bound is conditional on the selected finite reference bank, declared components, shared-latent coupling, and three fixed network pairs. It is not a confidence interval for a population of training runs, nor a calibrated band for teacher uncertainty.
+
+### 7 Results
+
+Across seeds, rare-test KID×1,000 averaged 166.663 for B and 185.544 for C; lower is better. Macro averages over the four conditions were 159.807 and 177.618. The groupwise means were B [142.082, 175.154, 155.329, 166.663] and C [149.220, 194.728, 180.979, 185.544]. Table S5 retains every seed and all four group values, with macro summaries.
+
+Rare-test C−B differences at seeds 101, 202, and 303 were +66.797, −21.982, and +11.826 in KID×1,000 units. Thus C improved on B only at seed 202 and was worse on the three-seed mean. The primary mean difference was +18.880, with conditional one-sided upper bound +23.611. The upper bound was not below zero, so the prespecified one-sided comparison did not demonstrate improvement. This is a failed improvement demonstration under the tested recipe, not proof that the candidate universally harms generation or that another training budget would behave identically.
+
+PRDC used strict open-ball neighborhoods with k=3 on the same feature subsets. Recall was exactly zero in all 24 model-by-group records. Other PRDC quantities were small and nonzero; Table S7 reports every conditionwise mean; the source records retain all 24 individual diagnostics. This is a serious limitation of measured feature-neighborhood coverage at this sample scale. It is not a proof of global support disjointness, semantic failure, or universal mode collapse. No favorable claim should be based only on selected sample grids when these coverage diagnostics are poor.
+
+**Table S5  All six fresh confirmation models and fixed-seed means. Values are KID multiplied by 1,000; means are arithmetic summaries of three fixed seeds.**
+
+| Method | Seed | 00 | 01 | 10 | 11 | Macro |
+| --- | --- | --- | --- | --- | --- | --- |
+| B | 101 | 137.764 | 162.358 | 156.958 | 150.910 | 151.997 |
+| B | 202 | 153.443 | 187.221 | 163.907 | 188.261 | 173.208 |
+| B | 303 | 135.038 | 175.882 | 145.121 | 160.819 | 154.215 |
+| C | 101 | 162.080 | 218.683 | 216.222 | 217.707 | 203.673 |
+| C | 202 | 136.180 | 180.448 | 159.368 | 166.280 | 160.569 |
+| C | 303 | 149.400 | 185.052 | 167.347 | 172.645 | 168.611 |
+| B | Mean | 142.082 | 175.154 | 155.329 | 166.663 | 159.807 |
+| C | Mean | 149.220 | 194.728 | 180.979 | 185.544 | 177.618 |
+
+![Figure 12  Four conditional mean KIDs from the saved six-model cohort. These are descriptive means over fixed seeds, not independent population estimates.](../figures/v11_all_condition_means.png)
+
+Figure 12  Four conditional mean KIDs from the saved six-model cohort. These are descriptive means over fixed seeds, not independent population estimates.
+
+**Table S6  Prespecified rare-group comparison. Difference and upper bound are in KID multiplied by 1,000. The bound is nominal and conditional on the three fixed network pairs and selected feature banks.**
+
+| Comparison | Mean difference | Upper bound | Percentile level | Improvement shown |
+| --- | --- | --- | --- | --- |
+| C minus B | 18.880 | 23.611 | 98.75% | No |
+
+![Figure 13  Paired rare-condition outcomes for all three fixed confirmation seeds. Connecting lines denote matched seeds, not trajectories in optimization time.](../figures/v10_paired_test_seeds.png)
+
+Figure 13  Paired rare-condition outcomes for all three fixed confirmation seeds. Connecting lines denote matched seeds, not trajectories in optimization time.
+
+![Figure 14  The point difference and nominal one-sided conditional upper bound. The horizontal segment is not a two-sided confidence interval. Training-seed populations, teacher fitting and hyperparameter selection are not resampled.](../figures/v12_conditional_upper_bound.png)
+
+Figure 14  The point difference and nominal one-sided conditional upper bound. The horizontal segment is not a two-sided confidence interval. Training-seed populations, teacher fitting and hyperparameter selection are not resampled.
+
+**Table S7  Descriptive PRDC means across the three fixed seeds for every condition, with k=3. These values are not multiplied by 1,000.**
+
+| Method | Group | Precision | Recall | Density | Coverage |
+| --- | --- | --- | --- | --- | --- |
+| B | 00 | 0.05924 | 0.00000 | 0.02148 | 0.01758 |
+| B | 01 | 0.03516 | 0.00000 | 0.01237 | 0.00911 |
+| B | 10 | 0.24219 | 0.00000 | 0.11285 | 0.04297 |
+| B | 11 | 0.07682 | 0.00000 | 0.03646 | 0.07129 |
+| C | 00 | 0.04622 | 0.00000 | 0.01736 | 0.02018 |
+| C | 01 | 0.03125 | 0.00000 | 0.01085 | 0.00977 |
+| C | 10 | 0.13737 | 0.00000 | 0.06185 | 0.02995 |
+| C | 11 | 0.06380 | 0.00000 | 0.02908 | 0.06166 |
+
+![Figure 15  Precision, density and coverage means in all four conditions, with separate vertical scales across panels. Recall is exactly zero in all 24 individual model-by-condition records. Zero finite-neighborhood recall is not a proof of global support disjointness.](../figures/v13_prdc_diagnostics.png)
+
+Figure 15  Precision, density and coverage means in all four conditions, with separate vertical scales across panels. Recall is exactly zero in all 24 individual model-by-condition records. Zero finite-neighborhood recall is not a proof of global support disjointness.
+
+### 8 Discussion and unresolved problems
+
+The tested recipe does not demonstrate improvement on the specified primary comparison. Neither the positive mean difference nor the lack of demonstrated improvement proves universal harm. The experiment has one development seed and three fixed confirmation seeds, one dataset, one backbone and a short optimization horizon. It cannot rank GANs against diffusion models, flow matching, VAEs or autoregressive models. The separate synthetic CPU checks in Part 4 are software validation, not additions to this cohort.
+
+Three mechanisms remain plausible and untested. The fixed discriminator may provide an imperfect or training-adapted feature representation; the lagged witness may point away from the current discrepancy gradient; and one signed interaction leaves other conditional directions unconstrained. Poor finite-feature neighborhood coverage also prevents a positive diversity interpretation. No additional ablation identifies which mechanism caused the observed gap.
+
+The uncertainty tolerance is particularly limited by selection. Although κ=1 was evaluated during development, the chosen candidate has κ=0. Its confirmation result is evidence about the selected signed-witness recipe, not evidence that a positive deadzone helps. The component variability scale should not be presented as a calibrated confidence radius.
+
+#### 8 1 Missing combinations require identifying assumptions
+
+For an absent condition g*, suppose the training design assigns request probability zero to g*. Two conditional families can agree on every observed group and assign arbitrary distinct distributions R and S to g*. They induce the same observed training law. No learner can distinguish these completions from those data alone, even with infinitely many observed-condition samples. A general claim about unseen combinations therefore requires additional structural assumptions or external observations. Shared noise by itself supplies no such assumption. This boundary is separate from the present rare-but-observed bin.
+
+#### 8 2 A stronger candidate remains to be tested
+
+An explicit future alternative is to penalize every conditional distribution rather than a single signed contrast, with positive condition weights ρ. A population form is
+
+$$
+{J}_{cond}(\theta ) = \sum_{g}\left({\rho }_{g} {MMD}_{k}^{2}({P}_{g}, {Q}_{\theta ,g})\right),  {\rho }_{g} > 0
+$$
+
+(60)
+
+This target requires observations or otherwise identified target distributions for every group. It does not identify a missing conditional distribution from observed groups alone.
+
+With a bounded characteristic kernel on the relevant space, zero conditional MMD identifies each conditional distribution on that space (Gretton et al., 2012). A Gaussian kernel on fixed CNN features would identify their feature pushforwards, not necessarily the image distributions. A direct minibatch squared mean also includes a variability term; an off-diagonal U-statistic requires appropriate independence assumptions, which train-mode BatchNorm can violate. These are established distinctions, not an evaluated improvement of the current method.
+
+The current test results are known and cannot serve as an untouched confirmatory test for a method designed in response to them. A follow-up would need prospective development rules, an unqueried outer test, all baseline and candidate configurations, explicit teacher and search costs, and an audited semantic evaluator if semantic fairness is claimed. No such follow-up experiment is reported here.
+
+### 9 Reproducibility data and model availability
+
+The recovered research core retains all ten validation points, six test points, the computed bootstrap report, selection/configuration records, aggregate audits, source files, and byte hashes. The English tables were checked against those committed point JSONs and CSVs; the saved quality endpoints, feature extraction and bootstrap were not rerun. A separate release check strictly loads the four recovered generators and performs finite CPU forward passes; that check does not recompute quality metrics. Source hashes and saved arithmetic permit consistency checks but do not independently reproduce the original numerical computation. The recorded environment included two Tesla T4 GPUs, PyTorch 2.11.0+cu130, Python 3.13.16, NumPy 2.1.3, and Pillow 11.3.0; deterministic GPU kernels were not guaranteed.
+
+Scientific completion and artifact delivery differ. Complete selected-EMA archives were recovered for B101 and C101/C202/C303: four of six confirmation generators. B202 and B303 remain unavailable as complete models. A later files-only recovery recovered and hash-verified four of the eight original B202 text chunks; these fragments are not a fifth complete model or a usable complete ZIP. The current replacement session lacked the previous study directory and the five missing archives. No saved versions were observed in that notebook; this does not establish that every possible account backup was searched.
+
+The selected real-feature/latent reference archive, fixed-teacher snapshot, and full derived clean-split/component-support archive were not retrieved. Full training checkpoints and optimizer state were not delivered. Consequently the current package is not a self-contained six-model point/CI replay or an exact training restart. The narrow portable replay source remains gated on missing inputs rather than bypassing their checks. A one-batch GPU smoke completion was observed, but its machine-readable smoke report was not retrieved and it does not establish full metric replay. Recreating missing trained weights would require new training, not reconstruction from hashes or partial chunks. These delivery limits leave the saved conditional comparison auditable as records while restricting independent numerical reproduction. Together with one development seed, three fixed confirmation seeds, short 1,500-update training, a single dataset/backbone, an adaptive fixed teacher, and an inactive selected deadzone, they bound the conclusions of this experiment.
+
+**Table S8  Availability of actual study artifacts after the recovery attempt. Completion records are not substitutes for missing parameter bytes.**
+
+| Artifact | Current availability |
+| --- | --- |
+| Validation and test records | All 10 validation points, all 6 test points and the bootstrap report |
+| Source and audit core | 288 manifest-checked files; source, configuration and scalar arithmetic checks |
+| Complete selected generators | B101 and C101 C202 C303, four of six MAIN generators |
+| Incomplete baseline files | B202 has four of eight verified text chunks; B303 is missing |
+| Unavailable auxiliary inputs | Selected reference banks, teacher tensor snapshot and complete split arrays |
+| Exact numerical replay | Not established; full point and CI replay and exact restart are unavailable |
+
+The dataset and external evaluation-network weights are not redistributed. CelebA research-use terms apply. Supplied demographic annotations are treated as benchmark labels with limitations; neither these labels nor feature-neighborhood scores establish human identity, a comprehensive gender taxonomy or a fairness guarantee. No differential privacy guarantee is claimed.
+
+### 10 Conclusion
+
+This study specifies a train-only signed feature-interaction correction and evaluates it with component-disjoint partitions, complete validation reporting and fresh paired confirmation seeds. The correction did not improve the tested rare-condition endpoint. The selected zero tolerance does not support a benefit from uncertainty thresholding. The strongest positive result is methodological: filename and identity-label separation alone did not prevent content overlap, and the revised evaluation makes its declared exclusions, endpoint and uncertainty scope explicit. Reliable improvement across conditions, semantic evaluators and training randomness remains unresolved.
+
+<a id="part3"></a>
+
+## Part 3 Identification optimization leakage and uncertainty
+
+This part develops the mathematical interpretation of the completed experiment and specifies stronger, untested alternatives. It does not add trained models, rerun an endpoint, repair a negative result by changing its definition, or establish a new general principle of generative modeling. Elementary propositions below are derived explicitly so that their assumptions can be checked. Established conditional generation, feature matching and kernel methods remain the relevant antecedents. The accompanying application combines a particular four-bin contrast, a within-study discriminator teacher, fixed training statistics and a lagged linear witness. Moving-discrepancy linear surrogates already occur in GFMN; conditional detached moment witnesses also occur in AMFD. [E14,E17,E18,E31]
+
+Three separations govern the discussion. First, an algebraic identity about a minibatch loss is different from an identification theorem about image distributions. Second, a conditional uncertainty calculation for fixed trained networks is different from uncertainty over training algorithms, seeds or future populations. Third, a complete record of measured endpoints is different from delivery of all tensors needed for numerical replay. The final six-model comparison has preserved point and uncertainty records, but only four of its six complete inference-weight archives were locally retrieved. The two missing baseline archives, reference banks, fixed teacher snapshot and full derived split arrays limit independent replay.
+
+The realized selected candidate used loss coefficient λ=1, tolerance multiplier κ=0 and inference-parameter EMA decay η=0.99. Therefore the uncertainty-tolerance threshold was inactive in the evaluated candidate. Its mean rare-condition KID was worse than the balanced baseline. The proofs and proposed alternatives below do not reverse that observation. In particular, the words candidate, proposed and future indicate a mathematical construction or prospective algorithm, not an additional successful experiment.
+
+### T1 Formal objects targets and the finite question
+
+Let X be a canonical RGB image and let g range over four observed joint annotation bins. The implementation encodes g as twice the binary Male label plus the binary Blond Hair label, so its conditional input is a four-entry joint-label lookup. All four bins occur in training, including 942 images in the rare bin. This is conditional imbalance among seen bins. It is neither a held-out conjunction experiment nor an attribute-factorized architecture. Calling the signed contrast an interaction describes a linear statistic of conditional feature means; it does not identify a causal interaction between human attributes.
+
+Write P and Q for the specified real and generator conditional laws, indexed by g as in the display below. The target must be qualified: a finite empirical distribution of canonical training images, an independent target population and a distribution of transformed images are different objects. Balanced training changes the frequency with which conditions are requested. It does not create additional independent rare identities, determine an absent conditional law or guarantee that the generated content respects its requested annotation. Conditional labels supply an indexing mechanism; their semantic accuracy is a separate measurement question. [E11,E19,E31]
+
+$$
+{P}_{\rho }(dx,g)={\rho }_{g}{P}_{g}(dx),   {Q}_{\theta ,\rho }(dx,g)={\rho }_{g}{Q}_{\theta ,g}(dx)
+$$
+
+(61)
+
+Here ρ is a declared positive request probability distribution, with its four entries summing to one. The positive weights in the later joint-law equivalence use this same normalized request law. Uniform ρ gives each condition equal weight even when the natural training proportions differ. A statement that a model is good under this balanced target does not imply goodness under the natural mixture, and the reverse implication also fails. It is possible for a generator to improve a high-mass natural-mixture objective while becoming worse in the rare condition. Reporting the request distribution, every conditional endpoint and the aggregation rule is therefore part of defining the research problem, rather than an optional presentation choice.
+
+For the completed finite experiment, define the group-indexed endpoint T as the saved KID-form statistic in a frozen feature space, evaluated on a specified groupwise real reference bank and fixed unfiltered latent requests Z. The operational question is whether the selected training recipe improves the rare-bin endpoint over a balanced adversarial baseline under a fixed per-trajectory budget and a leakage restriction. This is measurable, narrow and falsifiable. It does not require claiming that one scalar score orders all image distributions according to every human preference.
+
+$$
+{\hat{\Delta }}_{3}=\frac{1}{3}\sum_{r\in {101,202,303}}\left([{T}_{3}({\theta }_{r}^{C};R,Z)-{T}_{3}({\theta }_{r}^{B};R,Z)]\right)
+$$
+
+(62)
+
+Negative candidate-minus-baseline differences favor the candidate because lower KID is the declared direction. A favorable finite endpoint would still leave semantic adherence, privacy, fairness, out-of-domain behavior and population-level improvement unresolved. Conversely, the observed unfavorable mean does not prove that all moment-based objectives are ineffective. It rejects a positive efficacy reading of this implemented recipe at this training budget and reference definition.
+
+The generator is also stateful. Besides trainable parameters θ, it has normalization buffers S; evaluation may use averaged parameters and copied buffers. A training loss can depend on an entire minibatch through BatchNorm. It is consequently useful to distinguish a pointwise inference map evaluated at (θ,S,z,g) from a joint training map evaluated at (θ,S,Z,Y). Their feature expectations need not coincide. Any mathematical statement that silently replaces the second object by the first changes the target functional before proving anything about it.
+
+### T2 Missing conjunctions are not identified by observed ones
+
+Consider a condition g* whose sampling probability is zero. Assume no structural restriction links its conditional image law to those of the observed conditions. Choose two different distributions R and S for that absent bin, and keep every observed conditional distribution unchanged. The resulting two data-generating families have exactly the same observed joint law. Every estimator, neural architecture and randomized training procedure receives observations with the same distribution under the two families. No procedure using those observations alone can determine whether the absent conditional target is R or S.
+
+$$
+{π}_{g*}=0,   {P}_{g}={P^{\prime}}_{g} for g\ne g*,   {P}_{g*}=R\ne S={P^{\prime}}_{g*}
+$$
+
+(63)
+
+$$
+{P}_{obs}(dx,g)={π}_{g}{P}_{g}(dx)={π}_{g}{P^{\prime}}_{g}(dx)={P^{\prime}}_{obs}(dx,g)
+$$
+
+(64)
+
+Proof. For each observed g, equality follows because the two conditional laws agree. For g*, the joint probability is multiplied by zero, so either proposed conditional law gives zero observed mass. Equality holds for every measurable image set and every condition, hence for the entire observed experiment, including arbitrarily many independent observations. A learned predictor may nevertheless choose one extrapolation, but the observations cannot justify it uniformly over the unrestricted family. This is an identification boundary, not a statement about insufficient optimization or finite compute.
+
+A stronger minimax form follows from the triangle inequality for total variation. For any proposed absent-bin distribution Q, at least one of the two errors TV(Q,R) and TV(Q,S) is at least TV(R,S)/2. Otherwise their sum would be less than TV(R,S), contradicting the triangle inequality. Thus even a hypothetical optimizer that perfectly solves the observed likelihood or adversarial objective cannot have arbitrarily small absent-bin error for both indistinguishable families. Randomization does not add identifying information; the same argument applies after averaging a randomized output distribution.
+
+$$
+max{TV(Q,R),TV(Q,S)}\geq \frac{1}{2}TV(R,S)
+$$
+
+(65)
+
+An identification claim requires extra assumptions or extra observations. Examples include a specified additive mechanism in an identified representation, a justified causal model, an injective compositional rendering process, smoothness over a meaningful continuous condition space, or external observations of the absent combination. Each restriction excludes some otherwise indistinguishable families. The restriction should be stated mathematically and tested where possible. Merely sharing generator weights or reusing the same Gaussian latent across labels is an architectural or coupling choice, not a proof that the restriction is true.
+
+The completed experiment does not test this missing-condition problem. Its rare group is present, and all three clean partitions contain rare examples. The appropriate open question is sample-efficient learning for a seen rare conditional target. A future absent-conjunction experiment would require a separate protocol: a declared hidden condition, no use of that condition in teacher fitting or normalization statistics, explicitly assumed structure and a genuinely untouched evaluation set. Calling an observed-bin improvement compositional generalization would conflate two different statistical experiments.
+
+The same boundary appears inside feature space. Even if a model predicts the correct absent-bin feature mean under an additive assumption, the corresponding image distribution may remain unidentified. Many image distributions can share that mean, and a decoder can map different latent structures to the same feature vector. An identification argument must state both the relationship between conditions and the information retained by the representation. Neither issue is solved by obtaining a small training loss.
+
+### T3 The signed contrast is one direction of a four condition system
+
+Encode the two binary annotations by a,b∈{−1,+1}. Let μ, indexed by (a,b), denote the conditional mean of a fixed d-dimensional feature map. Four vector coefficients give the exact factorial decomposition of these four means: an overall mean, two main-effect coefficients and one signed interaction coefficient. This is a finite linear change of coordinates. It imposes no probability model, causal ordering or semantic invariance assumption. Its value is that it reveals exactly which directions an interaction-only loss ignores.
+
+![Figure 16  Constructed counterexample to identification by the signed contrast. With c=(1,-1,-1,1)/4, both alternating means equal zero, while each group has a different feature mean. The GAN adversarial term is a separate constraint.](../figures/v14_contrast_counterexample.png)
+
+Figure 16  Constructed counterexample to identification by the signed contrast. With c=(1,-1,-1,1)/4, both alternating means equal zero, while each group has a different feature mean. The GAN adversarial term is a separate constraint.
+
+$$
+{m}_{0}=\frac{1}{4}\sum_{a,b}\left({\mu }_{ab}\right),   {m}_{A}=\frac{1}{4}\sum_{a,b}\left(a{\mu }_{ab}\right)
+$$
+
+(66)
+
+$$
+{m}_{B}=\frac{1}{4}\sum_{a,b}\left(b{\mu }_{ab}\right),   {m}_{AB}=\frac{1}{4}\sum_{a,b}\left(ab{\mu }_{ab}\right)
+$$
+
+(67)
+
+$$
+{\mu }_{ab}={m}_{0}+a{m}_{A}+b{m}_{B}+ab{m}_{AB}
+$$
+
+(68)
+
+Proof. Substitute the four coefficient definitions into the last expression. The coefficient multiplying the mean indexed by (a′,b′) is one quarter of (1+aa′)(1+bb′), which equals one when a=a′ and b=b′ and equals zero otherwise. The transformation is invertible. Therefore matching all four coefficients is equivalent to matching the four feature means. Matching only the signed coefficient leaves the other three vector directions unrestricted.
+
+For g=0,1,2,3 in the implemented binary ordering, c=(1,−1,−1,1)/4 extracts the interaction coefficient. A common mean shift v in every generated condition cancels because the coefficients sum to zero. A change proportional only to a also cancels, as does a change proportional only to b. In a d-dimensional feature space, the interaction constraint supplies d scalar equations for four d-dimensional means. This counting argument is not itself a general identification proof, but the explicit null directions give exact counterexamples.
+
+$$
+c=\frac{(1,-1,-1,1)}{4},   \sum_{g=0}^{3}\left({c}_{g}\right)=0,   r=\sum_{g=0}^{3}\left({c}_{g}{\mu }_{P,g}\right)
+$$
+
+(69)
+
+A particularly strong counterexample takes every real group to have distribution P and every generated group to have a different distribution Q. Both real and generated signed contrasts are zero for every integrable feature map, including an infinite-dimensional characteristic kernel embedding. Thus zero signed discrepancy can coexist with every conditional distribution being wrong. Increasing feature richness does not repair the information discarded by the rank-one label contrast.
+
+Another counterexample permutes two conditions that share an interaction contribution while changing their main-effect means. Depending on the distributions, the signed aggregate can remain unchanged even though requested bins no longer align with their targets. Uniformly requesting 512 images for every label cannot detect that failure by request counts alone. Content-sensitive conditional evaluation is needed; the request label is an experimental input, not an independent semantic annotation of the output.
+
+The kernel interpretation makes the rank restriction explicit. Let h(g)=4c(g), where c(g) denotes the indexed contrast coefficient, so h takes values +1,−1,−1,+1. Under uniform condition probabilities, a product kernel k(x,x′)h(g)h(g′) compares the signed feature embeddings of the two joint laws. Its label Gram matrix is an outer product and has rank one. Replacing the image kernel by a characteristic kernel does not make this label kernel distinguish four arbitrary conditional distributions. To identify every observed conditional law, the label component must retain every relevant condition direction and the image component must retain the required distributional information. [E12,E14,E33]
+
+The interpretation of a zero fitted interaction is therefore limited: one signed summary agrees, relative to the fixed representation and scale. It is not evidence that the generator learned causal attribute composition, that its rare bin is correct or that diversity is preserved. The accompanying adversarial objective constrains additional aspects, but finite GAN optimization supplies no automatic theorem that all remaining directions become correct.
+
+### T4 Finite features and noisy teachers create a second identification boundary
+
+Let ψ map images to a finite-dimensional representation. Matching ψ-distributions means equality of the pushforward measures ψ#P and ψ#Q. If ψ is not injective on the image domain, distinct image distributions can have identical pushforwards: put all probability on two different images that map to the same feature vector. Matching only the mean of ψ is weaker still. For a scalar example, a distribution assigning equal mass to −1 and +1 and a point mass at zero have the same mean but different variances and supports. No optimizer can recover distinctions absent from its chosen statistic.
+
+A learned discriminator representation is task-dependent. In the actual study, ψ is the last raw discriminator backbone from the baseline development trajectory, frozen before candidate development. It learned from real TRAIN images and its own generated negative examples. It is neither an external semantic oracle nor a representation independent of the training sample. Freezing it prevents further parameter adaptation during the candidate update; it does not undo how it was originally fitted. The benchmark Inception representation is different and does not supply gradients to the auxiliary loss.
+
+To quantify one limited representation effect, suppose ψ̃=ψ+e and assume a uniform bound on the norm of e over all real and generated images under consideration. This is a mathematical assumption, not an observed calibration property of the teacher. Since the absolute contrast coefficients sum to one, the real contrast error is bounded by the same uniform feature error, and so is the generated contrast error.
+
+$$
+{sup}_{x}\Vert e(x)\Vert \leq \varepsilon ,   \Vert r(\tilde{\psi })-r(\psi )\Vert \leq \varepsilon ,   \Vert \delta (\tilde{\psi })-\delta (\psi )\Vert \leq \varepsilon
+$$
+
+(70)
+
+$$
+\Vert [\delta (\tilde{\psi })-r(\tilde{\psi })]-[\delta (\psi )-r(\psi )]\Vert \leq 2\varepsilon
+$$
+
+(71)
+
+Proof. For each conditional mean, integration cannot increase a uniform norm bound. Apply the triangle inequality to the contrast sum and use the coefficient absolute-sum bound. Apply it once more to the difference between generated and real contrasts. If a diagonal scale S is held fixed with every entry at least a fixed positive lower bound, the standardized discrepancy perturbation is at most twice ε divided by that lower bound in Euclidean norm. This statement does not cover changes in the estimated scale or uncertainty vector when the teacher changes; those statistics would require their own stability assumptions.
+
+The bound helps organize failure modes without diagnosing the actual negative result. A teacher can be insensitive to a feature relevant to KID, overemphasize artifacts useful for discrimination or assign large gradients to directions that do not improve perceived images. None of those possibilities is established solely by the final KID values. Distinguishing them would require additional experiments, such as a representation swap with fixed objective, an independently trained teacher or a controlled synthetic setting with known relevant features. Those are future ablations, not explanations proved by the current run.
+
+Feature normalization is another modeling choice. Dividing coordinates by within-group scales changes the geometry and relative gradient weights. A positive floor avoids division by zero, but also breaks unrestricted rescaling invariance. A coordinate whose standard deviation lies below the floor receives a scale determined by the floor rather than its empirical standard deviation. The diagonal treatment does not whiten correlations. A general rotation or mixing of coordinates changes the normalized objective even if it preserves all information in the representation.
+
+There is a useful restricted invariance. If each feature coordinate is separately multiplied by a nonzero constant, all scales and variability statistics transform by its absolute value, tracker history transforms consistently and the floor remains inactive before and after transformation, the standardized current residual and witness acquire the same sign change. Their product, and hence the auxiliary value, is unchanged. Shared additive feature offsets cancel from the contrast because the coefficients sum to zero. This restricted substitution property does not imply invariance to arbitrary feature maps, floor activation, optimizer parameterizations or different normalization histories.
+
+### T5 Train only statistics image weighting and component covariance
+
+The actual target statistics use one pass over all canonical TRAIN images. They do not use validation images, test images, KID features or generated quality scores. For each condition, the mean is image-weighted: a component containing several images contributes once for every image. The leakage component is used to describe dependence, not to redefine the target as a uniform distribution over people or components. Changing to component-balanced means would change the objective and would require a separate stated target.
+
+![Figure 17  Two analytical component configurations illustrate cancellation and reinforcement in the signed cluster influence formula. No new dataset estimates are shown.](../figures/v17_component_covariance.png)
+
+Figure 17  Two analytical component configurations illustrate cancellation and reinforcement in the signed cluster influence formula. No new dataset estimates are shown.
+
+Let n(g) be the number of TRAIN images in bin g. The real contrast r is the signed sum of conditional means shown above. The positive scale is the square root of the uniform average of the four within-group coordinate variances, floored at 0.001. These choices make rare and common groups contribute equally to the feature scale, despite their different image counts. They are fixed parts of the implemented recipe, rather than hyperparameters chosen from validation outcomes.
+
+$$
+{\mu }_{g}=\frac{1}{{n}_{g}}\sum_{i:gᵢ=g}\left(\psi ({x}_{i})\right),   r=\sum_{g=0}^{3}\left({c}_{g}{\mu }_{g}\right)
+$$
+
+(72)
+
+$$
+{s}_{j}=max{\sqrt{\frac{1}{4}\sum_{g=0}^{3}\left(\frac{1}{{n}_{g}}\sum_{i:gᵢ=g}\left({({\psi }_{j}({x}_{i})-{\mu }_{gj})}^{2}\right)\right)},{10}^{-3}}
+$$
+
+(73)
+
+Let A(i) be the leakage-union component of image i and let M be the number of distinct TRAIN components. For each component, form a signed influence by summing its centered contributions over all groups before squaring. A component can legitimately contain multiple annotation bins: an identity may appear in different photographs or with changing attributes. Treating the groups as independent would discard covariance associated with their shared component membership.
+
+$$
+{v}_{aj}=\sum_{g=0}^{3}\left(\frac{{c}_{g}}{{n}_{g}}\sum_{i:A(i)=a,gᵢ=g}\left(({\psi }_{j}({x}_{i})-{\mu }_{gj})\right)\right)
+$$
+
+(74)
+
+$$
+{u}_{j}=\sqrt{\frac{M}{M-1}\sum_{a=1}^{M}\left({{v}_{aj}}^{2}\right)}
+$$
+
+(75)
+
+The order of operations matters. Squaring four group contributions separately omits their cross terms. In one literal two-component example, every group has component values −1 and +1. The signed influences cancel because the contrast coefficients sum to zero, giving u=0. If instead the group values follow the contrast sign pattern, the component influences are −1/2 and +1/2, yielding u=1 under the displayed formula. These examples verify covariance bookkeeping. They do not establish that the empirical components are independent sampling units or that u has calibrated coverage.
+
+The teacher was fitted to the same TRAIN data used to estimate r,s,u. This adaptivity matters. A familiar cluster-variance expression derived for a fixed statistic cannot automatically be interpreted as a confidence radius for an adaptively learned representation. Moreover, supplied identities can contain errors, near-duplicate relations are limited, and a finite set of components need not represent independent people sampled from a population. The cautious interpretation is a diagonal plug-in variability heuristic. In the selected κ=0 model, that heuristic did not affect the active tolerance threshold at all.
+
+A train-only statistic can still influence validation-selected performance, but that is a permitted dependency rather than leakage. The desired causal order is TRAIN data to fitted teacher and statistics, TRAIN updates to candidate parameters, validation outputs to recipe selection, and finally frozen selection to test evaluation. Reversing an arrow—for example selecting teacher features or a scale floor using test KID—would create a new adaptive procedure. The fact that a quantity is called a normalization constant does not exempt it from this rule.
+
+### T6 The implemented detached witness and its exact derivative
+
+Before a generator update, the tracker contains a previous generated contrast m and a successful-update count h, each indexed by the current step. It is not a gradient-tracked copy of the current batch. Standardize the previous error by the fixed scale, apply a coordinatewise soft threshold and disable the witness during warmup. The initialized tracker also must exist. In the realized model, κ=0, so the active post-warmup witness is simply the standardized previous error. The code still supports positive κ development candidates; that support is not evidence that positive tolerance helped.
+
+$$
+{d}_{tj}=\frac{{m}_{tj}-{r}_{j}}{{s}_{j}},   {q}_{tj}=1{{h}_{t}\geq 500} sign({d}_{tj}){(|{d}_{tj}|-\kappa \frac{{u}_{j}}{{s}_{j}})}_{+}
+$$
+
+(76)
+
+A balanced current generator batch contains 16 latent quartets, with each latent reused for all four conditions. The fixed teacher sees unaugmented generated images, while adversarial training applies its own random flips. The current feature contrast is computed from the joint train-mode generator batch. With d=128 teacher coordinates, the exact centered auxiliary surrogate is the following linear expression. The stop-gradient operator detaches the previous witness, not the generated image or the teacher input Jacobian.
+
+$$
+{\hat{\delta }}_{t}=\sum_{g=0}^{3}\left({c}_{g}\frac{1}{16}\sum_{i=1}^{16}\left(\psi ({{G}_{\theta ,S}(Z,Y)}_{g,i})\right)\right)
+$$
+
+(77)
+
+$$
+{L}_{aux,t}=\frac{2\lambda }{d}\sum_{j=1}^{d}\left(sg({q}_{tj})\frac{{\hat{\delta }}_{tj}-{r}_{j}}{{s}_{j}}\right),   d=128
+$$
+
+(78)
+
+The centering term r is part of the logged loss even though removing a fixed centered term would preserve the current gradient. This distinction prevents a gradient-equivalent rewrite from being mistaken for the literal recorded objective. Because the surrogate is linear in the current contrast, it can be negative. It is not a distance or a nonnegative discrepancy. Its sign alone cannot be interpreted as improvement or deterioration of the current squared feature error.
+
+For a current feature coordinate f(i,j) in group g(i), with the corresponding group batch size, the derivative is constant once the previous witness is fixed. It contains the signed group coefficient and no multiplier from the current residual. Differentiating the group mean and then the linear sum gives the exact result:
+
+$$
+\frac{\partial {L}_{aux,t}}{\partial {f}_{ij}}=\frac{2\lambda }{d}\frac{{c}_{{g}_{i}}}{{b}_{{g}_{i}}}\frac{{q}_{tj}}{{s}_{j}}
+$$
+
+(79)
+
+This verifies the factor, direction and gradient path. Freezing teacher parameters is consistent with a nonzero generator gradient: the derivative passes through the teacher with respect to its image input. Wrapping the teacher forward in a no-gradient context would instead remove this path. The actual implementation checks that teacher parameters and spectral-normalization state remain unchanged, while generated features retain the required connection to generator parameters.
+
+After a successful generator optimizer update, the first tracker observation initializes m from the detached pre-update contrast. Subsequent successful observations use m←0.9m+0.1δ̂, then increment h. The contrast is not recomputed at the new parameters. Loss evaluation itself changes neither the tracker nor the RNG. AMP-skipped generator attempts do not advance the tracker or inference EMAs. The first 500 successful observations therefore populate history while the auxiliary witness is zero; the next loss may activate it.
+
+These are operational properties, not convergence guarantees. GFMN already uses moving discrepancy estimates and linear current-feature surrogates, while AMFD includes conditional detached moment witnesses. The distinction here is the particular signed statistic, teacher, scaling, heuristic tolerance and finite conditional experiment. Identifying those choices precisely is necessary for replication; it does not justify claiming priority for linearization, stop-gradient feature matching or moving targets. [E17,E18]
+
+### T7 Staleness a conditional identity and a restricted direction bound
+
+Condition on all information immediately before a fresh generator-noise draw: current parameters, normalization state, teacher, fixed statistics, balanced labels and previous tracker. Let Δ denote the expected contrast of the resulting joint training batch, with that state fixed; the displayed Jacobian uses a B subscript to emphasize this batch functional. If differentiation can pass through this expectation, linearity yields the conditional expected auxiliary gradient. Shared latents across conditions are included in the random batch; they do not require pretending that the four groups are independent.
+
+![Figure 18  Scalar staleness counterexample. Arrows show descent in the scalar current contrast for each displayed objective at delta=-1. The centered linear surrogate can be negative and is not the current squared distance.](../figures/v15_stale_witness.png)
+
+Figure 18  Scalar staleness counterexample. Arrows show descent in the scalar current contrast for each displayed objective at delta=-1. The centered linear surrogate can be negative and is not the current squared distance.
+
+$$
+{E}_{t-}[{\nabla }_{\theta }{L}_{aux,t}]=\frac{2\lambda }{d}{{J}_{{\Delta }_{B}}}^{T}({\theta }_{t})({q}_{t}\oslash s)
+$$
+
+(80)
+
+The symbol ⊘ denotes coordinatewise division, and the expectation conditions on the stated past. Proof. Once that past is fixed, q and the scale are constants. Differentiate the linear current-contrast expression and interchange derivative with expectation under the assumed integrability and regularity conditions. This is an identity for an idealized conditional direction. It is not a statement that the current AMP/Adam update is an unbiased gradient descent step on a population GAN objective, and it concerns the joint training-batch map rather than the inference-EMA distribution.
+
+A scalar counterexample shows why the qualification matters. Take d=1, λ=1, r=0, s=1, u=0, previous m=1 and current contrast δ̂=−1. The witness is q=1, so the auxiliary value is −2 and its derivative with respect to the current contrast is +2. The current squared discrepancy has derivative −2. A small descent step on the surrogate can therefore move against the current squared-error descent direction. Staleness is not a harmless replacement merely because both expressions use discrepancy vocabulary.
+
+One can nevertheless state a limited alignment bound. Define e as the standardized expected contrast residual, τ=u⊘s and v as the coordinatewise soft-threshold map with thresholds κτ. Let the deadzone objective F be the sum of squared coordinate deadzones, scaled by λ/d. Assume λ≥0, κ≥0 and strictly positive scales. The soft-threshold map is one-Lipschitz: on each scalar coordinate it is piecewise linear with slopes zero or one, and its monotonic continuity gives the global bound. The statement also holds coordinatewise in Euclidean norm.
+
+$$
+{F}_{\kappa }(\theta )=\frac{\lambda }{d}\sum_{j=1}^{d}\left({{(|{e}_{j}(\theta )|-\kappa {\tau }_{j})}_{+}}^{2}\right)
+$$
+
+(81)
+
+$$
+\Vert {v}_{\kappa }(a)-{v}_{\kappa }(b)\Vert \leq \Vert a-b\Vert
+$$
+
+(82)
+
+After warmup, suppose the stored witness is the soft-thresholded standardized stored mean, while the desired current vector is the same soft-threshold map applied to e(θ). The norm of the difference between their parameter-space directions is at most the Jacobian operator norm times the standardized tracking error and the fixed factor 2λ/d. This follows from the chain rule, the operator-norm inequality and the one-Lipschitz property. The bound exposes the missing quantities: tracker lag, scale sensitivity and the local sensitivity of the expected feature contrast.
+
+$$
+\Vert {g}_{lag}-\nabla {F}_{\kappa }(\theta )\Vert \leq \frac{2\lambda }{d}{\Vert {J}_{e}(\theta )\Vert }_{op}\Vert {e}_{old}-e(\theta )\Vert
+$$
+
+(83)
+
+For a deterministic differentiable F with an L-Lipschitz gradient, suppose a proposed direction is g=∇F+v and ‖v‖≤α‖∇F‖ with 0≤α<1. The descent lemma gives a decrease for sufficiently small positive step size. In particular, the sufficient condition below follows by bounding the linear error term using Cauchy–Schwarz and bounding ‖g‖ by (1+α)‖∇F‖.
+
+$$
+0<\gamma <\frac{2(1-\alpha )}{L{(1+\alpha )}^{2}}   ⇒   F(\theta -\gamma g)<F(\theta ),   \nabla F(\theta )\ne 0
+$$
+
+(84)
+
+This proposition is deliberately restricted. No such relative tracking-error bound, smoothness constant or step-size condition was measured for the actual GAN. The full generator direction also contains an adaptive adversarial term, and Adam, stochastic sampling, BatchNorm state changes and numerical skips lie outside this deterministic argument. It is useful as a diagnostic target for a future controlled experiment, not as a theorem that the completed candidate should have won. During witness warmup the direction is zero, so comparison to a nonzero current deadzone gradient requires a separate case.
+
+### T8 BatchNorm coupling shared latents and two distinct EMAs
+
+A pointwise generator emits an image as a function of one latent and condition. Train-mode BatchNorm instead normalizes using statistics of a joint batch. Changing another sample can change the output associated with a fixed latent. The batch is therefore the primitive random object for the training contrast. This distinction matters when calling samples independent, deriving U-statistics, comparing different group layouts or transferring an identity about training means to the later evaluation generator.
+
+In the actual recipe, the generator remains in train mode for the no-gradient fake forward used by D and for the generator-gradient forward. Running normalization buffers can update in both passes. Disabling parameter gradients does not disable these state updates. The inference EMA averages generator parameters only and copies buffers after successful generator updates. Consequently, an inference checkpoint combines averaged parameters with copied current buffers; it is not a point on the raw parameter trajectory and not a temporal average of every part of the generator state.
+
+The tracker EMA is different. It smooths one 128-dimensional generated contrast using decay 0.9. The inference parameter EMAs use decays 0.99 and 0.999. The former affects the next auxiliary direction; the latter defines candidate inference tensors selected on validation. Learned θ, loss strength λ, tolerance κ and the two kinds of decay cannot be collectively described as the best weights. θ is optimized by minibatch gradients. λ,κ and inference decay are recipe choices. r,s,u are training-derived statistics. The teacher is a separate fitted representation.
+
+Shared latent quartets create a chosen coupling across labels. If a pointwise frozen-state generator is considered and the latent indices are independent, then each within-group sequence remains independent across indices even though different groups share each latent. The signed contrast variance contains cross-group covariance terms. Such coupling may reduce or increase that variance depending on the covariance signs. It does not identify a counterfactual semantic relation, since the Gaussian coordinates have no observed causal interpretation.
+
+$$
+Cov(\hat{\delta })=\sum_{g=0}^{3}\left(\sum_{h=0}^{3}\left({c}_{g}{c}_{h} Cov(\hat{{\mu }_{g}},\hat{{\mu }_{h}})\right)\right)
+$$
+
+(85)
+
+A direct noisy-square objective has a distinct expectation. For any square-integrable vector estimator Z with mean Δ and a fixed target r, expansion around Δ gives the squared mean error plus the trace of the estimator covariance. The cross term vanishes because E[Z−Δ]=0. A minibatch-square penalty can therefore encourage reduced estimator variability as well as a smaller mean mismatch.
+
+$$
+E{\Vert Z-r\Vert }^{2}={\Vert E[Z]-r\Vert }^{2}+tr Cov(Z)
+$$
+
+(86)
+
+With train-mode BatchNorm, the covariance and even the meaning of Δ depend on batch size, condition composition and batch arrangement. A detached previous witness removes the explicit current-square multiplier, but retains history dependence and does not eliminate every bias. Likewise, replacing a biased square by an off-diagonal formula does not automatically produce an unbiased pointwise-distribution objective when the generated observations interact through normalization. Any proposed repair must specify the map and sampling law to which its statistical calculation applies.
+
+Even exact invariance of a loss value under a parameter re-expression does not establish optimizer invariance. For G(a,b)=ab and loss (ab)²/2, the representations (1,1) and (2,1/2) have the same output and loss. One ordinary SGD step of size 0.1 yields outputs 0.81 and 0.585 respectively. The gradients transform with the parameter coordinates, and the Euclidean update rule is not invariant to that rescaling. The implemented feature loss reads generated images, but its Adam trajectory, normalization state and numerical skip history still depend on the parameterized computation.
+
+### T9 A stronger conditional kernel objective a defined but untrained proposal
+
+A natural stronger target is to compare every observed conditional distribution with a positive weight, rather than only one signed combination. Let k be a bounded positive-definite kernel and let its mean embedding exist for the distributions considered. The population conditional objective is the positive weighted sum of group MMD squared values. MMD is an established RKHS discrepancy, and conditional kernel criteria have extensive antecedents; the proposal here is an experimental alternative, not a new discrepancy principle. [E12,E14,E33]
+
+$$
+{J}_{cond}(\theta )=\sum_{g=0}^{3}\left({\rho }_{g}{{MMD}_{k}}^{2}({P}_{g},{Q}_{\theta ,g})\right),   {\rho }_{g}>0
+$$
+
+(87)
+
+Identification proposition. If k is characteristic on the relevant distribution class, the conditional objective is zero if and only if every fitted conditional distribution equals its target. Proof. Each squared MMD is nonnegative, so a zero positive-weighted sum forces every term to zero. Characteristicness converts each zero embedding difference into equality of the corresponding laws. The converse follows immediately by substitution. This is a population identification statement; it does not assert that a finite stochastic optimizer reaches zero or that a chosen finite feature map is characteristic on images.
+
+For a kernel applied to teacher features ψ(x), the conclusion concerns the real and generated pushforward laws in feature space, separately for each group. It identifies image distributions only if the representation and measurable-space assumptions make that implication valid. A Gaussian kernel can be characteristic on the feature space while the teacher itself discards image information. A linear kernel identifies feature means only. The cubic polynomial KID kernel compares a finite collection of feature moments and should not be described as a general characteristic pixel-space certificate.
+
+The same objective can be expressed as a joint-law kernel comparison when the two joint laws use the same positive request probabilities ρ, explicitly normalized to sum to one. Use a label kernel that is zero for different bins and rescales the equal-label term by the inverse request probability. Then the joint squared MMD decomposes into the desired weighted conditional sum. This construction retains every label direction; it differs from the rank-one signed label kernel.
+
+$$
+{K}_{\rho }((x,g),(x^{\prime},h))=\frac{1{g=h}}{{\rho }_{g}}k(x,x^{\prime})
+$$
+
+(88)
+
+$$
+{{MMD}_{{K}_{\rho }}}^{2}({P}_{\rho },{Q}_{\theta ,\rho })={J}_{cond}(\theta )
+$$
+
+(89)
+
+Proof. In the real-real kernel expectation, the equal-label indicator keeps only terms with common g, whose probability is ρ(g)²; division by ρ(g) leaves ρ(g). The generated-generated and cross expectations decompose in the same way. Their sum is exactly the displayed conditional objective. This uses a common known request law. Different label marginals require an explicit target definition or reweighting, and zero target probability would again make a missing condition unidentified.
+
+This stronger objective has computational and statistical costs. Pairwise kernels scale quadratically in batch size unless an approximation is introduced. Bandwidths determine the geometry; excessively broad kernels can suppress useful differences, while narrow kernels can yield poor gradient signal in high-dimensional image spaces. Teacher selection and feature normalization add adaptive choices. A fixed finite random-feature approximation changes the exact kernel and its identification scope. These are reasons to test a well-defined candidate, not reasons to claim that a more expressive objective must dominate a simpler one.
+
+Most importantly, this objective was not trained in the completed study. No table of the six actual confirmation models can establish its performance. It is a defined future alternative motivated by an information boundary in the signed constraint. Its success would need a new source-bound training implementation, validation search, cost ledger and untouched outer evaluation.
+
+### T10 A fully specified prospective kernel training algorithm
+
+The following algorithm K is UNTRAINED. It is precise enough to implement and falsify, but its hyperparameter values and resource cap would need to be frozen prospectively before execution. Its target is the four empirical TRAIN conditionals, coupled with the existing adversarial objective. It does not infer an absent-bin law. To make the auxiliary sampling calculation literal, it uses a pointwise generator branch with normalization statistics held fixed during that branch. This branch definition is an algorithmic change relative to the implemented train-mode signed witness and must be reported as such.
+
+![Figure 19  Prospective conditional-kernel matching design. It requires identified targets for each fitted condition and new untouched confirmation data. It is not a tested improvement over B or C.](../figures/v19_prospective_kernel_design.png)
+
+Figure 19  Prospective conditional-kernel matching design. It requires identified targets for each fitted condition and new untouched confirmation data. It is not a tested improvement over B or C.
+
+First fit a teacher using TRAIN only, or choose a declared externally pretrained feature map and disclose its data provenance. Freeze that map. Estimate any coordinate normalization and any kernel bandwidth reference statistics using TRAIN only. Keep these quantities unchanged while tuning the generator-loss coefficient and inference decay on validation. If a different teacher is compared, count its fitting and feature-extraction costs. A teacher chosen from validation by its downstream score becomes part of the hyperparameter search, not an independent neutral evaluator.
+
+At each iteration, perform the declared discriminator update and form the adversarial generator loss without taking its optimizer step yet. For the auxiliary generator loss, snapshot the current normalization buffers S and hold them fixed. Generate b≥2 independent latent vectors per group, with optional shared latent indices across groups. Within each group, draw b real TRAIN images independently with replacement from its empirical conditional distribution. Compute normalized fixed-teacher features for real and generated images. Sampling with replacement makes independence conditional on the finite empirical dataset a defensible computational sampling statement; it does not turn the finite dataset into independent population observations.
+
+Use the off-diagonal two-sample MMD expression in each group. Here a(i) are independent real-feature draws and b(i) are generated-feature draws under the fixed-state branch. Cross terms use the two independently drawn banks. If common latent indices couple different groups, retain that coupling in the estimator covariance, although each group expectation remains the usual conditional MMD expectation.
+
+$$
+{U}_{g}=\frac{\sum_{i\ne j}\left(k({a}_{i},{a}_{j})\right)}{b(b-1)}+\frac{\sum_{i\ne j}\left(k({b}_{i},{b}_{j})\right)}{b(b-1)}-\frac{2}{{b}^{2}}\sum_{i,j}\left(k({a}_{i},{b}_{j})\right)
+$$
+
+(90)
+
+Backpropagate the weighted sum of group-indexed U values through generated images and the frozen teacher input map, combine its gradient with the adversarial generator gradient at the same parameter state, and take one generator optimizer step. Do not optimize teacher parameters in this branch and do not update normalization buffers from its auxiliary samples. The resulting finite group value U can be negative; clamping it to zero would change both its expectation and gradient. Under the declared conditional independence and regularity assumptions, its conditional expectation is the empirical-target MMD objective at the frozen generator state. It is not generally unbiased for an unknown real-world population target.
+
+For a concrete kernel family one may take a Gaussian kernel on normalized teacher features with a strictly positive bandwidth σ. The bandwidth is an algorithm input or a TRAIN-only deterministic statistic, not something adjusted after observing test quality. Its mathematical value and construction must be frozen in the future protocol. For example, a declared TRAIN reference-bank distance rule must specify the bank IDs, treatment of zero distances and a failure case when its required positive distance does not exist. This part supplies no newly approved numerical bandwidth or loss-strength schedule.
+
+$$
+{k}_{\sigma }(a,b)=exp(-\frac{{\Vert a-b\Vert }^{2}}{2{\sigma }^{2}}),   \sigma >0
+$$
+
+(91)
+
+A second future variant could maintain one lagged witness per condition rather than a single signed witness. It would match four means instead of one interaction direction, retain staleness, and avoid the explicit same-batch-square term. It would still not identify full distributions with a linear finite representation. Comparing this full-mean variant with algorithm K and the signed witness would help separate label-rank limitations from kernel expressiveness and optimization effects. These variants should not be merged into one claimed mechanism without ablation.
+
+A careful implementation test would verify three different properties: literal estimator and autograd arithmetic on small arrays; conditional Monte Carlo behavior in a controlled fixed-state synthetic model; and actual finite-budget generative performance. Passing the first does not imply the second, and passing either does not imply the third. No such new runs are reported here. The completed candidate’s negative outcome remains the only efficacy result for its particular selected recipe.
+
+### T11 Leakage relations exact comparison and a complete declared near screen
+
+A filename-disjoint split prevents the same filename from appearing in two partitions. It does not establish that different filenames show different content, different identities or independent subjects. Conversely, a shared identity does not imply identical images. The audit therefore treats several relations separately before taking their union: supplied identity labels, exact canonical RGB64 equality, equality after horizontal reflection, and a declared near relation. The relation definitions, not the generic word deduplication, determine what the split guarantee means. Prior work on CIFAR near duplicates motivates the general audit concern; it does not supply CelebA counts. [E27,E28]
+
+![Figure 20  Candidate-completeness construction for a 64-bit Hamming threshold of four, using six disjoint bands and all fifteen band pairs. Completeness concerns this declared screening relation, not every visual or semantic duplicate.](../figures/v16_hash_band_proof.png)
+
+Figure 20  Candidate-completeness construction for a 64-bit Hamming threshold of four, using six disjoint bands and all fifteen band pairs. Completeness concerns this declared screening relation, not every visual or semantic duplicate.
+
+The canonicalization is itself part of the evidence definition. JPEGs are decoded to RGB, center-cropped using the frozen preprocessing routine and resized to 64×64 with the pinned image-library behavior. Equality is tested on the resulting uint8 arrays, not on source JPEG bytes. Two different compressed files can yield equal canonical arrays, and two visually similar source images can produce unequal arrays. Exact hashing is a candidate index, not the mathematical definition of equality: byte comparison inside candidate groups establishes the claimed raster equality.
+
+The identity file was obtained through a bounded anonymous university-mirror request and matched the expected official-file MD5, with a full SHA-256 and acquisition record preserved. This supports traceable use of the supplied identity metadata; it is not a new authentication scheme, proof that the labels are error-free or evidence that every real person has a unique correct identifier. Raw identity mappings are not needed in a public narrative. Aggregate counts and bound private-map hashes can describe the audit without redistributing the underlying mapping.
+
+For the near screen, every image has two oriented representations: original and horizontal reflection. A 64-bit descriptor is computed by converting to grayscale, resizing to 32×32 with the declared Lanczos routine, applying the two-dimensional DCT, keeping its upper 8×8 coefficients and thresholding them against their median. The exact comparison relation requires both descriptor Hamming distance at most four and aligned canonical RGB64 RMSE at most eight for at least one orientation pair. These thresholds define one reproducible relation, not every meaningful visual duplicate.
+
+$$
+Near(i,j) ⇔ ∃o,p\in {0,1}: H({h}_{i,o},{h}_{j,p})\leq 4 ∧ {E}_{i,o;j,p}\leq 786432
+$$
+
+(92)
+
+The squared-error threshold equals 8² times 3·64·64=786432. Integer differences are formed in a sufficiently wide signed type and squared sums in a wide accumulator. This avoids interpreting uint8 wraparound as a small image difference. Alignment here permits only the declared reflection; it does not include arbitrary crops, translations, pose changes, color changes or learned semantic equivalence. A pair failing the screen can still be related in ways the audit does not measure.
+
+Completeness proposition for candidate generation. Partition the 64 descriptor bits into six disjoint bands of lengths 11,11,11,11,10,10. If two descriptors differ in at most four bits, at most four bands contain a differing bit. Hence at least two whole bands match. Indexing all fifteen unordered band pairs retrieves the pair in at least one matching index. After retrieval, exact Hamming and pixel checks decide whether it satisfies the declared near relation. The proof does not assume uniform or independent hash bits.
+
+$$
+6-4=2,   \frac{6\cdot 5}{2}=15
+$$
+
+(93)
+
+False-positive candidates are allowed; false-negative candidates for the declared Hamming threshold are not. Deduplicating candidate orientation pairs affects runtime rather than completeness. Both original and reflected descriptors must be included, and successful image-pair edges must be unioned regardless of whether another orientation was previously considered. An approximate nearest-neighbor index could be faster, but without a recall guarantee it would change the completeness claim and would need a separate declared scope.
+
+Resource caps are part of the algorithmic guarantee. The executed definition allowed at most 250 million orientation-pair checks, one million accepted image-pair edges and a bounded near-screen stage. A cap hit must yield UNKNOWN or INCOMPLETE, not a clean-split certificate based on a truncated search. The completed scan recorded 26,346,501 orientation-pair checks and 1,560 distinct accepted filename-pair edges. Those are audit measurements, not a count of independent identities or of all visually similar pairs. Changing thresholds or silently omitting expensive buckets would define another audit.
+
+This is a useful example of a narrow exact guarantee inside a broader empirical task. The pigeonhole argument proves completeness of one candidate generator. It does not prove that pHash is semantically complete, that every edge is a duplicate in a human sense, that unrelated files cannot satisfy the thresholds or that components are independent. Stating the exact finite guarantee makes the remaining limits easier to evaluate; it does not make them disappear.
+
+### T12 From edges to split isolation and from eligibility to actual exposure
+
+Construct a graph whose vertices are canonical images and whose edges include every accepted identity, exact, reflection and declared-near link. The leakage-union component A(i) is the connected component of vertex i. Assigning entire components to partitions prevents every declared edge from crossing partitions. Proof. The endpoints of an edge are in the same connected component, and a component receives one assignment. More generally, every vertex on a transitive path receives the same assignment. This implication is deterministic and does not require a probabilistic independence assumption.
+
+$$
+{𝒜}_{tr}\cap {𝒜}_{val}={𝒜}_{tr}\cap {𝒜}_{te}={𝒜}_{val}\cap {𝒜}_{te}=\varnothing
+$$
+
+(94)
+
+The reverse interpretation is invalid: membership in one component does not mean that every pair of its images is a direct near duplicate. An identity edge can connect different poses; an exact edge can connect another filename; a near edge can extend the path. Reporting the number of held-out rows connected through the union as a number of pairwise visual duplicates would overstate what was measured. Transitive closure is intentionally conservative for partitioning, but its mechanism must remain visible.
+
+The fresh partition used only components wholly inside the original TRAIN pool. Any component touching old validation or test was excluded. It also quarantined components containing a contradiction between exact/reflection-equivalent pixels and their four-bin annotations. Different annotations inside an identity component are not automatically contradictory: photographs can differ, labels can change and the intended identity relation is broader than raster equality. The contradiction rule is specifically tied to exact/reflection equivalence, then propagated to its union component.
+
+Each eligible component was identified canonically by its minimum original row index and assigned once by a fixed SHA-256-based bucket rule: 70% of buckets for TRAIN, 15% for validation and 15% for test. There was no repeated partition search or silent relaxation when rare-group floors were checked. The resulting image proportions need not be exactly 70/15/15 because components have unequal sizes. Minimum image and component floors are feasibility checks, not a guarantee of high statistical precision.
+
+The completed definition had 8,005 eligible components and split totals 112,615/23,156/25,217 images. The rare bin contained 942/253/173 images, spanning 282/67/65 components respectively. A total of 41,611 rows were excluded from the new three-way partition; only 219 were in the four union components quarantined because of exact/reflection annotation contradictions. Calling all excluded rows label conflicts would be incorrect. The other exclusions include components touching old held-out partitions.
+
+The earlier official split had zero positive exposure entries on held-out row indices, but the audit found 24 TRAIN–validation and 11 TRAIN–test exact/reflection cross-split pairs, plus two validation–test pairs. That is an eligible-pool relation. A second question asks whether the linked TRAIN rows were actually sampled in a particular trained trajectory. Exposure arrays answer this by counting positive TRAIN presentations associated with held-out equivalents. They do not require reading model quality scores.
+
+For original seeds 101,202,303, the associated TRAIN presentations were respectively 28/67, 33/78 and 30/73 for validation/test links. One rare test image had an exact TRAIN counterpart presented 50/63/62 times across the three seeds. The four original arms had identical exposure arrays within each seed, giving three exposure patterns rather than twelve independent patterns. These are cache presentations before random augmentation, not proof that every unchanged raster reached the discriminator. The counts establish a concrete contamination pathway, not a numerical amount of KID inflation, memorization or causal performance advantage.
+
+After a test has informed method design, relabeling it as test does not restore its novelty. The fresh partition avoided components touching the old held-outs, and all final comparators were trained from scratch on the new TRAIN definition. Intermediate lost models were not recoverable evidence and were not pooled. Even this careful separation certifies only the stated data and access policy: operator attestations about unseen scores are provenance records, not cryptographic proof of an observer’s knowledge.
+
+### T13 Four uncertainty questions that should not be merged
+
+There are at least four distinct sources of uncertainty: the finite real reference bank; finite generated latent requests for a fixed network; randomness of fitting the training algorithm; and adaptive selection of a recipe from validation. A fifth issue, measurement error in a semantic judge, would require its own audit. The completed final study did not use such a judge. Naming one interval a confidence interval without identifying which sources it varies can give it a much broader interpretation than its construction supports.
+
+The KID endpoint uses the classical off-diagonal MMD estimator form in a fixed externally pretrained feature space. Under independent draws and a fixed kernel it has the familiar unbiased expectation. Clustered real references and train-mode-dependent generated batches do not inherit that statement automatically. The final evaluation generator runs in eval mode with fixed buffers, but the real bank can contain multiple images from one component. The statistic is still a well-defined finite number; its population interpretation is the issue. [E24,E25,E33]
+
+$$
+{U}_{m,n}=\frac{\sum_{i\ne j}\left(k({a}_{i},{a}_{j})\right)}{m(m-1)}+\frac{\sum_{i\ne j}\left(k({b}_{i},{b}_{j})\right)}{n(n-1)}-\frac{2}{mn}\sum_{i,j}\left(k({a}_{i},{b}_{j})\right)
+$$
+
+(95)
+
+The actual uncertainty calculation holds three trained seed pairs fixed. Real leakage components are resampled jointly across groups so that a component contributing to more than one bin retains its covariance structure. Every image in a sampled component receives its component multiplicity. Group totals are recomputed, preserving the image-weighted ratio estimand rather than silently switching to uniform component weighting. Shared fake latent indices are resampled once across groups and the fixed paired models, retaining the declared common-random-number coupling.
+
+Repeated indices in a bootstrap multiset need exact bookkeeping. If row i appears w(i) times, its contribution to the ordered-pair kernel sum includes w(i)(w(i)−1) pairs between distinct copied positions. Thus the diagonal correction subtracts w(i), not w(i)², from the weighted quadratic form. Subtracting the latter would instead remove every same-original-index pair and produce a different bootstrap statistic.
+
+$$
+{U}_{within}=\frac{\sum_{i,j}\left({w}_{i}{w}_{j}{K}_{ij}\right)-\sum_{i}\left({w}_{i}{K}_{ii}\right)}{N(N-1)},   N=\sum_{i}\left({w}_{i}\right)
+$$
+
+(96)
+
+The same correction applies to repeated generated latent indices. Real–generated cross terms use both multiplicity vectors without a same-bank diagonal exclusion. In candidate-minus-baseline differences with identical real weights, the real–real contribution cancels exactly; computing the remaining terms is a valid efficiency improvement, not a change to the endpoint. All three fixed seed-pair differences are averaged inside each replicate.
+
+A pooled component draw can occasionally leave fewer than two real rows in a condition. The ordinary U-statistic denominator is then undefined. Quietly drawing again until every condition is represented changes the resampling law. The prospective implementation instead declared failure/incompleteness behavior and preserved invalid or capped outcomes. This is especially important when a nominal image-count floor hides a small number of effective components. Sixty-five rare test components give more information than two, but they do not supply a general asymptotic coverage theorem for this dependent adaptive setting.
+
+The final report uses a one-sided percentile upper bound at level 0.9875 for candidate-minus-comparator differences, retaining four conservatively reserved slots from the plan. Its purpose is to assess the prespecified improvement direction. It is not a two-sided 95% interval, a posterior probability that the method is better, a seed-population interval or an automatic familywise theorem without validity assumptions for the constituent bounds. Bonferroni bookkeeping can allocate error across valid procedures; it cannot create coverage when the underlying bootstrap approximation is unproved.
+
+Training-seed uncertainty remains separate. Three fixed seed pairs show variability across those fits, but resampling their latent outputs cannot reveal the distribution of new optimizer trajectories, new data samples or new hardware behavior. A training-algorithm claim would need enough independently fitted models under a declared sampling scheme, with between-fit variability analyzed explicitly. A much larger latent bank cannot substitute for more trained seeds. Likewise, rerunning an evaluator on the same weights does not create an independent training replication.
+
+Finally, distinguish selection uncertainty from test-bank uncertainty. Minimizing several noisy validation scores tends to favor downward noise. This does not by itself bias an independent IID test statistic for the selected fixed model, conditional on the selected model and a genuinely unqueried bank. It does mean that the selected validation minimum should not be advertised as an unbiased estimate of the winning recipe’s performance. Repeatedly querying test to adjust the recipe destroys the clean outer-test role, regardless of how many bootstrap replicates are later computed.
+
+### T14 Hyperparameter search learned tensors and the meaning of matched
+
+The actual recovery study trained five development trajectories: one baseline and four candidate combinations λ∈{0.1,1}, κ∈{0,1}. Each trajectory maintained inference EMAs at 0.99 and 0.999, producing ten evaluated inference states, not ten independently trained models. The baseline had two EMA choices; the candidate family had eight states across four trajectories. These unequal search opportunities are part of the method-comparison cost. A statement that backbones and confirmation presentations match should not imply that search cost or information budgets match.
+
+The selection rule used only raw rare-bin validation KID, rounded to twelve decimal places for deterministic comparison. Ties favored smaller λ, then κ=0, then EMA 0.999; source-level final ordering handled any remaining exact tie. Negative scores were not clamped away. Every tried value was preserved. Once the baseline and candidate recipes were selected, fresh confirmation seeds 101,202,303 were trained with a fixed 1,500-attempt budget chosen before validation. No test checkpoint selection occurred.
+
+An elementary inequality explains why the full validation table matters. If each score estimate is unbiased for its recipe’s risk, the expectation of their minimum is at most the minimum of their expected values, because the minimum is a concave operation. With two equal true risks and independent score errors taking ±ε with equal probability, the selected minimum error has expectation −ε/2. This simple construction is about selection noise, not a prediction of the observed validation gap.
+
+$$
+E[{min}_{j} \hat{{R}_{j}}]\leq {min}_{j} E[\hat{{R}_{j}}]
+$$
+
+(97)
+
+The selected candidate was λ=1, κ=0, EMA 0.99. The baseline also selected EMA 0.99. Their development rare KID values were approximately 0.143568 and 0.140856 respectively, so the best candidate state did not beat the baseline on that development endpoint. Confirmation still proceeded according to the frozen comparison. Because κ=0 won, no separately tuned κ=0 control was needed, and the realized test cannot establish a benefit of an active tolerance mechanism. Had κ=1 won, a matched κ=0 control would have inherited its coefficient and EMA instead of being independently retuned.
+
+Learned parameter tensors θ are not interchangeable with λ,κ or EMA decay. A user asking which weights are best needs two answers: which recipe was selected by validation, and which exact tensor artifact realizes that recipe for each seed. The selected recipe does not identify a universally best learned seed, and choosing the best seed after viewing test changes the selection procedure. Delivered artifact manifests bind each tensor payload to arm, seed, step, configuration, source hashes and selected EMA. They do not establish an unknown universal best generator.
+
+Matching has several meanings. The final B and C pairs shared the same generator/discriminator architecture, per-trajectory exposure arrays, seeds, optimizer settings and successful-update counts. All six reported zero AMP skips. They did not have identical compute graphs: C evaluated the fixed teacher and its feature objective. Nor did the broader development procedures use equal numbers of trajectories. Conditional pairing reduces some avoidable nuisance variation; it does not turn the two algorithms into equal-cost procedures or make their gradients equivalent.
+
+A fair future study should choose and disclose its fairness-of-budget convention before outcomes. Equal update count measures quality per adversarial step; equal GPU time measures quality per resource unit; equal total development budget includes hyperparameter search and teacher construction. None is universally correct. Reporting more than one cost view is often informative, provided the primary comparison and stopping policy are fixed in advance rather than changed to favor a result. Free-GPU availability adds operational limits but does not erase the cost of failed setup, lost sessions or repeated data preparation.
+
+### T15 Prospective controls stopping rules and computational accounting
+
+A useful next experiment would separate label-rank, representation, estimator and optimizer questions. One control keeps the balanced adversarial baseline. A second uses the implemented signed lagged witness. A third uses full conditional mean witnesses with the same teacher and statistics. A fourth tests a defined conditional kernel criterion. An independently fitted teacher or a frozen external teacher is another factor, not a free replacement. Testing every factor at once would make attribution difficult and consume search budget quickly.
+
+The prospective design must declare which choices are inputs and which are learned. Kernel family, bandwidth construction, loss coefficient grid, teacher training, warmup, feature normalization, inference EMA, seed set, batch composition and total training budget all belong in the recipe. Teacher target statistics and bandwidth reference data must use TRAIN only. Validation may select among the declared options. A final outer test must remain unqueried by that selection. Since the current test outcomes are now known, designing a new confirmatory method around them requires a new outer evaluation definition rather than reusing the name held-out.
+
+Guardrails also need explicit scope. Conditional quality, macro quality, worst-bin behavior, finite-feature PRDC and semantic agreement answer different questions. A maximum over noisy group endpoints has its own selection effect. A semantic classifier requires real held-out error analysis and may fail in the rare group even with high global accuracy. It should not provide generator gradients merely because it is later called independent. A failed semantic adequacy gate cannot be repaired by relabeling generated outputs according to the same classifier or discarding inconvenient requests. [E19,E20,E25,E26]
+
+No acceptance threshold is newly authorized by this part. A future protocol could require a negative prespecified upper bound for candidate-minus-baseline on a primary endpoint and no prespecified guard failure, but the endpoint, margin, uncertainty interpretation and multiplicity family must be set before that study’s outcomes. The current result should not be relabeled successful using a later preferred metric. Exploratory analyses can be useful when honestly marked as such; they are not retrospective preregistration.
+
+Compute should be accounted by phase: canonical data preparation and audits; baseline teacher training; full TRAIN feature extraction; every development trajectory; validation feature extraction and selection; every confirmation fit; test generation/features; uncertainty computation; and artifact verification/transport. A complete run ledger distinguishes attempted steps from successful updates, exposes skipped updates, records wall time and hardware, and preserves failures. The final per-trajectory count was 96,000 real presentations, or 24,000 per bin, not 96,000 unique images.
+
+The observed confirmation loop times were about 137–140 seconds for B and 169–171 seconds for C, in that environment and implementation. The extra candidate loop cost was roughly 23%, in addition to the shared teacher-related preparation. These values are measurements of short training loops, not end-to-end wall-clock totals or a hardware-independent speed theorem. Session loss, reconstruction, evaluation and transport occupied other time. Comparing quality at equal steps remains valid as the declared finite comparison, but it should not be described as equal compute.
+
+### T16 What is resolved what failed and what remains open
+
+The completed evidence resolves several narrow questions. The declared component split is reproducible from its specified relations and fixed partition rule. The six-band candidate generator is complete for its Hamming threshold. The implemented witness has the stated literal gradient path and previous-state update policy. The development search actually tried ten EMA states from five trajectories, froze a recipe and trained six fresh confirmation models. These are concrete methodological outcomes. They are not a proof that the candidate improves image generation.
+
+The efficacy result is unfavorable for the selected candidate. Mean rare-condition KID multiplied by 1,000 was approximately 166.663 for B and 185.544 for C, a C-minus-B difference of +18.880. The reported one-sided 0.9875 conditional upper bound was +23.611. Candidate C improved only seed 202 and was worse for seeds 101 and 303. The upper bound does not support the prespecified improvement direction; its positive value is not a predeclared reverse-significance test or a general theorem of harm. The selected tolerance multiplier was zero, so the result supplies no evidence that an uncertainty deadzone helped.
+
+The remaining scientific problems are substantial: choosing useful target features without gaming them; controlling stale and adaptive gradients; understanding train-mode batch functionals versus inference distributions; identifying conditional laws under limited coverage; evaluating rare groups with dependent data; and comparing methods under transparent search and compute budgets. The untrained conditional-kernel algorithm is one possible next experiment. It does not solve these problems merely by being mathematically stronger at the population level.
+
+Reproducibility also remains partial. All six actual test records, ten validation records, source bindings and computed uncertainty records were locally preserved and audited. Complete inference archives were retrieved for C at seeds 101,202,303 and B at seed 101. B at seeds 202 and 303 were not fully delivered; a partial fragment set is not a fifth complete model. The real-reference banks, fixed teacher snapshot and complete private split maps were also not locally delivered. These limits prevent a claim of full end-to-end replay from the delivered package, even though the saved record supports a substantial arithmetic and provenance audit.
+
+The honest contribution is therefore an explicit attempted objective, a concrete leakage discovery and repair, a bounded empirical negative result and a detailed account of its limits. Broader model families in the monograph are explanatory alternatives or separately labeled reference implementations, not extra trained comparison arms. New mathematical proposals remain proposals until their code, resource use, all attempted selections and fresh evaluation are actually recorded. Scientific detail is useful when it narrows a claim to what the evidence supports.
+
+<a id="part4"></a>
+
+## Part 4 Complete implementations and software checks
+
+### 1 What this library provides
+
+The reference_models directory contains substantive original implementations of ten runnable algorithms: a Gaussian VAE, projection conditional GAN, Gaussian autoregressive density estimator, affine-coupling RealNVP, DDPM, discrete noise-score model, continuous reverse VE SDE, flow matching, standalone consistency model and latent-diffusion hybrid. The separate score and SDE entries expose related formulations, rather than claiming ten unrelated historical families. Each implementation has an objective, a sampler and a CLI path. None downloads a dataset or pretrained model.
+
+This library is a pedagogical companion to the research report. It is not the original authors’ code, an official benchmark reproduction, or an additional set of trained confirmation arms. Its tiny MLP GAN is also different from the residual GAN used in the completed CelebA experiment. Matching a family name is not sufficient to claim a replication: backbone, objective weighting, schedules, conditioning, data and sampling all matter. MODEL_MANIFEST.json records those departures for every entry, with direct primary-paper URLs.
+
+The code was written afresh from the mathematical mechanisms. No external repository source was copied and no global open-source license is inferred from an author’s repository. The parent release states the rights for this original code; papers, datasets and third-party software retain their own terms. The examples and CPU checks below generate tiny synthetic tensors solely to exercise the implementation. They are neither a substitute real dataset nor evidence of image quality.
+
+### 2 Data contract and shared architecture
+
+Inputs are local Torch tensors with a batch axis and one to three observation axes: vectors, grayscale images or channel-first images. Floating observations must already be finite and lie between minus one and one; uint8 observations are linearly mapped to that range. The CLI flattens each observation to a vector and records its original shape for sample output. It performs no automatic dequantization, clipping, resizing, identity audit, split creation or dataset download. A continuous Gaussian density evaluated on scaled pixels is not automatically a discrete pixel probability.
+
+```text
+import torch
+# x: [N,D], [N,H,W] or [N,C,H,W], with N >= 2
+# labels, if used: int64 [N], containing all classes 0,...,K-1
+torch.save({"x": x, "labels": labels}, "train_tensor.pt")
+```
+
+Conditional models infer the class count from contiguous observed labels. Without labels they have an unconditional form; an explicit unconditional option discards supplied labels. Natural minibatches sample observations with replacement. Balanced minibatches sample equal counts per class and require the batch size to be divisible by the class count. Repetition does not increase the number of independent rare images. The loader has a 512 MiB input-file cap and a 100-million-element reference cap; these are engineering limits, not assumptions for a statistical theorem.
+
+The common conditional MLP concatenates a learned class embedding to the input. Its embedding width is the smaller of 32 and the hidden width. Most encoder, decoder and coupling networks have two SiLU hidden layers. The time-dependent network adds a 32-dimensional sinusoidal embedding, using sixteen exponentially spaced frequencies from one to one thousand, then uses three SiLU hidden layers. There is no batch normalization, attention, convolution, external feature extractor or pretrained component. Consequently, these tiny vector architectures should not be mistaken for high-resolution image backbones.
+
+The tiny preset uses hidden width 64, latent width eight, four affine couplings, 32 DDPM steps, eight score/consistency noise levels and a noise range 0.01 to two. The small preset increases the hidden width to 128, latent width to sixteen, couplings to six, DDPM steps to 128 and noise levels to sixteen. The short schedules are for tractable reference computation. They are deliberately not recommended image-quality hyperparameters or the original papers’ training configurations.
+
+### 3 Gaussian VAE
+
+The VAE encoder maps a flattened observation and optional class embedding to a diagonal Gaussian latent mean and log variance. A reparameterized latent is decoded into a Gaussian observation mean and log variance. Latent log variance is clamped between minus eight and four; decoder log variance between minus six and two. These finite bounds are explicit numerical choices. Coordinates are summed for the Gaussian log density and KL before averaging observations; the reconstruction and regularization are therefore in the same literal ELBO units.
+
+$$
+{L}_{VAE}=-\mathbb{E}[log {p}_{\theta }(x|z,y)]+KL({q}_{\varphi }(z|x,y)\Vert \mathcal{N}(0,I))
+$$
+
+(98)
+
+Generation samples the standard-normal prior, then samples the decoder Gaussian. It does not merely return a decoder mean and does not clip the result. The implementation illustrates the reparameterization and variational bound of Kingma and Welling; it is not a convolutional perceptual VAE. Its conditional version is a stated extension. A stochastic lower bound, even computed correctly, does not establish exact marginal likelihood or rare-mode coverage. A Gaussian negative log density can itself be negative when the density exceeds one.
+
+### 4 Projection hinge conditional GAN
+
+The GAN generator has three SiLU hidden layers, a class embedding and a final tanh. Its discriminator has two spectrally normalized linear hidden layers with leaky-ReLU slope 0.2, a normalized scalar head and an optional normalized label embedding. The projection inner product is added to the scalar head. Conditional GANs, projection conditioning and spectral normalization are credited separately in the manifest. The original logistic GAN objective is not silently presented as the implemented hinge loss.
+
+$$
+{L}_{D}=\mathbb{E}(1-D(x,y))_{+}+\mathbb{E}(1+D(G(z,y),y))_{+}
+$$
+
+(99)
+
+$$
+{L}_{G}=-\mathbb{E}D(G(z,y),y)
+$$
+
+(100)
+
+Training uses separate discriminator and generator Adam optimizers with betas zero and 0.9. The discriminator sees detached generated observations in its update. During the generator update, discriminator parameter gradients are disabled, and evaluation mode freezes its spectral-normalization state; gradients still pass through its input to the generator. Sampling requires only the raw generator and Gaussian latent draws. No generator EMA, study-specific signed witness, discriminator feature teacher or benchmark selection is added. The tanh bounds samples, but the adversarial game still has no general convergence or diversity guarantee.
+
+### 5 Strict Gaussian autoregression
+
+The autoregressive reference outputs a mean and log standard deviation for every coordinate through two masked SiLU hidden layers. Input coordinates have increasing degrees. Input-to-hidden and hidden-to-hidden masks allow nondecreasing degrees; the final mask requires the output degree to be strictly larger than the hidden degree. The strict final inequality prevents each predicted conditional from observing its own coordinate or any future coordinate. Degree-zero units see only conditions and biases, allowing the first conditional to depend on labels. The label embedding enters the hidden representation without breaking that causality.
+
+$$
+{p}_{\theta }(x|y)=\prod_{i=1}^{D}\left({p}_{\theta }({x}_{i}|{x}_{<i},y)\right)
+$$
+
+(101)
+
+The loss is the exact continuous Gaussian negative log density of that normalized factorization, with log standard deviations bounded between minus five and two. Sampling initializes a vector and fills its coordinates sequentially from the predicted Gaussian conditionals. The architecture is a fixed degree-mask Gaussian adaptation related specifically to MADE, as well as to the earlier NADE mechanism; it is not faithful binary NADE or an official MADE implementation. The tests differentiate outputs with respect to current and future inputs and verify those forbidden derivatives are exactly zero. Sequential sampling can be costly in large flattened images.
+
+### 6 Affine coupling RealNVP
+
+Each coupling keeps one alternating mask unchanged. A two-hidden-layer conditional MLP predicts shift and log scale from the masked input. A tanh bounds each unmasked log scale in magnitude by 1.5. The last affine-network layer is initialized to zero, making the entire flow initially identity without preventing subsequent output-layer gradients. Alternating masks permit different coordinates to be transformed. There is no multiscale squeeze, batch normalization, image dequantization or learned base density.
+
+$$
+{z}_{b}=({x}_{b}-t({x}_{a}))\odot exp(-s({x}_{a}))
+$$
+
+(102)
+
+$$
+log {p}_{\theta }(x)=log {p}_{0}(z)+log|det {J}_{x\to z}|
+$$
+
+(103)
+
+The data-to-latent log determinant is minus the sum of log scales; the inverse adds it. Sampling draws a standard Gaussian and reverses the coupling order, using the exact inverse affine transformation. The CPU test perturbs the identity initialization, checks round-trip recovery, and compares the analytic log determinant with an autodifferentiated Jacobian. Tractability is a model calculation, not proof of distribution recovery. In one dimension the alternating construction is especially limited; for real image density comparisons the continuous/discrete convention must also agree.
+
+### 7 DDPM with epsilon prediction
+
+The DDPM uses the time MLP to predict standard-normal corruption noise. Training samples a uniform discrete time and constructs a noisy observation in closed form. The simplified epsilon MSE is averaged across batch and coordinates. This reweighted objective is distinguished from the complete variational likelihood bound. The tiny preset has a linear beta schedule from 0.0001 to 0.2 over 32 steps; the small preset ends at 0.05 over 128 steps. These are short demonstration schedules rather than author-recommended image schedules.
+
+$$
+{x}_{t}=\sqrt{{\bar{\alpha }}_{t}}{x}_{0}+\sqrt{1-{\bar{\alpha }}_{t}}\varepsilon
+$$
+
+(104)
+
+$$
+{L}_{\varepsilon }=\frac{1}{D}\mathbb{E}\Vert \varepsilon -{\varepsilon }_{\theta }({x}_{t},t,y){\Vert }^{2}
+$$
+
+(105)
+
+In the reference squared-loss expressions, D denotes the flattened observation dimension and the displayed norm is the ordinary Euclidean norm. The explicit factors 1/D and 1/(2D) reproduce the coordinate-mean reductions in the code; the outer expectation averages the sampled observations, times and noise. The VAE log-density objective retains its separately stated sum across coordinates.
+
+Ancestral generation takes every configured reverse step. Its mean uses the epsilon parameterization and its variance is the fixed forward posterior variance, with no noise added on the final step. The sampler refuses a request to skip to an arbitrary smaller number of steps; that would require a different sampler derivation. There is no learned reverse variance, DDIM path or silent output clipping. A finite terminal Gaussian approximation, a weak denoiser and a coarse chain may each limit quality even when losses and gradients are finite.
+
+### 8 Discrete noise score and continuous VE models
+
+The discrete score model chooses a level from a descending geometric noise schedule and trains a sigma-scaled denoising score residual. Its time MLP receives log sigma and its output is divided by sigma. Algebraically this is one-half sigma-squared weighted denoising score MSE, averaged over coordinates. The target is the score of a smoothed marginal, not directly an unsmoothed image distribution. This is an original vector reference to noise-conditional score matching, not the original NCSN architecture.
+
+$$
+{L}_{DSM}=\frac{1}{2D}\mathbb{E}\Vert \sigma {s}_{\theta }(x+\sigma \varepsilon ,\sigma )+\varepsilon {\Vert }^{2}
+$$
+
+(106)
+
+Annealed Langevin visits every configured sigma. Its step is half the level-dependent step size times the score, plus Gaussian noise with variance equal to that step size. The level step scales quadratically with sigma divided by the minimum sigma. A sampling-step option counts corrections per level, not total corrections across all levels. Finite unadjusted Langevin has mixing and discretization error and ends at a positive noise level.
+
+The separate SDE entry uses a continuous variance-exploding schedule: sigma grows exponentially with time, and the diffusion coefficient squared is twice the logarithmic noise ratio times sigma squared. Training draws time uniformly between 0.001 and one and uses the corresponding weighted denoising target. Reverse Euler–Maruyama uses a positive backward step length; its score drift is therefore positive in that notation. The probability-flow option uses half that drift and no stochastic increment. The test compares this sign convention with a known smoothed Gaussian score.
+
+$$
+{{g}_{t}}^{2}=2log(\frac{{\sigma }_{max}}{{\sigma }_{min}}){{\sigma }_{t}}^{2}
+$$
+
+(107)
+
+Only scalar isotropic VE noise is implemented. There is no VP/sub-VP process, adaptive ODE solver, predictor–corrector or likelihood integration. The high-noise Gaussian prior and positive terminal smoothing are approximations. Exact-score marginal equivalence does not make the finite learned sampler exact, and aggressive numerical settings can be unstable.
+
+### 9 Independent endpoint flow matching
+
+Flow matching pairs each data observation with independent Gaussian noise, samples a uniform time, linearly interpolates, and regresses the difference between endpoints. The conditional time MLP is a velocity field. Its loss is a simulation-free regression calculation; it does not solve the evolving model ODE during each update. The selected endpoint coupling is independent and is not claimed to be globally optimal transport.
+
+$$
+{X}_{t}=(1-t){X}_{0}+t{X}_{1},  {U}_{t}={X}_{1}-{X}_{0}
+$$
+
+(108)
+
+Sampling integrates from Gaussian noise at zero to the data endpoint at one. The default is explicit Heun: predict one Euler endpoint, evaluate the endpoint velocity and average the two slopes. Euler is also exposed. A constant-velocity fixture verifies both integrators against their exact endpoint. This does not measure a learned transport’s quality. The reference uses unsmoothed straight endpoint interpolation, rather than reproducing every conditional Gaussian path or nonzero endpoint smoothing in the original flow-matching paper.
+
+### 10 Standalone consistency training
+
+The consistency entry is standalone training, not distillation from an external score network. It uses the same Gaussian noise to create adjacent lower- and higher-noise observations on a fixed geometric grid. The online high-noise output matches a detached lower-noise output of an EMA target network using L2. The target is a frozen copy of the online MLP and is updated after successful optimizer steps, with fixed decay 0.95 in these presets. There is no pretrained model and no data used to select a teacher.
+
+$$
+{F}_{\theta }(x,\sigma )={c}_{skip}(\sigma )x+{c}_{out}(\sigma ){N}_{\theta }(x,log\sigma ,y)
+$$
+
+(109)
+
+The skip/output coefficients use data scale 0.5 and the declared positive minimum noise; they make the output exactly equal its input at that minimum. The mathematical boundary removes a literally constant map over the whole closed time interval, but it does not guarantee informative outputs at larger noise levels or prevent an EMA system from becoming degenerate. A finite adjacent-pair L2 objective is not a convergence theorem and can introduce finite-grid bias. The fixed grid, L2 distance and EMA schedule depart from the paper’s full training recipe.
+
+Sampling uses the EMA target once on a high-noise Gaussian. Optional refinement reinjects noise at lower declared levels and applies the target again. Increasing the number of calls is an explicit quality/compute choice, not a promise of improvement. Boundary identity, target-gradient isolation, target updates and state round trips are covered by tests; none establishes realistic one-step images or absence of collapse.
+
+### 11 Latent diffusion as an explicit two stage hybrid
+
+This hybrid first trains the Gaussian VAE described above. It then freezes that autoencoder and performs one full pass over the supplied TRAIN tensor. The posterior means are the chosen compressed data. Their global mean and standard deviation are computed with float64 accumulators and a variance floor; standardized posterior means become the latent DDPM training observations. Thus the representation is fixed during denoising rather than drifting jointly with it. Sampling reverses the affine latent standardization and returns the frozen decoder mean without adding decoder noise.
+
+The distinction from perceptual latent diffusion is substantial. There is no perceptual image encoder, adversarial autoencoder, spatial latent U-Net, cross-attention or external pretrained component. Two VAE smoke updates do not make a useful compressor. The declared posterior-mean choice also differs from training on stochastic posterior draws. Calling denoising or generation before latent calibration raises an error. The test freezes the compressor, updates the denoiser and checks that compressor tensors and gradients remain unchanged.
+
+### 12 Runnable CLI and output interpretation
+
+```text
+cd reference_models
+python3 -m venv .venv
+.venv/bin/python -m pip install -r requirements.txt
+.venv/bin/python -m genref.make_demo --output work/demo.pt
+.venv/bin/python -m genref.train \
+  --model flow_matching --data work/demo.pt \
+  --output work/fm_run --steps 20 --balanced --device cpu
+.venv/bin/python -m genref.sample \
+  --checkpoint work/fm_run/checkpoint.pt \
+  --output work/fm_samples.pt --count 16 --sample-steps 32
+```
+
+Use new output paths. The CLI refuses overwrite and does not implement implicit resume or checkpoint selection. It defaults to CPU and one Torch thread. Latent diffusion additionally requires a positive autoencoder-update count; those updates are additional to denoising steps. For iterative samplers, step options are specific to the algorithm, as documented in the README. Conditional sample labels default to round-robin or a requested single class. No filtering of generated observations is performed.
+
+Adam, a declared learning rate, finite-gradient checks and a norm-ten gradient clip are common numerical choices. There is no AMP. A soft elapsed-time cap is checked between operations; an individual long operation may exceed that cap. A process manager is needed for a separate hard wall-clock bound. Failed or interrupted runs retain partial records and do not receive completion status. Their existence does not turn a partial trajectory into a complete trained model.
+
+A successful run writes a model-state checkpoint, a JSON run record and a per-update loss log. The records include configuration, input hash, original observation shape, source hashes, update counts, software version and elapsed time. Sampling uses restricted tensor loading and verifies every current genref source hash against the checkpoint before construction/loading. Editing the source requires a newly trained reference checkpoint. Optimizer and RNG state are not supplied as an exact restart guarantee, and cross-runtime bitwise equality is not promised. Samples are unclipped tensors; only the GAN’s declared tanh imposes an output range.
+
+### 13 What the actual CPU checks establish
+
+The saved final-current validation is source-bound: the test runner records each Python source hash before and after execution and requires equality. On the recorded local Python 3.12.14 / PyTorch 2.15.0 CPU runtime, the current twelve-test suite completed with no failures, errors or skips. Its report is reference_models/validation/attempt004/report.json, accompanied by unittest.log. This statement was inserted only after verifying that the report’s source hashes match the delivered current Python files.
+
+Every registry entry executes an actual objective, backward pass with finite nonzero gradients, finite conditional samples, unconditional samples, and a strict state-dictionary round trip with identical requested samples in the same runtime. Each CLI training and sampling path is also exercised with two tiny synthetic updates. The latent hybrid receives two additional autoencoder updates in that CLI check. These are functional tests, not new scientific dataset experiments, quality measurements or trained benchmark arms.
+
+Mathematical tests check masked current/future derivatives, normalized Gaussian factor arithmetic, nonidentity coupling inversion and Jacobian determinant signs, DDPM posterior variances and rejection of invalid step skipping, VE reverse-time direction, and constant-velocity Euler/Heun integration. Other tests check consistency boundary/EMA behavior, frozen compression, nonfinite/configuration rejection and source-drift rejection. Earlier validation attempts remain historical; their presence does not authorize claiming that an older source hash is the final one.
+
+The precise conclusion is bounded software correctness for those exercised cases on one runtime. The suite does not establish useful density estimates, realistic images, stable arbitrary hyperparameters, privacy, fairness, minority coverage, optimal transport accuracy or general convergence. Those questions require prospective real-data experiments with appropriate independent evaluation. Keeping that separation is central to reading both the runnable library and the accompanying negative-result paper.
+
+### Release check of the four recovered study generators
+
+The four locally recovered selected EMA archives were checked in a separate forward-only CPU procedure for this release. This verifies a narrower property than numerical reproduction of KID. The checker uses restricted tensor deserialization, reads the archived generator configuration, instantiates the executed width-32 architecture, and loads every tensor with strict key matching. It then generates eight outputs per archive with a fixed latent seed and all four annotation requests. Shape, finite values, tanh range, repeated same-runtime equality and absence of state mutation are asserted. No model parameter is optimized in this procedure.
+
+All four archives passed. The check used Python 3.12.14 and PyTorch 2.15.0 on CPU with one thread. Each generator has 737,315 trainable parameters. Its source hash and the exact input/archive/output hashes are retained in the verification report. The output hashes identify this runtime, not a guarantee of byte-identical outputs on the original CUDA environment or another PyTorch release. No real reference images, Inception features, PRDC, KID or bootstrap replicates enter the check. B202 and B303 remain missing as complete model files.
+
+**Table I1  Forward-only archive verification. All outputs have shape 8 by 3 by 64 by 64.**
+
+| Archive | Strict load | Finite and bounded | Repeat and state |
+| --- | --- | --- | --- |
+| B_seed101 | Pass | Pass | Pass |
+| C_seed101 | Pass | Pass | Pass |
+| C_seed202 | Pass | Pass | Pass |
+| C_seed303 | Pass | Pass | Pass |
+
+### Paper to implementation and upstream source audit
+
+Every local reference method is linked to its primary mathematical source in MODEL_MANIFEST.json. That mapping states the implemented loss, sampler, architectural simplifications and unsupported claims. The local models are original pedagogical implementations. They are separate from the executed 64 by 64 study architecture and separate from author-maintained upstream repositories. Exact file hashes bind the local CPU checks to the tested code; tests do not establish the published performance of any cited method.
+
+Pinned upstream source snapshots provide a route to the original or official systems when redistribution is permitted. Their own licenses and notices are retained; datasets, image examples, pretrained weights, notebook outputs and binary assets are excluded. A snapshot therefore preserves the selected source/configuration tree, not every repository asset. Linking a primary paper to a repository or pinning a commit is an attribution and transport check. Upstream training was not executed, dependencies were not validated as a complete environment, and no official result was reproduced. Missing or insufficient licensing is recorded as a link-only entry rather than silently granting redistribution rights.
+
+For VAE, the official PyTorch example is explicitly a framework-maintained reference implementation, not the authors original 2013 experiment. For Real NVP, the historical TensorFlow subtree is pinned because the current default path no longer exists. These distinctions prevent modern repository membership from being mistaken for original-paper provenance. MADE supplies the mask attribution for the local continuous autoregressive adaptation. [E01,E04,E34]
+
+**Table I2  Source to paper map. The local reference library implements every listed mechanism. Eight separately licensed upstream source snapshots are included; DDPM and MADE upstream records are link only because no redistribution license was located at the pinned commits. Author code is not claimed to have been executed.**
+
+| Family | Primary keys | Upstream repository or subtree | Snapshot license |
+| --- | --- | --- | --- |
+| VAE | E01 | pytorch/examples  vae subtree | BSD 3 Clause |
+| GAN | E02 E31 | goodfeli/adversarial | BSD 3 Clause |
+| Autoregressive | E03 E34 | mgermain/MADE | Link only |
+| Real NVP | E04 | tensorflow/models  historical real_nvp | Apache 2.0 |
+| DDPM | E06 | hojonathanho/diffusion | Link only |
+| Noise score | E07 | ermongroup/ncsn | GPL 3.0 |
+| Score SDE | E08 | yang-song/score_sde_pytorch | Apache 2.0 |
+| Flow matching | E09 | facebookresearch/flow_matching | CC BY NC 4.0 |
+| Consistency | E10 | openai/consistency_models | MIT |
+| Latent diffusion | E30 | CompVis/latent-diffusion | MIT |
+
+The source library retains 361 upstream source, configuration, documentation and license files, totaling 1,924,058 bytes before packaging. Every retained file matches both its pinned Git blob identity and its SHA256 record. Omitted assets are enumerated in per-snapshot manifests. GPL-3.0 and CC BY-NC 4.0 components remain under those licenses; no root notice overrides them. Source integrity is checked without importing or executing upstream code. These counts are a release inventory, not a measurement of model performance.
+
+<a id="part5"></a>
+
+## Part 5 Evidence provenance and research reproducibility
+
+### Contribution and the question actually answered
+
+The contribution of the completed study is a specified candidate correction, a component-based data audit, a validation-only selection procedure and a fully retained negative comparison. The candidate does not introduce a different generator architecture. It adds a lagged signed teacher-feature interaction term to the common adversarial objective. Its constituent ideas—feature matching, conditional moments, detached moving witnesses, scale normalization and tolerance regions—have established antecedents. The defensible contribution is their particular combination, implementation and test under the stated conditions. Source availability should not be converted into a claim that these principles originated here.
+
+The empirical question is narrower than whether the method solves conditional generation. The primary endpoint was rare-condition KID for the supplied Male=1, Blond_Hair=1 bin of CelebA, after a fixed short budget. All four annotation combinations occurred in training. The experiment therefore tests a rare observed condition, not inference for an absent combination. It cannot establish a ranking of GANs against VAEs, autoregressive models, flows, diffusion or flow matching. No such family-level comparison was trained in the final recovery study.
+
+The selected candidate did not improve the tested endpoint. Mean rare-test KID multiplied by 1,000 was 166.663 for B and 185.544 for C. Only confirmation seed 202 favored C. The positive mean difference and positive conditional upper bound are reported with the unfavorable and favorable seeds together. They support a negative result for this recipe, not a theorem that the candidate harms every dataset or optimization horizon. The selected tolerance multiplier was zero, so the confirmation experiment provides no demonstration that a positive uncertainty deadzone helps.
+
+### Evidence layers and what each one establishes
+
+A useful evidence hierarchy separates source, configuration, execution, measurement, transport and independent reproduction. Source shows the implemented operations and their potential dependencies. A configuration fixes dimensions, seeds and coefficients. Completion records report what a producer says actually ran. Point records bind selected model hashes to endpoint values and feature definitions. Transport checks establish that particular recorded bytes arrived unchanged. None of these steps alone proves that a fresh implementation or environment will reproduce the same numerical result.
+
+The recovered scientific core contained 288 manifest-checked payloads. These included the frozen plan and selection, configurations, completion records, training summaries, aggregate audits, all ten validation points, all six test points and the computed conditional bootstrap report. Local checks compared saved values with the CSV tables, verified the source/model/record bindings and recomputed scalar summaries. Those original arithmetic checks did not rerun generator inference, feature extraction, KID or the bootstrap. The later forward-only check in Part 4 validates four archived generators separately without quality-metric replay. This difference is material and should remain visible even when every saved arithmetic comparison agrees.
+
+SHA256 identifies byte strings and detects differences relative to a chosen record. It is not a signature certifying that an operator never observed a score, that a source was scientifically correct or that an experiment was free of every implementation error. The records explicitly treat claims about unseen test quality as operator provenance. Similarly, a completed cloud archive is evidence that the producer recorded an archive; local possession requires separate retrieval and verification of its bytes. The distinction explains why scientific computation can be complete while model delivery remains partial.
+
+### Data records and the declared leakage relation
+
+The audit begins with canonical RGB64 content rather than filenames alone. Source images are converted to RGB, center-cropped to 178 by 178 using the recorded rounding convention and resized with Pillow bicubic interpolation. The full canonical cache hash is fixed. Two different filenames can therefore denote equal content at the representation actually entering training. Horizontal reflection matters because training uses random horizontal augmentation; ignoring that equivalence could miss a direct route by which held-out content resembles an augmented training example.
+
+The earlier partition audit found 24 training–validation, 11 training–test and two validation–test filename pairs under byte-verified canonical equality. Supplied identity labels themselves had no cross-partition overlap, illustrating that label separation and content separation are different properties. An authenticated supplied label is still a dataset annotation rather than certified real-person ground truth. Pair counts must not be described as numbers of people, and the absence of supplied-label overlap does not invalidate the detected image-content overlap.
+
+Actual exposure vectors supplied a second layer of evidence. For seeds 101, 202 and 303, canonical exact-equivalent held-out content was associated with 95, 111 and 103 training presentations in the earlier runs. The test-only counts were 67, 78 and 73. One rare-test image was associated with 50, 63 and 62 presentations. These describe linked canonical source images before random flips, not necessarily repeated presentation of an unchanged raster. They do not quantify memorization, establish causal metric inflation or identify how much a counterfactual clean evaluation would change.
+
+The fresh partition used connected components of the union of supplied identity, exact-image equality, flip equivalence and a declared near relation. That relation required 64-bit perceptual-hash Hamming distance at most four and aligned RGB root-mean-square error at most eight, with canonical and reflected orientations considered. The screen examined 26,346,501 orientation pairs and accepted 1,560 unique filename-pair edges. Completeness refers to the stated candidate-generation relation and its pixel test; it is not a guarantee that all semantic near duplicates were detected.
+
+The target remains image-weighted within each condition. Combining observations into a leakage component changes the split and uncertainty bookkeeping; it does not silently replace an image mean by an equally weighted mean of people. In the recorded training statistics there were 5,604 union components overall, with 282 intersecting the rare bin. Neither figure is a certified effective sample size. Unequal numbers of images per component, cross-group components, an adaptive teacher and unmodeled dependence all prevent a simple conversion from image counts to an independent-information guarantee. Reporting image counts and component counts separately is therefore essential.
+
+Whole components touching original validation or test data were excluded. Exact/flip annotation contradictions quarantined four whole components containing 219 rows. The overall 41,611 excluded/quarantined rows also include other declared exclusions and must not be relabeled as annotation conflicts. Fixed component hashing, without a partition search, produced 112,615 training, 23,156 validation and 25,217 test images. Rare-bin counts were 942, 253 and 173, within 282, 67 and 65 components. Components can span bins, so adding per-bin component counts does not recover a total number of distinct subjects.
+
+### The training records and their computational meaning
+
+The actual networks use base width 32, overriding class defaults. The generator has 737,315 trainable parameters and the adversarial discriminator 888,545. Both B and C share these networks, initialization and optimizer recipe. C additionally uses a fixed discriminator teacher with 888,545 parameters, whose returned pre-projection vector has 128 coordinates. Reporting only equal generator parameter counts would hide this auxiliary computational cost. The candidate also receives four development trajectories versus one for B, so equality of individual training budgets does not imply equality of total search compute.
+
+Every real batch contains sixteen images from each of the four training bins, sampled with replacement. A generator update uses sixteen shared latent vectors across all conditions in one joint 64-image forward pass. The discriminator fake pass uses a separate latent draw. The recipe uses hinge discrimination, negative mean critic score for the adversarial generator term, Adam learning rate 0.0002 and betas (0,0.9), horizontal flips on adversarial inputs and AMP. All six confirmation records report 1,500 successful G and D updates, zero AMP skips and 96,000 real-image presentations each.
+
+Balanced presentations are not balanced independent information. Each group receives 24,000 presentations per run, but the rare training pool contains only 942 images. The number of distinct sampled training images varies by seed and is recorded separately. The candidate does not obtain additional rare real images when its loss is evaluated. It changes the direction of an update computed from the existing joint generator batch. Repeated observations and shared component membership remain relevant to uncertainty even when a minibatch has exactly equal group counts.
+
+The teacher is the final raw discriminator of the fresh B development run at seed 909 after 1,500 attempts. It is fixed by the protocol, not selected by validation quality or taken from a lost earlier study. A single unaugmented pass over all 112,615 training images computes the target, within-group scale and signed component variability. The teacher remains in evaluation mode with parameters and spectral-normalization state frozen. This removes coordinate drift, but a teacher trained on the same real sample can still be imperfect or adaptive to that sample.
+
+The confirmation completion records report training-loop times of approximately 137.38–139.86 seconds for B and 168.74–171.13 seconds for C. Those measurements describe these particular jobs and hardware, not a universal speed ratio. They exclude the interpretation that matching iteration counts makes auxiliary feature work free. Teacher construction, the full real-statistics pass, four candidate development configurations, two EMA evaluations and data preparation also consume resources. Parallel execution on two devices further distinguishes accumulated job time from elapsed study time. A later comparison should disclose both its per-trajectory budget and its full selection and evaluation costs.
+
+The witness tracker accumulates fake contrasts during the first 500 successful G updates while the extra witness is zero. The next loss may use the previous tracker; after a successful step, the tracker incorporates the detached contrast computed before that step. Its beta is 0.9. Generator inference EMAs have decays 0.99 and 0.999, averaging parameters while copying buffers. These separate averages must not be conflated. Training-mode BatchNorm also makes the auxiliary functional depend on the joint batch, which differs from a moment of the final evaluation-mode EMA generator.
+
+### Selection and measurement records
+
+Development crossed lambda values 0.1 and 1 with kappa values 0 and 1 at seed 909, in addition to B. Each trajectory supplied two inference EMAs, yielding ten validation points rather than ten independent training runs. Selection minimized raw rare-group validation KID after rounding to twelve decimals, then used smaller lambda, smaller kappa and EMA 0.999 as tie preferences. All choices and scores are retained; other groups, PRDC or sample appearance were not alternate selection criteria. The selected recipes were frozen before fresh confirmation seeds 101, 202, 303.
+
+Validation selected B EMA 0.99 and C with lambda 1, kappa 0, EMA 0.99. The best candidate rare-validation KID multiplied by 1,000 was 143.568, versus 140.856 for B. A separate matched zero-tolerance control would have duplicated the selected candidate, so no additional C0 confirmation was required. The development choices are finite-grid choices under one seed and one budget; they are not identified globally optimal hyperparameters. A differently designed method informed by these outcomes would need a fresh prospective evaluation rather than reuse this now-known test as an untouched confirmation set.
+
+Evaluation fixed the Clean-FID clean-mode resize and Inception feature path, then applied the recorded cubic-kernel KID U-statistic formula. It did not compute or relabel the result as FID. Each model supplied 512 unfiltered requests per group, and all 512 entered analysis. At most 512 real examples were selected per group; rare validation and test used all 253 and 173 images. Shared PCG64 latent banks used distinct validation/test seeds 64001/94001. No attribute classifier, semantic judge, generated-image filtering or post-hoc relabeling was used. Feature similarity therefore cannot certify literal condition adherence.
+
+The conditional bootstrap used 2,000 replicates, joint real-component resampling and joint fake latent-index resampling across groups and the three fixed model pairs. Its one-sided percentile level was 0.9875, retaining conservative comparison slots. The rare C-minus-B point difference was +18.880 in KID-times1,000 units, and the upper bound was +23.611. Training seeds, teacher fitting and hyperparameter selection were not resampled. This is not a confidence interval over a population of future GAN trainings, nor a calibrated confidence band for the train-derived teacher variability term.
+
+PRDC used strict open-ball feature neighborhoods with k=3. Recall was zero in every one of the 24 model-by-group diagnostics. Some precision, density and coverage values were nonzero, but those facts do not establish broad support coverage. A finite-feature neighborhood test at a small reference-bank size is not a theorem of global distributional disjointness or universal mode collapse. The correct reporting practice is to retain the poor coverage result alongside KID, rather than select only favorable metrics or attractive grids to make a quality claim.
+
+### What the public source subset preserves
+
+The public package separates preserved original bytes from new aggregate derivatives. Selected original source, configurations, plans, completion records and aggregate reports retain their exact verified-core SHA256 values. Every one of the 288 original payloads receives an inclusion or exclusion decision in the source inventory. The original manifest is retained as provenance, not falsely installed as the manifest of a smaller tree. A new public manifest identifies the files actually distributed and a standard-library verifier checks membership, size, hash and preserved-source identity without loading tensors or accessing the network.
+
+The original point and interval reports contain selected real filenames grouped by condition. Publishing these intact would redistribute per-image annotation associations, even though the visible endpoint is a scalar. The public package therefore provides aggregate-only derivatives of all ten validation points, six test points and the interval report. A strict allowlist retains endpoint values, counts, model/configuration hashes and source-record hashes while omitting row, filename and support lists. These derivatives are explicitly labeled as derivatives, not as byte-identical copies of their source reports. Their creation does not rerun a metric.
+
+Full-precision saved KID values remain in the aggregate derivatives; multiplying by 1,000 for a table is a display convention. The raw U-statistic is not clipped at zero, and a macro mean is not substituted for the rare-group endpoint. Conversely, a collection of scalar values and feature-bank hashes cannot recreate the underlying Gram matrices or resampling support. Agreement of formatted numbers verifies transcription and arithmetic at the record layer. Independent numerical reproduction would still require authenticated bank and model bytes, the declared preprocessing, and the actual metric implementation. This boundary remains even when every table cell is internally consistent.
+
+This conservative public subset contains no CelebA face pixels, original annotation bodies, supplied identity-label arrays, per-image exposure vectors, selected reference supports or full split/component arrays. Synthetic grids are also omitted to keep the boundary unambiguous. Account/browser receipts, screenshots, session/process logs, filesystem logs and encoded transport chunks are excluded. A pattern scan checks selected text for common credential formats and local account paths, reporting only counts and paths. Such a scan complements the allowlist review; it is not a universal guarantee that every conceivable secret format has been detected.
+
+### Artifact delivery after the files only recovery
+
+The original scientific computation and the final delivered model set have different completion states. Complete selected-EMA archives were recovered for B101 and C101, C202, C303, giving four of the six confirmation generators. B202 and B303 remain unavailable as complete weights. The recovered scalar records bind hashes for those missing models, but hashes do not reconstruct tensors. Later retrieval recovered four of the eight original B202 encoded fragments and checked their original encoded/decoded hashes. Those fragments do not form a complete ZIP or a fifth usable model.
+
+![Figure 21  Availability of selected confirmation-generator bytes. Metric completion records are retained for all six, but only four complete generator archives were recovered.](../figures/v18_artifact_availability.png)
+
+Figure 21  Availability of selected confirmation-generator bytes. Metric completion records are retained for all six, but only four complete generator archives were recovered.
+
+The selected real-feature/latent reference archive, fixed-teacher snapshot and complete derived split-support archive were not retrieved. Numerical target/scale/variability values in statistics.json do not replace the missing teacher function. Completion/configuration records do not replace the missing component map or bank bytes. Full GAN optimizer checkpoints were not delivered. A replacement session lacked the previous study directory and missing archive paths, and no saved versions were observed in that notebook. This is a narrow observation about that session, not proof that every possible account backup was checked.
+
+A portable replay adapter was prepared to avoid pretending that an EMA-only payload is a full training checkpoint. It validates selected EMA bytes, source/configuration bindings and original archive hashes, then writes fresh replay outputs. Preflight is metadata-only; a smoke mode computes one 64-image C101 condition-zero feature batch with no KID; full mode regenerates all requested fakes, with intervals enabled explicitly. A one-batch completion was observed, but its machine-readable report was not retrieved and a complete point/CI replay was not established. The adapter appropriately refuses the presently missing inputs.
+
+### Reproduction tiers and an honest route to a new study
+
+Three reproduction tasks should be distinguished. First, saved-record verification checks that table values, selection arithmetic and model/source identifiers agree; this is supported by the recovered core and public aggregate derivatives. Second, inference from an available EMA can demonstrate the executed generator architecture and generate new samples under the applicable rights, but it does not recover missing baseline models or the exact real reference bank. Third, numerical point/CI replay and exact training continuation require additional byte-identical inputs that are currently unavailable. Passing the first task must not be advertised as completing the other two.
+
+The included synthetic statistics and CPU autograd fixtures test signed component covariance, detached previous-state gradients, warm-up/update semantics and state preservation. Their scopes are mathematical/software correctness. A skipped Torch test is not a passing autograd run. A cache-byte hash check establishes agreement of a declared preprocessing output, not a valid data license or general absence of leakage. The recorded producer environment and non-deterministic GPU-kernel caveat should accompany future commands; a list of version numbers is not a universally portable environment lock.
+
+Historical orchestration sources retain their exact root, source, freshness and deadline gates. They are preserved for audit, not offered as authorization to resurrect an expired study. A fresh reproduction or extension should specify a new output tree, budget, validation grid and outer-test policy before accessing new scores. Missing artifacts must be replaced through a declared new experiment or an authenticated recovery, never by changing a record to say that absent bytes exist. Any newly trained substitute teacher or baseline is a new artifact and may change the scientific comparison.
+
+CelebA access and redistribution follow the dataset owner's research-use terms; this public source release grants no further dataset, identity, publicity or commercial-use rights. External feature-network weights and software dependencies retain their own terms. A separate code license must not be read as a blanket license for dataset material or model tensors. The strongest reusable outcome is a transparent, bounded study: an explicit candidate, an audited data relation, complete retained scalar outcomes and a candid record of what cannot presently be regenerated. Reliable rare-condition improvement remains unresolved by the completed experiment.
+
+### Publication scope and assistance
+
+The public repository contains research text, figures, source, aggregate results, provenance records and the four recovered generator tensors. It excludes CelebA images, original annotations, identity arrays, per-image annotation associations, credentials and account/session materials. Dataset access must be obtained from the original provider under its non-commercial research agreement. The release does not grant dataset or commercial-use rights, and third-party sources retain their own licenses. The absence of a blanket code or model license must not be replaced by an assumption of unrestricted reuse.
+
+AI coding and language tools assisted with implementation, drafting, source retrieval and consistency checks. Reported empirical values remain tied to the preserved experimental records, and mathematical claims are stated with explicit assumptions and derivations. This repository release is a research report and software archive, not an accepted journal or conference publication. The proposed conditional-kernel follow-up remains untrained.
+
+<a id="appendix_a"></a>
+
+## Appendix A Complete study network architecture
+
+Tensor shapes exclude the batch dimension. All parameter counts are trainable counts, not optimizer states or normalization buffers. The auxiliary teacher is a separate fixed copy of the complete discriminator; its feature output is taken before the score heads.
+
+**Table A1  Complete generator.**
+
+| Stage | Output shape | Operation | Parameters |
+| --- | --- | --- | --- |
+| Input | 128 | Gaussian latent and joint group lookup | 0 |
+| Dense | 128 × 4 × 4 | Linear 128 to 2048 then reshape | 264,192 |
+| Up block 1 | 128 × 8 × 8 | 128 to 128 residual upsampling | 313,728 |
+| Up block 2 | 64 × 16 × 16 | 128 to 64 residual upsampling | 120,512 |
+| Up block 3 | 32 × 32 × 32 | 64 to 32 residual upsampling | 30,560 |
+| Up block 4 | 16 × 64 × 64 | 32 to 16 residual upsampling | 7,856 |
+| Output BN | 16 × 64 × 64 | Shared affine batch normalization | 32 |
+| RGB output | 3 × 64 × 64 | ReLU then 3 by 3 convolution and tanh | 435 |
+| Total |  |  | 737,315 |
+
+**Table A2  Complete discriminator and frozen-teacher architecture.**
+
+| Stage | Output shape | Operation | Parameters |
+| --- | --- | --- | --- |
+| Down block 1 | 32 × 32 × 32 | 3 to 32 then 2 by 2 average pooling | 10,272 |
+| Down block 2 | 64 × 16 × 16 | 32 to 64 then average pooling | 57,536 |
+| Down block 3 | 128 × 8 × 8 | 64 to 128 then average pooling | 229,760 |
+| Down block 4 | 128 × 4 × 4 | 128 to 128 then average pooling | 295,168 |
+| Residual 5 | 128 × 4 × 4 | 128 to 128 without pooling | 295,168 |
+| Feature pool | 128 | ReLU then spatial sum | 0 |
+| Scalar head | 1 | Spectrally normalized linear layer | 129 |
+| Label projection | 1 | Spectrally normalized 4 by 128 embedding | 512 |
+| Total |  |  | 888,545 |
+
+<a id="appendix_b"></a>
+
+## Appendix B Full diagnostic and implementation records
+
+The following table retains each individual PRDC diagnostic, rather than only averages. These are the same fixed feature-bank measurements as the main results. Precision, recall, density and coverage are unscaled. A zero recall is kept in every row. Machine-readable aggregate records retain the raw scalar precision used in the study; no new metric calculation is performed here.
+
+**Table B1  All individual PRDC diagnostics, k equals 3.**
+
+| Method | Seed | Group | Precision | Recall | Density | Coverage |
+| --- | --- | --- | --- | --- | --- | --- |
+| B | 101 | 00 | 0.080078 | 0.000000 | 0.027995 | 0.015625 |
+| B | 101 | 01 | 0.039062 | 0.000000 | 0.013021 | 0.005859 |
+| B | 101 | 10 | 0.287109 | 0.000000 | 0.132812 | 0.037109 |
+| B | 101 | 11 | 0.101562 | 0.000000 | 0.048177 | 0.080925 |
+| B | 202 | 00 | 0.031250 | 0.000000 | 0.011068 | 0.013672 |
+| B | 202 | 01 | 0.031250 | 0.000000 | 0.011068 | 0.007812 |
+| B | 202 | 10 | 0.111328 | 0.000000 | 0.042969 | 0.031250 |
+| B | 202 | 11 | 0.027344 | 0.000000 | 0.011719 | 0.057803 |
+| B | 303 | 00 | 0.066406 | 0.000000 | 0.025391 | 0.023438 |
+| B | 303 | 01 | 0.035156 | 0.000000 | 0.013021 | 0.013672 |
+| B | 303 | 10 | 0.328125 | 0.000000 | 0.162760 | 0.060547 |
+| B | 303 | 11 | 0.101562 | 0.000000 | 0.049479 | 0.075145 |
+| C | 101 | 00 | 0.041016 | 0.000000 | 0.014974 | 0.017578 |
+| C | 101 | 01 | 0.017578 | 0.000000 | 0.005859 | 0.007812 |
+| C | 101 | 10 | 0.064453 | 0.000000 | 0.022135 | 0.011719 |
+| C | 101 | 11 | 0.027344 | 0.000000 | 0.011719 | 0.028902 |
+| C | 202 | 00 | 0.070312 | 0.000000 | 0.027344 | 0.025391 |
+| C | 202 | 01 | 0.070312 | 0.000000 | 0.024740 | 0.015625 |
+| C | 202 | 10 | 0.128906 | 0.000000 | 0.061198 | 0.042969 |
+| C | 202 | 11 | 0.099609 | 0.000000 | 0.046224 | 0.075145 |
+| C | 303 | 00 | 0.027344 | 0.000000 | 0.009766 | 0.017578 |
+| C | 303 | 01 | 0.005859 | 0.000000 | 0.001953 | 0.005859 |
+| C | 303 | 10 | 0.218750 | 0.000000 | 0.102214 | 0.035156 |
+| C | 303 | 11 | 0.064453 | 0.000000 | 0.029297 | 0.080925 |
+
+<a id="references"></a>
+
+## References
+
+[E01] Diederik P. Kingma, Max Welling. (2013). Auto-Encoding Variational Bayes. arXiv:1312.6114; foundational VAE preprint. [Primary paper](https://arxiv.org/abs/1312.6114)
+
+[E02] Ian J. Goodfellow, Jean Pouget-Abadie, Mehdi Mirza, Bing Xu, David Warde-Farley, Sherjil Ozair, Aaron Courville, Yoshua Bengio. (2014). Generative Adversarial Nets. Advances in Neural Information Processing Systems 27. [Primary paper](https://papers.nips.cc/paper_files/paper/2014/hash/f033ed80deb0234979a61f95710dbe25-Abstract.html)
+
+[E03] Hugo Larochelle, Iain Murray. (2011). The Neural Autoregressive Distribution Estimator. AISTATS; PMLR 15:29–37. [Primary paper](https://proceedings.mlr.press/v15/larochelle11a.html)
+
+[E04] Laurent Dinh, Jascha Sohl-Dickstein, Samy Bengio. (2017). Density estimation using Real NVP. ICLR 2017. [Primary paper](https://arxiv.org/abs/1605.08803)
+
+[E05] Jascha Sohl-Dickstein, Eric Weiss, Niru Maheswaranathan, Surya Ganguli. (2015). Deep Unsupervised Learning using Nonequilibrium Thermodynamics. ICML; PMLR 37:2256–2265. [Primary paper](https://proceedings.mlr.press/v37/sohl-dickstein15.html)
+
+[E06] Jonathan Ho, Ajay Jain, Pieter Abbeel. (2020). Denoising Diffusion Probabilistic Models. Advances in Neural Information Processing Systems 33. [Primary paper](https://arxiv.org/abs/2006.11239)
+
+[E07] Yang Song, Stefano Ermon. (2019). Generative Modeling by Estimating Gradients of the Data Distribution. Advances in Neural Information Processing Systems 32. [Primary paper](https://arxiv.org/abs/1907.05600)
+
+[E08] Yang Song, Jascha Sohl-Dickstein, Diederik P. Kingma, Abhishek Kumar, Stefano Ermon, Ben Poole. (2021). Score-Based Generative Modeling through Stochastic Differential Equations. ICLR 2021. [Primary paper](https://arxiv.org/abs/2011.13456)
+
+[E09] Yaron Lipman, Ricky T. Q. Chen, Heli Ben-Hamu, Maximilian Nickel, Matt Le. (2023). Flow Matching for Generative Modeling. ICLR 2023. [Primary paper](https://arxiv.org/abs/2210.02747)
+
+[E10] Yang Song, Prafulla Dhariwal, Mark Chen, Ilya Sutskever. (2023). Consistency Models. ICML; PMLR 202:32211–32252. [Primary paper](https://proceedings.mlr.press/v202/song23a.html)
+
+[E11] Takeru Miyato, Masanori Koyama. (2018). cGANs with Projection Discriminator. ICLR 2018. [Primary paper](https://arxiv.org/abs/1802.05637)
+
+[E12] Yujia Li, Kevin Swersky, Rich Zemel. (2015). Generative Moment Matching Networks. ICML; PMLR 37:1718–1727. [Primary paper](https://proceedings.mlr.press/v37/li15.html)
+
+[E13] Tim Salimans, Ian Goodfellow, Wojciech Zaremba, Vicki Cheung, Alec Radford, Xi Chen. (2016). Improved Techniques for Training GANs. Advances in Neural Information Processing Systems 29. [Primary paper](https://arxiv.org/abs/1606.03498)
+
+[E14] Yong Ren, Jialian Li, Yucen Luo, Jun Zhu. (2016). Conditional Generative Moment-Matching Networks. Advances in Neural Information Processing Systems 29. [Primary paper](https://proceedings.neurips.cc/paper/2016/hash/0245952ecff55018e2a459517fdb40e3-Abstract.html)
+
+[E15] Youssef Mroueh, Tom Sercu, Vaibhava Goel. (2017). McGan: Mean and Covariance Feature Matching GAN. ICML; PMLR 70:2527–2535. [Primary paper](https://proceedings.mlr.press/v70/mroueh17a.html)
+
+[E16] Youssef Mroueh, Tom Sercu. (2017). Fisher GAN. Advances in Neural Information Processing Systems 30. [Primary paper](https://arxiv.org/abs/1705.09675)
+
+[E17] Cicero Nogueira dos Santos, Youssef Mroueh, Inkit Padhi, Pierre Dognin. (2019). Learning Implicit Generative Models by Matching Perceptual Features. ICCV 2019. [Primary paper](https://arxiv.org/abs/1904.02762)
+
+[E18] Wenze Liu, Xintao Wang, Pengfei Wan, Xiangyu Yue. (2026). Amortized Moment Matching for Visual Generation. arXiv:2607.26860v1, submitted 29 July 2026. [Primary paper](https://arxiv.org/abs/2607.26860)
+
+[E19] Kristy Choi, Aditya Grover, Trisha Singh, Rui Shu, Stefano Ermon. (2020). Fair Generative Modeling via Weak Supervision. ICML; PMLR 119:1887–1898. [Primary paper](https://proceedings.mlr.press/v119/choi20a.html)
+
+[E20] Ning Yu, Ke Li, Peng Zhou, Jitendra Malik, Larry Davis, Mario Fritz. (2020). Inclusive GAN: Improving Data and Minority Coverage in Generative Models. ECCV 2020. [Primary paper](https://arxiv.org/abs/2004.03355)
+
+[E21] Harsh Rangwani, Lavish Bansal, Kartik Sharma, Tejan Karmali, Varun Jampani, R. Venkatesh Babu. (2023). NoisyTwins: Class-Consistent and Diverse Image Generation through StyleGANs. CVPR 2023. [Primary paper](https://arxiv.org/abs/2304.05866)
+
+[E22] Harsh Rangwani, Naman Jaswani, Tejan Karmali, Varun Jampani, R. Venkatesh Babu. (2022). Improving GANs for Long-Tailed Data through Group Spectral Regularization. ECCV 2022. [Primary paper](https://arxiv.org/abs/2208.09932)
+
+[E23] Nan Liu, Shuang Li, Yilun Du, Antonio Torralba, Joshua B. Tenenbaum. (2022). Compositional Visual Generation with Composable Diffusion Models. ECCV 2022. [Primary paper](https://arxiv.org/abs/2206.01714)
+
+[E24] Mikołaj Bińkowski, Danica J. Sutherland, Michael Arbel, Arthur Gretton. (2018). Demystifying MMD GANs. ICLR 2018. [Primary paper](https://arxiv.org/abs/1801.01401)
+
+[E25] Gaurav Parmar, Richard Zhang, Jun-Yan Zhu. (2022). On Aliased Resizing and Surprising Subtleties in GAN Evaluation. CVPR 2022. [Primary paper](https://arxiv.org/abs/2104.11222)
+
+[E26] Muhammad Ferjad Naeem, Seong Joon Oh, Youngjung Uh, Yunjey Choi, Jaejun Yoo. (2020). Reliable Fidelity and Diversity Metrics for Generative Models. ICML; PMLR 119:7176–7185. [Primary paper](https://proceedings.mlr.press/v119/naeem20a.html)
+
+[E27] Ziwei Liu, Ping Luo, Xiaogang Wang, Xiaoou Tang. (2015). Deep Learning Face Attributes in the Wild. ICCV 2015:3730–3738. [Primary paper](https://arxiv.org/abs/1411.7766)
+
+[E28] Björn Barz, Joachim Denzler. (2020). Do We Train on Test Data? Purging CIFAR of Near-Duplicates. Journal of Imaging 6(6):41; doi:10.3390/jimaging6060041. [Primary paper](https://arxiv.org/abs/1902.00423)
+
+[E29] Yonatan Oren, Shiori Sagawa, Tatsunori B. Hashimoto, Percy Liang. (2019). Distributionally Robust Language Modeling. EMNLP-IJCNLP 2019:4227–4237; doi:10.18653/v1/D19-1432. [Primary paper](https://aclanthology.org/D19-1432/)
+
+[E30] Robin Rombach, Andreas Blattmann, Dominik Lorenz, Patrick Esser, Björn Ommer. (2022). High-Resolution Image Synthesis with Latent Diffusion Models. CVPR 2022:10684–10695. [Primary paper](https://arxiv.org/abs/2112.10752)
+
+[E31] Mehdi Mirza, Simon Osindero. (2014). Conditional Generative Adversarial Nets. arXiv:1411.1784. [Primary paper](https://arxiv.org/abs/1411.1784)
+
+[E32] Takeru Miyato, Toshiki Kataoka, Masanori Koyama, Yuichi Yoshida. (2018). Spectral Normalization for Generative Adversarial Networks. ICLR 2018. [Primary paper](https://arxiv.org/abs/1802.05957)
+
+[E33] Arthur Gretton, Karsten M. Borgwardt, Malte J. Rasch, Bernhard Schölkopf, Alexander Smola. (2012). A Kernel Two-Sample Test. Journal of Machine Learning Research 13(25), 723–773. [Primary paper](https://www.jmlr.org/papers/v13/gretton12a.html)
+
+[E34] Mathieu Germain, Karol Gregor, Iain Murray, Hugo Larochelle. (2015). MADE: Masked Autoencoder for Distribution Estimation. ICML; PMLR 37:881–889. [Primary paper](https://proceedings.mlr.press/v37/germain15.html)

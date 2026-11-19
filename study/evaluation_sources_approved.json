@@ -1,0 +1,24 @@
+{
+  "ai_root_approval": true,
+  "approved_utc": "2026-11-19T11:02:28.574971+00:00",
+  "authorized_by_prospective_supervisor_sha256": "dd566dc293c3c20f17e3f148ebff344e6090d147e0943b1bb8fad495ff89e335",
+  "human_approval_claim": false,
+  "sources": {
+    "clean_features.py": "727e265b430a9276ef7ec36026d68d606970611c78fb3f9c582780fe69e488af",
+    "compensated_interaction.py": "7f90295a5fd43d70b9d1cdbb3dd2b9bfb317e7c959a57a648c8a928e9ba20729",
+    "component_bootstrap.py": "4a356c9bb29965afcdb3b704d3959c68b2f18a03401c69dfaddd387eebb38fe9",
+    "diversity.py": "40ebbb953c800ae8c4287ed1b03b9f499388fde8760763a8874e182d4f005658",
+    "evaluate.py": "29199ddb1aa44b972a9a0f8dcf28d96dbd4bd042f679895ac74c1b5d811ebb4f",
+    "evaluate_v3.py": "717c1743192edeb9e344fc2a2615e303def262d697456a447e7a2778ed149ed9",
+    "interaction_statistics.py": "62ed02c62e564873929fd02ff5cee68c54cb5dbb8ae5b8c864503cbd1d822651",
+    "interaction_witness.py": "04a8233e84dfd1ce63e442f6607a59d6070dc23cc17dab800900aa5567827179",
+    "model_losses.py": "f127c7f3a8ec296f0c3904a6538b7eb1ca3ce31fb5b6a8652335d33677c8d098",
+    "models.py": "f82bfdd31060fe357a3102fa4debd110da5989f86c5f9e61b6163036f579f5fa",
+    "prepare_teacher_v3.py": "ff817a4c2b65b6ca4f6bab431814f4e82384301da3a2ed95a867bb6a34a4c2bb",
+    "train_v3.py": "1ccd1581daa4715f1f792ae6097548d7283c5bb4dba1fb2a27bac48727fd1c79"
+  },
+  "status": "approved_before_v3_validation_or_test_quality",
+  "study_id": "generative_recovery_1500",
+  "study_plan_sha256": "3b3692067bf4baf8d7b03ac28f98ed60818393d2f047946c5aaf22df62fe28f8",
+  "test_quality_seen": false
+}

@@ -1,0 +1,223 @@
+{
+  "repository": "ermongroup/ncsn",
+  "repository_url": "https://github.com/ermongroup/ncsn",
+  "commit_sha": "7f27f4a16471d20a0af3be8b8b4c2ec57c8a0bc1",
+  "pinned_commit_url": "https://github.com/ermongroup/ncsn/tree/7f27f4a16471d20a0af3be8b8b4c2ec57c8a0bc1",
+  "primary_paper_url": "https://arxiv.org/abs/1907.05600",
+  "role": "Primary-author-group noise-conditional score repository; GPL license retained.",
+  "license": "GPL-3.0",
+  "github_HEAD_license_metadata_not_used_as_pinned_text": {
+    "key": "gpl-3.0",
+    "name": "GNU General Public License v3.0",
+    "spdx_id": "GPL-3.0",
+    "url": "https://api.github.com/licenses/gpl-3.0",
+    "node_id": "MDc6TGljZW5zZTk="
+  },
+  "upstream_code_executed": false,
+  "upstream_tests_or_training_run": false,
+  "reproduced_paper_results": false,
+  "filtered_not_full_asset_snapshot": true,
+  "status": "PINNED_LICENSED_FILTERED_TEXT_SOURCE_SNAPSHOT",
+  "included_files": {
+    ".gitignore": {
+      "bytes": 165,
+      "sha256": "b69310b6c877f3b7f8ca97deda5aeb535fa3e990b2b78db560d3caaafaa2763e",
+      "git_blob_sha1": "5c5cdee3f3e830e48d5d2a0eda685deef8d357d9",
+      "upstream_blob_url": "https://github.com/ermongroup/ncsn/blob/7f27f4a16471d20a0af3be8b8b4c2ec57c8a0bc1/.gitignore"
+    },
+    "LICENSE": {
+      "bytes": 35149,
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "git_blob_sha1": "f288702d2fa16d3cdf0035b15a9fcbc552cd88e7",
+      "upstream_blob_url": "https://github.com/ermongroup/ncsn/blob/7f27f4a16471d20a0af3be8b8b4c2ec57c8a0bc1/LICENSE"
+    },
+    "README.md": {
+      "bytes": 5878,
+      "sha256": "c8110e16bd4862205b0e6102afd2f9283bb9a3f1aa0929eac140cc6981e5d102",
+      "git_blob_sha1": "3e8bc0e650aa8babc48e22293bdedb149fbdde8b",
+      "upstream_blob_url": "https://github.com/ermongroup/ncsn/blob/7f27f4a16471d20a0af3be8b8b4c2ec57c8a0bc1/README.md"
+    },
+    "configs/anneal.yml": {
+      "bytes": 739,
+      "sha256": "7b3817dd6b5c3bd22189f0ad383029b974153456454fc8b61a36fed415e66d64",
+      "git_blob_sha1": "68e87d0c022a31d4f5bb2e7a070c4b6a988228ed",
+      "upstream_blob_url": "https://github.com/ermongroup/ncsn/blob/7f27f4a16471d20a0af3be8b8b4c2ec57c8a0bc1/configs/anneal.yml"
+    },
+    "configs/baseline.yml": {
+      "bytes": 761,
+      "sha256": "7b570424507f6d1230bcd82da1bee816715de8d2b51031b5eb294a8c1f1dcda9",
+      "git_blob_sha1": "86b3e11bdadd45fec75009a13d3220a768fd1281",
+      "upstream_blob_url": "https://github.com/ermongroup/ncsn/blob/7f27f4a16471d20a0af3be8b8b4c2ec57c8a0bc1/configs/baseline.yml"
+    },
+    "configs/scorenet.yml": {
+      "bytes": 458,
+      "sha256": "50d77ec0b9ab40859df166f206b8c2298f740461207a57e1250600ee54ef9c66",
+      "git_blob_sha1": "e1c300992f7a876f149f8505d4ee4159a5ca69f0",
+      "upstream_blob_url": "https://github.com/ermongroup/ncsn/blob/7f27f4a16471d20a0af3be8b8b4c2ec57c8a0bc1/configs/scorenet.yml"
+    },
+    "configs/toy.yml": {
+      "bytes": 26,
+      "sha256": "ccb09f27b88a4e7db20e7a99322e48965246fbed2c8997e9ece79988911ece9a",
+      "git_blob_sha1": "dbc4d7783f7c37bb22a432f2c8dc64bb4f7db350",
+      "upstream_blob_url": "https://github.com/ermongroup/ncsn/blob/7f27f4a16471d20a0af3be8b8b4c2ec57c8a0bc1/configs/toy.yml"
+    },
+    "datasets/celeba.py": {
+      "bytes": 7794,
+      "sha256": "ae136695098b70ed6ed7e6140a2ad9ca717034e7bd8ddf8ec71d118baca34b5e",
+      "git_blob_sha1": "1c466dc07772bb7c04ea801073ca12ed12884e52",
+      "upstream_blob_url": "https://github.com/ermongroup/ncsn/blob/7f27f4a16471d20a0af3be8b8b4c2ec57c8a0bc1/datasets/celeba.py"
+    },
+    "datasets/utils.py": {
+      "bytes": 5665,
+      "sha256": "c1ff6203044ab3300156caa957bd9b2ddb092ce7ca84eb84354adce56b4679ed",
+      "git_blob_sha1": "1d021946289345c29d180544438e482d843371bc",
+      "upstream_blob_url": "https://github.com/ermongroup/ncsn/blob/7f27f4a16471d20a0af3be8b8b4c2ec57c8a0bc1/datasets/utils.py"
+    },
+    "datasets/vision.py": {
+      "bytes": 1494,
+      "sha256": "67e6a381c6f5be523b6d6232f365dcd7ed4f94b3940efcde8fd4caf7eb46ada6",
+      "git_blob_sha1": "168388aadde3bbda518a6f6e87b26bd71d1e082d",
+      "upstream_blob_url": "https://github.com/ermongroup/ncsn/blob/7f27f4a16471d20a0af3be8b8b4c2ec57c8a0bc1/datasets/vision.py"
+    },
+    "losses/dsm.py": {
+      "bytes": 1453,
+      "sha256": "2ec3f5b47778d15540b35dd2917c3e9d05010377498a7f3c94f75e8acb3be13d",
+      "git_blob_sha1": "8008d3ee4712fe53ab31ce25340dd8eb17e50001",
+      "upstream_blob_url": "https://github.com/ermongroup/ncsn/blob/7f27f4a16471d20a0af3be8b8b4c2ec57c8a0bc1/losses/dsm.py"
+    },
+    "losses/sliced_sm.py": {
+      "bytes": 6545,
+      "sha256": "781f6270a9a7e00cf4c1d0c44b054bd34ccde2544ab43cfd088fdafc662876d9",
+      "git_blob_sha1": "afea460d521b874321b2e084991f77a57f04bf72",
+      "upstream_blob_url": "https://github.com/ermongroup/ncsn/blob/7f27f4a16471d20a0af3be8b8b4c2ec57c8a0bc1/losses/sliced_sm.py"
+    },
+    "main.py": {
+      "bytes": 4565,
+      "sha256": "c462ba334019dc57f6643e972a1597f97b577ffc7938cf84548c6aff7826dcec",
+      "git_blob_sha1": "8a04f9b7794feec35ada06266ebac7bad7c6dee3",
+      "upstream_blob_url": "https://github.com/ermongroup/ncsn/blob/7f27f4a16471d20a0af3be8b8b4c2ec57c8a0bc1/main.py"
+    },
+    "models/__init__.py": {
+      "bytes": 74,
+      "sha256": "8c4aa8a109299870585f9ecc8ba9adc8886935da2adf93897cf93f2adf86971f",
+      "git_blob_sha1": "cbb5d3d1c4226757d5832c411d258b60241b0a3a",
+      "upstream_blob_url": "https://github.com/ermongroup/ncsn/blob/7f27f4a16471d20a0af3be8b8b4c2ec57c8a0bc1/models/__init__.py"
+    },
+    "models/cond_refinenet_dilated.py": {
+      "bytes": 21582,
+      "sha256": "59100130e8e05c00c39b135ab3cdaae39a4d6de053270a84ed17ea96ab98542f",
+      "git_blob_sha1": "2742601df9967ccf5d3d23a2055c53f2a9b848c3",
+      "upstream_blob_url": "https://github.com/ermongroup/ncsn/blob/7f27f4a16471d20a0af3be8b8b4c2ec57c8a0bc1/models/cond_refinenet_dilated.py"
+    },
+    "models/gmm.py": {
+      "bytes": 5155,
+      "sha256": "77a523f32c966581bfd5f012f10e11b4d25a28178638c8c8b75fdfe00288bbc6",
+      "git_blob_sha1": "491c87b68be227ab8aedf443623b5a75d01981e8",
+      "upstream_blob_url": "https://github.com/ermongroup/ncsn/blob/7f27f4a16471d20a0af3be8b8b4c2ec57c8a0bc1/models/gmm.py"
+    },
+    "models/inception.py": {
+      "bytes": 4829,
+      "sha256": "140a6b53c9f75c5b143d16b3fe3a74ef60f8a3d8decedc6bb779a5a74fd139ee",
+      "git_blob_sha1": "a08e09cf0ef262b6333130cf987576eeaaa21d63",
+      "upstream_blob_url": "https://github.com/ermongroup/ncsn/blob/7f27f4a16471d20a0af3be8b8b4c2ec57c8a0bc1/models/inception.py"
+    },
+    "models/pix2pix.py": {
+      "bytes": 31877,
+      "sha256": "c240a1e8981d7d0459b0729fde805b19e48684d3e77c0327bee852ebec638be2",
+      "git_blob_sha1": "1ed7a2256179d412759787c18cedd750a32ad698",
+      "upstream_blob_url": "https://github.com/ermongroup/ncsn/blob/7f27f4a16471d20a0af3be8b8b4c2ec57c8a0bc1/models/pix2pix.py"
+    },
+    "models/refinenet_dilated_baseline.py": {
+      "bytes": 15957,
+      "sha256": "ab50d33e95164e0640280d3f2d43d83ef3d78aa3f66ed77ed2ef8fe9c7c391b0",
+      "git_blob_sha1": "4045a7e1087623b505a124f096f932d15f0a3958",
+      "upstream_blob_url": "https://github.com/ermongroup/ncsn/blob/7f27f4a16471d20a0af3be8b8b4c2ec57c8a0bc1/models/refinenet_dilated_baseline.py"
+    },
+    "models/scorenet.py": {
+      "bytes": 20815,
+      "sha256": "b10edc3cdab4c53c9b3e636a51ccf5f371d2fdd86af601cabd93c52229e3c8ff",
+      "git_blob_sha1": "16432283507c04028353560e02645a7a528998ba",
+      "upstream_blob_url": "https://github.com/ermongroup/ncsn/blob/7f27f4a16471d20a0af3be8b8b4c2ec57c8a0bc1/models/scorenet.py"
+    },
+    "runners/__init__.py": {
+      "bytes": 145,
+      "sha256": "b14adbdcd715ffd79151e03470db9b6d833c881c1c2c81aea8ba9a4bdf1731cc",
+      "git_blob_sha1": "5ec468c590dd14963b0bc57fec19df7162a84f27",
+      "upstream_blob_url": "https://github.com/ermongroup/ncsn/blob/7f27f4a16471d20a0af3be8b8b4c2ec57c8a0bc1/runners/__init__.py"
+    },
+    "runners/anneal_runner.py": {
+      "bytes": 19562,
+      "sha256": "a5966042d51309995443a7b5aa79ed5cf9ccd73ffe9e37ee156dd03440fcc1fb",
+      "git_blob_sha1": "14b58245a0f11ae853e10bfa0b73f47fd446d6b7",
+      "upstream_blob_url": "https://github.com/ermongroup/ncsn/blob/7f27f4a16471d20a0af3be8b8b4c2ec57c8a0bc1/runners/anneal_runner.py"
+    },
+    "runners/baseline_runner.py": {
+      "bytes": 12266,
+      "sha256": "4fb8739ca33cabffcbcb5ea68f31b0892abe1e8a3a64a96fce3e65f4fa009575",
+      "git_blob_sha1": "030f9e601854e597fa876f25f4369b69571567a3",
+      "upstream_blob_url": "https://github.com/ermongroup/ncsn/blob/7f27f4a16471d20a0af3be8b8b4c2ec57c8a0bc1/runners/baseline_runner.py"
+    },
+    "runners/scorenet_runner.py": {
+      "bytes": 7340,
+      "sha256": "624bd41544f3e50f968a4fcb7bea152f213ad38904f3373db7126f7e510d85e5",
+      "git_blob_sha1": "218502bbdc50e84bee3d9fcd23134e3b4ecb8b57",
+      "upstream_blob_url": "https://github.com/ermongroup/ncsn/blob/7f27f4a16471d20a0af3be8b8b4c2ec57c8a0bc1/runners/scorenet_runner.py"
+    },
+    "runners/toy_runner.py": {
+      "bytes": 9905,
+      "sha256": "50607633c8b70aa97f9cd04905e3249f3711be69e74588a2ceb0ab99bd49a7a6",
+      "git_blob_sha1": "be39f2c4866645a2aae23041b19b5d3dc1d88ac5",
+      "upstream_blob_url": "https://github.com/ermongroup/ncsn/blob/7f27f4a16471d20a0af3be8b8b4c2ec57c8a0bc1/runners/toy_runner.py"
+    }
+  },
+  "excluded_files": [
+    {
+      "path": "assets/celeba_large.gif",
+      "bytes": 12181154,
+      "git_blob_sha1": "68a9c51989eb937843962da2ae7424172fc708af",
+      "reason": "file_exceeds_4MiB_cap"
+    },
+    {
+      "path": "assets/celeba_small.gif",
+      "bytes": 3069723,
+      "git_blob_sha1": "2fdb5e608b96265b72c81064d47dae693a6d4a23",
+      "reason": "image_dataset_weight_font_media_archive_or_binary"
+    },
+    {
+      "path": "assets/cifar10_large.gif",
+      "bytes": 12123243,
+      "git_blob_sha1": "cdc9d8bc3cc66fb78c2315e950e19937254f62c6",
+      "reason": "file_exceeds_4MiB_cap"
+    },
+    {
+      "path": "assets/cifar10_small.gif",
+      "bytes": 3065843,
+      "git_blob_sha1": "f1c90293b70bb43b7fad795b24d1e4b965f161fa",
+      "reason": "image_dataset_weight_font_media_archive_or_binary"
+    },
+    {
+      "path": "assets/mnist_large.gif",
+      "bytes": 6726138,
+      "git_blob_sha1": "9bf7948c364136f5fd5994bf1dede51ef5d76d46",
+      "reason": "file_exceeds_4MiB_cap"
+    },
+    {
+      "path": "assets/mnist_small.gif",
+      "bytes": 1686973,
+      "git_blob_sha1": "cb28ef7b2ca11508e8ffdfead92eb594f5da9ad8",
+      "reason": "image_dataset_weight_font_media_archive_or_binary"
+    }
+  ],
+  "total_included_bytes": 220199,
+  "root_license_path": "source/LICENSE",
+  "root_license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+  "compressed_archive_bytes": 33534521,
+  "compressed_archive_sha256": "24351c82c36d3d964b37c2a2e90964604b653d95b533f5b5bf74b2acca232f15",
+  "source_bytes_modified": false,
+  "limits": {
+    "compressed_per_repo": 83886080,
+    "declared_expanded": 268435456,
+    "per_file": 4194304,
+    "kept_per_repo": 67108864
+  }
+}

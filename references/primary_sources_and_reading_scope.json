@@ -1,0 +1,686 @@
+{
+  "status": "primary_source_bibliography_for_new_english_paper",
+  "created_utc": "2026-11-19T16:08:47.745999+00:00",
+  "date": "2026-11-19",
+  "selected_primary_papers": 34,
+  "selection": "Targeted, non-systematic review of eight model families and relevant conditional generation/evaluation antecedents; not exhaustive priority research.",
+  "source_policy": "Only author manuscripts, official proceedings/publisher records and author research pages substantiate claims. No secondary summaries are relied on.",
+  "read_scope_policy": "Current-session web verification plus explicitly identified selected readings from existing, preserved primary-source logs. No record asserts a complete-paper/proof replication.",
+  "first_paper_policy": "Seminal/key references are not asserted to be the absolute earliest occurrence of every underlying idea.",
+  "old_files_modified": false,
+  "new_gpu_or_model_calls": false,
+  "new_experiments": false,
+  "records": [
+    {
+      "id": "E01",
+      "authors": [
+        "Diederik P. Kingma",
+        "Max Welling"
+      ],
+      "title": "Auto-Encoding Variational Bayes",
+      "year": 2013,
+      "venue": "arXiv:1312.6114; foundational VAE preprint",
+      "primary_url": "https://arxiv.org/abs/1312.6114",
+      "technical_url": "https://arxiv.org/pdf/1312.6114",
+      "read_scope": "Metadata; selected PDF §§2.1–2.4, ELBO Eqs1–7 and minibatch Algorithm1.",
+      "supports": "Reparameterized variational training with an amortized approximate posterior.",
+      "claim_limits": "A likelihood lower bound is not exact marginal likelihood or a perceptual-quality guarantee.",
+      "full_paper_read_claimed": false,
+      "verified_primary_web": true,
+      "first_preprint_year": 2013,
+      "metadata_note": "Year denotes first preprint, not a claim of earliest latent-variable modeling; commonly cited as ICLR2014."
+    },
+    {
+      "id": "E02",
+      "authors": [
+        "Ian J. Goodfellow",
+        "Jean Pouget-Abadie",
+        "Mehdi Mirza",
+        "Bing Xu",
+        "David Warde-Farley",
+        "Sherjil Ozair",
+        "Aaron Courville",
+        "Yoshua Bengio"
+      ],
+      "title": "Generative Adversarial Nets",
+      "year": 2014,
+      "venue": "Advances in Neural Information Processing Systems 27",
+      "primary_url": "https://papers.nips.cc/paper_files/paper/2014/hash/f033ed80deb0234979a61f95710dbe25-Abstract.html",
+      "technical_url": "https://papers.nips.cc/paper_files/paper/2014/file/f033ed80deb0234979a61f95710dbe25-Paper.pdf",
+      "read_scope": "Publisher metadata; PDF §3 Eq1 and adjacent training description.",
+      "supports": "A generator learns through a discriminator's adversarial training signal.",
+      "claim_limits": "The ideal unrestricted equilibrium does not establish finite-network or Adam convergence.",
+      "full_paper_read_claimed": false,
+      "verified_primary_web": true
+    },
+    {
+      "id": "E03",
+      "authors": [
+        "Hugo Larochelle",
+        "Iain Murray"
+      ],
+      "title": "The Neural Autoregressive Distribution Estimator",
+      "year": 2011,
+      "venue": "AISTATS; PMLR 15:29–37",
+      "primary_url": "https://proceedings.mlr.press/v15/larochelle11a.html",
+      "technical_url": "https://proceedings.mlr.press/v15/larochelle11a/larochelle11a.pdf",
+      "read_scope": "Official bibliography; PDF §§3–4, chain factorization and normalized conditional construction.",
+      "supports": "Tractable autoregressive density estimation and ancestral generation.",
+      "claim_limits": "Representative early neural estimator; probability chain factorization predates NADE.",
+      "full_paper_read_claimed": false,
+      "verified_primary_web": true
+    },
+    {
+      "id": "E04",
+      "authors": [
+        "Laurent Dinh",
+        "Jascha Sohl-Dickstein",
+        "Samy Bengio"
+      ],
+      "title": "Density estimation using Real NVP",
+      "year": 2017,
+      "venue": "ICLR 2017",
+      "primary_url": "https://arxiv.org/abs/1605.08803",
+      "technical_url": "https://arxiv.org/pdf/1605.08803",
+      "read_scope": "Metadata; selected PDF §§3.1–3.2, change-of-variables and coupling-layer definitions.",
+      "supports": "Bijective coupling transformations permit tractable density evaluation and inverse sampling.",
+      "claim_limits": "Exact model density is distinct from exact recovery of the data distribution.",
+      "full_paper_read_claimed": false,
+      "verified_primary_web": true,
+      "first_preprint_year": 2016,
+      "metadata_note": "A seminal tractable flow architecture, not the origin of the change-of-variables formula or all normalizing flows."
+    },
+    {
+      "id": "E05",
+      "authors": [
+        "Jascha Sohl-Dickstein",
+        "Eric Weiss",
+        "Niru Maheswaranathan",
+        "Surya Ganguli"
+      ],
+      "title": "Deep Unsupervised Learning using Nonequilibrium Thermodynamics",
+      "year": 2015,
+      "venue": "ICML; PMLR 37:2256–2265",
+      "primary_url": "https://proceedings.mlr.press/v37/sohl-dickstein15.html",
+      "technical_url": "https://proceedings.mlr.press/v37/sohl-dickstein15.pdf",
+      "read_scope": "Official metadata and abstract; forward-corruption/learned-reversal description.",
+      "supports": "Early deep diffusion modeling through a forward process and learned reverse transitions.",
+      "claim_limits": "Historical mechanism citation; no full proof or experimental audit in this review.",
+      "full_paper_read_claimed": false,
+      "verified_primary_web": true
+    },
+    {
+      "id": "E06",
+      "authors": [
+        "Jonathan Ho",
+        "Ajay Jain",
+        "Pieter Abbeel"
+      ],
+      "title": "Denoising Diffusion Probabilistic Models",
+      "year": 2020,
+      "venue": "Advances in Neural Information Processing Systems 33",
+      "primary_url": "https://arxiv.org/abs/2006.11239",
+      "technical_url": "https://arxiv.org/pdf/2006.11239",
+      "read_scope": "Metadata; selected PDF §§2–3.2, epsilon parameterization, Algorithms1–2 and Eq12.",
+      "supports": "Gaussian diffusion can be trained using a noise-prediction objective and sampled by learned reverse steps.",
+      "claim_limits": "The simplified training loss reweights the variational objective; finite sampling remains approximate.",
+      "full_paper_read_claimed": false,
+      "verified_primary_web": true
+    },
+    {
+      "id": "E07",
+      "authors": [
+        "Yang Song",
+        "Stefano Ermon"
+      ],
+      "title": "Generative Modeling by Estimating Gradients of the Data Distribution",
+      "year": 2019,
+      "venue": "Advances in Neural Information Processing Systems 32",
+      "primary_url": "https://arxiv.org/abs/1907.05600",
+      "technical_url": "https://arxiv.org/pdf/1907.05600",
+      "read_scope": "Metadata; selected PDF §§2.1–2.2 and noise-conditional-score introduction.",
+      "supports": "Noise-conditioned denoising scores support annealed Langevin generation.",
+      "claim_limits": "Smoothed-density scores and finite Langevin updates are not exact original-density samples.",
+      "full_paper_read_claimed": false,
+      "verified_primary_web": true
+    },
+    {
+      "id": "E08",
+      "authors": [
+        "Yang Song",
+        "Jascha Sohl-Dickstein",
+        "Diederik P. Kingma",
+        "Abhishek Kumar",
+        "Stefano Ermon",
+        "Ben Poole"
+      ],
+      "title": "Score-Based Generative Modeling through Stochastic Differential Equations",
+      "year": 2021,
+      "venue": "ICLR 2021",
+      "primary_url": "https://arxiv.org/abs/2011.13456",
+      "technical_url": "https://arxiv.org/html/2011.13456v2",
+      "read_scope": "Metadata; author HTML §§3.1–3.3, Eq6 reverse SDE and §4.3 Eq13 probability-flow ODE.",
+      "supports": "A continuous-time score framework connects diffusion, reverse SDEs and deterministic probability flow.",
+      "claim_limits": "Equal exact marginals require the stated exact-score/regularity setting; practical solvers introduce error.",
+      "full_paper_read_claimed": false,
+      "verified_primary_web": true,
+      "first_preprint_year": 2020
+    },
+    {
+      "id": "E09",
+      "authors": [
+        "Yaron Lipman",
+        "Ricky T. Q. Chen",
+        "Heli Ben-Hamu",
+        "Maximilian Nickel",
+        "Matt Le"
+      ],
+      "title": "Flow Matching for Generative Modeling",
+      "year": 2023,
+      "venue": "ICLR 2023",
+      "primary_url": "https://arxiv.org/abs/2210.02747",
+      "technical_url": "https://arxiv.org/html/2210.02747v2",
+      "read_scope": "Metadata; HTML §§3–4.1, Eqs5–15 and statements of Theorems1–3; proofs not audited.",
+      "supports": "Conditional vector-field regression supplies gradients for a marginal transport path.",
+      "claim_limits": "Simulation-free training does not mean simulation-free sampling or automatic maximum-likelihood optimization.",
+      "full_paper_read_claimed": false,
+      "verified_primary_web": true,
+      "first_preprint_year": 2022
+    },
+    {
+      "id": "E10",
+      "authors": [
+        "Yang Song",
+        "Prafulla Dhariwal",
+        "Mark Chen",
+        "Ilya Sutskever"
+      ],
+      "title": "Consistency Models",
+      "year": 2023,
+      "venue": "ICML; PMLR 202:32211–32252",
+      "primary_url": "https://proceedings.mlr.press/v202/song23a.html",
+      "technical_url": "https://proceedings.mlr.press/v202/song23a/song23a.pdf",
+      "read_scope": "Official bibliography; selected PDF §§2–3: PF trajectory, self-consistency, boundary and sampling; training overview.",
+      "supports": "Trajectory-consistent mappings permit one-step and multistep generation, with distillation or standalone training.",
+      "claim_limits": "One evaluation by design does not establish universal superiority, exact density or zero training cost.",
+      "full_paper_read_claimed": false,
+      "verified_primary_web": true
+    },
+    {
+      "id": "E11",
+      "authors": [
+        "Takeru Miyato",
+        "Masanori Koyama"
+      ],
+      "title": "cGANs with Projection Discriminator",
+      "year": 2018,
+      "venue": "ICLR 2018",
+      "primary_url": "https://arxiv.org/abs/1802.05637",
+      "technical_url": "https://arxiv.org/abs/1802.05637",
+      "read_scope": "Primary metadata and abstract; conditional projection and cBN role.",
+      "supports": "Inner-product projection is an established way to incorporate labels into a GAN discriminator.",
+      "claim_limits": "The present small residual network is an adaptation, not a reproduced official benchmark.",
+      "full_paper_read_claimed": false,
+      "verified_primary_web": true
+    },
+    {
+      "id": "E12",
+      "authors": [
+        "Yujia Li",
+        "Kevin Swersky",
+        "Rich Zemel"
+      ],
+      "title": "Generative Moment Matching Networks",
+      "year": 2015,
+      "venue": "ICML; PMLR 37:1718–1727",
+      "primary_url": "https://proceedings.mlr.press/v37/li15.html",
+      "technical_url": "https://proceedings.mlr.press/v37/li15.pdf",
+      "read_scope": "Official metadata/abstract; MMD objective and feedforward generative mechanism overview.",
+      "supports": "MMD supplies a differentiable generative training criterion without the original GAN minimax game.",
+      "claim_limits": "Identifiability depends on the kernel and distribution class; finite fitted moments alone are insufficient.",
+      "full_paper_read_claimed": false,
+      "verified_primary_web": true
+    },
+    {
+      "id": "E13",
+      "authors": [
+        "Tim Salimans",
+        "Ian Goodfellow",
+        "Wojciech Zaremba",
+        "Vicki Cheung",
+        "Alec Radford",
+        "Xi Chen"
+      ],
+      "title": "Improved Techniques for Training GANs",
+      "year": 2016,
+      "venue": "Advances in Neural Information Processing Systems 29",
+      "primary_url": "https://arxiv.org/abs/1606.03498",
+      "technical_url": "https://arxiv.org/pdf/1606.03498",
+      "read_scope": "Metadata; selected PDF §3.1 feature matching and adjacent nonconvergence discussion.",
+      "supports": "Generator matching of intermediate discriminator statistics is an established GAN training idea.",
+      "claim_limits": "Its heuristic training motivation is not a general convergence or minority-coverage theorem.",
+      "full_paper_read_claimed": false,
+      "verified_primary_web": true
+    },
+    {
+      "id": "E14",
+      "authors": [
+        "Yong Ren",
+        "Jialian Li",
+        "Yucen Luo",
+        "Jun Zhu"
+      ],
+      "title": "Conditional Generative Moment-Matching Networks",
+      "year": 2016,
+      "venue": "Advances in Neural Information Processing Systems 29",
+      "primary_url": "https://proceedings.neurips.cc/paper/2016/hash/0245952ecff55018e2a459517fdb40e3-Abstract.html",
+      "technical_url": "https://proceedings.neurips.cc/paper_files/paper/2016/file/0245952ecff55018e2a459517fdb40e3-Paper.pdf",
+      "read_scope": "Publisher metadata; primary PDF title page; prior selected §§2.3–3.1 read log retained in v2.",
+      "supports": "Conditional-kernel moment matching predates the present four-group feature-contrast design.",
+      "claim_limits": "A single signed contrast does not inherit full conditional-embedding identifiability.",
+      "full_paper_read_claimed": false,
+      "verified_primary_web": true,
+      "metadata_note": "Author order follows the primary PDF. Publisher HTML displays Ren, Zhu, Li, Luo; discrepancy explicitly retained."
+    },
+    {
+      "id": "E15",
+      "authors": [
+        "Youssef Mroueh",
+        "Tom Sercu",
+        "Vaibhava Goel"
+      ],
+      "title": "McGan: Mean and Covariance Feature Matching GAN",
+      "year": 2017,
+      "venue": "ICML; PMLR 70:2527–2535",
+      "primary_url": "https://proceedings.mlr.press/v70/mroueh17a.html",
+      "technical_url": "https://proceedings.mlr.press/v70/mroueh17a/mroueh17a.pdf",
+      "read_scope": "Official metadata/abstract; prior selected PDF §§2–3.1 and §4.1 opening.",
+      "supports": "Finite-feature mean and covariance IPMs are established adversarial discrepancies.",
+      "claim_limits": "Matching finitely many feature statistics need not identify every image distribution.",
+      "full_paper_read_claimed": false,
+      "verified_primary_web": true
+    },
+    {
+      "id": "E16",
+      "authors": [
+        "Youssef Mroueh",
+        "Tom Sercu"
+      ],
+      "title": "Fisher GAN",
+      "year": 2017,
+      "venue": "Advances in Neural Information Processing Systems 30",
+      "primary_url": "https://arxiv.org/abs/1705.09675",
+      "technical_url": "https://arxiv.org/pdf/1705.09675",
+      "read_scope": "Current primary metadata/abstract; prior selected PDF §§2.1–2.2 through Eq5.",
+      "supports": "A second-moment-constrained critic leads to normalized feature-mean matching.",
+      "claim_limits": "Second-moment normalization is not the proposed cluster-target uncertainty estimate.",
+      "full_paper_read_claimed": false,
+      "verified_primary_web": true
+    },
+    {
+      "id": "E17",
+      "authors": [
+        "Cicero Nogueira dos Santos",
+        "Youssef Mroueh",
+        "Inkit Padhi",
+        "Pierre Dognin"
+      ],
+      "title": "Learning Implicit Generative Models by Matching Perceptual Features",
+      "year": 2019,
+      "venue": "ICCV 2019",
+      "primary_url": "https://arxiv.org/abs/1904.02762",
+      "technical_url": "https://arxiv.org/pdf/1904.02762",
+      "read_scope": "Primary PDF §§2.1–2.2, Eqs1–4; selected §3 identifiability assumptions.",
+      "supports": "GFMN precomputes real feature targets and uses moving-discrepancy linear surrogates.",
+      "claim_limits": "Especially close precedent; no first fixed-teacher or first lagged-witness claim is justified.",
+      "full_paper_read_claimed": false,
+      "verified_primary_web": true
+    },
+    {
+      "id": "E18",
+      "authors": [
+        "Wenze Liu",
+        "Xintao Wang",
+        "Pengfei Wan",
+        "Xiangyu Yue"
+      ],
+      "title": "Amortized Moment Matching for Visual Generation",
+      "year": 2026,
+      "venue": "arXiv:2607.26860v1, submitted 29 July 2026",
+      "primary_url": "https://arxiv.org/abs/2607.26860",
+      "technical_url": "https://arxiv.org/html/2607.26860v1",
+      "read_scope": "Primary metadata; HTML §3 statements and §§4.1–4.2 Eqs9–21; not proofs or experimental validation.",
+      "supports": "AMFD learns conditional moments; Eq16 uses a detached mean-discrepancy linear generator objective.",
+      "claim_limits": "Preprint method antecedent, not proof of our novelty, performance, cluster validity or full-distribution identification.",
+      "full_paper_read_claimed": false,
+      "verified_primary_web": true
+    },
+    {
+      "id": "E19",
+      "authors": [
+        "Kristy Choi",
+        "Aditya Grover",
+        "Trisha Singh",
+        "Rui Shu",
+        "Stefano Ermon"
+      ],
+      "title": "Fair Generative Modeling via Weak Supervision",
+      "year": 2020,
+      "venue": "ICML; PMLR 119:1887–1898",
+      "primary_url": "https://proceedings.mlr.press/v119/choi20a.html",
+      "technical_url": "https://proceedings.mlr.press/v119/choi20a/choi20a.pdf",
+      "read_scope": "Current official metadata/abstract; prior selected PDF §§2–3, Eqs3–5 and Algorithm1.",
+      "supports": "An unlabeled reference set supports density-ratio correction toward a specified reference distribution.",
+      "claim_limits": "Requires appropriate reference/support and estimated ratios; not an unconditional fairness guarantee.",
+      "full_paper_read_claimed": false,
+      "verified_primary_web": true
+    },
+    {
+      "id": "E20",
+      "authors": [
+        "Ning Yu",
+        "Ke Li",
+        "Peng Zhou",
+        "Jitendra Malik",
+        "Larry Davis",
+        "Mario Fritz"
+      ],
+      "title": "Inclusive GAN: Improving Data and Minority Coverage in Generative Models",
+      "year": 2020,
+      "venue": "ECCV 2020",
+      "primary_url": "https://arxiv.org/abs/2004.03355",
+      "technical_url": "https://arxiv.org/html/2004.03355v3",
+      "read_scope": "Current metadata/abstract; prior author HTML §§3.3–3.4,4.1,4.5 and SupplementA.",
+      "supports": "Combines adversarial learning with reconstructive generation, including minority-focused coverage.",
+      "claim_limits": "Coverage objective and original compute differ from this small four-bin GAN study.",
+      "full_paper_read_claimed": false,
+      "verified_primary_web": true
+    },
+    {
+      "id": "E21",
+      "authors": [
+        "Harsh Rangwani",
+        "Lavish Bansal",
+        "Kartik Sharma",
+        "Tejan Karmali",
+        "Varun Jampani",
+        "R. Venkatesh Babu"
+      ],
+      "title": "NoisyTwins: Class-Consistent and Diverse Image Generation through StyleGANs",
+      "year": 2023,
+      "venue": "CVPR 2023",
+      "primary_url": "https://arxiv.org/abs/2304.05866",
+      "technical_url": "https://arxiv.org/html/2304.05866v1",
+      "read_scope": "Current metadata/abstract; prior HTML §§3.2,4.1–4.2, embedding-noise and twins objectives.",
+      "supports": "Long-tail StyleGAN training can address class-latent collapse through embedding augmentation and decorrelation.",
+      "claim_limits": "Its architecture and datasets differ; no imported gains or budget-matched comparison.",
+      "full_paper_read_claimed": false,
+      "verified_primary_web": true
+    },
+    {
+      "id": "E22",
+      "authors": [
+        "Harsh Rangwani",
+        "Naman Jaswani",
+        "Tejan Karmali",
+        "Varun Jampani",
+        "R. Venkatesh Babu"
+      ],
+      "title": "Improving GANs for Long-Tailed Data through Group Spectral Regularization",
+      "year": 2022,
+      "venue": "ECCV 2022",
+      "primary_url": "https://arxiv.org/abs/2208.09932",
+      "technical_url": "https://arxiv.org/abs/2208.09932",
+      "read_scope": "Current primary metadata/abstract; historical author-code provenance in v1 source ledger.",
+      "supports": "gSR regularizes conditioning matrices to address observed tail-class spectral growth and collapse.",
+      "claim_limits": "No guarantee for every long-tail distribution; not a completed comparator in the final B/C cohort.",
+      "full_paper_read_claimed": false,
+      "verified_primary_web": true
+    },
+    {
+      "id": "E23",
+      "authors": [
+        "Nan Liu",
+        "Shuang Li",
+        "Yilun Du",
+        "Antonio Torralba",
+        "Joshua B. Tenenbaum"
+      ],
+      "title": "Compositional Visual Generation with Composable Diffusion Models",
+      "year": 2022,
+      "venue": "ECCV 2022",
+      "primary_url": "https://arxiv.org/abs/2206.01714",
+      "technical_url": "https://arxiv.org/html/2206.01714v6",
+      "read_scope": "Metadata; author HTML §§3.2–4.2 through conjunction factorization; not complete experimental audit.",
+      "supports": "Energy/score composition offers inference-time conjunction and negation of learned concepts.",
+      "claim_limits": "Correct composition needs modeling assumptions; rare-seen bins do not demonstrate zero-shot composition.",
+      "full_paper_read_claimed": false,
+      "verified_primary_web": true
+    },
+    {
+      "id": "E24",
+      "authors": [
+        "Mikołaj Bińkowski",
+        "Danica J. Sutherland",
+        "Michael Arbel",
+        "Arthur Gretton"
+      ],
+      "title": "Demystifying MMD GANs",
+      "year": 2018,
+      "venue": "ICLR 2018",
+      "primary_url": "https://arxiv.org/abs/1801.01401",
+      "technical_url": "https://arxiv.org/html/1801.01401v5",
+      "read_scope": "Metadata; author HTML abstract, §2.1 and §4 KID definition; no complete proof audit.",
+      "supports": "KID is an MMD-based fixed-feature evaluation statistic with an IID U-statistic estimator.",
+      "claim_limits": "IID unbiasedness does not transfer automatically to clustered heldout images or model selection.",
+      "full_paper_read_claimed": false,
+      "verified_primary_web": true
+    },
+    {
+      "id": "E25",
+      "authors": [
+        "Gaurav Parmar",
+        "Richard Zhang",
+        "Jun-Yan Zhu"
+      ],
+      "title": "On Aliased Resizing and Surprising Subtleties in GAN Evaluation",
+      "year": 2022,
+      "venue": "CVPR 2022",
+      "primary_url": "https://arxiv.org/abs/2104.11222",
+      "technical_url": "https://arxiv.org/pdf/2104.11222",
+      "read_scope": "Primary metadata/abstract and selected PDF introduction; CVF HTML returned403.",
+      "supports": "Resizing, antialiasing and compression can materially change feature-based GAN scores.",
+      "claim_limits": "A standardized preprocessing path improves comparability but does not certify semantics or fairness.",
+      "full_paper_read_claimed": false,
+      "verified_primary_web": true,
+      "first_preprint_year": 2021
+    },
+    {
+      "id": "E26",
+      "authors": [
+        "Muhammad Ferjad Naeem",
+        "Seong Joon Oh",
+        "Youngjung Uh",
+        "Yunjey Choi",
+        "Jaejun Yoo"
+      ],
+      "title": "Reliable Fidelity and Diversity Metrics for Generative Models",
+      "year": 2020,
+      "venue": "ICML; PMLR 119:7176–7185",
+      "primary_url": "https://proceedings.mlr.press/v119/naeem20a.html",
+      "technical_url": "https://proceedings.mlr.press/v119/naeem20a/naeem20a.pdf",
+      "read_scope": "Official metadata; PDF §2.2 Eqs1–3 and §3.2 Eqs4–5.",
+      "supports": "Feature-neighborhood precision, recall, density and coverage diagnose distinct sample properties.",
+      "claim_limits": "Feature choice, sample size and neighborhood settings matter; density can exceed one.",
+      "full_paper_read_claimed": false,
+      "verified_primary_web": true
+    },
+    {
+      "id": "E27",
+      "authors": [
+        "Ziwei Liu",
+        "Ping Luo",
+        "Xiaogang Wang",
+        "Xiaoou Tang"
+      ],
+      "title": "Deep Learning Face Attributes in the Wild",
+      "year": 2015,
+      "venue": "ICCV 2015:3730–3738",
+      "primary_url": "https://arxiv.org/abs/1411.7766",
+      "technical_url": "https://arxiv.org/abs/1411.7766",
+      "read_scope": "Primary arXiv metadata/abstract; CVF HTML403; author project metadata in historical ledger.",
+      "supports": "Dataset and attribute-prediction provenance for CelebA.",
+      "claim_limits": "Annotation names are dataset labels; neither demographic ground truth nor a license expansion.",
+      "full_paper_read_claimed": false,
+      "verified_primary_web": true,
+      "first_preprint_year": 2014
+    },
+    {
+      "id": "E28",
+      "authors": [
+        "Björn Barz",
+        "Joachim Denzler"
+      ],
+      "title": "Do We Train on Test Data? Purging CIFAR of Near-Duplicates",
+      "year": 2020,
+      "venue": "Journal of Imaging 6(6):41; doi:10.3390/jimaging6060041",
+      "primary_url": "https://arxiv.org/abs/1902.00423",
+      "technical_url": "https://arxiv.org/abs/1902.00423",
+      "read_scope": "Primary metadata/abstract and journal-reference field.",
+      "supports": "CIFAR duplicate contamination demonstrates why split membership alone can misrepresent generalization.",
+      "claim_limits": "CIFAR evidence does not establish any CelebA duplicate count; those are separate project measurements.",
+      "full_paper_read_claimed": false,
+      "verified_primary_web": true,
+      "first_preprint_year": 2019
+    },
+    {
+      "id": "E29",
+      "authors": [
+        "Yonatan Oren",
+        "Shiori Sagawa",
+        "Tatsunori B. Hashimoto",
+        "Percy Liang"
+      ],
+      "title": "Distributionally Robust Language Modeling",
+      "year": 2019,
+      "venue": "EMNLP-IJCNLP 2019:4227–4237; doi:10.18653/v1/D19-1432",
+      "primary_url": "https://aclanthology.org/D19-1432/",
+      "technical_url": "https://aclanthology.org/D19-1432.pdf",
+      "read_scope": "Current official metadata; prior selected PDF §§4.2–5.1, Eqs8–11 and EMA/floor allocation.",
+      "supports": "Historical group-loss allocation and moving estimates precede critic-gap weighting.",
+      "claim_limits": "Language-model topic robustness does not establish GAN convergence or critic-gap robustness.",
+      "full_paper_read_claimed": false,
+      "verified_primary_web": true
+    },
+    {
+      "id": "E30",
+      "authors": [
+        "Robin Rombach",
+        "Andreas Blattmann",
+        "Dominik Lorenz",
+        "Patrick Esser",
+        "Björn Ommer"
+      ],
+      "title": "High-Resolution Image Synthesis with Latent Diffusion Models",
+      "year": 2022,
+      "venue": "CVPR 2022:10684–10695",
+      "primary_url": "https://arxiv.org/abs/2112.10752",
+      "technical_url": "https://arxiv.org/html/2112.10752v2",
+      "read_scope": "Current primary metadata/abstract and HTML method headings; prior selected §§3.1–3.3 Eqs1–3.",
+      "supports": "Perceptual compression moves denoising into latent space; cross-attention handles general conditions.",
+      "claim_limits": "Compression/autoencoder training has costs and losses; not an executed baseline here.",
+      "full_paper_read_claimed": false,
+      "verified_primary_web": true,
+      "first_preprint_year": 2021
+    },
+    {
+      "id": "E31",
+      "authors": [
+        "Mehdi Mirza",
+        "Simon Osindero"
+      ],
+      "title": "Conditional Generative Adversarial Nets",
+      "year": 2014,
+      "venue": "arXiv:1411.1784",
+      "primary_url": "https://arxiv.org/abs/1411.1784",
+      "read_scope": "Primary abstract and bibliographic metadata",
+      "supports": "Conditions are supplied to both generator and discriminator.",
+      "verified_primary_web": true,
+      "full_paper_read_claimed": false
+    },
+    {
+      "id": "E32",
+      "authors": [
+        "Takeru Miyato",
+        "Toshiki Kataoka",
+        "Masanori Koyama",
+        "Yuichi Yoshida"
+      ],
+      "title": "Spectral Normalization for Generative Adversarial Networks",
+      "year": 2018,
+      "venue": "ICLR 2018",
+      "primary_url": "https://arxiv.org/abs/1802.05957",
+      "read_scope": "Primary abstract and bibliographic metadata",
+      "supports": "Discriminator weight normalization is proposed for GAN stabilization.",
+      "verified_primary_web": true,
+      "full_paper_read_claimed": false
+    },
+    {
+      "id": "E33",
+      "authors": [
+        "Arthur Gretton",
+        "Karsten M. Borgwardt",
+        "Malte J. Rasch",
+        "Bernhard Schölkopf",
+        "Alexander Smola"
+      ],
+      "title": "A Kernel Two-Sample Test",
+      "year": 2012,
+      "venue": "Journal of Machine Learning Research 13(25), 723–773",
+      "primary_url": "https://www.jmlr.org/papers/v13/gretton12a.html",
+      "technical_url": "https://www.jmlr.org/papers/volume13/gretton12a/gretton12a.pdf",
+      "read_scope": "Primary publisher metadata and selected PDF sections 1 and 2 on characteristic RKHS mean embeddings and MMD",
+      "supports": "MMD compares distributions through RKHS mean embeddings.",
+      "verified_primary_web": true,
+      "full_paper_read_claimed": false
+    },
+    {
+      "id": "E34",
+      "authors": [
+        "Mathieu Germain",
+        "Karol Gregor",
+        "Iain Murray",
+        "Hugo Larochelle"
+      ],
+      "title": "MADE: Masked Autoencoder for Distribution Estimation",
+      "year": 2015,
+      "venue": "ICML; PMLR 37:881–889",
+      "primary_url": "https://proceedings.mlr.press/v37/germain15.html",
+      "technical_url": "https://proceedings.mlr.press/v37/germain15.pdf",
+      "read_scope": "Primary publisher metadata and model abstract; masking idea independently checked against code dependency structure.",
+      "supports": "Degree masks restrict each conditional output to preceding inputs in a fixed ordering.",
+      "claim_limits": "The new local Gaussian masked MLP is a pedagogical adaptation, not a faithful binary-NADE implementation or an official MADE reproduction.",
+      "full_paper_read_claimed": false,
+      "verified_primary_web": true
+    }
+  ],
+  "prior_read_logs": [
+    "work/generative_training_v2/prior_art/function_interaction_read_log.json",
+    "work/generative_training_v1/literature/final_sources_49.json",
+    "work/generative_training_v1/literature/supplement_sources_S50plus.json"
+  ],
+  "access_limits": [
+    "AMFD primary arXiv HTML was retrieved and method §§3–4 read; it is not merely a search-result citation.",
+    "CVF HTML for Clean-FID and CelebA returned403; author arXiv manuscripts supplied primary metadata, with Clean-FID PDF readable.",
+    "SDE, Flow Matching and KID PDFs exceeded the browser parser's size cap; author arXiv HTML was readable and used.",
+    "The attempted GFMN CVF URL was inaccessible; the primary arXiv PDF was readable, including §2.2.",
+    "CGMMN author-order discrepancy between publisher HTML and primary PDF is recorded, not silently reconciled."
+  ],
+  "no_claims": [
+    "No universal family ranking",
+    "No new moment-matching principle",
+    "No exhaustive novelty proof",
+    "No literature performance transferred to this experiment",
+    "No completed baseline beyond the actual final B/C cohort"
+  ]
+}

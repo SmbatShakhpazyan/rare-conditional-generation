@@ -1,0 +1,52 @@
+{
+  "additional_mirror_cross_split_pairs": {
+    "train__test": 0,
+    "train__validation": 0,
+    "validation__test": 0
+  },
+  "direct": {
+    "conflicting_Blond_Hair_components": 6,
+    "conflicting_Male_components": 0,
+    "conflicting_annotation_components": 6,
+    "cross_split_conflicting_annotation_pairs": {
+      "train__test": 0,
+      "train__validation": 0,
+      "validation__test": 0
+    },
+    "cross_split_pairs": {
+      "train__test": 11,
+      "train__validation": 24,
+      "validation__test": 2
+    },
+    "duplicate_components": 131,
+    "images_in_cross_split_components": 74,
+    "images_in_duplicate_components": 263,
+    "redundant_rows": 132
+  },
+  "exact_bytes": "uint8_RGB64_HWC_row_major",
+  "hash_collision_candidates_verified_by_actual_bytes": [
+    132,
+    132
+  ],
+  "horizontal_flip_equivalence": {
+    "conflicting_Blond_Hair_components": 6,
+    "conflicting_Male_components": 0,
+    "conflicting_annotation_components": 6,
+    "cross_split_conflicting_annotation_pairs": {
+      "train__test": 0,
+      "train__validation": 0,
+      "validation__test": 0
+    },
+    "cross_split_pairs": {
+      "train__test": 11,
+      "train__validation": 24,
+      "validation__test": 2
+    },
+    "duplicate_components": 131,
+    "images_in_cross_split_components": 74,
+    "images_in_duplicate_components": 263,
+    "redundant_rows": 132
+  },
+  "horizontal_flip_matches_training_augmentation": true,
+  "logical_equality_based_on_bytes_not_digest_alone": true
+}

@@ -1,0 +1,12 @@
+{
+  "MD5": "32bd1bd63d3c78cd57e08160ec5ed1e2",
+  "attempts": 1,
+  "auth_cookies_proxy_or_confirmation_used": false,
+  "bytes": 3424458,
+  "raw_identity_for_export": false,
+  "redirects": 0,
+  "sha256": "c6143857c3e2630ac2da9f782e9c1232e5e59be993a9d44e8a7916c78a6158c0",
+  "status": "authenticated_new_recovery_identity_input",
+  "url": "https://ftp.mi.fu-berlin.de/pub/cmb-data/celeba/identity_CelebA.txt",
+  "utc": "2026-11-19T10:48:53.044057+00:00"
+}

@@ -1,0 +1,733 @@
+{
+  "repository": "CompVis/latent-diffusion",
+  "repository_url": "https://github.com/CompVis/latent-diffusion",
+  "commit_sha": "a506df5756472e2ebaf9078affdde2c4f1502cd4",
+  "pinned_commit_url": "https://github.com/CompVis/latent-diffusion/tree/a506df5756472e2ebaf9078affdde2c4f1502cd4",
+  "primary_paper_url": "https://arxiv.org/abs/2112.10752",
+  "role": "Primary-author-group latent-diffusion implementation.",
+  "license": "MIT",
+  "github_HEAD_license_metadata_not_used_as_pinned_text": {
+    "key": "mit",
+    "name": "MIT License",
+    "spdx_id": "MIT",
+    "url": "https://api.github.com/licenses/mit",
+    "node_id": "MDc6TGljZW5zZTEz"
+  },
+  "upstream_code_executed": false,
+  "upstream_tests_or_training_run": false,
+  "reproduced_paper_results": false,
+  "filtered_not_full_asset_snapshot": true,
+  "status": "PINNED_LICENSED_FILTERED_TEXT_SOURCE_SNAPSHOT",
+  "included_files": {
+    "LICENSE": {
+      "bytes": 1102,
+      "sha256": "2ba3d36721ed0263cbc1050936ba34809d296fe629d802f7bc453007faefbdb3",
+      "git_blob_sha1": "be24ebeed0fb31665dc3c33d2610d35f77b12709",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/LICENSE"
+    },
+    "README.md": {
+      "bytes": 21672,
+      "sha256": "d50d26bdbb72122500e1e03f331df582cbb258a9dc8c9c8b0c348e46ed17c268",
+      "git_blob_sha1": "7bdf52a172b526dbfb7f4c67d8005da47ad21ee4",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/README.md"
+    },
+    "configs/autoencoder/autoencoder_kl_16x16x16.yaml": {
+      "bytes": 1145,
+      "sha256": "89bb023898da28fb34cd865021f37a9186933a60f64d3ea9813dda9c0f19fb52",
+      "git_blob_sha1": "5f1d10ec75e5de5932cdcf0e8d3c712feac7578e",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/configs/autoencoder/autoencoder_kl_16x16x16.yaml"
+    },
+    "configs/autoencoder/autoencoder_kl_32x32x4.yaml": {
+      "bytes": 1140,
+      "sha256": "c2abfe5293bb47af6488f4f4faa6636a025e732ac0f5ccae0a660d11580600ba",
+      "git_blob_sha1": "ab8b36fe6e3e95df2942a437b7d9c919b60d5c86",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/configs/autoencoder/autoencoder_kl_32x32x4.yaml"
+    },
+    "configs/autoencoder/autoencoder_kl_64x64x3.yaml": {
+      "bytes": 1139,
+      "sha256": "897db209dbd5d4ff0f9a66bd6fdb9804e49324428bd4f938ff9192ddf502ef68",
+      "git_blob_sha1": "5e3db5c4e28bcb58be4ee0872511059f5cc965ad",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/configs/autoencoder/autoencoder_kl_64x64x3.yaml"
+    },
+    "configs/autoencoder/autoencoder_kl_8x8x64.yaml": {
+      "bytes": 1148,
+      "sha256": "47114981fd3657d9b4c18db2f1b6d4e1dc2b9a89e97d101cbc0831e43cde7bc5",
+      "git_blob_sha1": "5ccd09d38e4926706fb1d287f4f65619627e0eb7",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/configs/autoencoder/autoencoder_kl_8x8x64.yaml"
+    },
+    "configs/latent-diffusion/celebahq-ldm-vq-4.yaml": {
+      "bytes": 2028,
+      "sha256": "c6b29227879c821a124dca814164b95df2fd1586ae7ac548f17e2bd2f68062d3",
+      "git_blob_sha1": "89b3df4fe1822295d509dca2237ea891cdd964bf",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/configs/latent-diffusion/celebahq-ldm-vq-4.yaml"
+    },
+    "configs/latent-diffusion/cin-ldm-vq-f8.yaml": {
+      "bytes": 2360,
+      "sha256": "46c28f256edae6bdf835b933d78c30f36684b791491609932df8f387b54a6a23",
+      "git_blob_sha1": "b8cd9e2ef5d26870bdbb26bf04a9b47aaa78feeb",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/configs/latent-diffusion/cin-ldm-vq-f8.yaml"
+    },
+    "configs/latent-diffusion/cin256-v2.yaml": {
+      "bytes": 1553,
+      "sha256": "b06c64afb41956e1fcc2abaeb3d217ae0edb1a201d09f35e7d656ce61396e779",
+      "git_blob_sha1": "b7c1aa240c740d1e5b7693f9543f996d727a302d",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/configs/latent-diffusion/cin256-v2.yaml"
+    },
+    "configs/latent-diffusion/ffhq-ldm-vq-4.yaml": {
+      "bytes": 2020,
+      "sha256": "8ef723f6e71be5abc666500aa0cdd7ad35985d3d08efa2ada4d4ba4cfccf18ca",
+      "git_blob_sha1": "1899e30f77222142d7b33f45a6dcff086a31e174",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/configs/latent-diffusion/ffhq-ldm-vq-4.yaml"
+    },
+    "configs/latent-diffusion/lsun_bedrooms-ldm-vq-4.yaml": {
+      "bytes": 2024,
+      "sha256": "da81fbf9eda2426d7116c6be54050b4f063b04d58a712e6ccdd27d94251b9fae",
+      "git_blob_sha1": "c4ca66c16c00a0c3fd13ae1ad03635039161e7ad",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/configs/latent-diffusion/lsun_bedrooms-ldm-vq-4.yaml"
+    },
+    "configs/latent-diffusion/lsun_churches-ldm-kl-8.yaml": {
+      "bytes": 2284,
+      "sha256": "6e0144e2e62ec39069da926fedbc4abdb80d508bccb6c64756bcbe8cc42f0f5e",
+      "git_blob_sha1": "18dc8c2d9cfb925b0f45e5b89186d71e3274b086",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/configs/latent-diffusion/lsun_churches-ldm-kl-8.yaml"
+    },
+    "configs/latent-diffusion/txt2img-1p4B-eval.yaml": {
+      "bytes": 1614,
+      "sha256": "14eeb9329239e011c2b7c8617142c90381807d8044771b3708cb965b413fae03",
+      "git_blob_sha1": "8e331cbfdff7ece1ef9008754e97f60f68585a07",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/configs/latent-diffusion/txt2img-1p4B-eval.yaml"
+    },
+    "configs/retrieval-augmented-diffusion/768x768.yaml": {
+      "bytes": 1615,
+      "sha256": "e9a3649b2acc28adb2d4604d37a6e31a1fd654c27b82ace438dbaba743377a9e",
+      "git_blob_sha1": "b51b1d8373ca7a259320deaffc154f89ad2b8cf4",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/configs/retrieval-augmented-diffusion/768x768.yaml"
+    },
+    "environment.yaml": {
+      "bytes": 644,
+      "sha256": "20ea8e14e381233c8b6edb32fe4d2187e97a86ecea685a636bcd6f3dd8708062",
+      "git_blob_sha1": "f36b0e17dfd2484d9686b34b272ff363039d1214",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/environment.yaml"
+    },
+    "ldm/data/__init__.py": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob_sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/ldm/data/__init__.py"
+    },
+    "ldm/data/base.py": {
+      "bytes": 693,
+      "sha256": "4016b6242f78855179134781bd02cad9e843001623e3549f255103fd056de0b6",
+      "git_blob_sha1": "b196c2f7aa583a3e8bc4aad9f943df0c4dae0da7",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/ldm/data/base.py"
+    },
+    "ldm/data/imagenet.py": {
+      "bytes": 15497,
+      "sha256": "0799471293f7c6c906b98014d13846062e833529ecfb377a8871bf7b602c1d6b",
+      "git_blob_sha1": "1c473f9c6965b22315dbb289eff8247c71bdc790",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/ldm/data/imagenet.py"
+    },
+    "ldm/data/lsun.py": {
+      "bytes": 3274,
+      "sha256": "654355d9c1d3a9420dd3b36f39a1ec4a1f0f61334109aa2162d9d8e8acd3d3b7",
+      "git_blob_sha1": "6256e45715ff0b57c53f985594d27cbbbff0e68e",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/ldm/data/lsun.py"
+    },
+    "ldm/lr_scheduler.py": {
+      "bytes": 3882,
+      "sha256": "6af592fcfcf975dde43bea71c8f0fc58b9949f5a9a381d6a819b21eee82104f6",
+      "git_blob_sha1": "be39da9ca6dacc22bf3df9c7389bbb403a4a3ade",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/ldm/lr_scheduler.py"
+    },
+    "ldm/models/autoencoder.py": {
+      "bytes": 17619,
+      "sha256": "8ba30483454b431e0642c229f286fe387c60130c26516cd392594186f9b4a4e5",
+      "git_blob_sha1": "6a9c4f45498561953b8085981609b2a3298a5473",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/ldm/models/autoencoder.py"
+    },
+    "ldm/models/diffusion/__init__.py": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob_sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/ldm/models/diffusion/__init__.py"
+    },
+    "ldm/models/diffusion/classifier.py": {
+      "bytes": 10276,
+      "sha256": "b84a1bd36b83ddd13c36f92d865b025b6556f11efe4a0321fd5a85fffe9fdf7e",
+      "git_blob_sha1": "67e98b9d8ffb96a150b517497ace0a242d7163ef",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/ldm/models/diffusion/classifier.py"
+    },
+    "ldm/models/diffusion/ddim.py": {
+      "bytes": 10908,
+      "sha256": "3086330c774355809af6c4ce02220a01811187a01a7d0be5cc914c4ac07e4a48",
+      "git_blob_sha1": "edf1eaff9e78ac2e6778914b706b6a4fff51a8fe",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/ldm/models/diffusion/ddim.py"
+    },
+    "ldm/models/diffusion/ddpm.py": {
+      "bytes": 67425,
+      "sha256": "e5c085c54758952a13540fb69e9b7a6dccb46ae420c6bb2c589c51afab64013e",
+      "git_blob_sha1": "bbedd04cfd6f736ac066434a75618b9ba5125be7",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/ldm/models/diffusion/ddpm.py"
+    },
+    "ldm/models/diffusion/plms.py": {
+      "bytes": 12450,
+      "sha256": "e26c70c1389454fa96a7fd5144a240e8e4044043f44b85c1e322c8e429d2e40e",
+      "git_blob_sha1": "78eeb1003aa45d27bdbfc6b4a1d7ccbff57cd2e3",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/ldm/models/diffusion/plms.py"
+    },
+    "ldm/modules/attention.py": {
+      "bytes": 8531,
+      "sha256": "012198f441427ef892da0b6efc5ea9fae8e414aefcc65504577b41c2afd3526e",
+      "git_blob_sha1": "f4eff39ccb6d75daa764f6eb70a7cef024fb5a3f",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/ldm/modules/attention.py"
+    },
+    "ldm/modules/diffusionmodules/__init__.py": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob_sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/ldm/modules/diffusionmodules/__init__.py"
+    },
+    "ldm/modules/diffusionmodules/model.py": {
+      "bytes": 33409,
+      "sha256": "043ff43c4d4304f7259419d1bd4529445da71661b5362653ecd174bd4342c413",
+      "git_blob_sha1": "533e589a2024f1d7c52093d8c472c3b1b6617e26",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/ldm/modules/diffusionmodules/model.py"
+    },
+    "ldm/modules/diffusionmodules/openaimodel.py": {
+      "bytes": 34953,
+      "sha256": "92e0c23ada849f532be12d9be2ebcddd98d3b040aa366981ac5f06c96d53b6af",
+      "git_blob_sha1": "fcf95d1ea8a078dd259915109203789f78f0643a",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/ldm/modules/diffusionmodules/openaimodel.py"
+    },
+    "ldm/modules/diffusionmodules/util.py": {
+      "bytes": 9561,
+      "sha256": "5dd19ed7536cc9095ab5d3ca4c09bde5283c0779207a1aa019c05565a2502dca",
+      "git_blob_sha1": "a952e6c40308c33edd422da0ce6a60f47e73661b",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/ldm/modules/diffusionmodules/util.py"
+    },
+    "ldm/modules/distributions/__init__.py": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob_sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/ldm/modules/distributions/__init__.py"
+    },
+    "ldm/modules/distributions/distributions.py": {
+      "bytes": 2970,
+      "sha256": "a304b343529b915c8d7191f696adcb7bbdd539ea9b9eed30ef0bad6d9565ee28",
+      "git_blob_sha1": "f2b8ef901130efc171aa69742ca0244d94d3f2e9",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/ldm/modules/distributions/distributions.py"
+    },
+    "ldm/modules/ema.py": {
+      "bytes": 2982,
+      "sha256": "96cf170a9d7b49c846990694a0abef039e2046d934d37f7a219015ccc0da4e1b",
+      "git_blob_sha1": "c8c75af43565f6e140287644aaaefa97dd6e67c5",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/ldm/modules/ema.py"
+    },
+    "ldm/modules/encoders/__init__.py": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob_sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/ldm/modules/encoders/__init__.py"
+    },
+    "ldm/modules/encoders/modules.py": {
+      "bytes": 6872,
+      "sha256": "af126f268be34661bd7e13561325186e2d7d975879f5c976a7b088220635e4c3",
+      "git_blob_sha1": "aa3031df683a1ab60f8ebecd1d219b7cabc51dff",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/ldm/modules/encoders/modules.py"
+    },
+    "ldm/modules/image_degradation/__init__.py": {
+      "bytes": 208,
+      "sha256": "ae046f3b956e9aedba1096ac76946980edebb805504bf611b505ca411528b26f",
+      "git_blob_sha1": "7836cada81f90ded99c58d5942eea4c3477f58fc",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/ldm/modules/image_degradation/__init__.py"
+    },
+    "ldm/modules/image_degradation/bsrgan.py": {
+      "bytes": 25198,
+      "sha256": "57e940e89a21ddba9f1e0c12ddd34c0c0811320f594eb7cf2910d1d7b049a955",
+      "git_blob_sha1": "32ef56169978e550090261cddbcf5eb611a6173b",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/ldm/modules/image_degradation/bsrgan.py"
+    },
+    "ldm/modules/image_degradation/bsrgan_light.py": {
+      "bytes": 22238,
+      "sha256": "f301f605d3f5303fd9927eb020c7138c78c5eb4b0af1d220a4d6721ab2fa19b9",
+      "git_blob_sha1": "9e1f823996bf559e9b015ea9aa2b3cd38dd13af1",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/ldm/modules/image_degradation/bsrgan_light.py"
+    },
+    "ldm/modules/image_degradation/utils_image.py": {
+      "bytes": 29024,
+      "sha256": "e7deb515ef7c1f2bf80d28485eeeb0c4e2b8767fa5f68309c7c83ec752fa512b",
+      "git_blob_sha1": "0175f155ad900ae33c3c46ed87f49b352e3faf98",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/ldm/modules/image_degradation/utils_image.py"
+    },
+    "ldm/modules/losses/__init__.py": {
+      "bytes": 68,
+      "sha256": "7254a0702a67d5e374b51335eaaa76e2e8af2cc5dd4da249b25adb3e06f718f6",
+      "git_blob_sha1": "876d7c5bd6e3245ee77feb4c482b7a8143604ad5",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/ldm/modules/losses/__init__.py"
+    },
+    "ldm/modules/losses/contperceptual.py": {
+      "bytes": 5581,
+      "sha256": "27ab6d598ce421d1ed81ccc3bd623d8c6c48fdee4d37b6cf198d9ae3d2d284fa",
+      "git_blob_sha1": "672c1e32a1389def02461c0781339681060c540e",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/ldm/modules/losses/contperceptual.py"
+    },
+    "ldm/modules/losses/vqperceptual.py": {
+      "bytes": 7941,
+      "sha256": "9905d89ea41bc366f5e451e2f835a0c0d49bed79e3d3e2c6edc83837320de093",
+      "git_blob_sha1": "f69981769e4bd5462600458c4fcf26620f7e4306",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/ldm/modules/losses/vqperceptual.py"
+    },
+    "ldm/modules/x_transformer.py": {
+      "bytes": 20168,
+      "sha256": "e1471ac666f662ba537df9a2df9554e91768e5016f36a32e55ba6058b89aecc9",
+      "git_blob_sha1": "5fc15bf9cfe0111a910e7de33d04ffdec3877576",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/ldm/modules/x_transformer.py"
+    },
+    "ldm/util.py": {
+      "bytes": 5857,
+      "sha256": "5ed0d2cf71ecb6e8c2b8db0d275e11a9767d937bbcc745d754b36593d11eed05",
+      "git_blob_sha1": "8ba38853e7a07228cc2c187742b5c45d7359b3f9",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/ldm/util.py"
+    },
+    "main.py": {
+      "bytes": 28175,
+      "sha256": "7864e23bb3d950cd38ba7b8eb7fcf9767b3cf81998b677d31604f6322177f28b",
+      "git_blob_sha1": "e8e18c18fbb01f2e16d9376ea1bfb51f3b5df601",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/main.py"
+    },
+    "models/first_stage_models/kl-f16/config.yaml": {
+      "bytes": 909,
+      "sha256": "756c0a42e3f24243881fdc49218b6cf776324413ae13819f27e69b137e098a2f",
+      "git_blob_sha1": "661921cf75a0b803c5eca41039dd058e24930452",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/models/first_stage_models/kl-f16/config.yaml"
+    },
+    "models/first_stage_models/kl-f32/config.yaml": {
+      "bytes": 929,
+      "sha256": "a6ab8519f4119edb20ae359c8d5d5d6a32924fd28c15de2f043a9fd9728b39c8",
+      "git_blob_sha1": "7b642b136aaaf909ccd8766372eeffc4dffec342",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/models/first_stage_models/kl-f32/config.yaml"
+    },
+    "models/first_stage_models/kl-f4/config.yaml": {
+      "bytes": 880,
+      "sha256": "788a0802c5d95fe3e299ac8bb8ff01e3cfd09f8f04b2d8dcbc6701ddc393be82",
+      "git_blob_sha1": "85cfb3e94e2ffa867ab49af82fcd8a4dc238e2ad",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/models/first_stage_models/kl-f4/config.yaml"
+    },
+    "models/first_stage_models/kl-f8/config.yaml": {
+      "bytes": 889,
+      "sha256": "5c914a8dee3cfeaf967feea7f8c451bc25e87fc619b6cf7aff55bc51cb52dc03",
+      "git_blob_sha1": "921aa425335aced7a1a53307d39da0eba267efd6",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/models/first_stage_models/kl-f8/config.yaml"
+    },
+    "models/first_stage_models/vq-f16/config.yaml": {
+      "bytes": 1026,
+      "sha256": "efe6f16825cc9bc84dce52d730fa251c6d1a83cceb27c706dc34dfdedc113eb0",
+      "git_blob_sha1": "91c74549064bfd158424cba9c79cd2618395fc9f",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/models/first_stage_models/vq-f16/config.yaml"
+    },
+    "models/first_stage_models/vq-f4-noattn/config.yaml": {
+      "bytes": 978,
+      "sha256": "da2e41b0bb52bc14afa245f802b12e488069247215b4c4c1fe17142d6f288a4d",
+      "git_blob_sha1": "f8e499fa2aa891ea18f2cdbdd423c22bc1db6901",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/models/first_stage_models/vq-f4-noattn/config.yaml"
+    },
+    "models/first_stage_models/vq-f4/config.yaml": {
+      "bytes": 955,
+      "sha256": "56debf47c0afc61b90dd9ef6a8b8e34f95598f377b223efd77ae300e4f10a316",
+      "git_blob_sha1": "7d8cef3252742d70855d1a0df011a82223c17c4f",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/models/first_stage_models/vq-f4/config.yaml"
+    },
+    "models/first_stage_models/vq-f8-n256/config.yaml": {
+      "bytes": 1013,
+      "sha256": "3ca2b27b9b15b9653299d19e15af04db357ffc4d5045a6af31d0849a5b872d42",
+      "git_blob_sha1": "8519e13d618fe04792e59fc6eb826c1804fcdc28",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/models/first_stage_models/vq-f8-n256/config.yaml"
+    },
+    "models/first_stage_models/vq-f8/config.yaml": {
+      "bytes": 1035,
+      "sha256": "49c949bf31fadf3a1ea1a5ad8c7a69e57ccf176ec8d578bac4122bf4f587a5e6",
+      "git_blob_sha1": "efd6801ca965baf7119b171de8338bd16e120332",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/models/first_stage_models/vq-f8/config.yaml"
+    },
+    "models/ldm/bsr_sr/config.yaml": {
+      "bytes": 1900,
+      "sha256": "8bc6182f50dd30118c94d947c974d3d603e338bfa04440b950d80f55bf9efc9e",
+      "git_blob_sha1": "861692a8d10b1764519576fd12200524faa32753",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/models/ldm/bsr_sr/config.yaml"
+    },
+    "models/ldm/celeba256/config.yaml": {
+      "bytes": 1599,
+      "sha256": "c7be35391ac86a5f632decd91012297aefefde365795ed10cabe54a5fdbdb6d5",
+      "git_blob_sha1": "a12f4e9d399afe23e6bcc824bddc8bad7ee5456d",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/models/ldm/celeba256/config.yaml"
+    },
+    "models/ldm/cin256/config.yaml": {
+      "bytes": 1862,
+      "sha256": "f288ae9783ec767b2d75784b132b7632695303c57563d5de3fb88c4aabbf5e5f",
+      "git_blob_sha1": "9bc1b4566af8b53a2a20eb2b6dc68445f5fb4eb8",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/models/ldm/cin256/config.yaml"
+    },
+    "models/ldm/ffhq256/config.yaml": {
+      "bytes": 1591,
+      "sha256": "f66d32760a9219d059d209b09d9945032ee394ac350ff3052d3a32e435c885fa",
+      "git_blob_sha1": "0ddfd1b93e8e52c9de2e981f9f4bbaf83e75b38e",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/models/ldm/ffhq256/config.yaml"
+    },
+    "models/ldm/inpainting_big/config.yaml": {
+      "bytes": 1619,
+      "sha256": "4cd3a04f9d0b8d9aa26588bafa845645e05c97dc3b18b83054ab04b312db6f41",
+      "git_blob_sha1": "da5fd5ea508ea0998b75519bc297411946e4a5bb",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/models/ldm/inpainting_big/config.yaml"
+    },
+    "models/ldm/layout2img-openimages256/config.yaml": {
+      "bytes": 1924,
+      "sha256": "33d129d1d5110291553e0995247b595c3436fe2f817a5fe6ddcc0a552e6aa9bc",
+      "git_blob_sha1": "9e1dc15fe2732c70b918ceba4255aef895031efd",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/models/ldm/layout2img-openimages256/config.yaml"
+    },
+    "models/ldm/lsun_beds256/config.yaml": {
+      "bytes": 1601,
+      "sha256": "ccc0035c715a7b8dd98ee2787fe30cf30a7e4f2350b03dc2558d7c1534c109f7",
+      "git_blob_sha1": "1a50c766a5e571545e4f15f897de73f9df49d85c",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/models/ldm/lsun_beds256/config.yaml"
+    },
+    "models/ldm/lsun_churches256/config.yaml": {
+      "bytes": 2018,
+      "sha256": "6581963a451597fee88c97bb14820634bd1238d57753957975e282cdb73d9415",
+      "git_blob_sha1": "424d0914c9a1b9d4df3a2862ee7764404fe8adc1",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/models/ldm/lsun_churches256/config.yaml"
+    },
+    "models/ldm/semantic_synthesis256/config.yaml": {
+      "bytes": 1378,
+      "sha256": "dcf9b4a9f7fd0c39cf51830e20ab47e5c907f9725e744dc3b396c3a9d06e13dc",
+      "git_blob_sha1": "1a721cfffa5f0cd627be56c07cf5306ae4933cd1",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/models/ldm/semantic_synthesis256/config.yaml"
+    },
+    "models/ldm/semantic_synthesis512/config.yaml": {
+      "bytes": 1820,
+      "sha256": "d089f857cbc677fd2c4871840a7d1c8eae7bacff619eb35f4093c535c698fdbf",
+      "git_blob_sha1": "8faded2eec5899064fc464a1b543d3a1b9c0613f",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/models/ldm/semantic_synthesis512/config.yaml"
+    },
+    "models/ldm/text2img256/config.yaml": {
+      "bytes": 1831,
+      "sha256": "17b7d2e975d744d89576c04c37607d046cbc926a80bdf478f80bb9098d89a20c",
+      "git_blob_sha1": "3f54a0151569fafcd0df37a480e5ea920fe7ffb5",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/models/ldm/text2img256/config.yaml"
+    },
+    "notebook_helpers.py": {
+      "bytes": 10099,
+      "sha256": "11f7210dc67c41edb303724e3b3c43cd0456e6595a6badfdb691f19dc40fd361",
+      "git_blob_sha1": "5d0ebd7e1f8095053f34b1d7652b55d165097f0e",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/notebook_helpers.py"
+    },
+    "scripts/download_first_stages.sh": {
+      "bytes": 1324,
+      "sha256": "0d13608855b2b94d330f9120696f4ae60eb8f0558067170bddb928ae87da4ef6",
+      "git_blob_sha1": "a8d79e99ccdff0a8d8762f23f3c0642401f32f6c",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/scripts/download_first_stages.sh"
+    },
+    "scripts/download_models.sh": {
+      "bytes": 1681,
+      "sha256": "0178f7086cb4abc2506a5b1075c22a1cbee0e72be4bbfd0109477a89f23c9d86",
+      "git_blob_sha1": "84297d7b8b9a78d241edcd5adaf7d9aa273790de",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/scripts/download_models.sh"
+    },
+    "scripts/inpaint.py": {
+      "bytes": 3644,
+      "sha256": "87abe579d548519dede8ae985b379a005502a1460945356b98f15b2469b8a912",
+      "git_blob_sha1": "d6e6387a9a3b0afa73fae8af25f43a8ba856240e",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/scripts/inpaint.py"
+    },
+    "scripts/knn2img.py": {
+      "bytes": 13707,
+      "sha256": "a9d190c32a5b16496fb53fd8b02229d78e81fb8e8edce2abd533511cc5c0308f",
+      "git_blob_sha1": "e6eaaecab53eac9c97051c9a5cb457a240679725",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/scripts/knn2img.py"
+    },
+    "scripts/sample_diffusion.py": {
+      "bytes": 9606,
+      "sha256": "0a1608226e2a6199c322cb5fbe21602c1334b298fa4f4a9ccf92457831ee724a",
+      "git_blob_sha1": "876fe3c3642fcc8c7209e4f763c0134166615f78",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/scripts/sample_diffusion.py"
+    },
+    "scripts/train_searcher.py": {
+      "bytes": 5807,
+      "sha256": "54861bf80eba67bfeca04e3c1ba8b6cc4eb607f4294a9d6aaecc2958dbfa22e2",
+      "git_blob_sha1": "1e7904889c0145f9fb740fd4ae8e45c08728b255",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/scripts/train_searcher.py"
+    },
+    "scripts/txt2img.py": {
+      "bytes": 5109,
+      "sha256": "d56b67302f85275ccd76b49cd4eeef91e202ea1a06d8fdd6c529da06042a7c05",
+      "git_blob_sha1": "613de5e1df6150b85d043428f39ef19d107074f4",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/scripts/txt2img.py"
+    },
+    "setup.py": {
+      "bytes": 233,
+      "sha256": "7058899c7c9364ed4535334acfec0701aebc390565440de1bb0b197c36333d91",
+      "git_blob_sha1": "a24d541676407eee1bea271179ffd1d80c6a8e79",
+      "upstream_blob_url": "https://github.com/CompVis/latent-diffusion/blob/a506df5756472e2ebaf9078affdde2c4f1502cd4/setup.py"
+    }
+  },
+  "excluded_files": [
+    {
+      "path": "assets/a-painting-of-a-fire.png",
+      "bytes": 666734,
+      "git_blob_sha1": "3d3b9bde4852fbd1b6a0dd88b53a2d7611c2ec73",
+      "reason": "image_dataset_weight_font_media_archive_or_binary"
+    },
+    {
+      "path": "assets/a-photograph-of-a-fire.png",
+      "bytes": 610752,
+      "git_blob_sha1": "e246bc1a0d7b1261be9dac7fb8f5e1f7f487fcd0",
+      "reason": "image_dataset_weight_font_media_archive_or_binary"
+    },
+    {
+      "path": "assets/a-shirt-with-a-fire-printed-on-it.png",
+      "bytes": 623587,
+      "git_blob_sha1": "aa68f188a8ab325808b44077526e5b3d44209eaf",
+      "reason": "image_dataset_weight_font_media_archive_or_binary"
+    },
+    {
+      "path": "assets/a-shirt-with-the-inscription-'fire'.png",
+      "bytes": 560600,
+      "git_blob_sha1": "f058b97df860faeccc661cc6209d862872487887",
+      "reason": "image_dataset_weight_font_media_archive_or_binary"
+    },
+    {
+      "path": "assets/a-watercolor-painting-of-a-fire.png",
+      "bytes": 722120,
+      "git_blob_sha1": "e4ebe136773e12fe35a9d010ad2541bccd670afc",
+      "reason": "image_dataset_weight_font_media_archive_or_binary"
+    },
+    {
+      "path": "assets/birdhouse.png",
+      "bytes": 774949,
+      "git_blob_sha1": "872d49c0e2c16de6b2c303cedf4b5ec85851aeae",
+      "reason": "image_dataset_weight_font_media_archive_or_binary"
+    },
+    {
+      "path": "assets/fire.png",
+      "bytes": 626415,
+      "git_blob_sha1": "64c24feae84669ce3c0df564ca44c25d2b40ea13",
+      "reason": "image_dataset_weight_font_media_archive_or_binary"
+    },
+    {
+      "path": "assets/inpainting.png",
+      "bytes": 319244,
+      "git_blob_sha1": "d6b9ef85fe7cc74c258b40e2f0be4932f93cbee9",
+      "reason": "image_dataset_weight_font_media_archive_or_binary"
+    },
+    {
+      "path": "assets/modelfigure.png",
+      "bytes": 73775,
+      "git_blob_sha1": "6b1d3e6b9d59fd8d38468e7bce47c903a4e1c932",
+      "reason": "image_dataset_weight_font_media_archive_or_binary"
+    },
+    {
+      "path": "assets/rdm-preview.jpg",
+      "bytes": 326537,
+      "git_blob_sha1": "3838b0f6bb71a092c8ea1739c5d577fd4ba4ac0a",
+      "reason": "image_dataset_weight_font_media_archive_or_binary"
+    },
+    {
+      "path": "assets/reconstruction1.png",
+      "bytes": 806594,
+      "git_blob_sha1": "0752799ccc98c2555218d48ede6fcc42bc4693e2",
+      "reason": "image_dataset_weight_font_media_archive_or_binary"
+    },
+    {
+      "path": "assets/reconstruction2.png",
+      "bytes": 980874,
+      "git_blob_sha1": "b8e7a36c1f00bf60ce0e7e24c2a1f8e0e04b23d7",
+      "reason": "image_dataset_weight_font_media_archive_or_binary"
+    },
+    {
+      "path": "assets/results.gif",
+      "bytes": 9849833,
+      "git_blob_sha1": "82b6590e670a32196093cc6333ea19e6547d07de",
+      "reason": "file_exceeds_4MiB_cap"
+    },
+    {
+      "path": "assets/the-earth-is-on-fire,-oil-on-canvas.png",
+      "bytes": 678446,
+      "git_blob_sha1": "90797208da649c0fd48825800411a0a99161128c",
+      "reason": "image_dataset_weight_font_media_archive_or_binary"
+    },
+    {
+      "path": "assets/txt2img-convsample.png",
+      "bytes": 309500,
+      "git_blob_sha1": "255c265864692d1b65cbd1aae84c5e0590a38e71",
+      "reason": "image_dataset_weight_font_media_archive_or_binary"
+    },
+    {
+      "path": "assets/txt2img-preview.png",
+      "bytes": 2256167,
+      "git_blob_sha1": "51ee1c235dfdc63d4c41de7d303d03730e43c33c",
+      "reason": "image_dataset_weight_font_media_archive_or_binary"
+    },
+    {
+      "path": "data/DejaVuSans.ttf",
+      "bytes": 757076,
+      "git_blob_sha1": "e5f7eecce43be41ff0703ed99e1553029b849f14",
+      "reason": "image_dataset_weight_font_media_archive_or_binary"
+    },
+    {
+      "path": "data/example_conditioning/superresolution/sample_0.jpg",
+      "bytes": 14816,
+      "git_blob_sha1": "09abe80ae7cf61f3071882e5eea6d15c730ab0cc",
+      "reason": "image_dataset_weight_font_media_archive_or_binary"
+    },
+    {
+      "path": "data/example_conditioning/text_conditional/sample_0.txt",
+      "bytes": 20,
+      "git_blob_sha1": "de60c5c9a38bbead2956aa0c60129a26985cbf6d",
+      "reason": "dataset_or_asset_directory_non_source_payload"
+    },
+    {
+      "path": "data/imagenet_clsidx_to_label.txt",
+      "bytes": 30563,
+      "git_blob_sha1": "e2fe435526be7e0dd6675885c6c74b2f9276459b",
+      "reason": "dataset_or_asset_directory_non_source_payload"
+    },
+    {
+      "path": "data/imagenet_train_hr_indices.p",
+      "bytes": 5641045,
+      "git_blob_sha1": "b8d6d4689d2ecf32147e9cc2f5e6c50e072df26f",
+      "reason": "file_exceeds_4MiB_cap"
+    },
+    {
+      "path": "data/imagenet_val_hr_indices.p",
+      "bytes": 145756,
+      "git_blob_sha1": "744ad64b430f82b6fac24d3015a147ba1436b408",
+      "reason": "dataset_or_asset_directory_non_source_payload"
+    },
+    {
+      "path": "data/index_synset.yaml",
+      "bytes": 14890,
+      "git_blob_sha1": "635ea71a0da40d42072fee110143520daa203ce6",
+      "reason": "dataset_or_asset_directory_non_source_payload"
+    },
+    {
+      "path": "data/inpainting_examples/6458524847_2f4c361183_k.png",
+      "bytes": 477051,
+      "git_blob_sha1": "3eb5a2242e6ae0e59fb25bcc0265aa86b6435855",
+      "reason": "image_dataset_weight_font_media_archive_or_binary"
+    },
+    {
+      "path": "data/inpainting_examples/6458524847_2f4c361183_k_mask.png",
+      "bytes": 7583,
+      "git_blob_sha1": "6c77130e04992544d717cd5d76856a3206237f89",
+      "reason": "image_dataset_weight_font_media_archive_or_binary"
+    },
+    {
+      "path": "data/inpainting_examples/8399166846_f6fb4e4b8e_k.png",
+      "bytes": 552063,
+      "git_blob_sha1": "63ac9891e4646fda9e990cee2efca75493038913",
+      "reason": "image_dataset_weight_font_media_archive_or_binary"
+    },
+    {
+      "path": "data/inpainting_examples/8399166846_f6fb4e4b8e_k_mask.png",
+      "bytes": 7734,
+      "git_blob_sha1": "7eb67e45fabccd74bb98863ebc8d383966fc62cb",
+      "reason": "image_dataset_weight_font_media_archive_or_binary"
+    },
+    {
+      "path": "data/inpainting_examples/alex-iby-G_Pk4D9rMLs.png",
+      "bytes": 461110,
+      "git_blob_sha1": "7714a1f7d51998e85c83c857c858e47b97f389f3",
+      "reason": "image_dataset_weight_font_media_archive_or_binary"
+    },
+    {
+      "path": "data/inpainting_examples/alex-iby-G_Pk4D9rMLs_mask.png",
+      "bytes": 11871,
+      "git_blob_sha1": "0324f677ebb0b2e335143397c2cda462c3ff3024",
+      "reason": "image_dataset_weight_font_media_archive_or_binary"
+    },
+    {
+      "path": "data/inpainting_examples/bench2.png",
+      "bytes": 566137,
+      "git_blob_sha1": "09be46d1ba6ea47ac8cdadb854a0cf9b135195d4",
+      "reason": "image_dataset_weight_font_media_archive_or_binary"
+    },
+    {
+      "path": "data/inpainting_examples/bench2_mask.png",
+      "bytes": 12102,
+      "git_blob_sha1": "bacadfa5da74fc69d0da7b698561e1d5d7e161ed",
+      "reason": "image_dataset_weight_font_media_archive_or_binary"
+    },
+    {
+      "path": "data/inpainting_examples/bertrand-gabioud-CpuFzIsHYJ0.png",
+      "bytes": 427470,
+      "git_blob_sha1": "618f200e56f4dea89bf4a4afe7cadba247b0bb7f",
+      "reason": "image_dataset_weight_font_media_archive_or_binary"
+    },
+    {
+      "path": "data/inpainting_examples/bertrand-gabioud-CpuFzIsHYJ0_mask.png",
+      "bytes": 6239,
+      "git_blob_sha1": "fd18be987f8667748b005782815a51b3cc4772f9",
+      "reason": "image_dataset_weight_font_media_archive_or_binary"
+    },
+    {
+      "path": "data/inpainting_examples/billow926-12-Wc-Zgx6Y.png",
+      "bytes": 554948,
+      "git_blob_sha1": "cbd246e906b74c6b1f735e4433d60914ac60c0d5",
+      "reason": "image_dataset_weight_font_media_archive_or_binary"
+    },
+    {
+      "path": "data/inpainting_examples/billow926-12-Wc-Zgx6Y_mask.png",
+      "bytes": 9751,
+      "git_blob_sha1": "7e5121400687e553d9ed306e245f3b7810c7aeaa",
+      "reason": "image_dataset_weight_font_media_archive_or_binary"
+    },
+    {
+      "path": "data/inpainting_examples/overture-creations-5sI6fQgYIuo.png",
+      "bytes": 404753,
+      "git_blob_sha1": "e84dfc8554d344a69afb1fe8c7b8b2997d4e5e11",
+      "reason": "image_dataset_weight_font_media_archive_or_binary"
+    },
+    {
+      "path": "data/inpainting_examples/overture-creations-5sI6fQgYIuo_mask.png",
+      "bytes": 12106,
+      "git_blob_sha1": "7f3c753058c58ee3b96814722562b42af3588be2",
+      "reason": "image_dataset_weight_font_media_archive_or_binary"
+    },
+    {
+      "path": "data/inpainting_examples/photo-1583445095369-9c651e7e5d34.png",
+      "bytes": 475895,
+      "git_blob_sha1": "e8999de888b2f57c7af9db2f858fce7bfee1e1d1",
+      "reason": "image_dataset_weight_font_media_archive_or_binary"
+    },
+    {
+      "path": "data/inpainting_examples/photo-1583445095369-9c651e7e5d34_mask.png",
+      "bytes": 7955,
+      "git_blob_sha1": "093d0c1819aa6056a993897c9b0dce51cba7d96e",
+      "reason": "image_dataset_weight_font_media_archive_or_binary"
+    },
+    {
+      "path": "ldm/modules/image_degradation/utils/test.png",
+      "bytes": 441072,
+      "git_blob_sha1": "4249b43de0f22707758d13c240268a401642f6e6",
+      "reason": "image_dataset_weight_font_media_archive_or_binary"
+    },
+    {
+      "path": "scripts/latent_imagenet_diffusion.ipynb",
+      "bytes": 4172390,
+      "git_blob_sha1": "607f94fc7d3ef6d8d1627017215476d9dfc7ddc4",
+      "reason": "notebook_outputs_or_attachments_omitted_without_rewriting"
+    }
+  ],
+  "total_included_bytes": 508215,
+  "root_license_path": "source/LICENSE",
+  "root_license_sha256": "2ba3d36721ed0263cbc1050936ba34809d296fe629d802f7bc453007faefbdb3",
+  "compressed_archive_bytes": 30027792,
+  "compressed_archive_sha256": "388e97a808b287b4ad3d89009ba14a68eff3195a02d28acb88f88dd6ea1b3bbf",
+  "source_bytes_modified": false,
+  "limits": {
+    "compressed_per_repo": 83886080,
+    "declared_expanded": 268435456,
+    "per_file": 4194304,
+    "kept_per_repo": 67108864
+  }
+}

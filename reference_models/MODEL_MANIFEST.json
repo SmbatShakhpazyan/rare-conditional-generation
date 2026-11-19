@@ -1,0 +1,338 @@
+{
+  "status": "ORIGINAL_PEDAGOGICAL_REFERENCE_IMPLEMENTATIONS",
+  "methods": [
+    {
+      "method": "vae",
+      "source_files": [
+        "genref/vae.py"
+      ],
+      "primary_papers": [
+        {
+          "title": "Auto-Encoding Variational Bayes",
+          "url": "https://arxiv.org/abs/1312.6114"
+        }
+      ],
+      "implemented_training_loss": "Gaussian negative log likelihood summed across observation coordinates plus analytic diagonal Gaussian KL to N(0,I); stochastic reparameterization.",
+      "implemented_sampling": "Draw standard normal latent and sample a Gaussian decoder; no clipping.",
+      "deviations_from_primary_implementation": [
+        "Small conditional vector MLP; learned diagonal decoder variance constrained by a declared clamp; no convolutional image architecture."
+      ],
+      "limitations": [
+        "A single Monte Carlo ELBO estimate; not exact marginal likelihood; no perceptual or rare-mode quality guarantee."
+      ],
+      "implementation_origin": "Original code written for this release from standard mathematical descriptions; no external repository source text copied.",
+      "official_implementation": false,
+      "official_replication": false,
+      "trained_confirmation_benchmark_arm": false,
+      "architecture": "Flattened local observations; small MLPs; optional learned class embeddings; no batch normalization or external pretrained features.",
+      "data": "Local finite tensor only. CLI expects float in [-1,1] or uint8; no dataset download, split, leakage or license inference."
+    },
+    {
+      "method": "cgan",
+      "source_files": [
+        "genref/cgan.py"
+      ],
+      "primary_papers": [
+        {
+          "title": "Generative Adversarial Nets",
+          "url": "https://arxiv.org/abs/1406.2661"
+        },
+        {
+          "title": "Conditional Generative Adversarial Nets",
+          "url": "https://arxiv.org/abs/1411.1784"
+        },
+        {
+          "title": "cGANs with Projection Discriminator",
+          "url": "https://arxiv.org/abs/1802.05637"
+        },
+        {
+          "title": "Spectral Normalization for Generative Adversarial Networks",
+          "url": "https://arxiv.org/abs/1802.05957"
+        }
+      ],
+      "implemented_training_loss": "Discriminator hinge E relu(1-D(real))+E relu(1+D(fake)); generator -E D(fake). Separate Adam updates, critic parameters and SN buffers frozen on G step.",
+      "implemented_sampling": "Gaussian latent -> conditional MLP -> tanh; raw trained generator, no EMA.",
+      "deviations_from_primary_implementation": [
+        "Projection/SN MLP adaptation, not the original GAN logistic loss or the actual study residual generator.",
+        "Natural or explicitly balanced local-tensor batch sampling; no study-specific signed witness."
+      ],
+      "limitations": [
+        "Game nonconvergence and mode collapse remain possible; no calibrated density or fairness guarantee."
+      ],
+      "implementation_origin": "Original code written for this release from standard mathematical descriptions; no external repository source text copied.",
+      "official_implementation": false,
+      "official_replication": false,
+      "trained_confirmation_benchmark_arm": false,
+      "architecture": "Flattened local observations; small MLPs; optional learned class embeddings; no batch normalization or external pretrained features.",
+      "data": "Local finite tensor only. CLI expects float in [-1,1] or uint8; no dataset download, split, leakage or license inference."
+    },
+    {
+      "method": "autoregressive",
+      "source_files": [
+        "genref/autoregressive.py"
+      ],
+      "primary_papers": [
+        {
+          "title": "The Neural Autoregressive Distribution Estimator",
+          "url": "https://proceedings.mlr.press/v15/larochelle11a.html"
+        },
+        {
+          "title": "MADE: Masked Autoencoder for Distribution Estimation",
+          "authors": [
+            "Mathieu Germain",
+            "Karol Gregor",
+            "Iain Murray",
+            "Hugo Larochelle"
+          ],
+          "year": 2015,
+          "venue": "ICML; PMLR37:881–889",
+          "url": "https://proceedings.mlr.press/v37/germain15.html",
+          "read_scope": "Primary publisher metadata and abstract; attribution of degree-masked autoregressive constraints, not a source-code copy."
+        }
+      ],
+      "implemented_training_loss": "Exact continuous normalized Gaussian autoregressive negative log density; strict degree masks exclude each coordinate and its future from both conditional mean and scale.",
+      "implemented_sampling": "Sequential Gaussian conditionals, one coordinate at a time; no clipping.",
+      "deviations_from_primary_implementation": [
+        "Original Gaussian-output implementation of a MADE-style degree mask, not binary NADE or an official MADE implementation.",
+        "Fixed feature ordering, deterministic masks and bounded log standard deviation."
+      ],
+      "limitations": [
+        "Potentially slow high-dimensional sampling; continuous densities do not directly define discrete pixel probabilities."
+      ],
+      "implementation_origin": "Original code written for this release from standard mathematical descriptions; no external repository source text copied.",
+      "official_implementation": false,
+      "official_replication": false,
+      "trained_confirmation_benchmark_arm": false,
+      "architecture": "Flattened local observations; small MLPs; optional learned class embeddings; no batch normalization or external pretrained features.",
+      "data": "Local finite tensor only. CLI expects float in [-1,1] or uint8; no dataset download, split, leakage or license inference."
+    },
+    {
+      "method": "realnvp",
+      "source_files": [
+        "genref/flows.py"
+      ],
+      "primary_papers": [
+        {
+          "title": "Density estimation using Real NVP",
+          "url": "https://arxiv.org/abs/1605.08803"
+        }
+      ],
+      "implemented_training_loss": "Standard normal base negative log density minus exact affine-coupling data-to-latent log Jacobian determinant.",
+      "implemented_sampling": "Draw Gaussian base; invert alternating coupling layers in reverse order.",
+      "deviations_from_primary_implementation": [
+        "Vector MLP scale/shift networks with tanh log scales; identity initialization; no multiscale image squeezing or batch normalization.",
+        "No automatic image dequantization; input is treated as continuous."
+      ],
+      "limitations": [
+        "Tractable model likelihood is not exact data-distribution recovery; affine capacity is especially limited at dimension one."
+      ],
+      "implementation_origin": "Original code written for this release from standard mathematical descriptions; no external repository source text copied.",
+      "official_implementation": false,
+      "official_replication": false,
+      "trained_confirmation_benchmark_arm": false,
+      "architecture": "Flattened local observations; small MLPs; optional learned class embeddings; no batch normalization or external pretrained features.",
+      "data": "Local finite tensor only. CLI expects float in [-1,1] or uint8; no dataset download, split, leakage or license inference."
+    },
+    {
+      "method": "ddpm",
+      "source_files": [
+        "genref/diffusion.py"
+      ],
+      "primary_papers": [
+        {
+          "title": "Deep Unsupervised Learning using Nonequilibrium Thermodynamics",
+          "url": "https://proceedings.mlr.press/v37/sohl-dickstein15.html"
+        },
+        {
+          "title": "Denoising Diffusion Probabilistic Models",
+          "url": "https://arxiv.org/abs/2006.11239"
+        }
+      ],
+      "implemented_training_loss": "Uniform-time epsilon prediction MSE, mean over batch and coordinates; linear beta schedule.",
+      "implemented_sampling": "Every configured reverse step with epsilon-parameterized mean and fixed forward posterior variance; final step deterministic; no hidden step skipping.",
+      "deviations_from_primary_implementation": [
+        "Tiny/small schedules 32/128 steps deliberately shorten computation and differ from author image schedules.",
+        "Time-conditioned vector MLP; no UNet, learned variance, clipping or DDIM."
+      ],
+      "limitations": [
+        "Finite schedule/terminal Gaussian mismatch, learned denoiser error and coarse sampling can dominate quality; objective is the reweighted simplified loss."
+      ],
+      "implementation_origin": "Original code written for this release from standard mathematical descriptions; no external repository source text copied.",
+      "official_implementation": false,
+      "official_replication": false,
+      "trained_confirmation_benchmark_arm": false,
+      "architecture": "Flattened local observations; small MLPs; optional learned class embeddings; no batch normalization or external pretrained features.",
+      "data": "Local finite tensor only. CLI expects float in [-1,1] or uint8; no dataset download, split, leakage or license inference."
+    },
+    {
+      "method": "score",
+      "source_files": [
+        "genref/score.py"
+      ],
+      "primary_papers": [
+        {
+          "title": "Generative Modeling by Estimating Gradients of the Data Distribution",
+          "url": "https://arxiv.org/abs/1907.05600"
+        }
+      ],
+      "implemented_training_loss": "Geometric discrete noise levels, one-half sigma-squared weighted denoising score MSE; network outputs divided by sigma.",
+      "implemented_sampling": "Annealed Langevin: x <- x + eta_i score/2 + sqrt(eta_i) noise, eta_i=base*(sigma_i/sigma_min)^2.",
+      "deviations_from_primary_implementation": [
+        "Small scalar-noise MLP and tiny number of noise levels/correctors; no image NCSN architecture or final denoising trick."
+      ],
+      "limitations": [
+        "Targets smoothed densities; finite unadjusted Langevin has discretization/mixing error; no likelihood or exact-sampling claim."
+      ],
+      "implementation_origin": "Original code written for this release from standard mathematical descriptions; no external repository source text copied.",
+      "official_implementation": false,
+      "official_replication": false,
+      "trained_confirmation_benchmark_arm": false,
+      "architecture": "Flattened local observations; small MLPs; optional learned class embeddings; no batch normalization or external pretrained features.",
+      "data": "Local finite tensor only. CLI expects float in [-1,1] or uint8; no dataset download, split, leakage or license inference."
+    },
+    {
+      "method": "sde",
+      "source_files": [
+        "genref/score.py"
+      ],
+      "primary_papers": [
+        {
+          "title": "Score-Based Generative Modeling through Stochastic Differential Equations",
+          "url": "https://arxiv.org/abs/2011.13456"
+        }
+      ],
+      "implemented_training_loss": "Continuous log-linear VE sigma(t) and sigma-squared weighted denoising score MSE; uniform time in [.001,1].",
+      "implemented_sampling": "Backward VE reverse-SDE Euler-Maruyama, or probability-flow explicit Euler with half the score drift; positive h=-dt convention.",
+      "deviations_from_primary_implementation": [
+        "Scalar VE only; no VP/sub-VP, predictor-corrector, adaptive solver or likelihood integration.",
+        "Data convolved with positive sigma_min; finite sigma_max Gaussian is an approximation."
+      ],
+      "limitations": [
+        "Exact marginal equivalence requires exact scores/regularity; coarse numerical solvers may be unstable."
+      ],
+      "implementation_origin": "Original code written for this release from standard mathematical descriptions; no external repository source text copied.",
+      "official_implementation": false,
+      "official_replication": false,
+      "trained_confirmation_benchmark_arm": false,
+      "architecture": "Flattened local observations; small MLPs; optional learned class embeddings; no batch normalization or external pretrained features.",
+      "data": "Local finite tensor only. CLI expects float in [-1,1] or uint8; no dataset download, split, leakage or license inference."
+    },
+    {
+      "method": "flow_matching",
+      "source_files": [
+        "genref/flow_matching.py"
+      ],
+      "primary_papers": [
+        {
+          "title": "Flow Matching for Generative Modeling",
+          "url": "https://arxiv.org/abs/2210.02747"
+        }
+      ],
+      "implemented_training_loss": "Independent Gaussian/data endpoints, x_t=(1-t)z+t*x, velocity target x-z, MSE.",
+      "implemented_sampling": "Integrate learned velocity from Gaussian t=0 to data t=1 by explicit Euler or Heun.",
+      "deviations_from_primary_implementation": [
+        "Unregularized straight endpoint interpolation; not the exact smoothed conditional Gaussian path or a minibatch optimal-transport coupling.",
+        "Small conditional vector MLP; no neural ODE likelihood computation."
+      ],
+      "limitations": [
+        "Population path/conditional-regression reasoning does not guarantee finite-model transport accuracy or universally better sample quality."
+      ],
+      "implementation_origin": "Original code written for this release from standard mathematical descriptions; no external repository source text copied.",
+      "official_implementation": false,
+      "official_replication": false,
+      "trained_confirmation_benchmark_arm": false,
+      "architecture": "Flattened local observations; small MLPs; optional learned class embeddings; no batch normalization or external pretrained features.",
+      "data": "Local finite tensor only. CLI expects float in [-1,1] or uint8; no dataset download, split, leakage or license inference."
+    },
+    {
+      "method": "consistency",
+      "source_files": [
+        "genref/consistency.py"
+      ],
+      "primary_papers": [
+        {
+          "title": "Consistency Models",
+          "url": "https://proceedings.mlr.press/v202/song23a.html"
+        }
+      ],
+      "implemented_training_loss": "Same Gaussian noise at adjacent fixed geometric sigma levels; L2 distance from online high-noise output to detached EMA low-noise target. Boundary-preserving skip/output coefficients.",
+      "implemented_sampling": "EMA target one-step from sigma_max Gaussian; optional noise reinjection and lower-noise consistency refinements.",
+      "deviations_from_primary_implementation": [
+        "Standalone training only, not consistency distillation; fixed grid and constant EMA rather than paper schedules, L2 rather than perceptual metric.",
+        "Original MLP, sigma_data=.5, no pretrained teacher."
+      ],
+      "limitations": [
+        "Finite fixed-grid objective and EMA target can be biased/unstable; not a faithful reproduction or one-step quality guarantee."
+      ],
+      "implementation_origin": "Original code written for this release from standard mathematical descriptions; no external repository source text copied.",
+      "official_implementation": false,
+      "official_replication": false,
+      "trained_confirmation_benchmark_arm": false,
+      "architecture": "Flattened local observations; small MLPs; optional learned class embeddings; no batch normalization or external pretrained features.",
+      "data": "Local finite tensor only. CLI expects float in [-1,1] or uint8; no dataset download, split, leakage or license inference."
+    },
+    {
+      "method": "latent_diffusion",
+      "source_files": [
+        "genref/latent_diffusion.py",
+        "genref/vae.py",
+        "genref/diffusion.py"
+      ],
+      "primary_papers": [
+        {
+          "title": "High-Resolution Image Synthesis with Latent Diffusion Models",
+          "url": "https://arxiv.org/abs/2112.10752"
+        }
+      ],
+      "implemented_training_loss": "Stage1: Gaussian VAE ELBO. Freeze autoencoder. TRAIN-only full pass calibrates latent posterior-mean center/std. Stage2: DDPM epsilon MSE on standardized posterior means.",
+      "implemented_sampling": "Ancestral latent DDPM -> inverse affine standardization -> frozen Gaussian decoder mean (no extra decoder noise).",
+      "deviations_from_primary_implementation": [
+        "A vector VAE compression hybrid; no perceptual/adversarial autoencoder, cross-attention, pretrained weights or spatial latent UNet.",
+        "Posterior means, not sampled posterior latents, are the declared diffusion training data."
+      ],
+      "limitations": [
+        "Only illustrates the staged hybrid; compression discards information and a two-step smoke does not establish a useful representation."
+      ],
+      "implementation_origin": "Original code written for this release from standard mathematical descriptions; no external repository source text copied.",
+      "official_implementation": false,
+      "official_replication": false,
+      "trained_confirmation_benchmark_arm": false,
+      "architecture": "Flattened local observations; small MLPs; optional learned class embeddings; no batch normalization or external pretrained features.",
+      "data": "Local finite tensor only. CLI expects float in [-1,1] or uint8; no dataset download, split, leakage or license inference."
+    }
+  ],
+  "method_count": 10,
+  "family_count_note": "Eight requested conceptual families plus latent hybrid; discrete score and reverse-SDE exposed separately, giving ten runnable entries.",
+  "license_note": "No third-party source copied. Parent repository license applies to original code; cited papers and author repositories retain their own rights.",
+  "presets": {
+    "tiny": {
+      "width": 64,
+      "latent_dim": 8,
+      "coupling_layers": 4,
+      "diffusion_steps": 32,
+      "beta_start": 0.0001,
+      "beta_end": 0.2,
+      "sigma_min": 0.01,
+      "sigma_max": 2,
+      "noise_levels": 8
+    },
+    "small": {
+      "width": 128,
+      "latent_dim": 16,
+      "coupling_layers": 6,
+      "diffusion_steps": 128,
+      "beta_start": 0.0001,
+      "beta_end": 0.05,
+      "sigma_min": 0.01,
+      "sigma_max": 2,
+      "noise_levels": 16
+    }
+  },
+  "claims_excluded": [
+    "Official author implementation",
+    "Official benchmark reproduction",
+    "Actual final-cohort VAE/AR/flow/diffusion/score/consistency/LDM baseline",
+    "Novel generative family",
+    "Quality, fairness, privacy, coverage or convergence guarantee"
+  ]
+}

@@ -1,0 +1,2216 @@
+{
+  "title": "Deep Theory of Conditional Interaction Matching, Leakage Control and Finite Evidence",
+  "blocks": [
+    {
+      "type": "heading",
+      "text": "Deep theory: what the conditional correction can and cannot establish",
+      "level": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "This supplement develops the mathematical interpretation of the completed experiment and specifies stronger, untested alternatives. It does not add trained models, rerun an endpoint, repair a negative result by changing its definition, or establish a new general principle of generative modeling. Elementary propositions below are derived explicitly so that their assumptions can be checked. Established conditional generation, feature matching and kernel methods remain the relevant antecedents. The accompanying application combines a particular four-bin contrast, a within-study discriminator teacher, fixed training statistics and a lagged linear witness. Moving-discrepancy linear surrogates already occur in GFMN; conditional detached moment witnesses also occur in AMFD. [E14,E17,E18,E31]"
+    },
+    {
+      "type": "paragraph",
+      "text": "Three separations govern the discussion. First, an algebraic identity about a minibatch loss is different from an identification theorem about image distributions. Second, a conditional uncertainty calculation for fixed trained networks is different from uncertainty over training algorithms, seeds or future populations. Third, a complete record of measured endpoints is different from delivery of all tensors needed for numerical replay. The final six-model comparison has preserved point and uncertainty records, but only four of its six complete inference-weight archives were locally retrieved. The two missing baseline archives, reference banks, fixed teacher snapshot and full private split arrays limit independent replay."
+    },
+    {
+      "type": "paragraph",
+      "text": "The realized selected candidate used loss coefficient λ=1, tolerance multiplier κ=0 and inference-parameter EMA decay η=0.99. Therefore the uncertainty-tolerance threshold was inactive in the evaluated candidate. Its mean rare-condition KID was worse than the balanced baseline. The proofs and proposed alternatives below do not reverse that observation. In particular, the words candidate, proposed and future indicate a mathematical construction or prospective algorithm, not an additional successful experiment."
+    },
+    {
+      "type": "heading",
+      "text": "T1. Formal objects, targets and the finite question",
+      "level": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "Let X be a canonical RGB image and let g range over four observed joint annotation bins. The implementation encodes g as twice the binary Male label plus the binary Blond Hair label, so its conditional input is a four-entry joint-label lookup. All four bins occur in training, including 942 images in the rare bin. This is conditional imbalance among seen bins. It is neither a held-out conjunction experiment nor an attribute-factorized architecture. Calling the signed contrast an interaction describes a linear statistic of conditional feature means; it does not identify a causal interaction between human attributes."
+    },
+    {
+      "type": "paragraph",
+      "text": "Write P and Q for the specified real and generator conditional laws, indexed by g as in the display below. The target must be qualified: a finite empirical distribution of canonical training images, an independent target population and a distribution of transformed images are different objects. Balanced training changes the frequency with which conditions are requested. It does not create additional independent rare identities, determine an absent conditional law or guarantee that the generated content respects its requested annotation. Conditional labels supply an indexing mechanism; their semantic accuracy is a separate measurement question. [E11,E19,E31]"
+    },
+    {
+      "type": "equation",
+      "math": [
+        {
+          "kind": "sub",
+          "base": "P",
+          "sub": "ρ"
+        },
+        "(dx,g)=",
+        {
+          "kind": "sub",
+          "base": "ρ",
+          "sub": "g"
+        },
+        {
+          "kind": "sub",
+          "base": "P",
+          "sub": "g"
+        },
+        "(dx),   ",
+        {
+          "kind": "sub",
+          "base": "Q",
+          "sub": "θ,ρ"
+        },
+        "(dx,g)=",
+        {
+          "kind": "sub",
+          "base": "ρ",
+          "sub": "g"
+        },
+        {
+          "kind": "sub",
+          "base": "Q",
+          "sub": "θ,g"
+        },
+        "(dx)"
+      ],
+      "math_size": 10
+    },
+    {
+      "type": "paragraph",
+      "text": "Here ρ is a declared positive request probability distribution, with its four entries summing to one. The positive weights in the later joint-law equivalence use this same normalized request law. Uniform ρ gives each condition equal weight even when the natural training proportions differ. A statement that a model is good under this balanced target does not imply goodness under the natural mixture, and the reverse implication also fails. It is possible for a generator to improve a high-mass natural-mixture objective while becoming worse in the rare condition. Reporting the request distribution, every conditional endpoint and the aggregation rule is therefore part of defining the research problem, rather than an optional presentation choice."
+    },
+    {
+      "type": "paragraph",
+      "text": "For the completed finite experiment, define the group-indexed endpoint T as the saved KID-form statistic in a frozen feature space, evaluated on a specified groupwise real reference bank and fixed unfiltered latent requests Z. The operational question is whether the selected training recipe improves the rare-bin endpoint over a balanced adversarial baseline under a fixed per-trajectory budget and a leakage restriction. This is measurable, narrow and falsifiable. It does not require claiming that one scalar score orders all image distributions according to every human preference."
+    },
+    {
+      "type": "equation",
+      "math": [
+        {
+          "kind": "sub",
+          "base": {
+            "kind": "accent",
+            "base": "Δ",
+            "char": "̂"
+          },
+          "sub": "3"
+        },
+        "=",
+        {
+          "kind": "frac",
+          "num": "1",
+          "den": "3"
+        },
+        {
+          "kind": "nary",
+          "char": "∑",
+          "sub": "r∈{101,202,303}",
+          "sup": "",
+          "body": [
+            "[",
+            {
+              "kind": "sub",
+              "base": "T",
+              "sub": "3"
+            },
+            "(",
+            {
+              "kind": "subsup",
+              "base": "θ",
+              "sub": "r",
+              "sup": "C"
+            },
+            ";R,Z)−",
+            {
+              "kind": "sub",
+              "base": "T",
+              "sub": "3"
+            },
+            "(",
+            {
+              "kind": "subsup",
+              "base": "θ",
+              "sub": "r",
+              "sup": "B"
+            },
+            ";R,Z)",
+            "]"
+          ]
+        }
+      ],
+      "math_size": 10
+    },
+    {
+      "type": "paragraph",
+      "text": "Negative candidate-minus-baseline differences favor the candidate because lower KID is the declared direction. A favorable finite endpoint would still leave semantic adherence, privacy, fairness, out-of-domain behavior and population-level improvement unresolved. Conversely, the observed unfavorable mean does not prove that all moment-based objectives are ineffective. It rejects a positive efficacy reading of this implemented recipe at this training budget and reference definition."
+    },
+    {
+      "type": "paragraph",
+      "text": "The generator is also stateful. Besides trainable parameters θ, it has normalization buffers S; evaluation may use averaged parameters and copied buffers. A training loss can depend on an entire minibatch through BatchNorm. It is consequently useful to distinguish a pointwise inference map evaluated at (θ,S,z,g) from a joint training map evaluated at (θ,S,Z,Y). Their feature expectations need not coincide. Any mathematical statement that silently replaces the second object by the first changes the target functional before proving anything about it."
+    },
+    {
+      "type": "heading",
+      "text": "T2. Missing conjunctions are not identified by observed ones",
+      "level": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "Consider a condition g* whose sampling probability is zero. Assume no structural restriction links its conditional image law to those of the observed conditions. Choose two different distributions R and S for that absent bin, and keep every observed conditional distribution unchanged. The resulting two data-generating families have exactly the same observed joint law. Every estimator, neural architecture and randomized training procedure receives observations with the same distribution under the two families. No procedure using those observations alone can determine whether the absent conditional target is R or S."
+    },
+    {
+      "type": "equation",
+      "math": [
+        {
+          "kind": "sub",
+          "base": "π",
+          "sub": "g*"
+        },
+        "=0,   ",
+        {
+          "kind": "sub",
+          "base": "P",
+          "sub": "g"
+        },
+        "=",
+        {
+          "kind": "sub",
+          "base": "P′",
+          "sub": "g"
+        },
+        " for g≠g*,   ",
+        {
+          "kind": "sub",
+          "base": "P",
+          "sub": "g*"
+        },
+        "=R≠S=",
+        {
+          "kind": "sub",
+          "base": "P′",
+          "sub": "g*"
+        }
+      ]
+    },
+    {
+      "type": "equation",
+      "math": [
+        {
+          "kind": "sub",
+          "base": "P",
+          "sub": "obs"
+        },
+        "(dx,g)=",
+        {
+          "kind": "sub",
+          "base": "π",
+          "sub": "g"
+        },
+        {
+          "kind": "sub",
+          "base": "P",
+          "sub": "g"
+        },
+        "(dx)=",
+        {
+          "kind": "sub",
+          "base": "π",
+          "sub": "g"
+        },
+        {
+          "kind": "sub",
+          "base": "P′",
+          "sub": "g"
+        },
+        "(dx)=",
+        {
+          "kind": "sub",
+          "base": "P′",
+          "sub": "obs"
+        },
+        "(dx,g)"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Proof. For each observed g, equality follows because the two conditional laws agree. For g*, the joint probability is multiplied by zero, so either proposed conditional law gives zero observed mass. Equality holds for every measurable image set and every condition, hence for the entire observed experiment, including arbitrarily many independent observations. A learned predictor may nevertheless choose one extrapolation, but the observations cannot justify it uniformly over the unrestricted family. This is an identification boundary, not a statement about insufficient optimization or finite compute."
+    },
+    {
+      "type": "paragraph",
+      "text": "A stronger minimax form follows from the triangle inequality for total variation. For any proposed absent-bin distribution Q, at least one of the two errors TV(Q,R) and TV(Q,S) is at least TV(R,S)/2. Otherwise their sum would be less than TV(R,S), contradicting the triangle inequality. Thus even a hypothetical optimizer that perfectly solves the observed likelihood or adversarial objective cannot have arbitrarily small absent-bin error for both indistinguishable families. Randomization does not add identifying information; the same argument applies after averaging a randomized output distribution."
+    },
+    {
+      "type": "equation",
+      "math": [
+        "max{TV(Q,R),TV(Q,S)}≥",
+        {
+          "kind": "frac",
+          "num": "1",
+          "den": "2"
+        },
+        "TV(R,S)"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "An identification claim requires extra assumptions or extra observations. Examples include a specified additive mechanism in an identified representation, a justified causal model, an injective compositional rendering process, smoothness over a meaningful continuous condition space, or external observations of the absent combination. Each restriction excludes some otherwise indistinguishable families. The restriction should be stated mathematically and tested where possible. Merely sharing generator weights or reusing the same Gaussian latent across labels is an architectural or coupling choice, not a proof that the restriction is true."
+    },
+    {
+      "type": "paragraph",
+      "text": "The completed experiment does not test this missing-condition problem. Its rare group is present, and all three clean partitions contain rare examples. The appropriate open question is sample-efficient learning for a seen rare conditional target. A future absent-conjunction experiment would require a separate protocol: a declared hidden condition, no use of that condition in teacher fitting or normalization statistics, explicitly assumed structure and a genuinely untouched evaluation set. Calling an observed-bin improvement compositional generalization would conflate two different statistical experiments."
+    },
+    {
+      "type": "paragraph",
+      "text": "The same boundary appears inside feature space. Even if a model predicts the correct absent-bin feature mean under an additive assumption, the corresponding image distribution may remain unidentified. Many image distributions can share that mean, and a decoder can map different latent structures to the same feature vector. An identification argument must state both the relationship between conditions and the information retained by the representation. Neither issue is solved by obtaining a small training loss."
+    },
+    {
+      "type": "heading",
+      "text": "T3. The signed contrast is one direction of a four-condition system",
+      "level": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "Encode the two binary annotations by a,b∈{−1,+1}. Let μ, indexed by (a,b), denote the conditional mean of a fixed d-dimensional feature map. Four vector coefficients give the exact factorial decomposition of these four means: an overall mean, two main-effect coefficients and one signed interaction coefficient. This is a finite linear change of coordinates. It imposes no probability model, causal ordering or semantic invariance assumption. Its value is that it reveals exactly which directions an interaction-only loss ignores."
+    },
+    {
+      "type": "equation",
+      "math": [
+        {
+          "kind": "sub",
+          "base": "m",
+          "sub": "0"
+        },
+        "=",
+        {
+          "kind": "frac",
+          "num": "1",
+          "den": "4"
+        },
+        {
+          "kind": "nary",
+          "char": "∑",
+          "sub": "a,b",
+          "sup": "",
+          "body": {
+            "kind": "sub",
+            "base": "μ",
+            "sub": "ab"
+          }
+        },
+        ",   ",
+        {
+          "kind": "sub",
+          "base": "m",
+          "sub": "A"
+        },
+        "=",
+        {
+          "kind": "frac",
+          "num": "1",
+          "den": "4"
+        },
+        {
+          "kind": "nary",
+          "char": "∑",
+          "sub": "a,b",
+          "sup": "",
+          "body": [
+            "a",
+            {
+              "kind": "sub",
+              "base": "μ",
+              "sub": "ab"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "equation",
+      "math": [
+        {
+          "kind": "sub",
+          "base": "m",
+          "sub": "B"
+        },
+        "=",
+        {
+          "kind": "frac",
+          "num": "1",
+          "den": "4"
+        },
+        {
+          "kind": "nary",
+          "char": "∑",
+          "sub": "a,b",
+          "sup": "",
+          "body": [
+            "b",
+            {
+              "kind": "sub",
+              "base": "μ",
+              "sub": "ab"
+            }
+          ]
+        },
+        ",   ",
+        {
+          "kind": "sub",
+          "base": "m",
+          "sub": "AB"
+        },
+        "=",
+        {
+          "kind": "frac",
+          "num": "1",
+          "den": "4"
+        },
+        {
+          "kind": "nary",
+          "char": "∑",
+          "sub": "a,b",
+          "sup": "",
+          "body": [
+            "ab",
+            {
+              "kind": "sub",
+              "base": "μ",
+              "sub": "ab"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "equation",
+      "math": [
+        {
+          "kind": "sub",
+          "base": "μ",
+          "sub": "ab"
+        },
+        "=",
+        {
+          "kind": "sub",
+          "base": "m",
+          "sub": "0"
+        },
+        "+a",
+        {
+          "kind": "sub",
+          "base": "m",
+          "sub": "A"
+        },
+        "+b",
+        {
+          "kind": "sub",
+          "base": "m",
+          "sub": "B"
+        },
+        "+ab",
+        {
+          "kind": "sub",
+          "base": "m",
+          "sub": "AB"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Proof. Substitute the four coefficient definitions into the last expression. The coefficient multiplying the mean indexed by (a′,b′) is one quarter of (1+aa′)(1+bb′), which equals one when a=a′ and b=b′ and equals zero otherwise. The transformation is invertible. Therefore matching all four coefficients is equivalent to matching the four feature means. Matching only the signed coefficient leaves the other three vector directions unrestricted."
+    },
+    {
+      "type": "paragraph",
+      "text": "For g=0,1,2,3 in the implemented binary ordering, c=(1,−1,−1,1)/4 extracts the interaction coefficient. A common mean shift v in every generated condition cancels because the coefficients sum to zero. A change proportional only to a also cancels, as does a change proportional only to b. In a d-dimensional feature space, the interaction constraint supplies d scalar equations for four d-dimensional means. This counting argument is not itself a general identification proof, but the explicit null directions give exact counterexamples."
+    },
+    {
+      "type": "equation",
+      "math": [
+        "c=",
+        {
+          "kind": "frac",
+          "num": "(1,−1,−1,1)",
+          "den": "4"
+        },
+        ",   ",
+        {
+          "kind": "nary",
+          "char": "∑",
+          "sub": "g=0",
+          "sup": "3",
+          "body": {
+            "kind": "sub",
+            "base": "c",
+            "sub": "g"
+          }
+        },
+        "=0,   r=",
+        {
+          "kind": "nary",
+          "char": "∑",
+          "sub": "g=0",
+          "sup": "3",
+          "body": [
+            {
+              "kind": "sub",
+              "base": "c",
+              "sub": "g"
+            },
+            {
+              "kind": "sub",
+              "base": "μ",
+              "sub": "P,g"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "A particularly strong counterexample takes every real group to have distribution P and every generated group to have a different distribution Q. Both real and generated signed contrasts are zero for every integrable feature map, including an infinite-dimensional characteristic kernel embedding. Thus zero signed discrepancy can coexist with every conditional distribution being wrong. Increasing feature richness does not repair the information discarded by the rank-one label contrast."
+    },
+    {
+      "type": "paragraph",
+      "text": "Another counterexample permutes two conditions that share an interaction contribution while changing their main-effect means. Depending on the distributions, the signed aggregate can remain unchanged even though requested bins no longer align with their targets. Uniformly requesting 512 images for every label cannot detect that failure by request counts alone. Content-sensitive conditional evaluation is needed; the request label is an experimental input, not an independent semantic annotation of the output."
+    },
+    {
+      "type": "paragraph",
+      "text": "The kernel interpretation makes the rank restriction explicit. Let h(g)=4c(g), where c(g) denotes the indexed contrast coefficient, so h takes values +1,−1,−1,+1. Under uniform condition probabilities, a product kernel k(x,x′)h(g)h(g′) compares the signed feature embeddings of the two joint laws. Its label Gram matrix is an outer product and has rank one. Replacing the image kernel by a characteristic kernel does not make this label kernel distinguish four arbitrary conditional distributions. To identify every observed conditional law, the label component must retain every relevant condition direction and the image component must retain the required distributional information. [E12,E14,E33]"
+    },
+    {
+      "type": "paragraph",
+      "text": "The interpretation of a zero fitted interaction is therefore limited: one signed summary agrees, relative to the fixed representation and scale. It is not evidence that the generator learned causal attribute composition, that its rare bin is correct or that diversity is preserved. The accompanying adversarial objective constrains additional aspects, but finite GAN optimization supplies no automatic theorem that all remaining directions become correct."
+    },
+    {
+      "type": "heading",
+      "text": "T4. Finite features and noisy teachers create a second identification boundary",
+      "level": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "Let ψ map images to a finite-dimensional representation. Matching ψ-distributions means equality of the pushforward measures ψ#P and ψ#Q. If ψ is not injective on the image domain, distinct image distributions can have identical pushforwards: put all probability on two different images that map to the same feature vector. Matching only the mean of ψ is weaker still. For a scalar example, a distribution assigning equal mass to −1 and +1 and a point mass at zero have the same mean but different variances and supports. No optimizer can recover distinctions absent from its chosen statistic."
+    },
+    {
+      "type": "paragraph",
+      "text": "A learned discriminator representation is task-dependent. In the actual study, ψ is the last raw discriminator backbone from the baseline development trajectory, frozen before candidate development. It learned from real TRAIN images and its own generated negative examples. It is neither an external semantic oracle nor a representation independent of the training sample. Freezing it prevents further parameter adaptation during the candidate update; it does not undo how it was originally fitted. The benchmark Inception representation is different and does not supply gradients to the auxiliary loss."
+    },
+    {
+      "type": "paragraph",
+      "text": "To quantify one limited representation effect, suppose ψ̃=ψ+e and assume a uniform bound on the norm of e over all real and generated images under consideration. This is a mathematical assumption, not an observed calibration property of the teacher. Since the absolute contrast coefficients sum to one, the real contrast error is bounded by the same uniform feature error, and so is the generated contrast error."
+    },
+    {
+      "type": "equation",
+      "math": [
+        {
+          "kind": "sub",
+          "base": "sup",
+          "sub": "x"
+        },
+        "‖e(x)‖≤ε,   ‖r(",
+        {
+          "kind": "accent",
+          "base": "ψ",
+          "char": "̃"
+        },
+        ")−r(ψ)‖≤ε,   ‖δ(",
+        {
+          "kind": "accent",
+          "base": "ψ",
+          "char": "̃"
+        },
+        ")−δ(ψ)‖≤ε"
+      ],
+      "math_size": 10
+    },
+    {
+      "type": "equation",
+      "math": [
+        "‖[δ(",
+        {
+          "kind": "accent",
+          "base": "ψ",
+          "char": "̃"
+        },
+        ")−r(",
+        {
+          "kind": "accent",
+          "base": "ψ",
+          "char": "̃"
+        },
+        ")]−[δ(ψ)−r(ψ)]‖≤2ε"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Proof. For each conditional mean, integration cannot increase a uniform norm bound. Apply the triangle inequality to the contrast sum and use the coefficient absolute-sum bound. Apply it once more to the difference between generated and real contrasts. If a diagonal scale S is held fixed with every entry at least a fixed positive lower bound, the standardized discrepancy perturbation is at most twice ε divided by that lower bound in Euclidean norm. This statement does not cover changes in the estimated scale or uncertainty vector when the teacher changes; those statistics would require their own stability assumptions."
+    },
+    {
+      "type": "paragraph",
+      "text": "The bound helps organize failure modes without diagnosing the actual negative result. A teacher can be insensitive to a feature relevant to KID, overemphasize artifacts useful for discrimination or assign large gradients to directions that do not improve perceived images. None of those possibilities is established solely by the final KID values. Distinguishing them would require additional experiments, such as a representation swap with fixed objective, an independently trained teacher or a controlled synthetic setting with known relevant features. Those are future ablations, not explanations proved by the current run."
+    },
+    {
+      "type": "paragraph",
+      "text": "Feature normalization is another modeling choice. Dividing coordinates by within-group scales changes the geometry and relative gradient weights. A positive floor avoids division by zero, but also breaks unrestricted rescaling invariance. A coordinate whose standard deviation lies below the floor receives a scale determined by the floor rather than its empirical standard deviation. The diagonal treatment does not whiten correlations. A general rotation or mixing of coordinates changes the normalized objective even if it preserves all information in the representation."
+    },
+    {
+      "type": "paragraph",
+      "text": "There is a useful restricted invariance. If each feature coordinate is separately multiplied by a nonzero constant, all scales and variability statistics transform by its absolute value, tracker history transforms consistently and the floor remains inactive before and after transformation, the standardized current residual and witness acquire the same sign change. Their product, and hence the auxiliary value, is unchanged. Shared additive feature offsets cancel from the contrast because the coefficients sum to zero. This restricted substitution property does not imply invariance to arbitrary feature maps, floor activation, optimizer parameterizations or different normalization histories."
+    },
+    {
+      "type": "heading",
+      "text": "T5. Train-only statistics: image weighting and component covariance",
+      "level": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "The actual target statistics use one pass over all canonical TRAIN images. They do not use validation images, test images, KID features or generated quality scores. For each condition, the mean is image-weighted: a component containing several images contributes once for every image. The leakage component is used to describe dependence, not to redefine the target as a uniform distribution over people or components. Changing to component-balanced means would change the objective and would require a separate stated target."
+    },
+    {
+      "type": "paragraph",
+      "text": "Let n(g) be the number of TRAIN images in bin g. The real contrast r is the signed sum of conditional means shown above. The positive scale is the square root of the uniform average of the four within-group coordinate variances, floored at 0.001. These choices make rare and common groups contribute equally to the feature scale, despite their different image counts. They are fixed parts of the implemented recipe, rather than hyperparameters chosen from validation outcomes."
+    },
+    {
+      "type": "equation",
+      "math": [
+        {
+          "kind": "sub",
+          "base": "μ",
+          "sub": "g"
+        },
+        "=",
+        {
+          "kind": "frac",
+          "num": "1",
+          "den": {
+            "kind": "sub",
+            "base": "n",
+            "sub": "g"
+          }
+        },
+        {
+          "kind": "nary",
+          "char": "∑",
+          "sub": "i:gᵢ=g",
+          "sup": "",
+          "body": [
+            "ψ(",
+            {
+              "kind": "sub",
+              "base": "x",
+              "sub": "i"
+            },
+            ")"
+          ]
+        },
+        ",   r=",
+        {
+          "kind": "nary",
+          "char": "∑",
+          "sub": "g=0",
+          "sup": "3",
+          "body": [
+            {
+              "kind": "sub",
+              "base": "c",
+              "sub": "g"
+            },
+            {
+              "kind": "sub",
+              "base": "μ",
+              "sub": "g"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "equation",
+      "math": [
+        {
+          "kind": "sub",
+          "base": "s",
+          "sub": "j"
+        },
+        "=max{",
+        {
+          "kind": "radical",
+          "base": [
+            {
+              "kind": "frac",
+              "num": "1",
+              "den": "4"
+            },
+            {
+              "kind": "nary",
+              "char": "∑",
+              "sub": "g=0",
+              "sup": "3",
+              "body": [
+                {
+                  "kind": "frac",
+                  "num": "1",
+                  "den": {
+                    "kind": "sub",
+                    "base": "n",
+                    "sub": "g"
+                  }
+                },
+                {
+                  "kind": "nary",
+                  "char": "∑",
+                  "sub": "i:gᵢ=g",
+                  "sup": "",
+                  "body": {
+                    "kind": "sup",
+                    "base": [
+                      "(",
+                      [
+                        {
+                          "kind": "sub",
+                          "base": "ψ",
+                          "sub": "j"
+                        },
+                        "(",
+                        {
+                          "kind": "sub",
+                          "base": "x",
+                          "sub": "i"
+                        },
+                        ")−",
+                        {
+                          "kind": "sub",
+                          "base": "μ",
+                          "sub": "gj"
+                        }
+                      ],
+                      ")"
+                    ],
+                    "sup": "2"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        ",",
+        {
+          "kind": "sup",
+          "base": "10",
+          "sup": "−3"
+        },
+        "}"
+      ],
+      "math_size": 10
+    },
+    {
+      "type": "paragraph",
+      "text": "Let A(i) be the leakage-union component of image i and let M be the number of distinct TRAIN components. For each component, form a signed influence by summing its centered contributions over all groups before squaring. A component can legitimately contain multiple annotation bins: an identity may appear in different photographs or with changing attributes. Treating the groups as independent would discard covariance associated with their shared component membership."
+    },
+    {
+      "type": "equation",
+      "math": [
+        {
+          "kind": "sub",
+          "base": "v",
+          "sub": "aj"
+        },
+        "=",
+        {
+          "kind": "nary",
+          "char": "∑",
+          "sub": "g=0",
+          "sup": "3",
+          "body": [
+            {
+              "kind": "frac",
+              "num": {
+                "kind": "sub",
+                "base": "c",
+                "sub": "g"
+              },
+              "den": {
+                "kind": "sub",
+                "base": "n",
+                "sub": "g"
+              }
+            },
+            {
+              "kind": "nary",
+              "char": "∑",
+              "sub": "i:A(i)=a,gᵢ=g",
+              "sup": "",
+              "body": [
+                "(",
+                [
+                  {
+                    "kind": "sub",
+                    "base": "ψ",
+                    "sub": "j"
+                  },
+                  "(",
+                  {
+                    "kind": "sub",
+                    "base": "x",
+                    "sub": "i"
+                  },
+                  ")−",
+                  {
+                    "kind": "sub",
+                    "base": "μ",
+                    "sub": "gj"
+                  }
+                ],
+                ")"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "equation",
+      "math": [
+        {
+          "kind": "sub",
+          "base": "u",
+          "sub": "j"
+        },
+        "=",
+        {
+          "kind": "radical",
+          "base": [
+            {
+              "kind": "frac",
+              "num": "M",
+              "den": "M−1"
+            },
+            {
+              "kind": "nary",
+              "char": "∑",
+              "sub": "a=1",
+              "sup": "M",
+              "body": {
+                "kind": "sup",
+                "base": {
+                  "kind": "sub",
+                  "base": "v",
+                  "sub": "aj"
+                },
+                "sup": "2"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The order of operations matters. Squaring four group contributions separately omits their cross terms. In one literal two-component example, every group has component values −1 and +1. The signed influences cancel because the contrast coefficients sum to zero, giving u=0. If instead the group values follow the contrast sign pattern, the component influences are −1/2 and +1/2, yielding u=1 under the displayed formula. These examples verify covariance bookkeeping. They do not establish that the empirical components are independent sampling units or that u has calibrated coverage."
+    },
+    {
+      "type": "paragraph",
+      "text": "The teacher was fitted to the same TRAIN data used to estimate r,s,u. This adaptivity matters. A familiar cluster-variance expression derived for a fixed statistic cannot automatically be interpreted as a confidence radius for an adaptively learned representation. Moreover, supplied identities can contain errors, near-duplicate relations are limited, and a finite set of components need not represent independent people sampled from a population. The cautious interpretation is a diagonal plug-in variability heuristic. In the selected κ=0 model, that heuristic did not affect the active tolerance threshold at all."
+    },
+    {
+      "type": "paragraph",
+      "text": "A train-only statistic can still influence validation-selected performance, but that is a permitted dependency rather than leakage. The desired causal order is TRAIN data to fitted teacher and statistics, TRAIN updates to candidate parameters, validation outputs to recipe selection, and finally frozen selection to test evaluation. Reversing an arrow—for example selecting teacher features or a scale floor using test KID—would create a new adaptive procedure. The fact that a quantity is called a normalization constant does not exempt it from this rule."
+    },
+    {
+      "type": "heading",
+      "text": "T6. The implemented detached witness and its exact derivative",
+      "level": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "Before a generator update, the tracker contains a previous generated contrast m and a successful-update count h, each indexed by the current step. It is not a gradient-tracked copy of the current batch. Standardize the previous error by the fixed scale, apply a coordinatewise soft threshold and disable the witness during warmup. The initialized tracker also must exist. In the realized model, κ=0, so the active post-warmup witness is simply the standardized previous error. The code still supports positive κ development candidates; that support is not evidence that positive tolerance helped."
+    },
+    {
+      "type": "equation",
+      "math": [
+        {
+          "kind": "sub",
+          "base": "d",
+          "sub": "tj"
+        },
+        "=",
+        {
+          "kind": "frac",
+          "num": [
+            {
+              "kind": "sub",
+              "base": "m",
+              "sub": "tj"
+            },
+            "−",
+            {
+              "kind": "sub",
+              "base": "r",
+              "sub": "j"
+            }
+          ],
+          "den": {
+            "kind": "sub",
+            "base": "s",
+            "sub": "j"
+          }
+        },
+        ",   ",
+        {
+          "kind": "sub",
+          "base": "q",
+          "sub": "tj"
+        },
+        "=1{",
+        {
+          "kind": "sub",
+          "base": "h",
+          "sub": "t"
+        },
+        "≥500} sign(",
+        {
+          "kind": "sub",
+          "base": "d",
+          "sub": "tj"
+        },
+        ")",
+        {
+          "kind": "sub",
+          "base": [
+            "(",
+            [
+              "|",
+              {
+                "kind": "sub",
+                "base": "d",
+                "sub": "tj"
+              },
+              "|−κ",
+              {
+                "kind": "frac",
+                "num": {
+                  "kind": "sub",
+                  "base": "u",
+                  "sub": "j"
+                },
+                "den": {
+                  "kind": "sub",
+                  "base": "s",
+                  "sub": "j"
+                }
+              }
+            ],
+            ")"
+          ],
+          "sub": "+"
+        }
+      ],
+      "math_size": 10
+    },
+    {
+      "type": "paragraph",
+      "text": "A balanced current generator batch contains 16 latent quartets, with each latent reused for all four conditions. The fixed teacher sees unaugmented generated images, while adversarial training applies its own random flips. The current feature contrast is computed from the joint train-mode generator batch. With d=128 teacher coordinates, the exact centered auxiliary surrogate is the following linear expression. The stop-gradient operator detaches the previous witness, not the generated image or the teacher input Jacobian."
+    },
+    {
+      "type": "equation",
+      "math": [
+        {
+          "kind": "sub",
+          "base": {
+            "kind": "accent",
+            "base": "δ",
+            "char": "̂"
+          },
+          "sub": "t"
+        },
+        "=",
+        {
+          "kind": "nary",
+          "char": "∑",
+          "sub": "g=0",
+          "sup": "3",
+          "body": [
+            {
+              "kind": "sub",
+              "base": "c",
+              "sub": "g"
+            },
+            {
+              "kind": "frac",
+              "num": "1",
+              "den": "16"
+            },
+            {
+              "kind": "nary",
+              "char": "∑",
+              "sub": "i=1",
+              "sup": "16",
+              "body": [
+                "ψ(",
+                {
+                  "kind": "sub",
+                  "base": [
+                    {
+                      "kind": "sub",
+                      "base": "G",
+                      "sub": "θ,S"
+                    },
+                    "(Z,Y)"
+                  ],
+                  "sub": "g,i"
+                },
+                ")"
+              ]
+            }
+          ]
+        }
+      ],
+      "math_size": 10
+    },
+    {
+      "type": "equation",
+      "math": [
+        {
+          "kind": "sub",
+          "base": "L",
+          "sub": "aux,t"
+        },
+        "=",
+        {
+          "kind": "frac",
+          "num": "2λ",
+          "den": "d"
+        },
+        {
+          "kind": "nary",
+          "char": "∑",
+          "sub": "j=1",
+          "sup": "d",
+          "body": [
+            "sg(",
+            {
+              "kind": "sub",
+              "base": "q",
+              "sub": "tj"
+            },
+            ")",
+            {
+              "kind": "frac",
+              "num": [
+                {
+                  "kind": "sub",
+                  "base": {
+                    "kind": "accent",
+                    "base": "δ",
+                    "char": "̂"
+                  },
+                  "sub": "tj"
+                },
+                "−",
+                {
+                  "kind": "sub",
+                  "base": "r",
+                  "sub": "j"
+                }
+              ],
+              "den": {
+                "kind": "sub",
+                "base": "s",
+                "sub": "j"
+              }
+            }
+          ]
+        },
+        ",   d=128"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The centering term r is part of the logged loss even though removing a fixed centered term would preserve the current gradient. This distinction prevents a gradient-equivalent rewrite from being mistaken for the literal recorded objective. Because the surrogate is linear in the current contrast, it can be negative. It is not a distance or a nonnegative discrepancy. Its sign alone cannot be interpreted as improvement or deterioration of the current squared feature error."
+    },
+    {
+      "type": "paragraph",
+      "text": "For a current feature coordinate f(i,j) in group g(i), with the corresponding group batch size, the derivative is constant once the previous witness is fixed. It contains the signed group coefficient and no multiplier from the current residual. Differentiating the group mean and then the linear sum gives the exact result:"
+    },
+    {
+      "type": "equation",
+      "math": [
+        {
+          "kind": "frac",
+          "num": [
+            "∂",
+            {
+              "kind": "sub",
+              "base": "L",
+              "sub": "aux,t"
+            }
+          ],
+          "den": [
+            "∂",
+            {
+              "kind": "sub",
+              "base": "f",
+              "sub": "ij"
+            }
+          ]
+        },
+        "=",
+        {
+          "kind": "frac",
+          "num": "2λ",
+          "den": "d"
+        },
+        {
+          "kind": "frac",
+          "num": {
+            "kind": "sub",
+            "base": "c",
+            "sub": {
+              "kind": "sub",
+              "base": "g",
+              "sub": "i"
+            }
+          },
+          "den": {
+            "kind": "sub",
+            "base": "b",
+            "sub": {
+              "kind": "sub",
+              "base": "g",
+              "sub": "i"
+            }
+          }
+        },
+        {
+          "kind": "frac",
+          "num": {
+            "kind": "sub",
+            "base": "q",
+            "sub": "tj"
+          },
+          "den": {
+            "kind": "sub",
+            "base": "s",
+            "sub": "j"
+          }
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "This verifies the factor, direction and gradient path. Freezing teacher parameters is consistent with a nonzero generator gradient: the derivative passes through the teacher with respect to its image input. Wrapping the teacher forward in a no-gradient context would instead remove this path. The actual implementation checks that teacher parameters and spectral-normalization state remain unchanged, while generated features retain the required connection to generator parameters."
+    },
+    {
+      "type": "paragraph",
+      "text": "After a successful generator optimizer update, the first tracker observation initializes m from the detached pre-update contrast. Subsequent successful observations use m←0.9m+0.1δ̂, then increment h. The contrast is not recomputed at the new parameters. Loss evaluation itself changes neither the tracker nor the RNG. AMP-skipped generator attempts do not advance the tracker or inference EMAs. The first 500 successful observations therefore populate history while the auxiliary witness is zero; the next loss may activate it."
+    },
+    {
+      "type": "paragraph",
+      "text": "These are operational properties, not convergence guarantees. GFMN already uses moving discrepancy estimates and linear current-feature surrogates, while AMFD includes conditional detached moment witnesses. The distinction here is the particular signed statistic, teacher, scaling, heuristic tolerance and finite conditional experiment. Identifying those choices precisely is necessary for replication; it does not justify claiming priority for linearization, stop-gradient feature matching or moving targets. [E17,E18]"
+    },
+    {
+      "type": "heading",
+      "text": "T7. Staleness: a conditional identity and a restricted direction bound",
+      "level": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "Condition on all information immediately before a fresh generator-noise draw: current parameters, normalization state, teacher, fixed statistics, balanced labels and previous tracker. Let Δ denote the expected contrast of the resulting joint training batch, with that state fixed; the displayed Jacobian uses a B subscript to emphasize this batch functional. If differentiation can pass through this expectation, linearity yields the conditional expected auxiliary gradient. Shared latents across conditions are included in the random batch; they do not require pretending that the four groups are independent."
+    },
+    {
+      "type": "equation",
+      "math": [
+        {
+          "kind": "sub",
+          "base": "E",
+          "sub": "t−"
+        },
+        "[",
+        {
+          "kind": "sub",
+          "base": "∇",
+          "sub": "θ"
+        },
+        {
+          "kind": "sub",
+          "base": "L",
+          "sub": "aux,t"
+        },
+        "]=",
+        {
+          "kind": "frac",
+          "num": "2λ",
+          "den": "d"
+        },
+        {
+          "kind": "sup",
+          "base": {
+            "kind": "sub",
+            "base": "J",
+            "sub": {
+              "kind": "sub",
+              "base": "Δ",
+              "sub": "B"
+            }
+          },
+          "sup": "T"
+        },
+        "(",
+        {
+          "kind": "sub",
+          "base": "θ",
+          "sub": "t"
+        },
+        ")(",
+        {
+          "kind": "sub",
+          "base": "q",
+          "sub": "t"
+        },
+        "⊘s)"
+      ],
+      "math_size": 10
+    },
+    {
+      "type": "paragraph",
+      "text": "The symbol ⊘ denotes coordinatewise division, and the expectation conditions on the stated past. Proof. Once that past is fixed, q and the scale are constants. Differentiate the linear current-contrast expression and interchange derivative with expectation under the assumed integrability and regularity conditions. This is an identity for an idealized conditional direction. It is not a statement that the current AMP/Adam update is an unbiased gradient descent step on a population GAN objective, and it concerns the joint training-batch map rather than the inference-EMA distribution."
+    },
+    {
+      "type": "paragraph",
+      "text": "A scalar counterexample shows why the qualification matters. Take d=1, λ=1, r=0, s=1, u=0, previous m=1 and current contrast δ̂=−1. The witness is q=1, so the auxiliary value is −2 and its derivative with respect to the current contrast is +2. The current squared discrepancy has derivative −2. A small descent step on the surrogate can therefore move against the current squared-error descent direction. Staleness is not a harmless replacement merely because both expressions use discrepancy vocabulary."
+    },
+    {
+      "type": "paragraph",
+      "text": "One can nevertheless state a limited alignment bound. Define e as the standardized expected contrast residual, τ=u⊘s and v as the coordinatewise soft-threshold map with thresholds κτ. Let the deadzone objective F be the sum of squared coordinate deadzones, scaled by λ/d. Assume λ≥0, κ≥0 and strictly positive scales. The soft-threshold map is one-Lipschitz: on each scalar coordinate it is piecewise linear with slopes zero or one, and its monotonic continuity gives the global bound. The statement also holds coordinatewise in Euclidean norm."
+    },
+    {
+      "type": "equation",
+      "math": [
+        {
+          "kind": "sub",
+          "base": "F",
+          "sub": "κ"
+        },
+        "(θ)=",
+        {
+          "kind": "frac",
+          "num": "λ",
+          "den": "d"
+        },
+        {
+          "kind": "nary",
+          "char": "∑",
+          "sub": "j=1",
+          "sup": "d",
+          "body": {
+            "kind": "sup",
+            "base": {
+              "kind": "sub",
+              "base": [
+                "(",
+                [
+                  "|",
+                  {
+                    "kind": "sub",
+                    "base": "e",
+                    "sub": "j"
+                  },
+                  "(θ)|−κ",
+                  {
+                    "kind": "sub",
+                    "base": "τ",
+                    "sub": "j"
+                  }
+                ],
+                ")"
+              ],
+              "sub": "+"
+            },
+            "sup": "2"
+          }
+        }
+      ]
+    },
+    {
+      "type": "equation",
+      "math": [
+        "‖",
+        {
+          "kind": "sub",
+          "base": "v",
+          "sub": "κ"
+        },
+        "(a)−",
+        {
+          "kind": "sub",
+          "base": "v",
+          "sub": "κ"
+        },
+        "(b)‖≤‖a−b‖"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "After warmup, suppose the stored witness is the soft-thresholded standardized stored mean, while the desired current vector is the same soft-threshold map applied to e(θ). The norm of the difference between their parameter-space directions is at most the Jacobian operator norm times the standardized tracking error and the fixed factor 2λ/d. This follows from the chain rule, the operator-norm inequality and the one-Lipschitz property. The bound exposes the missing quantities: tracker lag, scale sensitivity and the local sensitivity of the expected feature contrast."
+    },
+    {
+      "type": "equation",
+      "math": [
+        "‖",
+        {
+          "kind": "sub",
+          "base": "g",
+          "sub": "lag"
+        },
+        "−∇",
+        {
+          "kind": "sub",
+          "base": "F",
+          "sub": "κ"
+        },
+        "(θ)‖≤",
+        {
+          "kind": "frac",
+          "num": "2λ",
+          "den": "d"
+        },
+        {
+          "kind": "sub",
+          "base": [
+            "‖",
+            {
+              "kind": "sub",
+              "base": "J",
+              "sub": "e"
+            },
+            "(θ)‖"
+          ],
+          "sub": "op"
+        },
+        "‖",
+        {
+          "kind": "sub",
+          "base": "e",
+          "sub": "old"
+        },
+        "−e(θ)‖"
+      ],
+      "math_size": 10
+    },
+    {
+      "type": "paragraph",
+      "text": "For a deterministic differentiable F with an L-Lipschitz gradient, suppose a proposed direction is g=∇F+v and ‖v‖≤α‖∇F‖ with 0≤α<1. The descent lemma gives a decrease for sufficiently small positive step size. In particular, the sufficient condition below follows by bounding the linear error term using Cauchy–Schwarz and bounding ‖g‖ by (1+α)‖∇F‖."
+    },
+    {
+      "type": "equation",
+      "math": [
+        "0<γ<",
+        {
+          "kind": "frac",
+          "num": "2(1−α)",
+          "den": [
+            "L",
+            {
+              "kind": "sup",
+              "base": "(1+α)",
+              "sup": "2"
+            }
+          ]
+        },
+        "   ⇒   F(θ−γg)<F(θ),   ∇F(θ)≠0"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "This proposition is deliberately restricted. No such relative tracking-error bound, smoothness constant or step-size condition was measured for the actual GAN. The full generator direction also contains an adaptive adversarial term, and Adam, stochastic sampling, BatchNorm state changes and numerical skips lie outside this deterministic argument. It is useful as a diagnostic target for a future controlled experiment, not as a theorem that the completed candidate should have won. During witness warmup the direction is zero, so comparison to a nonzero current deadzone gradient requires a separate case."
+    },
+    {
+      "type": "heading",
+      "text": "T8. BatchNorm coupling, shared latents and two distinct EMAs",
+      "level": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "A pointwise generator emits an image as a function of one latent and condition. Train-mode BatchNorm instead normalizes using statistics of a joint batch. Changing another sample can change the output associated with a fixed latent. The batch is therefore the primitive random object for the training contrast. This distinction matters when calling samples independent, deriving U-statistics, comparing different group layouts or transferring an identity about training means to the later evaluation generator."
+    },
+    {
+      "type": "paragraph",
+      "text": "In the actual recipe, the generator remains in train mode for the no-gradient fake forward used by D and for the generator-gradient forward. Running normalization buffers can update in both passes. Disabling parameter gradients does not disable these state updates. The inference EMA averages generator parameters only and copies buffers after successful generator updates. Consequently, an inference checkpoint combines averaged parameters with copied current buffers; it is not a point on the raw parameter trajectory and not a temporal average of every part of the generator state."
+    },
+    {
+      "type": "paragraph",
+      "text": "The tracker EMA is different. It smooths one 128-dimensional generated contrast using decay 0.9. The inference parameter EMAs use decays 0.99 and 0.999. The former affects the next auxiliary direction; the latter defines candidate inference tensors selected on validation. Learned θ, loss strength λ, tolerance κ and the two kinds of decay cannot be collectively described as the best weights. θ is optimized by minibatch gradients. λ,κ and inference decay are recipe choices. r,s,u are training-derived statistics. The teacher is a separate fitted representation."
+    },
+    {
+      "type": "paragraph",
+      "text": "Shared latent quartets create a chosen coupling across labels. If a pointwise frozen-state generator is considered and the latent indices are independent, then each within-group sequence remains independent across indices even though different groups share each latent. The signed contrast variance contains cross-group covariance terms. Such coupling may reduce or increase that variance depending on the covariance signs. It does not identify a counterfactual semantic relation, since the Gaussian coordinates have no observed causal interpretation."
+    },
+    {
+      "type": "equation",
+      "math": [
+        "Cov(",
+        {
+          "kind": "accent",
+          "base": "δ",
+          "char": "̂"
+        },
+        ")=",
+        {
+          "kind": "nary",
+          "char": "∑",
+          "sub": "g=0",
+          "sup": "3",
+          "body": {
+            "kind": "nary",
+            "char": "∑",
+            "sub": "h=0",
+            "sup": "3",
+            "body": [
+              {
+                "kind": "sub",
+                "base": "c",
+                "sub": "g"
+              },
+              {
+                "kind": "sub",
+                "base": "c",
+                "sub": "h"
+              },
+              " Cov(",
+              {
+                "kind": "accent",
+                "base": {
+                  "kind": "sub",
+                  "base": "μ",
+                  "sub": "g"
+                },
+                "char": "̂"
+              },
+              ",",
+              {
+                "kind": "accent",
+                "base": {
+                  "kind": "sub",
+                  "base": "μ",
+                  "sub": "h"
+                },
+                "char": "̂"
+              },
+              ")"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "A direct noisy-square objective has a distinct expectation. For any square-integrable vector estimator Z with mean Δ and a fixed target r, expansion around Δ gives the squared mean error plus the trace of the estimator covariance. The cross term vanishes because E[Z−Δ]=0. A minibatch-square penalty can therefore encourage reduced estimator variability as well as a smaller mean mismatch."
+    },
+    {
+      "type": "equation",
+      "math": [
+        "E",
+        {
+          "kind": "sup",
+          "base": "‖Z−r‖",
+          "sup": "2"
+        },
+        "=",
+        {
+          "kind": "sup",
+          "base": "‖E[Z]−r‖",
+          "sup": "2"
+        },
+        "+tr Cov(Z)"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "With train-mode BatchNorm, the covariance and even the meaning of Δ depend on batch size, condition composition and batch arrangement. A detached previous witness removes the explicit current-square multiplier, but retains history dependence and does not eliminate every bias. Likewise, replacing a biased square by an off-diagonal formula does not automatically produce an unbiased pointwise-distribution objective when the generated observations interact through normalization. Any proposed repair must specify the map and sampling law to which its statistical calculation applies."
+    },
+    {
+      "type": "paragraph",
+      "text": "Even exact invariance of a loss value under a parameter re-expression does not establish optimizer invariance. For G(a,b)=ab and loss (ab)²/2, the representations (1,1) and (2,1/2) have the same output and loss. One ordinary SGD step of size 0.1 yields outputs 0.81 and 0.585 respectively. The gradients transform with the parameter coordinates, and the Euclidean update rule is not invariant to that rescaling. The implemented feature loss reads generated images, but its Adam trajectory, normalization state and numerical skip history still depend on the parameterized computation."
+    },
+    {
+      "type": "heading",
+      "text": "T9. A stronger conditional-kernel objective: a defined but untrained proposal",
+      "level": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "A natural stronger target is to compare every observed conditional distribution with a positive weight, rather than only one signed combination. Let k be a bounded positive-definite kernel and let its mean embedding exist for the distributions considered. The population conditional objective is the positive weighted sum of group MMD squared values. MMD is an established RKHS discrepancy, and conditional kernel criteria have extensive antecedents; the proposal here is an experimental alternative, not a new discrepancy principle. [E12,E14,E33]"
+    },
+    {
+      "type": "equation",
+      "math": [
+        {
+          "kind": "sub",
+          "base": "J",
+          "sub": "cond"
+        },
+        "(θ)=",
+        {
+          "kind": "nary",
+          "char": "∑",
+          "sub": "g=0",
+          "sup": "3",
+          "body": [
+            {
+              "kind": "sub",
+              "base": "ρ",
+              "sub": "g"
+            },
+            {
+              "kind": "sup",
+              "base": {
+                "kind": "sub",
+                "base": "MMD",
+                "sub": "k"
+              },
+              "sup": "2"
+            },
+            "(",
+            {
+              "kind": "sub",
+              "base": "P",
+              "sub": "g"
+            },
+            ",",
+            {
+              "kind": "sub",
+              "base": "Q",
+              "sub": "θ,g"
+            },
+            ")"
+          ]
+        },
+        ",   ",
+        {
+          "kind": "sub",
+          "base": "ρ",
+          "sub": "g"
+        },
+        ">0"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Identification proposition. If k is characteristic on the relevant distribution class, the conditional objective is zero if and only if every fitted conditional distribution equals its target. Proof. Each squared MMD is nonnegative, so a zero positive-weighted sum forces every term to zero. Characteristicness converts each zero embedding difference into equality of the corresponding laws. The converse follows immediately by substitution. This is a population identification statement; it does not assert that a finite stochastic optimizer reaches zero or that a chosen finite feature map is characteristic on images."
+    },
+    {
+      "type": "paragraph",
+      "text": "For a kernel applied to teacher features ψ(x), the conclusion concerns the real and generated pushforward laws in feature space, separately for each group. It identifies image distributions only if the representation and measurable-space assumptions make that implication valid. A Gaussian kernel can be characteristic on the feature space while the teacher itself discards image information. A linear kernel identifies feature means only. The cubic polynomial KID kernel compares a finite collection of feature moments and should not be described as a general characteristic pixel-space certificate."
+    },
+    {
+      "type": "paragraph",
+      "text": "The same objective can be expressed as a joint-law kernel comparison when the two joint laws use the same positive request probabilities ρ, explicitly normalized to sum to one. Use a label kernel that is zero for different bins and rescales the equal-label term by the inverse request probability. Then the joint squared MMD decomposes into the desired weighted conditional sum. This construction retains every label direction; it differs from the rank-one signed label kernel."
+    },
+    {
+      "type": "equation",
+      "math": [
+        {
+          "kind": "sub",
+          "base": "K",
+          "sub": "ρ"
+        },
+        "((x,g),(x′,h))=",
+        {
+          "kind": "frac",
+          "num": "1{g=h}",
+          "den": {
+            "kind": "sub",
+            "base": "ρ",
+            "sub": "g"
+          }
+        },
+        "k(x,x′)"
+      ]
+    },
+    {
+      "type": "equation",
+      "math": [
+        {
+          "kind": "sup",
+          "base": {
+            "kind": "sub",
+            "base": "MMD",
+            "sub": {
+              "kind": "sub",
+              "base": "K",
+              "sub": "ρ"
+            }
+          },
+          "sup": "2"
+        },
+        "(",
+        {
+          "kind": "sub",
+          "base": "P",
+          "sub": "ρ"
+        },
+        ",",
+        {
+          "kind": "sub",
+          "base": "Q",
+          "sub": "θ,ρ"
+        },
+        ")=",
+        {
+          "kind": "sub",
+          "base": "J",
+          "sub": "cond"
+        },
+        "(θ)"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Proof. In the real-real kernel expectation, the equal-label indicator keeps only terms with common g, whose probability is ρ(g)²; division by ρ(g) leaves ρ(g). The generated-generated and cross expectations decompose in the same way. Their sum is exactly the displayed conditional objective. This uses a common known request law. Different label marginals require an explicit target definition or reweighting, and zero target probability would again make a missing condition unidentified."
+    },
+    {
+      "type": "paragraph",
+      "text": "This stronger objective has computational and statistical costs. Pairwise kernels scale quadratically in batch size unless an approximation is introduced. Bandwidths determine the geometry; excessively broad kernels can suppress useful differences, while narrow kernels can yield poor gradient signal in high-dimensional image spaces. Teacher selection and feature normalization add adaptive choices. A fixed finite random-feature approximation changes the exact kernel and its identification scope. These are reasons to test a well-defined candidate, not reasons to claim that a more expressive objective must dominate a simpler one."
+    },
+    {
+      "type": "paragraph",
+      "text": "Most importantly, this objective was not trained in the completed study. No table of the six actual confirmation models can establish its performance. It is a defined future alternative motivated by an information boundary in the signed constraint. Its success would need a new source-bound training implementation, validation search, cost ledger and untouched outer evaluation."
+    },
+    {
+      "type": "heading",
+      "text": "T10. A fully specified prospective kernel-training algorithm",
+      "level": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "The following algorithm K is UNTRAINED. It is precise enough to implement and falsify, but its hyperparameter values and resource cap would need to be frozen prospectively before execution. Its target is the four empirical TRAIN conditionals, coupled with the existing adversarial objective. It does not infer an absent-bin law. To make the auxiliary sampling calculation literal, it uses a pointwise generator branch with normalization statistics held fixed during that branch. This branch definition is an algorithmic change relative to the implemented train-mode signed witness and must be reported as such."
+    },
+    {
+      "type": "paragraph",
+      "text": "First fit a teacher using TRAIN only, or choose a declared externally pretrained feature map and disclose its data provenance. Freeze that map. Estimate any coordinate normalization and any kernel bandwidth reference statistics using TRAIN only. Keep these quantities unchanged while tuning the generator-loss coefficient and inference decay on validation. If a different teacher is compared, count its fitting and feature-extraction costs. A teacher chosen from validation by its downstream score becomes part of the hyperparameter search, not an independent neutral evaluator."
+    },
+    {
+      "type": "paragraph",
+      "text": "At each iteration, perform the declared discriminator update and form the adversarial generator loss without taking its optimizer step yet. For the auxiliary generator loss, snapshot the current normalization buffers S and hold them fixed. Generate b≥2 independent latent vectors per group, with optional shared latent indices across groups. Within each group, draw b real TRAIN images independently with replacement from its empirical conditional distribution. Compute normalized fixed-teacher features for real and generated images. Sampling with replacement makes independence conditional on the finite empirical dataset a defensible computational sampling statement; it does not turn the finite dataset into independent population observations."
+    },
+    {
+      "type": "paragraph",
+      "text": "Use the off-diagonal two-sample MMD expression in each group. Here a(i) are independent real-feature draws and b(i) are generated-feature draws under the fixed-state branch. Cross terms use the two independently drawn banks. If common latent indices couple different groups, retain that coupling in the estimator covariance, although each group expectation remains the usual conditional MMD expectation."
+    },
+    {
+      "type": "equation",
+      "math": [
+        {
+          "kind": "sub",
+          "base": "U",
+          "sub": "g"
+        },
+        "=",
+        {
+          "kind": "frac",
+          "num": {
+            "kind": "nary",
+            "char": "∑",
+            "sub": "i≠j",
+            "sup": "",
+            "body": [
+              "k(",
+              {
+                "kind": "sub",
+                "base": "a",
+                "sub": "i"
+              },
+              ",",
+              {
+                "kind": "sub",
+                "base": "a",
+                "sub": "j"
+              },
+              ")"
+            ]
+          },
+          "den": "b(b−1)"
+        },
+        "+",
+        {
+          "kind": "frac",
+          "num": {
+            "kind": "nary",
+            "char": "∑",
+            "sub": "i≠j",
+            "sup": "",
+            "body": [
+              "k(",
+              {
+                "kind": "sub",
+                "base": "b",
+                "sub": "i"
+              },
+              ",",
+              {
+                "kind": "sub",
+                "base": "b",
+                "sub": "j"
+              },
+              ")"
+            ]
+          },
+          "den": "b(b−1)"
+        },
+        "−",
+        {
+          "kind": "frac",
+          "num": "2",
+          "den": {
+            "kind": "sup",
+            "base": "b",
+            "sup": "2"
+          }
+        },
+        {
+          "kind": "nary",
+          "char": "∑",
+          "sub": "i,j",
+          "sup": "",
+          "body": [
+            "k(",
+            {
+              "kind": "sub",
+              "base": "a",
+              "sub": "i"
+            },
+            ",",
+            {
+              "kind": "sub",
+              "base": "b",
+              "sub": "j"
+            },
+            ")"
+          ]
+        }
+      ],
+      "math_size": 10
+    },
+    {
+      "type": "paragraph",
+      "text": "Backpropagate the weighted sum of group-indexed U values through generated images and the frozen teacher input map, combine its gradient with the adversarial generator gradient at the same parameter state, and take one generator optimizer step. Do not optimize teacher parameters in this branch and do not update normalization buffers from its auxiliary samples. The resulting finite group value U can be negative; clamping it to zero would change both its expectation and gradient. Under the declared conditional independence and regularity assumptions, its conditional expectation is the empirical-target MMD objective at the frozen generator state. It is not generally unbiased for an unknown real-world population target."
+    },
+    {
+      "type": "paragraph",
+      "text": "For a concrete kernel family one may take a Gaussian kernel on normalized teacher features with a strictly positive bandwidth σ. The bandwidth is an algorithm input or a TRAIN-only deterministic statistic, not something adjusted after observing test quality. Its mathematical value and construction must be frozen in the future protocol. For example, a declared TRAIN reference-bank distance rule must specify the bank IDs, treatment of zero distances and a failure case when its required positive distance does not exist. This supplement supplies no newly approved numerical bandwidth or loss-strength schedule."
+    },
+    {
+      "type": "equation",
+      "math": [
+        {
+          "kind": "sub",
+          "base": "k",
+          "sub": "σ"
+        },
+        "(a,b)=exp(−",
+        {
+          "kind": "frac",
+          "num": {
+            "kind": "sup",
+            "base": "‖a−b‖",
+            "sup": "2"
+          },
+          "den": [
+            "2",
+            {
+              "kind": "sup",
+              "base": "σ",
+              "sup": "2"
+            }
+          ]
+        },
+        "),   σ>0"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "A second future variant could maintain one lagged witness per condition rather than a single signed witness. It would match four means instead of one interaction direction, retain staleness, and avoid the explicit same-batch-square term. It would still not identify full distributions with a linear finite representation. Comparing this full-mean variant with algorithm K and the signed witness would help separate label-rank limitations from kernel expressiveness and optimization effects. These variants should not be merged into one claimed mechanism without ablation."
+    },
+    {
+      "type": "paragraph",
+      "text": "A careful implementation test would verify three different properties: literal estimator and autograd arithmetic on small arrays; conditional Monte Carlo behavior in a controlled fixed-state synthetic model; and actual finite-budget generative performance. Passing the first does not imply the second, and passing either does not imply the third. No such new runs are reported here. The completed candidate’s negative outcome remains the only efficacy result for its particular selected recipe."
+    },
+    {
+      "type": "heading",
+      "text": "T11. Leakage relations, exact comparison and a complete declared near screen",
+      "level": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "A filename-disjoint split prevents the same filename from appearing in two partitions. It does not establish that different filenames show different content, different identities or independent subjects. Conversely, a shared identity does not imply identical images. The audit therefore treats several relations separately before taking their union: supplied identity labels, exact canonical RGB64 equality, equality after horizontal reflection, and a declared near relation. The relation definitions, not the generic word deduplication, determine what the split guarantee means. Prior work on CIFAR near duplicates motivates the general audit concern; it does not supply CelebA counts. [E27,E28]"
+    },
+    {
+      "type": "paragraph",
+      "text": "The canonicalization is itself part of the evidence definition. JPEGs are decoded to RGB, center-cropped using the frozen preprocessing routine and resized to 64×64 with the pinned image-library behavior. Equality is tested on the resulting uint8 arrays, not on source JPEG bytes. Two different compressed files can yield equal canonical arrays, and two visually similar source images can produce unequal arrays. Exact hashing is a candidate index, not the mathematical definition of equality: byte comparison inside candidate groups establishes the claimed raster equality."
+    },
+    {
+      "type": "paragraph",
+      "text": "The identity file was obtained through a bounded anonymous university-mirror request and matched the expected official-file MD5, with a full SHA-256 and acquisition record preserved. This supports traceable use of the supplied identity metadata; it is not a new authentication scheme, proof that the labels are error-free or evidence that every real person has a unique correct identifier. Raw identity mappings are not needed in a public narrative. Aggregate counts and bound private-map hashes can describe the audit without redistributing the underlying mapping."
+    },
+    {
+      "type": "paragraph",
+      "text": "For the near screen, every image has two oriented representations: original and horizontal reflection. A 64-bit descriptor is computed by converting to grayscale, resizing to 32×32 with the declared Lanczos routine, applying the two-dimensional DCT, keeping its upper 8×8 coefficients and thresholding them against their median. The exact comparison relation requires both descriptor Hamming distance at most four and aligned canonical RGB64 RMSE at most eight for at least one orientation pair. These thresholds define one reproducible relation, not every meaningful visual duplicate."
+    },
+    {
+      "type": "equation",
+      "math": [
+        "Near(i,j) ⇔ ∃o,p∈{0,1}: H(",
+        {
+          "kind": "sub",
+          "base": "h",
+          "sub": "i,o"
+        },
+        ",",
+        {
+          "kind": "sub",
+          "base": "h",
+          "sub": "j,p"
+        },
+        ")≤4 ∧ ",
+        {
+          "kind": "sub",
+          "base": "E",
+          "sub": "i,o;j,p"
+        },
+        "≤786432"
+      ],
+      "math_size": 10
+    },
+    {
+      "type": "paragraph",
+      "text": "The squared-error threshold equals 8² times 3·64·64=786432. Integer differences are formed in a sufficiently wide signed type and squared sums in a wide accumulator. This avoids interpreting uint8 wraparound as a small image difference. Alignment here permits only the declared reflection; it does not include arbitrary crops, translations, pose changes, color changes or learned semantic equivalence. A pair failing the screen can still be related in ways the audit does not measure."
+    },
+    {
+      "type": "paragraph",
+      "text": "Completeness proposition for candidate generation. Partition the 64 descriptor bits into six disjoint bands of lengths 11,11,11,11,10,10. If two descriptors differ in at most four bits, at most four bands contain a differing bit. Hence at least two whole bands match. Indexing all fifteen unordered band pairs retrieves the pair in at least one matching index. After retrieval, exact Hamming and pixel checks decide whether it satisfies the declared near relation. The proof does not assume uniform or independent hash bits."
+    },
+    {
+      "type": "equation",
+      "math": [
+        "6−4=2,   ",
+        {
+          "kind": "frac",
+          "num": "6·5",
+          "den": "2"
+        },
+        "=15"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "False-positive candidates are allowed; false-negative candidates for the declared Hamming threshold are not. Deduplicating candidate orientation pairs affects runtime rather than completeness. Both original and reflected descriptors must be included, and successful image-pair edges must be unioned regardless of whether another orientation was previously considered. An approximate nearest-neighbor index could be faster, but without a recall guarantee it would change the completeness claim and would need a separate declared scope."
+    },
+    {
+      "type": "paragraph",
+      "text": "Resource caps are part of the algorithmic guarantee. The executed definition allowed at most 250 million orientation-pair checks, one million accepted image-pair edges and a bounded near-screen stage. A cap hit must yield UNKNOWN or INCOMPLETE, not a clean-split certificate based on a truncated search. The completed scan recorded 26,346,501 orientation-pair checks and 1,560 distinct accepted filename-pair edges. Those are audit measurements, not a count of independent identities or of all visually similar pairs. Changing thresholds or silently omitting expensive buckets would define another audit."
+    },
+    {
+      "type": "paragraph",
+      "text": "This is a useful example of a narrow exact guarantee inside a broader empirical task. The pigeonhole argument proves completeness of one candidate generator. It does not prove that pHash is semantically complete, that every edge is a duplicate in a human sense, that unrelated files cannot satisfy the thresholds or that components are independent. Stating the exact finite guarantee makes the remaining limits easier to evaluate; it does not make them disappear."
+    },
+    {
+      "type": "heading",
+      "text": "T12. From edges to split isolation, and from eligibility to actual exposure",
+      "level": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "Construct a graph whose vertices are canonical images and whose edges include every accepted identity, exact, reflection and declared-near link. The leakage-union component A(i) is the connected component of vertex i. Assigning entire components to partitions prevents every declared edge from crossing partitions. Proof. The endpoints of an edge are in the same connected component, and a component receives one assignment. More generally, every vertex on a transitive path receives the same assignment. This implication is deterministic and does not require a probabilistic independence assumption."
+    },
+    {
+      "type": "equation",
+      "math": [
+        {
+          "kind": "sub",
+          "base": "𝒜",
+          "sub": "tr"
+        },
+        "∩",
+        {
+          "kind": "sub",
+          "base": "𝒜",
+          "sub": "val"
+        },
+        "=",
+        {
+          "kind": "sub",
+          "base": "𝒜",
+          "sub": "tr"
+        },
+        "∩",
+        {
+          "kind": "sub",
+          "base": "𝒜",
+          "sub": "te"
+        },
+        "=",
+        {
+          "kind": "sub",
+          "base": "𝒜",
+          "sub": "val"
+        },
+        "∩",
+        {
+          "kind": "sub",
+          "base": "𝒜",
+          "sub": "te"
+        },
+        "=∅"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The reverse interpretation is invalid: membership in one component does not mean that every pair of its images is a direct near duplicate. An identity edge can connect different poses; an exact edge can connect another filename; a near edge can extend the path. Reporting the number of held-out rows connected through the union as a number of pairwise visual duplicates would overstate what was measured. Transitive closure is intentionally conservative for partitioning, but its mechanism must remain visible."
+    },
+    {
+      "type": "paragraph",
+      "text": "The fresh partition used only components wholly inside the original TRAIN pool. Any component touching old validation or test was excluded. It also quarantined components containing a contradiction between exact/reflection-equivalent pixels and their four-bin annotations. Different annotations inside an identity component are not automatically contradictory: photographs can differ, labels can change and the intended identity relation is broader than raster equality. The contradiction rule is specifically tied to exact/reflection equivalence, then propagated to its union component."
+    },
+    {
+      "type": "paragraph",
+      "text": "Each eligible component was identified canonically by its minimum original row index and assigned once by a fixed SHA-256-based bucket rule: 70% of buckets for TRAIN, 15% for validation and 15% for test. There was no repeated partition search or silent relaxation when rare-group floors were checked. The resulting image proportions need not be exactly 70/15/15 because components have unequal sizes. Minimum image and component floors are feasibility checks, not a guarantee of high statistical precision."
+    },
+    {
+      "type": "paragraph",
+      "text": "The completed definition had 8,005 eligible components and split totals 112,615/23,156/25,217 images. The rare bin contained 942/253/173 images, spanning 282/67/65 components respectively. A total of 41,611 rows were excluded from the new three-way partition; only 219 were in the four union components quarantined because of exact/reflection annotation contradictions. Calling all excluded rows label conflicts would be incorrect. The other exclusions include components touching old held-out partitions."
+    },
+    {
+      "type": "paragraph",
+      "text": "The earlier official split had zero positive exposure entries on held-out row indices, but the audit found 24 TRAIN–validation and 11 TRAIN–test exact/reflection cross-split pairs, plus two validation–test pairs. That is an eligible-pool relation. A second question asks whether the linked TRAIN rows were actually sampled in a particular trained trajectory. Exposure arrays answer this by counting positive TRAIN presentations associated with held-out equivalents. They do not require reading model quality scores."
+    },
+    {
+      "type": "paragraph",
+      "text": "For original seeds 101,202,303, the associated TRAIN presentations were respectively 28/67, 33/78 and 30/73 for validation/test links. One rare test image had an exact TRAIN counterpart presented 50/63/62 times across the three seeds. The four original arms had identical exposure arrays within each seed, giving three exposure patterns rather than twelve independent patterns. These are cache presentations before random augmentation, not proof that every unchanged raster reached the discriminator. The counts establish a concrete contamination pathway, not a numerical amount of KID inflation, memorization or causal performance advantage."
+    },
+    {
+      "type": "paragraph",
+      "text": "After a test has informed method design, relabeling it as test does not restore its novelty. The fresh partition avoided components touching the old held-outs, and all final comparators were trained from scratch on the new TRAIN definition. Intermediate lost models were not recoverable evidence and were not pooled. Even this careful separation certifies only the stated data and access policy: operator attestations about unseen scores are provenance records, not cryptographic proof of an observer’s knowledge."
+    },
+    {
+      "type": "heading",
+      "text": "T13. Four uncertainty questions that should not be merged",
+      "level": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "There are at least four distinct sources of uncertainty: the finite real reference bank; finite generated latent requests for a fixed network; randomness of fitting the training algorithm; and adaptive selection of a recipe from validation. A fifth issue, measurement error in a semantic judge, would require its own audit. The completed final study did not use such a judge. Naming one interval a confidence interval without identifying which sources it varies can give it a much broader interpretation than its construction supports."
+    },
+    {
+      "type": "paragraph",
+      "text": "The KID endpoint uses the classical off-diagonal MMD estimator form in a fixed externally pretrained feature space. Under independent draws and a fixed kernel it has the familiar unbiased expectation. Clustered real references and train-mode-dependent generated batches do not inherit that statement automatically. The final evaluation generator runs in eval mode with fixed buffers, but the real bank can contain multiple images from one component. The statistic is still a well-defined finite number; its population interpretation is the issue. [E24,E25,E33]"
+    },
+    {
+      "type": "equation",
+      "math": [
+        {
+          "kind": "sub",
+          "base": "U",
+          "sub": "m,n"
+        },
+        "=",
+        {
+          "kind": "frac",
+          "num": {
+            "kind": "nary",
+            "char": "∑",
+            "sub": "i≠j",
+            "sup": "",
+            "body": [
+              "k(",
+              {
+                "kind": "sub",
+                "base": "a",
+                "sub": "i"
+              },
+              ",",
+              {
+                "kind": "sub",
+                "base": "a",
+                "sub": "j"
+              },
+              ")"
+            ]
+          },
+          "den": "m(m−1)"
+        },
+        "+",
+        {
+          "kind": "frac",
+          "num": {
+            "kind": "nary",
+            "char": "∑",
+            "sub": "i≠j",
+            "sup": "",
+            "body": [
+              "k(",
+              {
+                "kind": "sub",
+                "base": "b",
+                "sub": "i"
+              },
+              ",",
+              {
+                "kind": "sub",
+                "base": "b",
+                "sub": "j"
+              },
+              ")"
+            ]
+          },
+          "den": "n(n−1)"
+        },
+        "−",
+        {
+          "kind": "frac",
+          "num": "2",
+          "den": "mn"
+        },
+        {
+          "kind": "nary",
+          "char": "∑",
+          "sub": "i,j",
+          "sup": "",
+          "body": [
+            "k(",
+            {
+              "kind": "sub",
+              "base": "a",
+              "sub": "i"
+            },
+            ",",
+            {
+              "kind": "sub",
+              "base": "b",
+              "sub": "j"
+            },
+            ")"
+          ]
+        }
+      ],
+      "math_size": 10
+    },
+    {
+      "type": "paragraph",
+      "text": "The actual uncertainty calculation holds three trained seed pairs fixed. Real leakage components are resampled jointly across groups so that a component contributing to more than one bin retains its covariance structure. Every image in a sampled component receives its component multiplicity. Group totals are recomputed, preserving the image-weighted ratio estimand rather than silently switching to uniform component weighting. Shared fake latent indices are resampled once across groups and the fixed paired models, retaining the declared common-random-number coupling."
+    },
+    {
+      "type": "paragraph",
+      "text": "Repeated indices in a bootstrap multiset need exact bookkeeping. If row i appears w(i) times, its contribution to the ordered-pair kernel sum includes w(i)(w(i)−1) pairs between distinct copied positions. Thus the diagonal correction subtracts w(i), not w(i)², from the weighted quadratic form. Subtracting the latter would instead remove every same-original-index pair and produce a different bootstrap statistic."
+    },
+    {
+      "type": "equation",
+      "math": [
+        {
+          "kind": "sub",
+          "base": "U",
+          "sub": "within"
+        },
+        "=",
+        {
+          "kind": "frac",
+          "num": [
+            {
+              "kind": "nary",
+              "char": "∑",
+              "sub": "i,j",
+              "sup": "",
+              "body": [
+                {
+                  "kind": "sub",
+                  "base": "w",
+                  "sub": "i"
+                },
+                {
+                  "kind": "sub",
+                  "base": "w",
+                  "sub": "j"
+                },
+                {
+                  "kind": "sub",
+                  "base": "K",
+                  "sub": "ij"
+                }
+              ]
+            },
+            "−",
+            {
+              "kind": "nary",
+              "char": "∑",
+              "sub": "i",
+              "sup": "",
+              "body": [
+                {
+                  "kind": "sub",
+                  "base": "w",
+                  "sub": "i"
+                },
+                {
+                  "kind": "sub",
+                  "base": "K",
+                  "sub": "ii"
+                }
+              ]
+            }
+          ],
+          "den": "N(N−1)"
+        },
+        ",   N=",
+        {
+          "kind": "nary",
+          "char": "∑",
+          "sub": "i",
+          "sup": "",
+          "body": {
+            "kind": "sub",
+            "base": "w",
+            "sub": "i"
+          }
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The same correction applies to repeated generated latent indices. Real–generated cross terms use both multiplicity vectors without a same-bank diagonal exclusion. In candidate-minus-baseline differences with identical real weights, the real–real contribution cancels exactly; computing the remaining terms is a valid efficiency improvement, not a change to the endpoint. All three fixed seed-pair differences are averaged inside each replicate."
+    },
+    {
+      "type": "paragraph",
+      "text": "A pooled component draw can occasionally leave fewer than two real rows in a condition. The ordinary U-statistic denominator is then undefined. Quietly drawing again until every condition is represented changes the resampling law. The prospective implementation instead declared failure/incompleteness behavior and preserved invalid or capped outcomes. This is especially important when a nominal image-count floor hides a small number of effective components. Sixty-five rare test components give more information than two, but they do not supply a general asymptotic coverage theorem for this dependent adaptive setting."
+    },
+    {
+      "type": "paragraph",
+      "text": "The final report uses a one-sided percentile upper bound at level 0.9875 for candidate-minus-comparator differences, retaining four conservatively reserved slots from the plan. Its purpose is to assess the prespecified improvement direction. It is not a two-sided 95% interval, a posterior probability that the method is better, a seed-population interval or an automatic familywise theorem without validity assumptions for the constituent bounds. Bonferroni bookkeeping can allocate error across valid procedures; it cannot create coverage when the underlying bootstrap approximation is unproved."
+    },
+    {
+      "type": "paragraph",
+      "text": "Training-seed uncertainty remains separate. Three fixed seed pairs show variability across those fits, but resampling their latent outputs cannot reveal the distribution of new optimizer trajectories, new data samples or new hardware behavior. A training-algorithm claim would need enough independently fitted models under a declared sampling scheme, with between-fit variability analyzed explicitly. A much larger latent bank cannot substitute for more trained seeds. Likewise, rerunning an evaluator on the same weights does not create an independent training replication."
+    },
+    {
+      "type": "paragraph",
+      "text": "Finally, distinguish selection uncertainty from test-bank uncertainty. Minimizing several noisy validation scores tends to favor downward noise. This does not by itself bias an independent IID test statistic for the selected fixed model, conditional on the selected model and a genuinely unqueried bank. It does mean that the selected validation minimum should not be advertised as an unbiased estimate of the winning recipe’s performance. Repeatedly querying test to adjust the recipe destroys the clean outer-test role, regardless of how many bootstrap replicates are later computed."
+    },
+    {
+      "type": "heading",
+      "text": "T14. Hyperparameter search, learned tensors and the meaning of matched",
+      "level": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "The actual recovery study trained five development trajectories: one baseline and four candidate combinations λ∈{0.1,1}, κ∈{0,1}. Each trajectory maintained inference EMAs at 0.99 and 0.999, producing ten evaluated inference states, not ten independently trained models. The baseline had two EMA choices; the candidate family had eight states across four trajectories. These unequal search opportunities are part of the method-comparison cost. A statement that backbones and confirmation presentations match should not imply that search cost or information budgets match."
+    },
+    {
+      "type": "paragraph",
+      "text": "The selection rule used only raw rare-bin validation KID, rounded to twelve decimal places for deterministic comparison. Ties favored smaller λ, then κ=0, then EMA 0.999; source-level final ordering handled any remaining exact tie. Negative scores were not clamped away. Every tried value was preserved. Once the baseline and candidate recipes were selected, fresh confirmation seeds 101,202,303 were trained with a fixed 1,500-attempt budget chosen before validation. No test checkpoint selection occurred."
+    },
+    {
+      "type": "paragraph",
+      "text": "An elementary inequality explains why the full validation table matters. If each score estimate is unbiased for its recipe’s risk, the expectation of their minimum is at most the minimum of their expected values, because the minimum is a concave operation. With two equal true risks and independent score errors taking ±ε with equal probability, the selected minimum error has expectation −ε/2. This simple construction is about selection noise, not a prediction of the observed validation gap."
+    },
+    {
+      "type": "equation",
+      "math": [
+        "E[",
+        {
+          "kind": "sub",
+          "base": "min",
+          "sub": "j"
+        },
+        " ",
+        {
+          "kind": "accent",
+          "base": {
+            "kind": "sub",
+            "base": "R",
+            "sub": "j"
+          },
+          "char": "̂"
+        },
+        "]≤",
+        {
+          "kind": "sub",
+          "base": "min",
+          "sub": "j"
+        },
+        " E[",
+        {
+          "kind": "accent",
+          "base": {
+            "kind": "sub",
+            "base": "R",
+            "sub": "j"
+          },
+          "char": "̂"
+        },
+        "]"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The selected candidate was λ=1, κ=0, EMA 0.99. The baseline also selected EMA 0.99. Their development rare KID values were approximately 0.143568 and 0.140856 respectively, so the best candidate state did not beat the baseline on that development endpoint. Confirmation still proceeded according to the frozen comparison. Because κ=0 won, no separately tuned κ=0 control was needed, and the realized test cannot establish a benefit of an active tolerance mechanism. Had κ=1 won, a matched κ=0 control would have inherited its coefficient and EMA instead of being independently retuned."
+    },
+    {
+      "type": "paragraph",
+      "text": "Learned parameter tensors θ are not interchangeable with λ,κ or EMA decay. A user asking which weights are best needs two answers: which recipe was selected by validation, and which exact tensor artifact realizes that recipe for each seed. The selected recipe does not identify a universally best learned seed, and choosing the best seed after viewing test changes the selection procedure. Delivered artifact manifests bind each tensor payload to arm, seed, step, configuration, source hashes and selected EMA. They do not establish an unknown universal best generator."
+    },
+    {
+      "type": "paragraph",
+      "text": "Matching has several meanings. The final B and C pairs shared the same generator/discriminator architecture, per-trajectory exposure arrays, seeds, optimizer settings and successful-update counts. All six reported zero AMP skips. They did not have identical compute graphs: C evaluated the fixed teacher and its feature objective. Nor did the broader development procedures use equal numbers of trajectories. Conditional pairing reduces some avoidable nuisance variation; it does not turn the two algorithms into equal-cost procedures or make their gradients equivalent."
+    },
+    {
+      "type": "paragraph",
+      "text": "A fair future study should choose and disclose its fairness-of-budget convention before outcomes. Equal update count measures quality per adversarial step; equal GPU time measures quality per resource unit; equal total development budget includes hyperparameter search and teacher construction. None is universally correct. Reporting more than one cost view is often informative, provided the primary comparison and stopping policy are fixed in advance rather than changed to favor a result. Free-GPU availability adds operational limits but does not erase the cost of failed setup, lost sessions or repeated data preparation."
+    },
+    {
+      "type": "heading",
+      "text": "T15. Prospective controls, stopping rules and computational accounting",
+      "level": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "A useful next experiment would separate label-rank, representation, estimator and optimizer questions. One control keeps the balanced adversarial baseline. A second uses the implemented signed lagged witness. A third uses full conditional mean witnesses with the same teacher and statistics. A fourth tests a defined conditional kernel criterion. An independently fitted teacher or a frozen external teacher is another factor, not a free replacement. Testing every factor at once would make attribution difficult and consume search budget quickly."
+    },
+    {
+      "type": "paragraph",
+      "text": "The prospective design must declare which choices are inputs and which are learned. Kernel family, bandwidth construction, loss coefficient grid, teacher training, warmup, feature normalization, inference EMA, seed set, batch composition and total training budget all belong in the recipe. Teacher target statistics and bandwidth reference data must use TRAIN only. Validation may select among the declared options. A final outer test must remain unqueried by that selection. Since the current test outcomes are now known, designing a new confirmatory method around them requires a new outer evaluation definition rather than reusing the name held-out."
+    },
+    {
+      "type": "paragraph",
+      "text": "Guardrails also need explicit scope. Conditional quality, macro quality, worst-bin behavior, finite-feature PRDC and semantic agreement answer different questions. A maximum over noisy group endpoints has its own selection effect. A semantic classifier requires real held-out error analysis and may fail in the rare group even with high global accuracy. It should not provide generator gradients merely because it is later called independent. A failed semantic adequacy gate cannot be repaired by relabeling generated outputs according to the same classifier or discarding inconvenient requests. [E19,E20,E25,E26]"
+    },
+    {
+      "type": "paragraph",
+      "text": "No acceptance threshold is newly authorized by this supplement. A future protocol could require a negative prespecified upper bound for candidate-minus-baseline on a primary endpoint and no prespecified guard failure, but the endpoint, margin, uncertainty interpretation and multiplicity family must be set before that study’s outcomes. The current result should not be relabeled successful using a later preferred metric. Exploratory analyses can be useful when honestly marked as such; they are not retrospective preregistration."
+    },
+    {
+      "type": "paragraph",
+      "text": "Compute should be accounted by phase: canonical data preparation and audits; baseline teacher training; full TRAIN feature extraction; every development trajectory; validation feature extraction and selection; every confirmation fit; test generation/features; uncertainty computation; and artifact verification/transport. A complete run ledger distinguishes attempted steps from successful updates, exposes skipped updates, records wall time and hardware, and preserves failures. The final per-trajectory count was 96,000 real presentations, or 24,000 per bin, not 96,000 unique images."
+    },
+    {
+      "type": "paragraph",
+      "text": "The observed confirmation loop times were about 137–140 seconds for B and 169–171 seconds for C, in that environment and implementation. The extra candidate loop cost was roughly 23%, in addition to the shared teacher-related preparation. These values are measurements of short training loops, not end-to-end wall-clock totals or a hardware-independent speed theorem. Session loss, reconstruction, evaluation and transport occupied other time. Comparing quality at equal steps remains valid as the declared finite comparison, but it should not be described as equal compute."
+    },
+    {
+      "type": "heading",
+      "text": "T16. What is resolved, what failed, and what remains open",
+      "level": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "The completed evidence resolves several narrow questions. The declared component split is reproducible from its specified relations and fixed partition rule. The six-band candidate generator is complete for its Hamming threshold. The implemented witness has the stated literal gradient path and previous-state update policy. The development search actually tried ten EMA states from five trajectories, froze a recipe and trained six fresh confirmation models. These are concrete methodological outcomes. They are not a proof that the candidate improves image generation."
+    },
+    {
+      "type": "paragraph",
+      "text": "The efficacy result is unfavorable for the selected candidate. Mean rare-condition KID multiplied by 1,000 was approximately 166.663 for B and 185.544 for C, a C-minus-B difference of +18.880. The reported one-sided 0.9875 conditional upper bound was +23.611. Candidate C improved only seed 202 and was worse for seeds 101 and 303. The upper bound does not support the prespecified improvement direction; its positive value is not a predeclared reverse-significance test or a general theorem of harm. The selected tolerance multiplier was zero, so the result supplies no evidence that an uncertainty deadzone helped."
+    },
+    {
+      "type": "paragraph",
+      "text": "The remaining scientific problems are substantial: choosing useful target features without gaming them; controlling stale and adaptive gradients; understanding train-mode batch functionals versus inference distributions; identifying conditional laws under limited coverage; evaluating rare groups with dependent data; and comparing methods under transparent search and compute budgets. The untrained conditional-kernel algorithm is one possible next experiment. It does not solve these problems merely by being mathematically stronger at the population level."
+    },
+    {
+      "type": "paragraph",
+      "text": "Reproducibility also remains partial. All six actual test records, ten validation records, source bindings and computed uncertainty records were locally preserved and audited. Complete inference archives were retrieved for C at seeds 101,202,303 and B at seed 101. B at seeds 202 and 303 were not fully delivered; a partial fragment set is not a fifth complete model. The real-reference banks, fixed teacher snapshot and complete private split maps were also not locally delivered. These limits prevent a claim of full end-to-end replay from the delivered package, even though the saved record supports a substantial arithmetic and provenance audit."
+    },
+    {
+      "type": "paragraph",
+      "text": "The honest contribution is therefore an explicit attempted objective, a concrete leakage discovery and repair, a bounded empirical negative result and a detailed account of its limits. Broader model families in the monograph are explanatory alternatives or separately labeled reference implementations, not extra trained comparison arms. New mathematical proposals remain proposals until their code, resource use, all attempted selections and fresh evaluation are actually recorded. Scientific detail is useful when it narrows a claim to what the evidence supports."
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+# No external models or datasets are downloaded. NumPy is not needed by genref.
+torch>=2.2
+

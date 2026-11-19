@@ -1,0 +1,40 @@
+{
+  "buckets": {
+    "test": [
+      850,
+      1000
+    ],
+    "train": [
+      0,
+      700
+    ],
+    "validation": [
+      700,
+      850
+    ]
+  },
+  "candidate_images": "only_union_components_wholly_inside_original_training",
+  "caps": {
+    "accepted_image_pair_edges": 1000000,
+    "inner_wall_seconds": 600,
+    "orientation_pair_checks": 250000000
+  },
+  "excluded_components": "touch_old_validation_or_test_OR_contain_exact_or_flip_annotation_contradiction",
+  "hash": "SHA256_ASCII_celeba-v2-component-split-v1:104729:<minimum_original_zero_based_row>_integer_modulo1000",
+  "minimum_components_per_group_per_split": 2,
+  "minimum_heldout_images_per_group": 100,
+  "name": "celeba-v2-component-split-v1",
+  "near_relation": {
+    "aligned_RGB64_maximum_squared_error": 786432,
+    "candidate_generator": "all15pairs_of6disjoint_bands_11_11_11_11_10_10_complete_by_pigeonhole",
+    "maximum_hamming_distance": 4,
+    "orientations": [
+      "original",
+      "horizontal_flip"
+    ],
+    "phash_bits": 64
+  },
+  "no_partition_search": true,
+  "no_silent_floor_relaxation": true,
+  "seed": 104729
+}
